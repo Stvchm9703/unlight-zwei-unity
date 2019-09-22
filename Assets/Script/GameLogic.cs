@@ -6,6 +6,8 @@ public enum pos_type { close_dist, middle_dist, long_dist }
 public enum cond_oper { equal, greater, less }
 public enum stage_parse { draw, move, attack, defeals }
 //  NOTE impletement rust_libs later @Rust
+
+
 public class EvntCond {
     public type_opt opt;
     public int val;

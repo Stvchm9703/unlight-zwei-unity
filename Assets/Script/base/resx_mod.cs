@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using YamlDotNet;
-namespace unlight_cli {
+namespace UnlightCli {
     public interface IResxMod {
         string HostAddr { get; }
 
@@ -103,8 +103,8 @@ namespace unlight_cli {
     }
 
     public class ResxMod : IResxMod {
-        public string local_file_addr;
-        public string remote_resx_addr;
+        string local_file_addr;
+        string remote_resx_addr;
         string remote_svr_type; // default : mongodb 
         string file_type;
         string log_addr;
@@ -139,6 +139,7 @@ namespace unlight_cli {
 
         public ResxMod (ConfigTemp conf) {
             // var tep = 
+            
         }
 
         public bool CheckRemote (MongoClient mgo_cli) {

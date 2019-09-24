@@ -1,0 +1,40 @@
+root_path: A:\Unity_doc\unlight zwie
+Log:
+  Remote:
+    Connector: mysql
+    Host: 127.0.0.1
+    Port: 3306
+    Database: log
+    Username: root
+    Password: ''
+    Key: ''
+  Local:
+    Format: ''
+    Schema: sql
+    Filepath: A:\Unity_doc\unlight zwie/data/log.db
+Resource:
+  Remote:
+    Connector: mongodb
+    Host: 127.0.0.1
+    Port: 27017
+    Database: unlight_resx
+    Username: root
+    Password: ''
+    Key: ''
+  Local:
+    Format: ''
+    Schema: sql
+    Filepath: A:\Unity_doc\unlight zwie/data/resx
+Duel:
+  Remote:
+    Connector: redis
+    Host: 127.0.0.1
+    Port: 27017
+    Database: unlight_duel
+    Username: root
+    Password: ''
+    Key: ''
+  Local:
+    Format: ''
+    Schema: sql
+    Filepath: A:\Unity_doc\unlight zwie/data/resx

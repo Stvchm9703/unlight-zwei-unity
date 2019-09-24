@@ -1,4 +1,4 @@
-namespace unlight_cli{
+namespace UnlightCli{
     public class DuelMgr{
         
     } 

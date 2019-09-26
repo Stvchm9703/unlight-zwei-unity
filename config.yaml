@@ -17,7 +17,7 @@ Resource:
     Connector: mongodb
     Host: 127.0.0.1
     Port: 27017
-    Database: unlight_resx
+    Database: ul_zwei
     Username: root
     Password: ''
     Key: ''

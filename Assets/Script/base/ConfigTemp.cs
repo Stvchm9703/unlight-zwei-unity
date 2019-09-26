@@ -15,7 +15,6 @@ namespace UnlightCli {
     }
     public class ConfigTemp {
         public string root_path;
-
         public CfModuleSetting Log;
         public CfModuleSetting Resource;
         public CfModuleSetting Duel;
@@ -80,8 +79,12 @@ namespace UnlightCli {
             if (!File.Exists (Path.Combine (tpath))) {
                 File.CreateText (Path.Combine (tpath));
             }
+            
+            // Note: Debug object 
             var obj = JsonConvert.SerializeObject (setting);
             Debug.Log (obj);
+            // 
+
             string yml = serializer.Serialize (setting);
             File.AppendAllText (Path.Combine (tpath), yml);
             return true;

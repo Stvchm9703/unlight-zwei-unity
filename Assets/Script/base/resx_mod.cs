@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using YamlDotNet;
+using UnityEngine;
 namespace UnlightCli {
 
     public static class ResxConf {
@@ -119,7 +120,7 @@ namespace UnlightCli {
 
     }
 
-    protected class ResxInfoMod {
+    public class ResxInfoMod {
         public string mod_name;
         public DateTime last_update;
         public string version;

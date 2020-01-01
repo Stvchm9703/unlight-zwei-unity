@@ -1,0 +1,44 @@
+ManifestFileVersion: 0
+CRC: 3536223923
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1a1edf1ada687d135fa077d73358ecfd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Data/cc12/cover_1.png
+- Assets/Data/cc12/cover_e.png
+- Assets/Data/cc12/cover_5.png
+- Assets/Data/cc12/cover_2.png
+- Assets/Data/cc12/cover_a.png
+- Assets/Data/cc12/shand_1.png
+- Assets/Data/cc12/skill.json
+- Assets/Data/cc12/skill_0_1.png
+- Assets/Data/cc12/cover_c.png
+- Assets/Data/cc12/shand_f.png
+- Assets/Data/cc12/skill_2_part_2.png
+- Assets/Data/cc12/skill_3_part_5.png
+- Assets/Data/cc12/skill_3_part_6.png
+- Assets/Data/cc12/cover_3.png
+- Assets/Data/cc12/shand_shad.png
+- Assets/Data/cc12/skill_0_2.png
+- Assets/Data/cc12/skill_3_part_4.png
+- Assets/Data/cc12/cover_4.png
+- Assets/Data/cc12/skill_3_part_3.png
+- Assets/Data/cc12/cover_b.png
+- Assets/Data/cc12/skill_3_part_7.png
+- Assets/Data/cc12/skill_2_part_3.png
+- Assets/Data/cc12/cover_n1.png
+- Assets/Data/cc12/skill_1_1.png
+- Assets/Data/cc12/cover_d.png
+- Assets/Data/cc12/skill_3_part_2.png
+- Assets/Data/cc12/card_set.json
+Dependencies: []

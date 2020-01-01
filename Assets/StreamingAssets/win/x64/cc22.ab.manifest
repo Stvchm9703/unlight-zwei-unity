@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 3460751821
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a52ac5bad8a4b51abb74fe91c094f584
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Data/cc22/cover_b.png
+- Assets/Data/cc22/skill_1_1.png
+- Assets/Data/cc22/stand_f.png
+- Assets/Data/cc22/cover_2.png
+- Assets/Data/cc22/cover_n1.png
+- Assets/Data/cc22/cover_e.png
+- Assets/Data/cc22/skill_1_part_3.png
+- Assets/Data/cc22/skill_1_part_2.png
+- Assets/Data/cc22/cover_3.png
+- Assets/Data/cc22/card_set.json
+- Assets/Data/cc22/stand_1.png
+- Assets/Data/cc22/stand_shad.png
+- Assets/Data/cc22/skill_3_1.png
+- Assets/Data/cc22/cover_1.png
+- Assets/Data/cc22/cover_d.png
+- Assets/Data/cc22/cover_a.png
+- Assets/Data/cc22/cover_c.png
+- Assets/Data/cc22/skill.json
+- Assets/Data/cc22/skill_0_1.png
+- Assets/Data/cc22/cover_4.png
+- Assets/Data/cc22/cover_5.png
+- Assets/Data/cc22/skill_2_1.png
+Dependencies: []

@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 2230280885
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1960f7bfc4abd7e78b51e1c9210a3f75
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Data/cc18/cover_a.png
+- Assets/Data/cc18/cover_4.png
+- Assets/Data/cc18/stand_f.png
+- Assets/Data/cc18/cover_1.png
+- Assets/Data/cc18/cover_e.png
+- Assets/Data/cc18/skill_0_1.png
+- Assets/Data/cc18/stand_stad.png
+- Assets/Data/cc18/skill_1_1.png
+- Assets/Data/cc18/skill_3_part_2.png
+- Assets/Data/cc18/cover_n1.png
+- Assets/Data/cc18/cover_5.png
+- Assets/Data/cc18/skill_3_part_6.png
+- Assets/Data/cc18/skill_3_part_4.png
+- Assets/Data/cc18/skill_3_part_3.png
+- Assets/Data/cc18/cover_d.png
+- Assets/Data/cc18/skill_2_1.png
+- Assets/Data/cc18/cover_2.png
+- Assets/Data/cc18/cover_3.png
+- Assets/Data/cc18/cover_c.png
+- Assets/Data/cc18/stand_1.png
+- Assets/Data/cc18/skill.json
+- Assets/Data/cc18/card_set.json
+- Assets/Data/cc18/cover_b.png
+- Assets/Data/cc18/skill_3_part_5.png
+Dependencies: []

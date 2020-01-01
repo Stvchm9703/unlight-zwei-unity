@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 3059640865
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: da6bee9443ab5b3c526111afd6244271
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Data/cc11/cover_n1.png
+- Assets/Data/cc11/skill_3_part_3.png
+- Assets/Data/cc11/cover_b.png
+- Assets/Data/cc11/stand_shad.png
+- Assets/Data/cc11/cover_2.png
+- Assets/Data/cc11/skill_1_1.png
+- Assets/Data/cc11/cover_f.png
+- Assets/Data/cc11/skill_0_part_3.png
+- Assets/Data/cc11/card_set.json
+- Assets/Data/cc11/cover_5.png
+- Assets/Data/cc11/cover_3.png
+- Assets/Data/cc11/stand_1.png
+- Assets/Data/cc11/cover_c.png
+- Assets/Data/cc11/skill_2_1.png
+- Assets/Data/cc11/skill_0_1.png
+- Assets/Data/cc11/skill.json
+- Assets/Data/cc11/cover_d.png
+- Assets/Data/cc11/stand_f.png
+- Assets/Data/cc11/cover_4.png
+- Assets/Data/cc11/skill_3_part_2.png
+- Assets/Data/cc11/cover_a.png
+- Assets/Data/cc11/skill_3_1.png
+- Assets/Data/cc11/cover_1.png
+- Assets/Data/cc11/cover_e.png
+Dependencies: []

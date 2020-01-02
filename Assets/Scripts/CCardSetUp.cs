@@ -6,10 +6,14 @@ public class CCardSetUp : MonoBehaviour {
     /// <summary>
     /// Self CC
     /// </summary>
+    public GameObject CCardPrefab;
+
     public int SelfCC_ID;
     [MinAttribute (1)]
     public int SelfCC_Level;
-    public CCardCtl SelfCCSet;
+    // public CCardCtl SelfCCSet;
+
+    public CCardBockCtl SelfCCSetBlock;
     public int self_atk_equ = 0, self_def_equ = 0;
     AssetBundle SelfCC_AB;
 
@@ -18,7 +22,8 @@ public class CCardSetUp : MonoBehaviour {
     /// </summary>
     public int DuelCC_ID;
     public int DuelCC_Level;
-    public CCardCtl DuelCCSet;
+    public CCardBockCtl DuelCCSet;
+    public int duel_atk_equ = 0 , duel_def_equ = 0;
     AssetBundle DuelCC_AB;
 
     public string _asset_path {
@@ -51,18 +56,33 @@ public class CCardSetUp : MonoBehaviour {
         if (this.SelfCC_AB == null) {
             yield return null;
         } else {
+            this.SelfCCSetBlock.level = SelfCC_Level;
+            StartCoroutine (this.SelfCCSetBlock.InitCCLvFrame ());
+            StartCoroutine (this.SelfCCSetBlock.InitEquSetting (self_atk_equ, self_def_equ));
+            StartCoroutine (this.SelfCCSetBlock.InitCCImg (this.SelfCC_AB));
 
-            this.SelfCCSet.level = SelfCC_Level;
-            StartCoroutine (this.SelfCCSet.InitCCLvFrame ());
-            StartCoroutine (this.SelfCCSet.InitEquSetting (self_atk_equ, self_def_equ));
-            StartCoroutine (this.SelfCCSet.InitCCImg (this.SelfCC_AB));
             yield return true;
         }
-
     }
+    public IEnumerator StartDuelCCImplement () {
+        Debug.Log ("start : " + _asset_path);
+        this.DuelCC_AB = AssetBundle.LoadFromFile (
+            Path.Combine (_asset_path, "CC" + (DuelCC_ID.ToString ()).PadLeft (2, '0') + ".ab")
+        );
+        if (this.DuelCC_AB == null) {
+            yield return null;
+        } else {
+            this.DuelCCSet.level = DuelCC_Level;
+            StartCoroutine (this.DuelCCSet.InitCCLvFrame ());
+            StartCoroutine (this.DuelCCSet.InitEquSetting (duel_atk_equ, duel_def_equ));
+            StartCoroutine (this.DuelCCSet.InitCCImg (this.DuelCC_AB));
 
+            yield return true;
+        }
+    }
     void Start () {
         StartCoroutine (StartSelfCCImplement ());
+        StartCoroutine (StartDuelCCImplement ());
     }
 
     // Update is called once per frame

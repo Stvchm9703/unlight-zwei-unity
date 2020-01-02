@@ -4,6 +4,7 @@ using System.Reflection;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardDeckControl : MonoBehaviour {
     public GameObject CardPrefab;
@@ -13,9 +14,8 @@ public class CardDeckControl : MonoBehaviour {
 
     public List<GameObject> Cards;
 
-    public GameObject InsideArea;
-    public GameObject OutsideArea;
-    public GameObject DestroyArea;
+    public GameObject InsideArea, OutsideArea, DestroyArea;
+    public Text CardRemainDisplay;
     public void GenerateCardRun () {
         StartCoroutine (GenerateCard ());
     }
@@ -42,6 +42,9 @@ public class CardDeckControl : MonoBehaviour {
             cardNumber++;
             Cards.Add (ff);
         }
+        if (CardRemainDisplay != null) {
+            CardRemainDisplay.text = (cardNumber).ToString ();
+        }
         yield return (true);
     }
     public void DrawCardTest () {
@@ -51,6 +54,9 @@ public class CardDeckControl : MonoBehaviour {
         cardNumber--;
         yield return Cards[cardNumber].GetComponent<ActionCardCtl> ().MoveToHand ();
         yield return new WaitForSeconds (0.3f);
+        if (CardRemainDisplay != null) {
+            CardRemainDisplay.text = (cardNumber).ToString ();
+        }
         yield return UpdateInsidePosition ();
     }
 

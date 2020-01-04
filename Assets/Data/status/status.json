@@ -1,0 +1,728 @@
+[
+    {
+        "id": 1,
+        "skill_id": "TRANS_MSG_POISON",
+        "name": {
+            "jp": "毒状態です。移動の後にダメージを受けます。",
+            "en": "Poisoned status. Poisoned players take damage after the movement phase.",
+            "tcn": "中毒狀態。移動時會造成傷害。",
+            "scn": "中毒状态。移动后将受伤。",
+            "kr": "독 상태입니다. 이동 후에 데미지가 발생합니다.",
+            "fr": "[Empoisonné] Vos HP diminueront après la Phase d'Action.",
+            "ina": "毒状態です。移動の後にダメージを受けます。",
+            "thai": "สถานะติดพิษ จะได้รับบาดเจ็บหลังจากเคลื่อนที่"
+        },
+        "caption": {
+            "jp": "毒状態です。移動の後にダメージを受けます。",
+            "en": "Poisoned status. Poisoned players take damage after the movement phase.",
+            "tcn": "中毒狀態。移動時會造成傷害。",
+            "scn": "中毒状态。移动后将受伤。",
+            "kr": "독 상태입니다. 이동 후에 데미지가 발생합니다.",
+            "fr": "[Empoisonné] Vos HP diminueront après la Phase d'Action.",
+            "ina": "毒状態です。移動の後にダメージを受けます。",
+            "thai": "สถานะติดพิษ จะได้รับบาดเจ็บหลังจากเคลื่อนที่"
+        },
+        "img": "01.png",
+        "sprite": "01"
+    },
+    {
+        "id": 2,
+        "skill_id": "TRANS_MSG_POISON2",
+        "name": {
+            "jp": "猛毒状態です。移動の後にダメージを受けます。",
+            "en": "Poisoned status. Poisoned players take damage after the movement phase.",
+            "tcn": "猛毒狀態。移動時會造成傷害。",
+            "scn": "猛毒状态。移动时会造成伤害。",
+            "kr": "猛毒状態です。移動の後にダメージを受けます。",
+            "fr": "Vous êtes dangereusement empoisonné. Vous subissez les dommages après votre déplacement.",
+            "ina": "猛毒状態です。移動の後にダメージを受けます。",
+            "thai": ""
+        },
+        "caption": {
+            "jp": "猛毒状態です。移動の後にダメージを受けます。",
+            "en": "Poisoned status. Poisoned players take damage after the movement phase.",
+            "tcn": "猛毒狀態。移動時會造成傷害。",
+            "scn": "猛毒状态。移动时会造成伤害。",
+            "kr": "猛毒状態です。移動の後にダメージを受けます。",
+            "fr": "Vous êtes dangereusement empoisonné. Vous subissez les dommages après votre déplacement.",
+            "ina": "猛毒状態です。移動の後にダメージを受けます。",
+            "thai": ""
+        },
+        "img": "01.png",
+        "sprite": "01"
+    },
+    {
+        "id": 3,
+        "skill_id": "TRANS_MSG_PARA",
+        "name": {
+            "jp": "麻痺状態です。移動ポイントが０になります。",
+            "en": "Paralyzed status. Paralyzed players have 0 movement points and are unable to move.",
+            "tcn": "麻痺狀態。移動值變為0。",
+            "scn": "麻痹状态。移动点数将变为0。",
+            "kr": "마비 상태 입니다. 이동 포인트가 0이 됩니다.",
+            "fr": "[Paralysé] Vos points de déplacement seront de 0.",
+            "ina": "麻痺状態です。移動ポイントが０になります。",
+            "thai": "สถานะอัมพาต แต้มในการเคลื่อนย้ายเป็น 0"
+        },
+        "caption": {
+            "jp": "麻痺状態です。移動ポイントが０になります。",
+            "en": "Paralyzed status. Paralyzed players have 0 movement points and are unable to move.",
+            "tcn": "麻痺狀態。移動值變為0。",
+            "scn": "麻痹状态。移动点数将变为0。",
+            "kr": "마비 상태 입니다. 이동 포인트가 0이 됩니다.",
+            "fr": "[Paralysé] Vos points de déplacement seront de 0.",
+            "ina": "麻痺状態です。移動ポイントが０になります。",
+            "thai": "สถานะอัมพาต แต้มในการเคลื่อนย้ายเป็น 0"
+        },
+        "img": "02.png",
+        "sprite": "02"
+    },
+    {
+        "id": 4,
+        "skill_id": "TRANS_MSG_ATKUP",
+        "name": {
+            "jp": "攻撃力がアップしている状態です。",
+            "en": "Increased attack power status.",
+            "tcn": "攻擊力提升的狀態。",
+            "scn": "攻击力正在提升的状态。",
+            "kr": "공격력이 상승하여 있는 상태 입니다.",
+            "fr": "Meilleure capacité d'Attaque",
+            "ina": "攻撃力がアップしている状態です。",
+            "thai": "สถานะพลังโจมตีเพิ่มขึ้น"
+        },
+        "caption": {
+            "jp": "攻撃力がアップしている状態です。",
+            "en": "Increased attack power status.",
+            "tcn": "攻擊力提升的狀態。",
+            "scn": "攻击力正在提升的状态。",
+            "kr": "공격력이 상승하여 있는 상태 입니다.",
+            "fr": "Meilleure capacité d'Attaque",
+            "ina": "攻撃力がアップしている状態です。",
+            "thai": "สถานะพลังโจมตีเพิ่มขึ้น"
+        },
+        "img": "05.png",
+        "sprite": "05"
+    },
+    {
+        "id": 5,
+        "skill_id": "TRANS_MSG_ATKDOWN",
+        "name": {
+            "jp": "攻撃力がダウンしている状態です。",
+            "en": "Decreased attack power status.",
+            "tcn": "攻擊力下降的狀態。",
+            "scn": "攻击力正在下降的状态。",
+            "kr": "공격력이 내려가 있는 상태 입니다.",
+            "fr": "Perte de capacité d'Attaque",
+            "ina": "攻撃力がダウンしている状態です。",
+            "thai": "สถานะพลังโจมตีลดลง"
+        },
+        "caption": {
+            "jp": "攻撃力がダウンしている状態です。",
+            "en": "Decreased attack power status.",
+            "tcn": "攻擊力下降的狀態。",
+            "scn": "攻击力正在下降的状态。",
+            "kr": "공격력이 내려가 있는 상태 입니다.",
+            "fr": "Perte de capacité d'Attaque",
+            "ina": "攻撃力がダウンしている状態です。",
+            "thai": "สถานะพลังโจมตีลดลง"
+        },
+        "img": "06.png",
+        "sprite": "06"
+    },
+    {
+        "id": 6,
+        "skill_id": "TRANS_MSG_DEFUP",
+        "name": {
+            "jp": "防御力がアップしている状態です。",
+            "en": "Increased defensive power status.",
+            "tcn": "防禦力提升的狀態。",
+            "scn": "防御力正在提升的状态。",
+            "kr": "방어력이 상승하여 있는 상태 입니다.",
+            "fr": "Meilleure capacité de Défense",
+            "ina": "防御力がアップしている状態です。",
+            "thai": "พลังป้องกันเพิ่มขึ้น"
+        },
+        "caption": {
+            "jp": "防御力がアップしている状態です。",
+            "en": "Increased defensive power status.",
+            "tcn": "防禦力提升的狀態。",
+            "scn": "防御力正在提升的状态。",
+            "kr": "방어력이 상승하여 있는 상태 입니다.",
+            "fr": "Meilleure capacité de Défense",
+            "ina": "防御力がアップしている状態です。",
+            "thai": "พลังป้องกันเพิ่มขึ้น"
+        },
+        "img": "07.png",
+        "sprite": "07"
+    },
+    {
+        "id": 7,
+        "skill_id": "TRANS_MSG_DEFDOWN",
+        "name": {
+            "jp": "防御力がダウンしている状態です。",
+            "en": "Decreased defensive power status.",
+            "tcn": "防禦力下降的狀態。",
+            "scn": "防御力正在下降的状态。",
+            "kr": "방어력이 내려가 있는 상태 입니다.",
+            "fr": "Perte de capacité de Défense",
+            "ina": "防御力がダウンしている状態です。",
+            "thai": "พลังป้องกันลดลง"
+        },
+        "caption": {
+            "jp": "防御力がダウンしている状態です。",
+            "en": "Decreased defensive power status.",
+            "tcn": "防禦力下降的狀態。",
+            "scn": "防御力正在下降的状态。",
+            "kr": "방어력이 내려가 있는 상태 입니다.",
+            "fr": "Perte de capacité de Défense",
+            "ina": "防御力がダウンしている状態です。",
+            "thai": "พลังป้องกันลดลง"
+        },
+        "img": "08.png",
+        "sprite": "08"
+    },
+    {
+        "id": 8,
+        "skill_id": "TRANS_MSG_BERSERK",
+        "name": {
+            "jp": "凶暴化している状態です。全ての戦闘ダメージが２倍になります。",
+            "en": "Berserk status! All combat damage is doubled.",
+            "tcn": "凶暴化的狀態。所有的戰鬥傷害變成2倍。",
+            "scn": "残暴化状态。所有的战斗伤害的效果将提升至2倍。",
+            "kr": "흉폭화되어 있는 상태입니다. 모든 데미지가 2배가 됩니다.",
+            "fr": "[Berserk] Les dégâts infligés à votre adversaire sont doublés",
+            "ina": "凶暴化している状態です。全ての戦闘ダメージが２倍になります。",
+            "thai": "สถานะบ้าคลั่ง ค่าความเสียหายที่ทำได้ในการต่อสู้จะเพิ่มเป็น 2 เท่า"
+        },
+        "caption": {
+            "jp": "凶暴化している状態です。全ての戦闘ダメージが２倍になります。",
+            "en": "Berserk status! All combat damage is doubled.",
+            "tcn": "凶暴化的狀態。所有的戰鬥傷害變成2倍。",
+            "scn": "残暴化状态。所有的战斗伤害的效果将提升至2倍。",
+            "kr": "흉폭화되어 있는 상태입니다. 모든 데미지가 2배가 됩니다.",
+            "fr": "[Berserk] Les dégâts infligés à votre adversaire sont doublés",
+            "ina": "凶暴化している状態です。全ての戦闘ダメージが２倍になります。",
+            "thai": "สถานะบ้าคลั่ง ค่าความเสียหายที่ทำได้ในการต่อสู้จะเพิ่มเป็น 2 เท่า"
+        },
+        "img": "09.png",
+        "sprite": "09"
+    },
+    {
+        "id": 9,
+        "skill_id": "TRANS_MSG_NOMOVE",
+        "name": {
+            "jp": "行動が出来ない状態です。",
+            "en": "You are unable to move.",
+            "tcn": "不能行動的狀態。",
+            "scn": "无法行动的状态。",
+            "kr": "행동을 할 수 없는 상태입니다.",
+            "fr": "Vous ne pouvez entreprendre aucune action.",
+            "ina": "行動が出来ない状態です。",
+            "thai": "ไม่สามารถขยับได้"
+        },
+        "caption": {
+            "jp": "行動が出来ない状態です。",
+            "en": "You are unable to move.",
+            "tcn": "不能行動的狀態。",
+            "scn": "无法行动的状态。",
+            "kr": "행동을 할 수 없는 상태입니다.",
+            "fr": "Vous ne pouvez entreprendre aucune action.",
+            "ina": "行動が出来ない状態です。",
+            "thai": "ไม่สามารถขยับได้"
+        },
+        "img": "04.png",
+        "sprite": "04"
+    },
+    {
+        "id": 10,
+        "skill_id": "TRANS_MSG_NOSAP",
+        "name": {
+            "jp": "必殺技が使えない状態です。",
+            "en": "Sealed status. You cannot use special attacks.",
+            "tcn": "不能使用必殺技的狀態。",
+            "scn": "无法使用必杀技的状态。",
+            "kr": "필살기를 사용할 수 없는 상태입니다.",
+            "fr": "[Scellé] Vous ne pouvez réaliser aucune Attaque Spéciale",
+            "ina": "必殺技が使えない状態です。",
+            "thai": "ไม่สามารถใช้ท่าไม้ตายได้"
+        },
+        "caption": {
+            "jp": "必殺技が使えない状態です。",
+            "en": "Sealed status. You cannot use special attacks.",
+            "tcn": "不能使用必殺技的狀態。",
+            "scn": "无法使用必杀技的状态。",
+            "kr": "필살기를 사용할 수 없는 상태입니다.",
+            "fr": "[Scellé] Vous ne pouvez réaliser aucune Attaque Spéciale",
+            "ina": "必殺技が使えない状態です。",
+            "thai": "ไม่สามารถใช้ท่าไม้ตายได้"
+        },
+        "img": "03.png",
+        "sprite": "03"
+    },
+    {
+        "id": 11,
+        "skill_id": "TRANS_MSG_SELFDES",
+        "name": {
+            "jp": "自壊状態です。規定ターン経過後死亡します。",
+            "en": "Disintegrating status. You will die after a number of turns have passed.",
+            "tcn": "自毀狀態。在規定的回合後死亡。",
+            "scn": "自我瓦解状态。在规定回合结束后死亡。",
+            "kr": "자괴 상태 입니다. 규정 턴 경과후 사망합니다.",
+            "fr": "[Suicide] Vous mourrez à la fin du Tour",
+            "ina": "自壊状態です。規定ターン経過後死亡します。",
+            "thai": "สถานะสลายตัว หากผ่านเทิร์นที่กำหนดไปแล้วตัวละครจะเสียชีวิต"
+        },
+        "caption": {
+            "jp": "自壊状態です。規定ターン経過後死亡します。",
+            "en": "Disintegrating status. You will die after a number of turns have passed.",
+            "tcn": "自毀狀態。在規定的回合後死亡。",
+            "scn": "自我瓦解状态。在规定回合结束后死亡。",
+            "kr": "자괴 상태 입니다. 규정 턴 경과후 사망합니다.",
+            "fr": "[Suicide] Vous mourrez à la fin du Tour",
+            "ina": "自壊状態です。規定ターン経過後死亡します。",
+            "thai": "สถานะสลายตัว หากผ่านเทิร์นที่กำหนดไปแล้วตัวละครจะเสียชีวิต"
+        },
+        "img": "10.png",
+        "sprite": "10"
+    },
+    {
+        "id": 12,
+        "skill_id": "TRANS_MSG_ZOMBIE",
+        "name": {
+            "jp": "不死状態です。戦闘で受けるダメージが０になります。",
+            "en": "Invulnerable status. All combat damage your receive is reduced to 0.",
+            "tcn": "不死狀態。在戰鬥中受到的損傷變為0。",
+            "scn": "不死状态。在战斗中受到的伤害变为0。",
+            "kr": "불사 상태 입니다. 전투에서 받는 데미지가 0이 됩니다.",
+            "fr": "[Immortel] Vous ne subirez aucun dégât",
+            "ina": "不死状態です。戦闘で受けるダメージが０になります。",
+            "thai": "สถานะอมตะ อาการบาดเจ็บจากการต่อสู้จะเป็น 0"
+        },
+        "caption": {
+            "jp": "不死状態です。戦闘で受けるダメージが０になります。",
+            "en": "Invulnerable status. All combat damage your receive is reduced to 0.",
+            "tcn": "不死狀態。在戰鬥中受到的損傷變為0。",
+            "scn": "不死状态。在战斗中受到的伤害变为0。",
+            "kr": "불사 상태 입니다. 전투에서 받는 데미지가 0이 됩니다.",
+            "fr": "[Immortel] Vous ne subirez aucun dégât",
+            "ina": "不死状態です。戦闘で受けるダメージが０になります。",
+            "thai": "สถานะอมตะ อาการบาดเจ็บจากการต่อสู้จะเป็น 0"
+        },
+        "img": "11.png",
+        "sprite": "11"
+    },
+    {
+        "id": 13,
+        "skill_id": "TRANS_MSG_TERROR",
+        "name": {
+            "jp": "怯えている状態です。全ての戦闘ダメージが半分になります。",
+            "en": "Afraid status. All combat damage to your opponent halved.",
+            "tcn": "恐懼的狀態。所有的戰鬥傷害減半。",
+            "scn": "恐惧状态。所有的战斗伤害效果减半。",
+            "kr": "겁에 질린 상태입니다. 모든 전투 데미지가 반으로 감소합니다.",
+            "fr": "[Crainte] Tout les dégâts infligés à votre adversaire sont diminués de moitié.",
+            "ina": "怯えている状態です。全ての戦闘ダメージが半分になります。",
+            "thai": "สถานะตื่นตระหนก ค่าความเสียหายที่ทำได้ในการต่อสู้จะเหลือครึ่งเดียว"
+        },
+        "caption": {
+            "jp": "怯えている状態です。全ての戦闘ダメージが半分になります。",
+            "en": "Afraid status. All combat damage to your opponent halved.",
+            "tcn": "恐懼的狀態。所有的戰鬥傷害減半。",
+            "scn": "恐惧状态。所有的战斗伤害效果减半。",
+            "kr": "겁에 질린 상태입니다. 모든 전투 데미지가 반으로 감소합니다.",
+            "fr": "[Crainte] Tout les dégâts infligés à votre adversaire sont diminués de moitié.",
+            "ina": "怯えている状態です。全ての戦闘ダメージが半分になります。",
+            "thai": "สถานะตื่นตระหนก ค่าความเสียหายที่ทำได้ในการต่อสู้จะเหลือครึ่งเดียว"
+        },
+        "img": "12.png",
+        "sprite": "12"
+    },
+    {
+        "id": 14,
+        "skill_id": "TRANS_MSG_MOVUP",
+        "name": {
+            "jp": "移動力がアップしている状態です。",
+            "en": "Increased movement power status.",
+            "tcn": "移動力提升的狀態。",
+            "scn": "移动力正在提升的状态。",
+            "kr": "이동력이 업되어 있는 상태입니다.",
+            "fr": "Meilleure capacité de Déplacement",
+            "ina": "移動力がアップしている状態です。",
+            "thai": "พลังในการเคลื่อนที่เพิ่มขึ้น"
+        },
+        "caption": {
+            "jp": "移動力がアップしている状態です。",
+            "en": "Increased movement power status.",
+            "tcn": "移動力提升的狀態。",
+            "scn": "移动力正在提升的状态。",
+            "kr": "이동력이 업되어 있는 상태입니다.",
+            "fr": "Meilleure capacité de Déplacement",
+            "ina": "移動力がアップしている状態です。",
+            "thai": "พลังในการเคลื่อนที่เพิ่มขึ้น"
+        },
+        "img": "13.png",
+        "sprite": "13"
+    },
+    {
+        "id": 15,
+        "skill_id": "TRANS_MSG_MOVDOWN",
+        "name": {
+            "jp": "移動力がダウンしている状態です。",
+            "en": "Decreased movement power status.",
+            "tcn": "移動力下降的狀態",
+            "scn": "移动力正在下降的状态。",
+            "kr": "이동력이 다운되어 있는 상태입니다.",
+            "fr": "Perte de capacité de Déplacement",
+            "ina": "移動力がダウンしている状態です。",
+            "thai": "พลังในการเคลื่อนที่ลดลง"
+        },
+        "caption": {
+            "jp": "移動力がダウンしている状態です。",
+            "en": "Decreased movement power status.",
+            "tcn": "移動力下降的狀態",
+            "scn": "移动力正在下降的状态。",
+            "kr": "이동력이 다운되어 있는 상태입니다.",
+            "fr": "Perte de capacité de Déplacement",
+            "ina": "移動力がダウンしている状態です。",
+            "thai": "พลังในการเคลื่อนที่ลดลง"
+        },
+        "img": "14.png",
+        "sprite": "14"
+    },
+    {
+        "id": 16,
+        "skill_id": "TRANS_MSG_REGENE",
+        "name": {
+            "jp": "再生状態です。移動の後に回復します。",
+            "en": "Regenerating status. Recover HP even after moving.",
+            "tcn": "再生狀態。移動後恢復血量",
+            "scn": "重生状态。移动后恢复。",
+            "kr": "",
+            "fr": "Régénération. Vous vous régénérerez après votre Déplacement",
+            "ina": "再生状態です。移動の後に回復します。",
+            "thai": "สถานะฟื้นคืน พลังจะฟื้นคืนหลัง Move Phase"
+        },
+        "caption": {
+            "jp": "再生状態です。移動の後に回復します。",
+            "en": "Regenerating status. Recover HP even after moving.",
+            "tcn": "再生狀態。移動後恢復血量",
+            "scn": "重生状态。移动后恢复。",
+            "kr": "",
+            "fr": "Régénération. Vous vous régénérerez après votre Déplacement",
+            "ina": "再生状態です。移動の後に回復します。",
+            "thai": "สถานะฟื้นคืน พลังจะฟื้นคืนหลัง Move Phase"
+        },
+        "img": "15.png",
+        "sprite": "15"
+    },
+    {
+        "id": 17,
+        "skill_id": "TRANS_MSG_BIND",
+        "name": {
+            "jp": "呪縛状態です。移動距離に応じてダメージを受けます。",
+            "en": "Cursed status. Take damage proportional to distance moved.",
+            "tcn": "咒縛狀態。依照移動距離受到該有的傷害。",
+            "scn": "咒语束缚的状态。移动距离不同，受到的伤害不同。",
+            "kr": "",
+            "fr": "Sortilège. ",
+            "ina": "呪縛状態です。移動距離に応じてダメージを受けます。",
+            "thai": "สถานะต้องสาป ความเสียหายที่จะได้รับขึ้นอยู่กับระยะห่าง"
+        },
+        "caption": {
+            "jp": "呪縛状態です。移動距離に応じてダメージを受けます。",
+            "en": "Cursed status. Take damage proportional to distance moved.",
+            "tcn": "咒縛狀態。依照移動距離受到該有的傷害。",
+            "scn": "咒语束缚的状态。移动距离不同，受到的伤害不同。",
+            "kr": "",
+            "fr": "Sortilège. ",
+            "ina": "呪縛状態です。移動距離に応じてダメージを受けます。",
+            "thai": "สถานะต้องสาป ความเสียหายที่จะได้รับขึ้นอยู่กับระยะห่าง"
+        },
+        "img": "16.png",
+        "sprite": "16"
+    },
+    {
+        "id": 18,
+        "skill_id": "TRANS_MSG_CHAOS",
+        "name": {
+            "jp": "混沌状態です。攻撃力と防御力が2倍になります。",
+            "en": "Chaos status. Attack and defense power are doubled.",
+            "tcn": "混沌狀態。攻擊力與防禦力2倍。",
+            "scn": "混沌状态。攻击力与防御力将提升至2倍。",
+            "kr": "",
+            "fr": "Chaos. Vos capacités d'Attaque et de Défense sont doublées.",
+            "ina": "混沌状態です。攻撃力と防御力が2倍になります。",
+            "thai": "สถานะสับสน พลังโจมตีและพลังป้องกันเพิ่มขึ้นเป็น 2 เท่า"
+        },
+        "caption": {
+            "jp": "混沌状態です。攻撃力と防御力が2倍になります。",
+            "en": "Chaos status. Attack and defense power are doubled.",
+            "tcn": "混沌狀態。攻擊力與防禦力2倍。",
+            "scn": "混沌状态。攻击力与防御力将提升至2倍。",
+            "kr": "",
+            "fr": "Chaos. Vos capacités d'Attaque et de Défense sont doublées.",
+            "ina": "混沌状態です。攻撃力と防御力が2倍になります。",
+            "thai": "สถานะสับสน พลังโจมตีและพลังป้องกันเพิ่มขึ้นเป็น 2 เท่า"
+        },
+        "img": "17.png",
+        "sprite": "17"
+    },
+    {
+        "id": 19,
+        "skill_id": "TRANS_MSG_STIGMA",
+        "name": {
+            "jp": "聖痕状態です。数値１につき攻撃力と防御力が１増加します。この状態異常は自然解除されません。",
+            "en": "Stigmata: attack and defense power increase in proportion to the power of the effect. This status effect will not go away naturally.",
+            "tcn": "聖痕狀態。數值每增加1就會增加1點攻擊力與防禦力。這個異常狀態不會自然解除。",
+            "scn": "圣痕状态。数值增加1，攻击力及防御力也将增加1。这种异常状态不会自然解除。",
+            "kr": "",
+            "fr": "Stigmates. Pour chaque stigmate, augmentez votre capacité d'Action et de Défense de 1. Ce changement de statut ne disparaîtra pas automatiquement.",
+            "ina": "聖痕状態です。数値１につき攻撃力と防御力が１増加します。この状態異常は自然解除されません。",
+            "thai": "สถานะแผลศักดิ์สิทธิ์ เมื่อมีค่าเป็น 1 จะเพิ่มพลังโจมตีและป้องกัน 1 แต้ม สถานะผิดปกตินี้จะไม่สามารถหายได้เอง"
+        },
+        "caption": {
+            "jp": "聖痕状態です。数値１につき攻撃力と防御力が１増加します。この状態異常は自然解除されません。",
+            "en": "Stigmata: attack and defense power increase in proportion to the power of the effect. This status effect will not go away naturally.",
+            "tcn": "聖痕狀態。數值每增加1就會增加1點攻擊力與防禦力。這個異常狀態不會自然解除。",
+            "scn": "圣痕状态。数值增加1，攻击力及防御力也将增加1。这种异常状态不会自然解除。",
+            "kr": "",
+            "fr": "Stigmates. Pour chaque stigmate, augmentez votre capacité d'Action et de Défense de 1. Ce changement de statut ne disparaîtra pas automatiquement.",
+            "ina": "聖痕状態です。数値１につき攻撃力と防御力が１増加します。この状態異常は自然解除されません。",
+            "thai": "สถานะแผลศักดิ์สิทธิ์ เมื่อมีค่าเป็น 1 จะเพิ่มพลังโจมตีและป้องกัน 1 แต้ม สถานะผิดปกตินี้จะไม่สามารถหายได้เอง"
+        },
+        "img": "18.png",
+        "sprite": "18"
+    },
+    {
+        "id": 20,
+        "skill_id": "TRANS_MSG_STADOWN",
+        "name": {
+            "jp": "能力低下状態です。数値１につき攻撃力と防御力が１減少します。この状態異常は自然解除されません。",
+            "en": "Reduced abilities: attack and defense power are reduced by in proportion to the power of the effect. This status effect will not go away naturally.",
+            "tcn": "能力低下狀態。數值每增加1就會減少1點攻擊力與防禦力。這個異常狀態不會自然解除。",
+            "scn": "能力降低状态。数值增加1，攻击力及防御力将降低1。这种状态异常不会自然解除。",
+            "kr": "",
+            "fr": "Votre puissance est limitée à ATK-1 et DEF-1. Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "能力低下状態です。数値１につき攻撃力と防御力が１減少します。この状態異常は自然解除されません。",
+            "thai": "สถานะความสามารถลดลง พลังโจมตีและพลังป้องกันจะลดลง 1 แต้มต่อจำนวน 1 แต้ม สถานะผิดปกตินี้จะไม่หายไปเอง"
+        },
+        "caption": {
+            "jp": "能力低下状態です。数値１につき攻撃力と防御力が１減少します。この状態異常は自然解除されません。",
+            "en": "Reduced abilities: attack and defense power are reduced by in proportion to the power of the effect. This status effect will not go away naturally.",
+            "tcn": "能力低下狀態。數值每增加1就會減少1點攻擊力與防禦力。這個異常狀態不會自然解除。",
+            "scn": "能力降低状态。数值增加1，攻击力及防御力将降低1。这种状态异常不会自然解除。",
+            "kr": "",
+            "fr": "Votre puissance est limitée à ATK-1 et DEF-1. Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "能力低下状態です。数値１につき攻撃力と防御力が１減少します。この状態異常は自然解除されません。",
+            "thai": "สถานะความสามารถลดลง พลังโจมตีและพลังป้องกันจะลดลง 1 แต้มต่อจำนวน 1 แต้ม สถานะผิดปกตินี้จะไม่หายไปเอง"
+        },
+        "img": "19.png",
+        "sprite": "19"
+    },
+    {
+        "id": 21,
+        "skill_id": "TRANS_MSG_STICK",
+        "name": {
+            "jp": "棍術状態です。ATKまたはDEFが上昇します。必殺技を発動後にモードが切り替ります。この状態異常は自然解除されません。",
+            "en": "Bo staff skills: ATK or DEF increases depending on the mode. The mode will switch after your special attack. This status effect will not go away naturally.",
+            "tcn": "棍術狀態。ATK或者DEF上升。在必殺技發動後後切換模式。這個異常狀態不會自然解除。",
+            "scn": "棒术状态。ATK或者DEF上升。启动必杀技后切换模式。这种异常状态不会自然解除。",
+            "kr": "",
+            "fr": "Vous êtes en état [Bojutsu]. ATK+1 ou DEF+1. Changement de mode après l'attaque spéciale. Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "棍術状態です。ATKまたはDEFが上昇します。必殺技を発動後にモードが切り替ります。この状態異常は自然解除されません。",
+            "thai": "สถานะศาสตร์ไม้เท้า ATK หรือ DEF จะเพิ่มขึ้น จะเปลี่ยนโหมดพลังจากใช้ท่าไม้ตาย สถานะผิดปกตินี้จะไม่หายไปเอง"
+        },
+        "caption": {
+            "jp": "棍術状態です。ATKまたはDEFが上昇します。必殺技を発動後にモードが切り替ります。この状態異常は自然解除されません。",
+            "en": "Bo staff skills: ATK or DEF increases depending on the mode. The mode will switch after your special attack. This status effect will not go away naturally.",
+            "tcn": "棍術狀態。ATK或者DEF上升。在必殺技發動後後切換模式。這個異常狀態不會自然解除。",
+            "scn": "棒术状态。ATK或者DEF上升。启动必杀技后切换模式。这种异常状态不会自然解除。",
+            "kr": "",
+            "fr": "Vous êtes en état [Bojutsu]. ATK+1 ou DEF+1. Changement de mode après l'attaque spéciale. Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "棍術状態です。ATKまたはDEFが上昇します。必殺技を発動後にモードが切り替ります。この状態異常は自然解除されません。",
+            "thai": "สถานะศาสตร์ไม้เท้า ATK หรือ DEF จะเพิ่มขึ้น จะเปลี่ยนโหมดพลังจากใช้ท่าไม้ตาย สถานะผิดปกตินี้จะไม่หายไปเอง"
+        },
+        "img": "20.png",
+        "sprite": "20"
+    },
+    {
+        "id": 22,
+        "skill_id": "TRANS_MSG_CURSE",
+        "name": {
+            "jp": "詛呪状態です。一度に与えることが出来るダメージ量が(10-付与数)に制限されます。この状態異常は自然解除されません。",
+            "en": "Cursed: the amount of damage you can deal at once is limited to (10 - Number you give). This status effect will not go away naturally.",
+            "tcn": "詛咒狀態。每次可以給予傷害的量被限制在(10-詛呪的數值)。這個異常狀態不會自然解除。",
+            "scn": "诅咒状态。一次能够造成的伤害限制在（10-诅咒的数值）。这种状态异常不会自然解除。",
+            "kr": "",
+            "fr": "VVous êtes sous l'emprise d'un [Maléfice]. Vous pouvez infligé des dommages limités à (10 - valeur numérique). Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "",
+            "thai": "สภาวะคำสาป ความเสียหายที่จะได้รับต่อครั้ง(จำนวน10) สภาวะผิดปกติจะทำให้ไม่สามารถสู้ได้ตามปกติ"
+        },
+        "caption": {
+            "jp": "詛呪状態です。一度に与えることが出来るダメージ量が(10-付与数)に制限されます。この状態異常は自然解除されません。",
+            "en": "Cursed: the amount of damage you can deal at once is limited to (10 - Number you give). This status effect will not go away naturally.",
+            "tcn": "詛咒狀態。每次可以給予傷害的量被限制在(10-詛呪的數值)。這個異常狀態不會自然解除。",
+            "scn": "诅咒状态。一次能够造成的伤害限制在（10-诅咒的数值）。这种状态异常不会自然解除。",
+            "kr": "",
+            "fr": "VVous êtes sous l'emprise d'un [Maléfice]. Vous pouvez infligé des dommages limités à (10 - valeur numérique). Cet état anormal ne disparaîtra pas automatiquement.",
+            "ina": "",
+            "thai": "สภาวะคำสาป ความเสียหายที่จะได้รับต่อครั้ง(จำนวน10) สภาวะผิดปกติจะทำให้ไม่สามารถสู้ได้ตามปกติ"
+        },
+        "img": "21.png",
+        "sprite": "21"
+    },
+    {
+        "id": 23,
+        "skill_id": "TRANS_MSG_BLESS",
+        "name": {
+            "jp": "臨界状態です。攻撃力と防御力が上昇。最大で3まで進行します。この状態異常は自然解除されません。",
+            "en": "Limit Break: ATK and DEF increases. Up to 3. This status effect will not go away naturally.",
+            "tcn": "臨界狀態。攻擊力跟防禦力上升。最大到3。此異常狀態不會自然解除。",
+            "scn": "临界状态。最大可增加到3。这种异常状态无法自然解除。",
+            "kr": "",
+            "fr": "Votre état est [Critique]. Augmentez au maximum de 3. Cet état anormal ne disparaîtra pas automatiquement.",
+            "thai": ""
+        },
+        "caption": {
+            "jp": "臨界状態です。攻撃力と防御力が上昇。最大で3まで進行します。この状態異常は自然解除されません。",
+            "en": "Limit Break: ATK and DEF increases. Up to 3. This status effect will not go away naturally.",
+            "tcn": "臨界狀態。攻擊力跟防禦力上升。最大到3。此異常狀態不會自然解除。",
+            "scn": "临界状态。最大可增加到3。这种异常状态无法自然解除。",
+            "kr": "",
+            "fr": "Votre état est [Critique]. Augmentez au maximum de 3. Cet état anormal ne disparaîtra pas automatiquement.",
+            "thai": ""
+        },
+        "img": "22.png",
+        "sprite": "22"
+    },
+    {
+        "id": 24,
+        "skill_id": "TRANS_MSG_ZOMBIE2",
+        "name": {
+            "jp": "不死Ⅱ状態です。戦闘で受けるあらゆるダメージが０になります。",
+            "en": "Invulnerable II status. All damage taken during the battle is reduced to 0.",
+            "tcn": "不死II狀態。在戰鬥中所受到的全部傷害都變為0。",
+            "scn": "不死II状态。在战斗中所受到的全部伤害都变为0。",
+            "kr": "",
+            "fr": "Vous êtes [Immortel II]. vous ne avez eu aucun dégât.",
+            "ina": "不死Ⅱ状態です。戦闘で受けるあらゆるダメージが０になります。",
+            "thai": ""
+        },
+        "caption": {
+            "jp": "不死Ⅱ状態です。戦闘で受けるあらゆるダメージが０になります。",
+            "en": "Invulnerable II status. All damage taken during the battle is reduced to 0.",
+            "tcn": "不死II狀態。在戰鬥中所受到的全部傷害都變為0。",
+            "scn": "不死II状态。在战斗中所受到的全部伤害都变为0。",
+            "kr": "",
+            "fr": "Vous êtes [Immortel II]. vous ne avez eu aucun dégât.",
+            "ina": "不死Ⅱ状態です。戦闘で受けるあらゆるダメージが０になります。",
+            "thai": ""
+        },
+        "img": "23.png",
+        "sprite": "23"
+    },
+    {
+        "id": 25,
+        "skill_id": "TRANS_MSG_CONTROL",
+        "name": {
+            "jp": "操想状態です。規定ターン経過後死亡します。控えに下がった状態でも進行し、解除できません。",
+            "en": "Curse of Death. Character dies after a designated number of turns. This status persists even if in reserve, cannot be lifted.",
+            "tcn": "操想狀態。在規定回合數後死亡。在待機狀態下也持續此狀態，無法解除。",
+            "scn": "操想状态。在规定回合数后死亡。在待机状态下也持续此状态，无法解除。",
+            "kr": "",
+            "fr": "Vous êtes [Chaste]. Après le nombre de tours prévu, vous mourrez. Vous ne pouvez revenir en arrière.",
+            "ina": "操想状態です。規定ターン経過後死亡します。控えに下がった状態でも進行し、解除できません。",
+            "thai": ""
+        },
+        "caption": {
+            "jp": "操想状態です。規定ターン経過後死亡します。控えに下がった状態でも進行し、解除できません。",
+            "en": "Curse of Death. Character dies after a designated number of turns. This status persists even if in reserve, cannot be lifted.",
+            "tcn": "操想狀態。在規定回合數後死亡。在待機狀態下也持續此狀態，無法解除。",
+            "scn": "操想状态。在规定回合数后死亡。在待机状态下也持续此状态，无法解除。",
+            "kr": "",
+            "fr": "Vous êtes [Chaste]. Après le nombre de tours prévu, vous mourrez. Vous ne pouvez revenir en arrière.",
+            "ina": "操想状態です。規定ターン経過後死亡します。控えに下がった状態でも進行し、解除できません。",
+            "thai": ""
+        },
+        "img": "25.png",
+        "sprite": "25"
+    },
+    {
+        "id": 26,
+        "skill_id": "TRANS_MSG_TARGET",
+        "name": {
+            "jp": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。",
+            "en": "Bullseye status Make the opponent's special skills the target. This status will not be removed by itself.",
+            "tcn": "標靶狀態。總是會成為對手特定技能的對象。這個狀態不會自然解除。",
+            "scn": "标靶状态。总是会成为对手特定技能的对象。这个状态无法自然解除。",
+            "kr": "",
+            "fr": "Il s'agit de l'état [Cible]. Vous êtes la cible de votre adversaire, quelle que soit son attaque spéciale. Cet état ne disparaît pas automatiquement.",
+            "ina": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。",
+            "thai": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。"
+        },
+        "caption": {
+            "jp": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。",
+            "en": "Bullseye status Make the opponent's special skills the target. This status will not be removed by itself.",
+            "tcn": "標靶狀態。總是會成為對手特定技能的對象。這個狀態不會自然解除。",
+            "scn": "标靶状态。总是会成为对手特定技能的对象。这个状态无法自然解除。",
+            "kr": "",
+            "fr": "Il s'agit de l'état [Cible]. Vous êtes la cible de votre adversaire, quelle que soit son attaque spéciale. Cet état ne disparaît pas automatiquement.",
+            "ina": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。",
+            "thai": "正鵠状態です。相手の特定スキルに対し、常に標的となります。この状態は自然解除されません。"
+        },
+        "img": "26.png",
+        "sprite": "26"
+    },
+    {
+        "id": 27,
+        "skill_id": "TRANS_MSG_DARK",
+        "name": {
+            "jp": "断絶状態です。HPを回復することが出来ません。",
+            "en": "Sever status, cannot recover HP.",
+            "tcn": "斷絕狀態。無法回復HP。",
+            "scn": "断绝状态。无法回复HP。",
+            "kr": "",
+            "fr": "Vous êtes en état [Extinction]. Vous ne pouvez renouveler vos HP.",
+            "ina": "断絶状態です。HPを回復することが出来ません。",
+            "thai": "断絶状態です。HPを回復することが出来ません。"
+        },
+        "caption": {
+            "jp": "断絶状態です。HPを回復することが出来ません。",
+            "en": "Sever status, cannot recover HP.",
+            "tcn": "斷絕狀態。無法回復HP。",
+            "scn": "断绝状态。无法回复HP。",
+            "kr": "",
+            "fr": "Vous êtes en état [Extinction]. Vous ne pouvez renouveler vos HP.",
+            "ina": "断絶状態です。HPを回復することが出来ません。",
+            "thai": "断絶状態です。HPを回復することが出来ません。"
+        },
+        "img": "27.png",
+        "sprite": "27"
+    },
+    {
+        "id": 28,
+        "skill_id": "TRANS_MSG_DOLL",
+        "name": {
+            "jp": "人形状態です。移動スキルを使用することが出来ません。",
+            "en": "You are a doll now, you cannot move.",
+            "tcn": "傀儡狀態。無法使用移動技能。",
+            "scn": "傀儡状态。无法使用移动技能。",
+            "kr": "",
+            "fr": "Vous vous êtes transformé en Poupée. Vous ne pouvez utiliser vos fonctions de déplacement.",
+            "ina": "人形状態です。移動スキルを使用することが出来ません。",
+            "thai": "人形状態です。移動スキルを使用することが出来ません。"
+        },
+        "caption": {
+            "jp": "人形状態です。移動スキルを使用することが出来ません。",
+            "en": "You are a doll now, you cannot move.",
+            "tcn": "傀儡狀態。無法使用移動技能。",
+            "scn": "傀儡状态。无法使用移动技能。",
+            "kr": "",
+            "fr": "Vous vous êtes transformé en Poupée. Vous ne pouvez utiliser vos fonctions de déplacement.",
+            "ina": "人形状態です。移動スキルを使用することが出来ません。",
+            "thai": "人形状態です。移動スキルを使用することが出来ません。"
+        },
+        "img": "28.png",
+        "sprite": "28"
+    }
+]

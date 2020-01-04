@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 446628096
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 28d03aadea5eba1f303a62317f7723b3
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Data/status/11.png
+- Assets/Data/status/12.png
+- Assets/Data/status/04.png
+- Assets/Data/status/07.png
+- Assets/Data/status/24.png
+- Assets/Data/status/06.png
+- Assets/Data/status/03.png
+- Assets/Data/status/20.png
+- Assets/Data/status/02.png
+- Assets/Data/status/05.png
+- Assets/Data/status/27.png
+- Assets/Data/status/17.png
+- Assets/Data/status/08.png
+- Assets/Data/status/01.png
+- Assets/Data/status/10.png
+- Assets/Data/status/15.png
+- Assets/Data/status/22.png
+- Assets/Data/status/13.png
+- Assets/Data/status/26.png
+- Assets/Data/status/14.png
+- Assets/Data/status/25.png
+- Assets/Data/status/23.png
+- Assets/Data/status/09.png
+- Assets/Data/status/21.png
+- Assets/Data/status/28.png
+- Assets/Data/status/18.png
+- Assets/Data/status/status.json
+- Assets/Data/status/19.png
+- Assets/Data/status/16.png
+Dependencies: []

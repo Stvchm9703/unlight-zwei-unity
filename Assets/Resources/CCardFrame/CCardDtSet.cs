@@ -52,4 +52,11 @@ namespace ULZAsset {
         public MultiLang name { get; set; }
         public MultiLang caption { get; set; }
     }
+    public class StatusObject {
+        public int id { get; set; }
+        public string img { get; set; }
+        public string sprite { get; set; }
+        public MultiLang name { get; set; }
+        public MultiLang caption { get; set; }
+    }
 }

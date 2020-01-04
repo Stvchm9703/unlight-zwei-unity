@@ -49,7 +49,7 @@ public class CCardSetUp : MonoBehaviour {
         }
     }
     public IEnumerator StartSelfCCImplement () {
-        Debug.Log ("start : " + _asset_path);
+        // Debug.Log ("start : " + _asset_path);
         this.SelfCC_AB = AssetBundle.LoadFromFile (
             Path.Combine (_asset_path, "CC" + (SelfCC_ID.ToString ()).PadLeft (2, '0') + ".ab")
         );
@@ -65,7 +65,7 @@ public class CCardSetUp : MonoBehaviour {
         }
     }
     public IEnumerator StartDuelCCImplement () {
-        Debug.Log ("start : " + _asset_path);
+        // Debug.Log ("start : " + _asset_path);
         this.DuelCC_AB = AssetBundle.LoadFromFile (
             Path.Combine (_asset_path, "CC" + (DuelCC_ID.ToString ()).PadLeft (2, '0') + ".ab")
         );

@@ -9,6 +9,8 @@ public class CCAssetBuildWindow : EditorWindow {
     Vector2 scrollPos;
     public string AssetBuildFolder;
 
+    public string status_asset_path;
+
     // Add menu named "My Window" to the Window menu
     [MenuItem ("Window/Unlight Zwei/CCAssetBuild")]
     static void Init () {
@@ -46,6 +48,10 @@ public class CCAssetBuildWindow : EditorWindow {
         if (GUILayout.Button ("dry build CC asset")) {
             buildStreamAssetAll ();
         }
+        if (GUILayout.Button ("Create Status Asset")) {
+            status_asset_path = EditorUtility.OpenFolderPanel ("Load png Textures", "", "");
+            buildStatusStreamAsset (status_asset_path);
+        }
 
         // return;
     }
@@ -77,35 +83,7 @@ public class CCAssetBuildWindow : EditorWindow {
         }
         assetBundleBuilds[0].assetNames = t0.ToArray ();
 
-        BuildPipeline.BuildAssetBundles (
-            Path.Combine (Application.streamingAssetsPath, "andriod"),
-            assetBundleBuilds,
-            BuildAssetBundleOptions.None,
-            BuildTarget.Android);
-
-        BuildPipeline.BuildAssetBundles (
-            "Assets/StreamingAssets/win/x64",
-            assetBundleBuilds,
-            BuildAssetBundleOptions.None,
-            BuildTarget.StandaloneWindows64);
-
-        BuildPipeline.BuildAssetBundles (
-            "Assets/StreamingAssets/win/x86",
-            assetBundleBuilds,
-            BuildAssetBundleOptions.None,
-            BuildTarget.StandaloneWindows);
-
-        // BuildPipeline.BuildAssetBundles (
-        //     "Assets/StreamingAssets/mac",
-        //     assetBundleBuilds,
-        //     BuildAssetBundleOptions.None,
-        //     BuildTarget.StandaloneOSX);
-        // AssetDatabase.Refresh ();
-        // BuildPipeline.BuildAssetBundles (
-        //     Path.Combine (Application.streamingAssetsPath, "ios"),
-        //     assetBundleBuilds,
-        //     BuildAssetBundleOptions.None,
-        //     BuildTarget.iOS);
+       ULZ_BuildAssetBundles(assetBundleBuilds);
 
     }
     void buildStreamAssetAll () {
@@ -141,32 +119,55 @@ public class CCAssetBuildWindow : EditorWindow {
         }
         AssetDatabase.Refresh ();
 
+        ULZ_BuildAssetBundles (assetBundleBuilds);
+    }
+
+    void buildStatusStreamAsset (string filepath) {
+        Debug.Log ("Copy asset move ");
+        var header_name = new DirectoryInfo (filepath).Name;
+        Debug.Log (header_name);
+
+        var assetBundleBuilds = new AssetBundleBuild[1];
+        assetBundleBuilds[0].assetBundleName = header_name;
+        assetBundleBuilds[0].assetBundleVariant = "ab";
+
+        var files = new List<string> (Directory.GetFiles (filepath));
+        List<string> t0 = new List<string> ();
+        for (int k = 0; k < files.Count; k++) {
+            if (Path.GetExtension (Path.GetExtension (files[k])) != ".meta") {
+                t0.Add ("Assets/Data/" + header_name + "/" + Path.GetFileName (files[k]));
+            }
+        }
+        // Debug.Log (t0);
+        assetBundleBuilds[0].assetNames = t0.ToArray ();
+        ULZ_BuildAssetBundles (assetBundleBuilds);
+    }
+
+    void ULZ_BuildAssetBundles (AssetBundleBuild[] abs) {
         BuildPipeline.BuildAssetBundles (
             Path.Combine (Application.streamingAssetsPath, "android"),
-            assetBundleBuilds,
+            abs,
             BuildAssetBundleOptions.None,
             BuildTarget.Android);
 
         BuildPipeline.BuildAssetBundles (
             Path.Combine (Application.streamingAssetsPath, "win", "x64"),
-            assetBundleBuilds,
+            abs,
             BuildAssetBundleOptions.None,
             BuildTarget.StandaloneWindows64);
 
         BuildPipeline.BuildAssetBundles (
             Path.Combine (Application.streamingAssetsPath, "win", "x86"),
-            assetBundleBuilds,
+            abs,
             BuildAssetBundleOptions.None,
             BuildTarget.StandaloneWindows);
 
         BuildPipeline.BuildAssetBundles (
             Path.Combine (Application.streamingAssetsPath, "mac"),
-            assetBundleBuilds,
+            abs,
             BuildAssetBundleOptions.None,
             BuildTarget.StandaloneOSX);
-        // AssetDatabase.Refresh ();
     }
-
 }
 
 #endif

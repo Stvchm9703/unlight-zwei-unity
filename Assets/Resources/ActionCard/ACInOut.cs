@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ACInOut : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
     public ActionCardCtl ACParent;
+    public RawImage icon;
     private void Start () {
         this.ACParent = this.transform.parent.parent.gameObject.GetComponent<ActionCardCtl> ();
     }
@@ -22,10 +23,10 @@ public class ACInOut : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
             (ACParent.isOutSide && ACParent.isInvert) ||
             (!ACParent.isOutSide && !ACParent.isInvert)
         ) {
-            this.gameObject.GetComponent<RawImage> ().DOFade (1, 0.1f);
+            icon.color = new Color (1, 1, 1, 1);
         }
     }
     public void OnPointerExit (PointerEventData eventData) {
-        this.gameObject.GetComponent<RawImage> ().DOFade (0, 0.1f);
+        icon.color = new Color (1, 1, 1, 0);
     }
 }

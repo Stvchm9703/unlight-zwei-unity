@@ -194,7 +194,7 @@ public class CCardBockCtl : MonoBehaviour {
                     break;
                 }
             }
-            Debug.Log (c_set);
+            // Debug.Log (c_set);
 
             string name_string = "";
             switch (SL_setting) {

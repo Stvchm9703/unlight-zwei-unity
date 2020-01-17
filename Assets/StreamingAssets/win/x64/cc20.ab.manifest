@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1303731087
+CRC: 184608480
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 42149a24ccbd0c747efe1a93947b0528
+    Hash: 6aeb3fb20c3080b9b562ce918eff9cea
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -18,14 +18,16 @@ Assets:
 - Assets/Data/cc20/cover_d.png
 - Assets/Data/cc20/cover_1.png
 - Assets/Data/cc20/stand_1.png
+- Assets/Data/cc20/skill_1_1.png
 - Assets/Data/cc20/skill.json
 - Assets/Data/cc20/skill_2_part_3.png
 - Assets/Data/cc20/cover_b.png
 - Assets/Data/cc20/skill_2_part_2.png
 - Assets/Data/cc20/cover_5.png
+- Assets/Data/cc20/skill_0_1.png
 - Assets/Data/cc20/cover_3.png
-- Assets/Data/cc20/stand_stad.png
 - Assets/Data/cc20/skill_0_part_2.png
+- Assets/Data/cc20/skill_2_1.png
 - Assets/Data/cc20/cover_4.png
 - Assets/Data/cc20/skill_1_part_3.png
 - Assets/Data/cc20/cover_2.png
@@ -35,6 +37,7 @@ Assets:
 - Assets/Data/cc20/cover_e.png
 - Assets/Data/cc20/stand_f.png
 - Assets/Data/cc20/skill_0_part_3.png
+- Assets/Data/cc20/stand_shad.png
 - Assets/Data/cc20/card_set.json
 - Assets/Data/cc20/cover_c.png
 Dependencies: []

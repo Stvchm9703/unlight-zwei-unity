@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3041841472
+CRC: 1599467661
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3914751ca111af68a8d3ad4a2c9e0d0c
+    Hash: e949eb1bce1eca8f96f117e7f55b0619
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -27,6 +27,7 @@ Assets:
 - Assets/Data/cc14/skill_2_part_2.png
 - Assets/Data/cc14/cover_b.png
 - Assets/Data/cc14/skill_0_part_2.png
+- Assets/Data/cc14/stand_shad.png
 - Assets/Data/cc14/cover_a.png
 - Assets/Data/cc14/cover_3.png
 - Assets/Data/cc14/skill_2_part_3.png
@@ -36,6 +37,5 @@ Assets:
 - Assets/Data/cc14/cover_4.png
 - Assets/Data/cc14/skill_0_part_3.png
 - Assets/Data/cc14/skill.json
-- Assets/Data/cc14/stand_stad.png
 - Assets/Data/cc14/stand_f.png
 Dependencies: []

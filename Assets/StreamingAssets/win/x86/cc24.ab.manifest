@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2677424075
+CRC: 3330110988
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a4f867d4f77d328d46ff5a4d542cfae8
+    Hash: e7308b83441ab5ada5767a52771f8f79
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -15,6 +15,7 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Data/cc24/skill_0_part_3.png
+- Assets/Data/cc24/stand_shad.png
 - Assets/Data/cc24/card_set.json
 - Assets/Data/cc24/skill_2_1.png
 - Assets/Data/cc24/skill.json
@@ -40,6 +41,5 @@ Assets:
 - Assets/Data/cc24/skill_1_part_4.png
 - Assets/Data/cc24/stand_f.png
 - Assets/Data/cc24/cover_b.png
-- Assets/Data/cc24/stand_stad.png
 - Assets/Data/cc24/cover_2.png
 Dependencies: []

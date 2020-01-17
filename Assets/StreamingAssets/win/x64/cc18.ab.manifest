@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2025616143
+CRC: 668365262
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9890f02b8fef94409683119159bfc327
+    Hash: f0c361d789455af025954d5c260590ea
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -20,7 +20,6 @@ Assets:
 - Assets/Data/cc18/cover_1.png
 - Assets/Data/cc18/cover_e.png
 - Assets/Data/cc18/skill_0_1.png
-- Assets/Data/cc18/stand_stad.png
 - Assets/Data/cc18/skill_1_1.png
 - Assets/Data/cc18/skill_3_part_2.png
 - Assets/Data/cc18/cover_n1.png
@@ -28,10 +27,12 @@ Assets:
 - Assets/Data/cc18/skill_3_part_6.png
 - Assets/Data/cc18/skill_3_part_4.png
 - Assets/Data/cc18/skill_3_part_3.png
+- Assets/Data/cc18/stand_shad.png
 - Assets/Data/cc18/cover_d.png
 - Assets/Data/cc18/skill_2_1.png
 - Assets/Data/cc18/cover_2.png
 - Assets/Data/cc18/cover_3.png
+- Assets/Data/cc18/skill_3_1.png
 - Assets/Data/cc18/cover_c.png
 - Assets/Data/cc18/stand_1.png
 - Assets/Data/cc18/skill.json

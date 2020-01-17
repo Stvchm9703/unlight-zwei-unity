@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1478125352
+CRC: 2140736499
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a517b287528d88b51126e7d00b9bedb9
+    Hash: 13b58af4d412f64b0f6e9948b21fa6d2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -16,7 +16,6 @@ ClassTypes:
 Assets:
 - Assets/Data/cc28/stand_f.png
 - Assets/Data/cc28/skill_3_part_3.png
-- Assets/Data/cc28/stand_stad.png
 - Assets/Data/cc28/card_set.json
 - Assets/Data/cc28/skill_0_part_2.png
 - Assets/Data/cc28/cover_e.png
@@ -28,6 +27,7 @@ Assets:
 - Assets/Data/cc28/cover_n1.png
 - Assets/Data/cc28/cover_b.png
 - Assets/Data/cc28/cover_3.png
+- Assets/Data/cc28/stand_shad.png
 - Assets/Data/cc28/cover_4.png
 - Assets/Data/cc28/cover_2.png
 - Assets/Data/cc28/skill_1_1.png

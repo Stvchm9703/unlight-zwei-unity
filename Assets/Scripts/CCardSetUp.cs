@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using UnityEngine;
+using UnityEditor;
 public class CCardSetUp : MonoBehaviour {
+    // ----------------------------------------------------
+    // CC Card Prefab
+    AssetBundle SelfCC_AB, DuelCC_AB;
+
     /// <summary>
     /// Self CC
     /// </summary>
@@ -15,16 +21,15 @@ public class CCardSetUp : MonoBehaviour {
 
     public CCardBockCtl SelfCCSetBlock;
     public int self_atk_equ = 0, self_def_equ = 0;
-    AssetBundle SelfCC_AB;
 
     /// <summary>
     /// Duel CC
     /// </summary>
     public int DuelCC_ID;
+    [MinAttribute (1)]
     public int DuelCC_Level;
     public CCardBockCtl DuelCCSet;
-    public int duel_atk_equ = 0 , duel_def_equ = 0;
-    AssetBundle DuelCC_AB;
+    public int duel_atk_equ = 0, duel_def_equ = 0;
 
     public string _asset_path {
         get {
@@ -60,7 +65,7 @@ public class CCardSetUp : MonoBehaviour {
             StartCoroutine (this.SelfCCSetBlock.InitCCLvFrame ());
             StartCoroutine (this.SelfCCSetBlock.InitEquSetting (self_atk_equ, self_def_equ));
             StartCoroutine (this.SelfCCSetBlock.InitCCImg (this.SelfCC_AB));
-
+            StartCoroutine (this.Start_LoadSelfCCStand ());
             yield return true;
         }
     }
@@ -80,6 +85,23 @@ public class CCardSetUp : MonoBehaviour {
             yield return true;
         }
     }
+
+    // CC Stand Setup
+    public GameObject SelfStand, DuelStand;
+    public IEnumerator Start_LoadSelfCCStand () {
+        if (SelfStand == null) {
+            SelfStand = this.transform.parent.Find ("Canvas/StandImgLayout/SelfStand").gameObject;
+        }
+        var StandImg = SelfStand.transform.Find ("Stand_Img").gameObject;
+        var texture_load = this.SelfCC_AB.LoadAsset ("stand_1") as Texture2D;
+        var texture_shad = this.SelfCC_AB.LoadAsset ("stand_f") as Texture2D;
+
+        Debug.Log ("width:" + texture_load.width.ToString ());
+        Debug.Log ("height:" + texture_load.height.ToString ());
+
+        // StandImg.GetComponent<RawImage>() = 
+        yield return true;
+    }
     void Start () {
         StartCoroutine (StartSelfCCImplement ());
         StartCoroutine (StartDuelCCImplement ());
@@ -89,4 +111,5 @@ public class CCardSetUp : MonoBehaviour {
     void Update () {
 
     }
+
 }

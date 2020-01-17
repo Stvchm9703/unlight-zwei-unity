@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3164747947
+CRC: 3069140042
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ab4cc9b1a426f4d6850880587d49767b
+    Hash: e23c922a660d329344fc3ba7f391fb97
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -16,23 +16,25 @@ ClassTypes:
 Assets:
 - Assets/Data/cc12/cover_1.png
 - Assets/Data/cc12/cover_e.png
+- Assets/Data/cc12/skill_2_1.png
 - Assets/Data/cc12/cover_5.png
+- Assets/Data/cc12/skill_3_1.png
 - Assets/Data/cc12/cover_2.png
 - Assets/Data/cc12/cover_a.png
-- Assets/Data/cc12/shand_1.png
+- Assets/Data/cc12/stand_shad.png
 - Assets/Data/cc12/skill.json
 - Assets/Data/cc12/skill_0_1.png
 - Assets/Data/cc12/cover_c.png
-- Assets/Data/cc12/shand_f.png
 - Assets/Data/cc12/skill_2_part_2.png
 - Assets/Data/cc12/skill_3_part_5.png
 - Assets/Data/cc12/skill_3_part_6.png
+- Assets/Data/cc12/stand_1.png
 - Assets/Data/cc12/cover_3.png
-- Assets/Data/cc12/shand_shad.png
 - Assets/Data/cc12/skill_0_2.png
 - Assets/Data/cc12/skill_3_part_4.png
 - Assets/Data/cc12/cover_4.png
 - Assets/Data/cc12/skill_3_part_3.png
+- Assets/Data/cc12/stand_f.png
 - Assets/Data/cc12/cover_b.png
 - Assets/Data/cc12/skill_3_part_7.png
 - Assets/Data/cc12/skill_2_part_3.png

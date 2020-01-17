@@ -1,1 +1,511 @@
-{"id":1,"card_set":[{"id":1,"level":1,"hp":8,"ap":4,"dp":5,"rarity":2,"deck_cost":8,"slot":0,"stand_image":"stand_1.png","chara_image":"cover_1.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":2,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[1]},{"id":2,"level":2,"hp":9,"ap":5,"dp":5,"rarity":2,"deck_cost":12,"slot":1,"stand_image":"stand_1.png","chara_image":"cover_2.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":3,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[2,4]},{"id":3,"level":3,"hp":10,"ap":5,"dp":6,"rarity":2,"deck_cost":14,"slot":41,"stand_image":"stand_1.png","chara_image":"cover_3.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":4,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[2,4,7]},{"id":4,"level":4,"hp":11,"ap":6,"dp":6,"rarity":2,"deck_cost":15,"slot":541,"stand_image":"stand_1.png","chara_image":"cover_4.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":5,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[2,5,8]},{"id":5,"level":5,"hp":12,"ap":7,"dp":7,"rarity":2,"deck_cost":20,"slot":541,"stand_image":"stand_1.png","chara_image":"cover_5.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":0,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[2,5,8,10]},{"id":6,"level":1,"hp":12,"ap":6,"dp":6,"rarity":6,"deck_cost":19,"slot":6541,"stand_image":"stand_1.png","chara_image":"cover_a.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":7,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[2,5,8,10]},{"id":7,"level":2,"hp":12,"ap":7,"dp":7,"rarity":7,"deck_cost":21,"slot":6541,"stand_image":"stand_1.png","chara_image":"cover_b.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":8,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[3,5,8,10]},{"id":8,"level":3,"hp":13,"ap":7,"dp":8,"rarity":8,"deck_cost":23,"slot":66541,"stand_image":"stand_1.png","chara_image":"cover_c.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":9,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[3,6,8,10]},{"id":9,"level":4,"hp":14,"ap":8,"dp":9,"rarity":9,"deck_cost":25,"slot":66541,"stand_image":"stand_1.png","chara_image":"cover_d.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":10,"kind":0,"created_at":"2010-09-16 07:15:28 UTC","skill":null,"skill_pointer":[3,6,9,10]},{"id":10,"level":5,"hp":15,"ap":9,"dp":9,"rarity":10,"deck_cost":29,"slot":166541,"stand_image":"stand_1.png","chara_image":"cover_e.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":0,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[3,6,9,12]},{"id":50003,"level":3,"hp":10,"ap":5,"dp":6,"rarity":3,"deck_cost":14,"slot":41,"stand_image":"stand_1.png","chara_image":"cover_3.png","artifact_image":"stand_f.png","bg_image":"stand_shad.png","next_id":0,"kind":12,"created_at":"","skill":null,"skill_pointer":[2,4,7]}],"name":{"jp":"エヴァリスト","en":"Evarist","fr":"Evarist","kr":"에바리스트","scn":"艾伯李斯特","tcn":"艾伯李斯特","ina":"Evarist","thai":"เอวาริสท์"},"ab_name":{"jp":"- ReichsRitter - Evarist","en":"- ReichsRitter -","fr":"- ReichsRitter -","kr":"- ReichsRitter - Evarist","scn":"- ReichsRitter - Evarist","tcn":"- ReichsRitter - Evarist","ina":"- ReichsRitter - Evarist","thai":"- ReichsRitter - Evarist"},"caption":{"jp":"グランデレニア帝國騎士。その意志と知略をもって帝國での地位を固める。","en":"A Knight of the Granddillenia kingdom. His determination and intelligence made him an important position in the Kingdom.","fr":"Chevalier du royaume Granddillenia. Sa fermeté et son intelligence en ont fait un personnage d'importance dans le Royaume.","kr":"그란데레니아 제국의 기사. 그 의지와 지략으로 제국에서의 지위를 구축한다.","scn":"古朗德利尼亚帝国骑士。以意志和智谋巩固其在帝国的地位。","tcn":"古朗德利尼亞帝國騎士。以意志和智謀鞏固其在帝國的地位。","ina":"Ksatria dari kerajaan Granddillenia. Kebijaksanaan \u0026 kecerdasannya menempatkannya pada posisi penting dalam kerajaan.","thai":"อัศวินแห่งจักรวรรดิแกรนเดเลเนีย รวบรวมอาณาเขตของประเทศต่างๆ ด้วยความเฉลียวฉลาดหลักแหลมและปณิธานของอัศวิน"}}
+{
+    "id": 1,
+    "card_set": [
+        {
+            "id": 1,
+            "level": 1,
+            "hp": 8,
+            "ap": 4,
+            "dp": 5,
+            "rarity": 2,
+            "deck_cost": 8,
+            "slot": 0,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_1.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 2,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                1
+            ]
+        },
+        {
+            "id": 2,
+            "level": 2,
+            "hp": 9,
+            "ap": 5,
+            "dp": 5,
+            "rarity": 2,
+            "deck_cost": 12,
+            "slot": 1,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_2.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 3,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                4
+            ]
+        },
+        {
+            "id": 3,
+            "level": 3,
+            "hp": 10,
+            "ap": 5,
+            "dp": 6,
+            "rarity": 2,
+            "deck_cost": 14,
+            "slot": 41,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 4,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                4,
+                7
+            ]
+        },
+        {
+            "id": 4,
+            "level": 4,
+            "hp": 11,
+            "ap": 6,
+            "dp": 6,
+            "rarity": 2,
+            "deck_cost": 15,
+            "slot": 541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_4.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 5,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                5,
+                8
+            ]
+        },
+        {
+            "id": 5,
+            "level": 5,
+            "hp": 12,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 2,
+            "deck_cost": 20,
+            "slot": 541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_5.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                5,
+                8,
+                10
+            ]
+        },
+        {
+            "id": 6,
+            "level": 1,
+            "hp": 12,
+            "ap": 6,
+            "dp": 6,
+            "rarity": 6,
+            "deck_cost": 19,
+            "slot": 6541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_a.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 7,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                5,
+                8,
+                10
+            ]
+        },
+        {
+            "id": 7,
+            "level": 2,
+            "hp": 12,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 7,
+            "deck_cost": 21,
+            "slot": 6541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_b.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 8,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                3,
+                5,
+                8,
+                10
+            ]
+        },
+        {
+            "id": 8,
+            "level": 3,
+            "hp": 13,
+            "ap": 7,
+            "dp": 8,
+            "rarity": 8,
+            "deck_cost": 23,
+            "slot": 66541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_c.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 9,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                3,
+                6,
+                8,
+                10
+            ]
+        },
+        {
+            "id": 9,
+            "level": 4,
+            "hp": 14,
+            "ap": 8,
+            "dp": 9,
+            "rarity": 9,
+            "deck_cost": 25,
+            "slot": 66541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_d.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 10,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:28 UTC",
+            "skill": null,
+            "skill_pointer": [
+                3,
+                6,
+                9,
+                10
+            ]
+        },
+        {
+            "id": 10,
+            "level": 5,
+            "hp": 15,
+            "ap": 9,
+            "dp": 9,
+            "rarity": 10,
+            "deck_cost": 29,
+            "slot": 166541,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_e.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                3,
+                6,
+                9,
+                12
+            ]
+        },
+        {
+            "id": 50003,
+            "level": 3,
+            "hp": 10,
+            "ap": 5,
+            "dp": 6,
+            "rarity": 3,
+            "deck_cost": 14,
+            "slot": 41,
+            "stand_image": {
+                "height": 209,
+                "width": 129,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 49,
+                "width": 120,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 12,
+            "created_at": "",
+            "skill": null,
+            "skill_pointer": [
+                2,
+                4,
+                7
+            ]
+        }
+    ],
+    "name": {
+        "jp": "エヴァリスト",
+        "en": "Evarist",
+        "fr": "Evarist",
+        "kr": "에바리스트",
+        "scn": "艾伯李斯特",
+        "tcn": "艾伯李斯特",
+        "ina": "Evarist",
+        "thai": "เอวาริสท์"
+    },
+    "ab_name": {
+        "jp": "- ReichsRitter - Evarist",
+        "en": "- ReichsRitter -",
+        "fr": "- ReichsRitter -",
+        "kr": "- ReichsRitter - Evarist",
+        "scn": "- ReichsRitter - Evarist",
+        "tcn": "- ReichsRitter - Evarist",
+        "ina": "- ReichsRitter - Evarist",
+        "thai": "- ReichsRitter - Evarist"
+    },
+    "caption": {
+        "jp": "グランデレニア帝國騎士。その意志と知略をもって帝國での地位を固める。",
+        "en": "A Knight of the Granddillenia kingdom. His determination and intelligence made him an important position in the Kingdom.",
+        "fr": "Chevalier du royaume Granddillenia. Sa fermeté et son intelligence en ont fait un personnage d'importance dans le Royaume.",
+        "kr": "그란데레니아 제국의 기사. 그 의지와 지략으로 제국에서의 지위를 구축한다.",
+        "scn": "古朗德利尼亚帝国骑士。以意志和智谋巩固其在帝国的地位。",
+        "tcn": "古朗德利尼亞帝國騎士。以意志和智謀鞏固其在帝國的地位。",
+        "ina": "Ksatria dari kerajaan Granddillenia. Kebijaksanaan & kecerdasannya menempatkannya pada posisi penting dalam kerajaan.",
+        "thai": "อัศวินแห่งจักรวรรดิแกรนเดเลเนีย รวบรวมอาณาเขตของประเทศต่างๆ ด้วยความเฉลียวฉลาดหลักแหลมและปณิธานของอัศวิน"
+    }
+}

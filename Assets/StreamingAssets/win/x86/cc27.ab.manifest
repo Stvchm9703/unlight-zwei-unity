@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4160300793
+CRC: 2470613588
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3cc7b937323501d19a3c998b01d2e9c0
+    Hash: 6ea61b6eac32780ea0d135fa9179d77e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8cfd36d84ed37a63bcb3c7ce96d93f72
@@ -15,7 +15,9 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Data/cc27/cover_1.png
+- Assets/Data/cc27/skill_1_1.png
 - Assets/Data/cc27/cover_3.png
+- Assets/Data/cc27/skill_3_1.png
 - Assets/Data/cc27/skill_0_part_2.png
 - Assets/Data/cc27/stand_f.png
 - Assets/Data/cc27/skill_3_part_3.png
@@ -23,17 +25,19 @@ Assets:
 - Assets/Data/cc27/skill_2_part_3.png
 - Assets/Data/cc27/cover_d.png
 - Assets/Data/cc27/skill_1_part_3.png
-- Assets/Data/cc27/stand_stad.png
 - Assets/Data/cc27/cover_b.png
 - Assets/Data/cc27/skill_2_part_2.png
 - Assets/Data/cc27/cover_5.png
+- Assets/Data/cc27/stand_shad.png
 - Assets/Data/cc27/stand_1.png
+- Assets/Data/cc27/skill_0_1.png
 - Assets/Data/cc27/cover_e.png
 - Assets/Data/cc27/skill_1_part_2.png
 - Assets/Data/cc27/cover_4.png
 - Assets/Data/cc27/cover_2.png
 - Assets/Data/cc27/skill_0_part_3.png
 - Assets/Data/cc27/skill_3_part_2.png
+- Assets/Data/cc27/skill_2_1.png
 - Assets/Data/cc27/card_set.json
 - Assets/Data/cc27/cover_n1.png
 - Assets/Data/cc27/skill.json

@@ -192,7 +192,7 @@ public class CCardCtl : MonoBehaviour {
             for (int i = 0; i < json.card_set.Count; i++) {
                 if (json.card_set[i].level == this.level) {
                     c_set = json.card_set[i];
-                    coverImgNm = json.card_set[i].chara_image.Replace (".png", "");
+                    coverImgNm = json.card_set[i].chara_image.name.Replace (".png", "");
                     break;
                 }
             }

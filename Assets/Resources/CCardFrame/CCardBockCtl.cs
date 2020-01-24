@@ -6,9 +6,10 @@ using TMPro;
 using ULZAsset;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems ;
 public class CCardBockCtl : MonoBehaviour {
 
-    public int CC_id = 0, Equ_id = -1;
+    public int CC_id = 0, Equ_id = -1 , is_self = 1;
     public int level;
     public int HP_defaut, ATK_defaut, DEF_defaut;
     public int ATK_equ, DEF_equ;

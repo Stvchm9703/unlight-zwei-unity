@@ -11,10 +11,10 @@ namespace ULZAsset {
         public int rarity { get; set; }
         public int deck_cost { get; set; }
         public int slot { get; set; }
-        public string stand_image { get; set; }
-        public string chara_image { get; set; }
-        public string artifact_image { get; set; }
-        public string bg_image { get; set; }
+        public ImgSet stand_image { get; set; }
+        public ImgSet chara_image { get; set; }
+        public ImgSet artifact_image { get; set; }
+        public ImgSet bg_image { get; set; }
         public int next_id { get; set; }
         public int kind { get; set; }
         public string created_at { get; set; }
@@ -58,5 +58,11 @@ namespace ULZAsset {
         public string sprite { get; set; }
         public MultiLang name { get; set; }
         public MultiLang caption { get; set; }
+    }
+    public class ImgSet {
+        public string name ;
+        public int height;
+        public int width;
+        public string type;
     }
 }

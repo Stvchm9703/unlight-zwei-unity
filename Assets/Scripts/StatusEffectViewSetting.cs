@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+// using UnityEngine.EventSystems;
 public class StatusEffectViewSetting : MonoBehaviour {
     public int st_id;
     public Text Turns_Text;

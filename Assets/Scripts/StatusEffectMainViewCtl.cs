@@ -139,6 +139,7 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         }
     }
     // public void RemoveCD 
+    public void OpenInfoPanel (int sts_id, int turns){}
 }
 
 #if (UNITY_EDITOR) 

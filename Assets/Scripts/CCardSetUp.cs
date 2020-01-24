@@ -8,7 +8,6 @@ public class CCardSetUp: MonoBehaviour {
     // ----------------------------------------------------
     // CC Card Prefab
     AssetBundle SelfCC_AB, DuelCC_AB;
-
     // / <summary>
     // / Self CC
     // / </summary>
@@ -20,7 +19,7 @@ public class CCardSetUp: MonoBehaviour {
     public CCardBockCtl SelfCCSetBlock;
     public CCardStandCtl SelfCCSetStand;
     public int self_atk_equ = 0, self_def_equ = 0;
-
+    public List<GameObject> SelfCCSetSkill;
     // / <summary>
     // / Duel CC
     // / </summary>
@@ -30,6 +29,7 @@ public class CCardSetUp: MonoBehaviour {
     public CCardBockCtl DuelCCSetBlock;
     public CCardStandCtl DuelCCSetStand;
     public int duel_atk_equ = 0, duel_def_equ = 0;
+    public List<GameObject> DuelCCSetSkill;
 
     public string _asset_path {
         get {
@@ -118,6 +118,11 @@ public class CCardSetUp: MonoBehaviour {
         StartCoroutine(StartDuelCCImplement());
     }
 
-    public void OpenCCInfoPanel(int self_or_duel) {}
+    public void OpenCCInfoPanel(int self_or_duel) {
+        if (self_or_duel == 1) {
+            // self 
+            
+        }
+    }
 
 }

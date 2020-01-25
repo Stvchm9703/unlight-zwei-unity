@@ -23,7 +23,7 @@ Material:
   m_Name: SkillBGAnimate
   m_Shader: {fileID: -6465566751694194690, guid: e48746eb456fdaa4fa0e1ec59a6e92ff,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -90,7 +90,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_4F2EF724: {r: 1, g: 0.036188826, b: 0, a: 0}
+    - Color_4F2EF724: {r: 1, g: 0.088975206, b: 0.07075471, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -1,31 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-// using UnityEngine.EventSystems;
 public class StatusEffectViewSetting : MonoBehaviour {
     public int st_id;
-    public Text Turns_Text;
-    public RawImage Icon_ri;
-    int  _turns = 0;
+    public TextMeshPro Turn_Text;
+    public SpriteRenderer Icon;
+    int _turns = 0;
     public int Turns {
         get { return _turns; }
         set {
             _turns = value;
-            if (Turns_Text != null) {
-                Turns_Text.text =  _turns.ToString ();
+            if (Turn_Text != null) {
+                Turn_Text.text = _turns.ToString ();
             }
         }
     }
-    public void Remove() {
-        Destroy(this.gameObject);
+    public void Remove () {
+        Destroy (this.gameObject);
     }
     void Start () {
-        if (Turns_Text == null) {
-            Turns_Text = this.transform.Find ("turns").GetComponent<Text> ();
+        if (Turn_Text == null) {
+            Turn_Text = this.transform.Find ("turns").GetComponent<TextMeshPro> ();
         }
-        if (Icon_ri == null) {
-            Icon_ri = this.transform.Find ("turns").GetComponent<RawImage> ();
+        if (Icon == null) {
+            Icon = this.transform.Find ("icon").GetComponent<SpriteRenderer> ();
         }
     }
 }

@@ -1,1 +1,511 @@
-{"id":2,"card_set":[{"id":11,"level":1,"hp":8,"ap":4,"dp":4,"rarity":2,"deck_cost":8,"slot":0,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_1.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":12,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[13]},{"id":12,"level":2,"hp":9,"ap":5,"dp":4,"rarity":2,"deck_cost":11,"slot":4,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_2.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":13,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[14,16]},{"id":13,"level":3,"hp":10,"ap":6,"dp":4,"rarity":3,"deck_cost":14,"slot":4,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_3.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":14,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[14,16,19]},{"id":14,"level":4,"hp":11,"ap":7,"dp":4,"rarity":3,"deck_cost":15,"slot":34,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_4.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":15,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[14,16,20]},{"id":15,"level":5,"hp":12,"ap":7,"dp":5,"rarity":3,"deck_cost":18,"slot":34,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_5.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[14,16,20,22]},{"id":16,"level":1,"hp":12,"ap":7,"dp":4,"rarity":6,"deck_cost":18,"slot":134,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_a.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":17,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[14,16,20,22]},{"id":17,"level":2,"hp":12,"ap":7,"dp":5,"rarity":7,"deck_cost":19,"slot":134,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_b.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":18,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[15,16,20,22]},{"id":18,"level":3,"hp":13,"ap":8,"dp":5,"rarity":8,"deck_cost":21,"slot":6134,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_c.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":19,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[15,18,20,22]},{"id":19,"level":4,"hp":14,"ap":9,"dp":6,"rarity":9,"deck_cost":23,"slot":6134,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_d.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":20,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[15,18,21,22]},{"id":20,"level":5,"hp":15,"ap":9,"dp":7,"rarity":10,"deck_cost":28,"slot":16134,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_e.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[15,18,21,24]},{"id":50013,"level":3,"hp":10,"ap":6,"dp":4,"rarity":3,"deck_cost":14,"slot":4,"stand_image":{"height":209,"width":170,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_3.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":51,"width":155,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":12,"created_at":"","skill":null,"skill_pointer":[14,16,19]}],"name":{"jp":"アイザック","en":"Izac","fr":"Isaac","kr":"아이자크","scn":"艾依查库","tcn":"艾依查庫","ina":"Izac","thai":"ไอแซ็ค"},"ab_name":{"jp":"- WarHound - Izac","en":"- WarHound -","fr":"- WarHound -","kr":"- WarHound - Izac","scn":"- WarHound - Izac","tcn":"- WarHound - Izac","ina":"- WarHound - Izac","thai":"- WarHound - Izac"},"caption":{"jp":"軍犬のあだ名通りの勇猛な騎士。盟友エヴァリストに影のように付き従う。","en":"A very brave and loyal knight, often called a military dog for following his best friend Evarist around.","fr":"Chevalier courageux et loyal, surnommé le Chien Militaire. Il suit Evarist, son meilleur ami, où qu'il aille.","kr":"군견이라는 별명대로 용맹한 기사. 맹우인 에바리스트를 그림자처럼 따라다닌다.","scn":"如军犬的小名所示，是个勇猛的骑士。像影子一样随从盟友艾伯李斯特。","tcn":"如軍犬的小名所示，是個勇猛的騎士。像影子一樣隨從盟友艾伯李斯特。","ina":"Ksatria pemberani dan setia yang dijuluki anjing militer. Ia mengikuti sahabat karibnya Evarist.","thai":"อัศวินผู้กล้าหาญที่มีสมญานามว่าสุนัขรับใช้กองทัพ เป็นเพื่อนร่วมสาบานที่เป็นดั่งเงาของเอวาริสท์"}}
+{
+    "id": 2,
+    "card_set": [
+        {
+            "id": 11,
+            "level": 1,
+            "hp": 8,
+            "ap": 4,
+            "dp": 4,
+            "rarity": 2,
+            "deck_cost": 8,
+            "slot": 0,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_1.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 12,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                13
+            ]
+        },
+        {
+            "id": 12,
+            "level": 2,
+            "hp": 9,
+            "ap": 5,
+            "dp": 4,
+            "rarity": 2,
+            "deck_cost": 11,
+            "slot": 4,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_2.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 13,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16
+            ]
+        },
+        {
+            "id": 13,
+            "level": 3,
+            "hp": 10,
+            "ap": 6,
+            "dp": 4,
+            "rarity": 3,
+            "deck_cost": 14,
+            "slot": 4,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 14,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16,
+                19
+            ]
+        },
+        {
+            "id": 14,
+            "level": 4,
+            "hp": 11,
+            "ap": 7,
+            "dp": 4,
+            "rarity": 3,
+            "deck_cost": 15,
+            "slot": 34,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_4.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 15,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16,
+                20
+            ]
+        },
+        {
+            "id": 15,
+            "level": 5,
+            "hp": 12,
+            "ap": 7,
+            "dp": 5,
+            "rarity": 3,
+            "deck_cost": 18,
+            "slot": 34,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_5.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16,
+                20,
+                22
+            ]
+        },
+        {
+            "id": 16,
+            "level": 1,
+            "hp": 12,
+            "ap": 7,
+            "dp": 4,
+            "rarity": 6,
+            "deck_cost": 18,
+            "slot": 134,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_a.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 17,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16,
+                20,
+                22
+            ]
+        },
+        {
+            "id": 17,
+            "level": 2,
+            "hp": 12,
+            "ap": 7,
+            "dp": 5,
+            "rarity": 7,
+            "deck_cost": 19,
+            "slot": 134,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_b.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 18,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                15,
+                16,
+                20,
+                22
+            ]
+        },
+        {
+            "id": 18,
+            "level": 3,
+            "hp": 13,
+            "ap": 8,
+            "dp": 5,
+            "rarity": 8,
+            "deck_cost": 21,
+            "slot": 6134,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_c.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 19,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                15,
+                18,
+                20,
+                22
+            ]
+        },
+        {
+            "id": 19,
+            "level": 4,
+            "hp": 14,
+            "ap": 9,
+            "dp": 6,
+            "rarity": 9,
+            "deck_cost": 23,
+            "slot": 6134,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_d.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 20,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                15,
+                18,
+                21,
+                22
+            ]
+        },
+        {
+            "id": 20,
+            "level": 5,
+            "hp": 15,
+            "ap": 9,
+            "dp": 7,
+            "rarity": 10,
+            "deck_cost": 28,
+            "slot": 16134,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_e.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                15,
+                18,
+                21,
+                24
+            ]
+        },
+        {
+            "id": 50013,
+            "level": 3,
+            "hp": 10,
+            "ap": 6,
+            "dp": 4,
+            "rarity": 3,
+            "deck_cost": 14,
+            "slot": 4,
+            "stand_image": {
+                "height": 209,
+                "width": 170,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 51,
+                "width": 155,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 12,
+            "created_at": "",
+            "skill": null,
+            "skill_pointer": [
+                14,
+                16,
+                19
+            ]
+        }
+    ],
+    "name": {
+        "jp": "アイザック",
+        "en": "Izac",
+        "fr": "Isaac",
+        "kr": "아이자크",
+        "scn": "艾依查库",
+        "tcn": "艾依查庫",
+        "ina": "Izac",
+        "thai": "ไอแซ็ค"
+    },
+    "ab_name": {
+        "jp": "- WarHound - Izac",
+        "en": "- WarHound -",
+        "fr": "- WarHound -",
+        "kr": "- WarHound - Izac",
+        "scn": "- WarHound - Izac",
+        "tcn": "- WarHound - Izac",
+        "ina": "- WarHound - Izac",
+        "thai": "- WarHound - Izac"
+    },
+    "caption": {
+        "jp": "軍犬のあだ名通りの勇猛な騎士。盟友エヴァリストに影のように付き従う。",
+        "en": "A very brave and loyal knight, often called a military dog for following his best friend Evarist around.",
+        "fr": "Chevalier courageux et loyal, surnommé le Chien Militaire. Il suit Evarist, son meilleur ami, où qu'il aille.",
+        "kr": "군견이라는 별명대로 용맹한 기사. 맹우인 에바리스트를 그림자처럼 따라다닌다.",
+        "scn": "如军犬的小名所示，是个勇猛的骑士。像影子一样随从盟友艾伯李斯特。",
+        "tcn": "如軍犬的小名所示，是個勇猛的騎士。像影子一樣隨從盟友艾伯李斯特。",
+        "ina": "Ksatria pemberani dan setia yang dijuluki anjing militer. Ia mengikuti sahabat karibnya Evarist.",
+        "thai": "อัศวินผู้กล้าหาญที่มีสมญานามว่าสุนัขรับใช้กองทัพ เป็นเพื่อนร่วมสาบานที่เป็นดั่งเงาของเอวาริสท์"
+    }
+}

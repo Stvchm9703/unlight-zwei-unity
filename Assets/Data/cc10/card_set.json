@@ -1,1 +1,511 @@
-{"id":10,"card_set":[{"id":91,"level":1,"hp":7,"ap":6,"dp":6,"rarity":4,"deck_cost":10,"slot":1,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_1.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":92,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109]},{"id":92,"level":2,"hp":8,"ap":7,"dp":6,"rarity":4,"deck_cost":13,"slot":31,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_2.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":93,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109,112]},{"id":93,"level":3,"hp":8,"ap":7,"dp":6,"rarity":4,"deck_cost":16,"slot":31,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_3.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":94,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109,112,115]},{"id":94,"level":4,"hp":8,"ap":7,"dp":7,"rarity":4,"deck_cost":16,"slot":431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_4.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":95,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109,113,116]},{"id":95,"level":5,"hp":9,"ap":7,"dp":7,"rarity":4,"deck_cost":20,"slot":431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_5.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109,113,116,118]},{"id":96,"level":1,"hp":8,"ap":7,"dp":7,"rarity":6,"deck_cost":20,"slot":3431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_a.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":97,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[109,113,116,118]},{"id":97,"level":2,"hp":9,"ap":7,"dp":7,"rarity":7,"deck_cost":20,"slot":3431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_b.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":98,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[111,113,116,118]},{"id":98,"level":3,"hp":10,"ap":8,"dp":7,"rarity":8,"deck_cost":22,"slot":63431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_c.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":99,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[111,114,116,118]},{"id":99,"level":4,"hp":11,"ap":9,"dp":8,"rarity":9,"deck_cost":24,"slot":63431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_d.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":100,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[111,114,117,118]},{"id":100,"level":5,"hp":12,"ap":9,"dp":9,"rarity":10,"deck_cost":27,"slot":163431,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_e.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":0,"created_at":"2010-09-16 07:15:29 UTC","skill":null,"skill_pointer":[111,114,117,120]},{"id":50093,"level":3,"hp":8,"ap":7,"dp":6,"rarity":3,"deck_cost":16,"slot":31,"stand_image":{"height":196,"width":122,"type":"png","name":"stand_1.png"},"chara_image":{"height":240,"width":168,"type":"png","name":"cover_3.png"},"artifact_image":{"height":80,"width":248,"type":"png","name":"stand_f.png"},"bg_image":{"height":47,"width":122,"type":"png","name":"stand_shad.png"},"next_id":0,"kind":12,"created_at":"","skill":null,"skill_pointer":[109,112,115]}],"name":{"jp":"ブレイズ","en":"Blaise","fr":"Blaise","kr":"브레이즈","scn":"布列依斯","tcn":"布列依斯","ina":"Blaise","thai":"เบลซ"},"ab_name":{"jp":"- Inquisitor - Blaise","en":"- Inquisitor -","fr":"- Inquisiteur -","kr":"- Inquisitor - Blaise","scn":"- Inquisitor - Blaise","tcn":"- Inquisitor - Blaise","ina":"- Inquisitor - Blaise","thai":"- Inquisitor - Blaise"},"caption":{"jp":"光を操る銀髮の協定審問官 《インクジター》。圧倒的な力で裁きを下す。","en":"A silver haired Inquisitor who has the power to control light, passing judgment with overwhelming authority.","fr":"Inquisiteur d'Argent, il a le pouvoir de contrôler la lumière.","kr":"빛을 조종하는 은발의 협정심문관. 압도적인 힘으로 심판을 내린다.","scn":"操纵光的银发协定审查官《审判者》。以压倒性的力量进行审判。","tcn":"操縱光的銀髮協定審查官《審判者》。以壓倒性的力量進行審判。","ina":"Seorang Inquisitor berambut perak yang dapat mengendalikan cahaya.","thai":"เจ้าหน้าที่สืบสวน <อินควิซิเตอร์> ผู้มีผมสีเงินล้อประกายแสง ผู้มอบคำพิพากษาที่ไม่อาจโต้แย้งได้"}}
+{
+    "id": 10,
+    "card_set": [
+        {
+            "id": 91,
+            "level": 1,
+            "hp": 7,
+            "ap": 6,
+            "dp": 6,
+            "rarity": 4,
+            "deck_cost": 10,
+            "slot": 1,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_1.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 92,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109
+            ]
+        },
+        {
+            "id": 92,
+            "level": 2,
+            "hp": 8,
+            "ap": 7,
+            "dp": 6,
+            "rarity": 4,
+            "deck_cost": 13,
+            "slot": 31,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_2.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 93,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                112
+            ]
+        },
+        {
+            "id": 93,
+            "level": 3,
+            "hp": 8,
+            "ap": 7,
+            "dp": 6,
+            "rarity": 4,
+            "deck_cost": 16,
+            "slot": 31,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 94,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                112,
+                115
+            ]
+        },
+        {
+            "id": 94,
+            "level": 4,
+            "hp": 8,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 4,
+            "deck_cost": 16,
+            "slot": 431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_4.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 95,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                113,
+                116
+            ]
+        },
+        {
+            "id": 95,
+            "level": 5,
+            "hp": 9,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 4,
+            "deck_cost": 20,
+            "slot": 431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_5.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                113,
+                116,
+                118
+            ]
+        },
+        {
+            "id": 96,
+            "level": 1,
+            "hp": 8,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 6,
+            "deck_cost": 20,
+            "slot": 3431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_a.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 97,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                113,
+                116,
+                118
+            ]
+        },
+        {
+            "id": 97,
+            "level": 2,
+            "hp": 9,
+            "ap": 7,
+            "dp": 7,
+            "rarity": 7,
+            "deck_cost": 20,
+            "slot": 3431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_b.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 98,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                111,
+                113,
+                116,
+                118
+            ]
+        },
+        {
+            "id": 98,
+            "level": 3,
+            "hp": 10,
+            "ap": 8,
+            "dp": 7,
+            "rarity": 8,
+            "deck_cost": 22,
+            "slot": 63431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_c.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 99,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                111,
+                114,
+                116,
+                118
+            ]
+        },
+        {
+            "id": 99,
+            "level": 4,
+            "hp": 11,
+            "ap": 9,
+            "dp": 8,
+            "rarity": 9,
+            "deck_cost": 24,
+            "slot": 63431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_d.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 100,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                111,
+                114,
+                117,
+                118
+            ]
+        },
+        {
+            "id": 100,
+            "level": 5,
+            "hp": 12,
+            "ap": 9,
+            "dp": 9,
+            "rarity": 10,
+            "deck_cost": 27,
+            "slot": 163431,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_e.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 0,
+            "created_at": "2010-09-16 07:15:29 UTC",
+            "skill": null,
+            "skill_pointer": [
+                111,
+                114,
+                117,
+                120
+            ]
+        },
+        {
+            "id": 50093,
+            "level": 3,
+            "hp": 8,
+            "ap": 7,
+            "dp": 6,
+            "rarity": 3,
+            "deck_cost": 16,
+            "slot": 31,
+            "stand_image": {
+                "height": 196,
+                "width": 122,
+                "type": "png",
+                "name": "stand_1.png"
+            },
+            "chara_image": {
+                "height": 240,
+                "width": 168,
+                "type": "png",
+                "name": "cover_3.png"
+            },
+            "artifact_image": {
+                "height": 80,
+                "width": 248,
+                "type": "png",
+                "name": "stand_f.png"
+            },
+            "bg_image": {
+                "height": 47,
+                "width": 122,
+                "type": "png",
+                "name": "stand_shad.png"
+            },
+            "next_id": 0,
+            "kind": 12,
+            "created_at": "",
+            "skill": null,
+            "skill_pointer": [
+                109,
+                112,
+                115
+            ]
+        }
+    ],
+    "name": {
+        "jp": "ブレイズ",
+        "en": "Blaise",
+        "fr": "Blaise",
+        "kr": "브레이즈",
+        "scn": "布列依斯",
+        "tcn": "布列依斯",
+        "ina": "Blaise",
+        "thai": "เบลซ"
+    },
+    "ab_name": {
+        "jp": "- Inquisitor - Blaise",
+        "en": "- Inquisitor -",
+        "fr": "- Inquisiteur -",
+        "kr": "- Inquisitor - Blaise",
+        "scn": "- Inquisitor - Blaise",
+        "tcn": "- Inquisitor - Blaise",
+        "ina": "- Inquisitor - Blaise",
+        "thai": "- Inquisitor - Blaise"
+    },
+    "caption": {
+        "jp": "光を操る銀髮の協定審問官 《インクジター》。圧倒的な力で裁きを下す。",
+        "en": "A silver haired Inquisitor who has the power to control light, passing judgment with overwhelming authority.",
+        "fr": "Inquisiteur d'Argent, il a le pouvoir de contrôler la lumière.",
+        "kr": "빛을 조종하는 은발의 협정심문관. 압도적인 힘으로 심판을 내린다.",
+        "scn": "操纵光的银发协定审查官《审判者》。以压倒性的力量进行审判。",
+        "tcn": "操縱光的銀髮協定審查官《審判者》。以壓倒性的力量進行審判。",
+        "ina": "Seorang Inquisitor berambut perak yang dapat mengendalikan cahaya.",
+        "thai": "เจ้าหน้าที่สืบสวน <อินควิซิเตอร์> ผู้มีผมสีเงินล้อประกายแสง ผู้มอบคำพิพากษาที่ไม่อาจโต้แย้งได้"
+    }
+}

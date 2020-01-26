@@ -51,8 +51,10 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         foreach (var t in SelfList) {
             if (t != null) {
                 var y = t.GetComponent<StatusEffectViewSetting> ();
-                if (y.st_id == status_id) { y.Turns += CD; }
-                return true;
+                if (y.st_id == status_id) {
+                    y.Turns += CD;
+                    return true;
+                }
             }
         }
         var targ = new ULZAsset.StatusObject ();
@@ -62,14 +64,19 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
             }
         }
         GameObject ff = (GameObject) Instantiate (StatusPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+        var t2d = MainEffectAB.LoadAsset (targ.img) as Texture2D;
         ff.name = "status_ins" + this.SelfList.Count.ToString ();
         ff.transform.SetParent (SelfStatusViewList.transform);
         ff.GetComponent<StatusEffectViewSetting> ().st_id = status_id;
-        ff.GetComponent<StatusEffectViewSetting> ().Icon_ri.texture =
-            MainEffectAB.LoadAsset (targ.img) as Texture2D;
+        ff.GetComponent<StatusEffectViewSetting> ().Icon.sprite = Sprite.Create (
+            t2d,
+            new Rect (-0.2f, 0, t2d.width, t2d.height),
+            new Vector2 (0.5f, 0.5f)
+        );
+
         ff.GetComponent<StatusEffectViewSetting> ().Turns = CD;
         var r = SelfStatusViewList.transform.position;
-        r.y += (((RectTransform) (SelfStatusViewList.transform)).rect.height / 2) - SelfList.Count * ((RectTransform) ff.transform).rect.height;
+        r.y -= SelfList.Count * 0.3f;
         ff.transform.position = r;
 
         SelfList.Add (ff);
@@ -79,8 +86,10 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         foreach (var t in DuelList) {
             if (t != null) {
                 var y = t.GetComponent<StatusEffectViewSetting> ();
-                if (y.st_id == status_id) { y.Turns += CD; }
-                return true;
+                if (y.st_id == status_id) {
+                    y.Turns += CD;
+                    return true;
+                }
             }
         }
         var targ = new ULZAsset.StatusObject ();
@@ -91,14 +100,18 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         }
 
         GameObject ff = (GameObject) Instantiate (StatusPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+        var t2d = MainEffectAB.LoadAsset (targ.img) as Texture2D;
         ff.name = "status_ins" + this.DuelList.Count.ToString ();
         ff.transform.SetParent (DuelStatusViewList.transform);
         ff.GetComponent<StatusEffectViewSetting> ().st_id = status_id;
-        ff.GetComponent<StatusEffectViewSetting> ().Icon_ri.texture =
-            MainEffectAB.LoadAsset (targ.img) as Texture2D;
+        ff.GetComponent<StatusEffectViewSetting> ().Icon.sprite = Sprite.Create (
+            t2d,
+            new Rect (-0.2f, 0, t2d.width, t2d.height),
+            new Vector2 (0.5f, 0.5f)
+        );
         ff.GetComponent<StatusEffectViewSetting> ().Turns = CD;
         var r = DuelStatusViewList.transform.position;
-        r.y += (((RectTransform) (DuelStatusViewList.transform)).rect.height / 2) - DuelList.Count * ((RectTransform) ff.transform).rect.height;
+        r.y -= DuelList.Count * 0.3f;
         ff.transform.position = r;
 
         DuelList.Add (ff);
@@ -139,7 +152,7 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         }
     }
     // public void RemoveCD 
-    public void OpenInfoPanel (int sts_id, int turns){}
+    public void OpenInfoPanel (int sts_id, int turns) { }
 }
 
 #if (UNITY_EDITOR) 

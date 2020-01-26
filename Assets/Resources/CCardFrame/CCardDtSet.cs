@@ -46,7 +46,7 @@ namespace ULZAsset {
         public int feat_no { get; set; }
         public int pow { get; set; }
         public string dice_attribute { get; set; }
-        public string effect_image { get; set; }
+        public ImgSet effect_image { get; set; }
         public string condition { get; set; }
         public string created_at { get; set; }
         public MultiLang name { get; set; }

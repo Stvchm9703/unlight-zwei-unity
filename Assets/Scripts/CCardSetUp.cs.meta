@@ -3,7 +3,13 @@ guid: 4a5a4b096b432e34293b53aa4d0a542a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CCardPrefab: {fileID: 8879557533689974164, guid: d7394662e6aa87b449a2a0de74589f61,
+      type: 3}
+  - SelfCCSetBlock: {instanceID: 0}
+  - SelfCCSetStand: {instanceID: 0}
+  - DuelCCSetBlock: {instanceID: 0}
+  - DuelCCSetStand: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

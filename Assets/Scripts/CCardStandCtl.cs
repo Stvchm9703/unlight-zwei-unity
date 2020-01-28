@@ -54,15 +54,11 @@ public class CCardStandCtl : MonoBehaviour {
             yield return false;
         } else {
             Texture2D tas = ab.LoadAsset (MainStand_raw.name) as Texture2D;
-            // TextureImporter d = new TextureImporter(tas);
-            // tas.SetReadable = true;
             var ms_sprite = MainStand.GetComponent<SpriteRenderer> ();
             ms_sprite.sprite = Sprite.Create (tas,
                 new Rect (0, 0, tas.width, tas.height),
                 new Vector2 (0.5f, 0f)
             );
-            // ms_sprite.sprite.
-            // ms_sprite.
             MainStand.AddComponent<BoxCollider2D>();
         }
 

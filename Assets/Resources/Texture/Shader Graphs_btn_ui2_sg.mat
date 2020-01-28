@@ -10,7 +10,7 @@ Material:
   m_Name: Shader Graphs_btn_ui2_sg
   m_Shader: {fileID: -6465566751694194690, guid: 9ab643a37d95caf4c897ab9168b6390e,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

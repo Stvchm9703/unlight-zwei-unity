@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: DiceTmp Material
   m_Shader: {fileID: 4800000, guid: 128e987d567d4e2c824d754223b3f3b0, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: DiceTmp
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 979995458
   material: {fileID: -3902252902357479157}
-  materialHashCode: 0
+  materialHashCode: 1158097289
   m_Version: 1.1.0
   m_SourceFontFileGUID: 62c11858e31dfe54f82dacfb699a98ba
   m_SourceFontFile_EditorRef: {fileID: 0}

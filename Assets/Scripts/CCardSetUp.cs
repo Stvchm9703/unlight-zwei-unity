@@ -21,6 +21,7 @@ public class CCardSetUp : MonoBehaviour {
     // public CCardStandCtl SelfCCSetStand_v2;
     public int self_atk_equ = 0, self_def_equ = 0;
     public CCSkillRender SelfCCSetSkill;
+    public CCPhaseRender SelfCCSetPhase;
 
     // / <summary>
     // / Duel CC
@@ -33,6 +34,7 @@ public class CCardSetUp : MonoBehaviour {
     public CCardStandCtl DuelCCSetStand;
     public int duel_atk_equ = 0, duel_def_equ = 0;
     public CCSkillRender DuelCCSetSkill;
+    public CCPhaseRender DuelCCSetPhase;
     public string _asset_path {
         get {
             var tmp = "";
@@ -88,6 +90,7 @@ public class CCardSetUp : MonoBehaviour {
         StartCoroutine (this.SelfCCSetBlock.InitCCImg (this.SelfCC_AB));
         StartCoroutine (this.SelfCCSetStand.InitCCImg (this.SelfCC_AB, this.SelfCC_Level));
         StartCoroutine (this.SelfCCSetSkill.InitCCImg (this.SelfCC_AB, this.SelfCC_Level));
+        StartCoroutine (this.SelfCCSetPhase.InitCCImg (this.SelfCC_AB, this.SelfCC_Level));
         yield return true;
 
     }
@@ -118,6 +121,7 @@ public class CCardSetUp : MonoBehaviour {
         StartCoroutine (this.DuelCCSetBlock.InitCCImg (this.DuelCC_AB));
         StartCoroutine (this.DuelCCSetStand.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
         StartCoroutine (this.DuelCCSetSkill.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
+        // StartCoroutine (this.DuelCCSetPhase.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
 
         yield return true;
 

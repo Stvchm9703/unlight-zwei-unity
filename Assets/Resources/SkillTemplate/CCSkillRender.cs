@@ -64,6 +64,7 @@ public class CCSkillRender : MonoBehaviour {
 
                 ff.GetComponent<Transform> ().localScale *= new Vector2 (orig_ratio, 1);
                 ffsp.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                ffsp.sortingLayerName = "skill_render";
                 Skill_preload.Add (ff);
                 ff.SetActive (false);
             }

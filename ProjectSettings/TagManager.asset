@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: skill_render
+    uniqueID: 2916572317
+    locked: 0
+  - name: phase
+    uniqueID: 150533503
+    locked: 0

@@ -121,7 +121,7 @@ public class CCardSetUp : MonoBehaviour {
         StartCoroutine (this.DuelCCSetBlock.InitCCImg (this.DuelCC_AB));
         StartCoroutine (this.DuelCCSetStand.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
         StartCoroutine (this.DuelCCSetSkill.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
-        // StartCoroutine (this.DuelCCSetPhase.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
+        StartCoroutine (this.DuelCCSetPhase.InitCCImg (this.DuelCC_AB, this.DuelCC_Level));
 
         yield return true;
 

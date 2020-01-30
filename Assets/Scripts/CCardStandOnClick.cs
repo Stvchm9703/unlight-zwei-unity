@@ -8,7 +8,6 @@ public class CCardStandOnClick : MonoBehaviour {
         }
     }
     private void OnMouseDown () {
-        Debug.Log ("hi");
         mainCtl.ClickTrig();
     }
 }

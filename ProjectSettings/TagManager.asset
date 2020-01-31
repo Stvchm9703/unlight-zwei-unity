@@ -48,3 +48,6 @@ TagManager:
   - name: phase
     uniqueID: 150533503
     locked: 0
+  - name: turn_phase
+    uniqueID: 4255952503
+    locked: 0

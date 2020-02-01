@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 366956835641668191}
   - component: {fileID: 366956835641668189}
   - component: {fileID: 366956835641668190}
+  - component: {fileID: 1362575750}
   m_Layer: 5
   m_Name: StatusCD
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1362575750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366956835641668256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7e6075df7c660428cc4404142200d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  base_asset: {fileID: 0}
+  cd_text: {fileID: 0}
+  icon: {fileID: 0}
 --- !u!1 &366956835678961888
 GameObject:
   m_ObjectHideFlags: 0

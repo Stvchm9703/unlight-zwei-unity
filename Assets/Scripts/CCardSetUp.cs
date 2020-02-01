@@ -8,9 +8,9 @@ public class CCardSetUp : MonoBehaviour {
     // ----------------------------------------------------
     // CC Card Prefab
     AssetBundle SelfCC_AB, DuelCC_AB;
-    // / <summary>
-    // / Self CC
-    // / </summary>
+    /// <summary>
+    /// Self CC
+    /// </summary>
     public GameObject CCardPrefab;
 
     public int SelfCC_ID;
@@ -23,9 +23,9 @@ public class CCardSetUp : MonoBehaviour {
     public CCSkillRender SelfCCSetSkill;
     public CCPhaseRender SelfCCSetPhase;
 
-    // / <summary>
-    // / Duel CC
-    // / </summary>
+    /// <summary>
+    /// Duel CC
+    /// </summary>
     public int DuelCC_ID;
     [MinAttribute (1)]
     public int DuelCC_Level;
@@ -35,6 +35,9 @@ public class CCardSetUp : MonoBehaviour {
     public int duel_atk_equ = 0, duel_def_equ = 0;
     public CCSkillRender DuelCCSetSkill;
     public CCPhaseRender DuelCCSetPhase;
+    
+    
+    
     public string _asset_path {
         get {
             var tmp = "";
@@ -57,6 +60,9 @@ public class CCardSetUp : MonoBehaviour {
             return Path.Combine (Application.streamingAssetsPath, tmp);
         }
     }
+
+    public GameObject InfoPanel;
+    
     public IEnumerator StartSelfCCImplement () {
         // Debug.Log ("start : " + _asset_path);
         this.SelfCC_AB = AssetBundle.LoadFromFile (Path.Combine (_asset_path, "CC" + (
@@ -135,7 +141,30 @@ public class CCardSetUp : MonoBehaviour {
 
     public void OpenCCInfoPanel (int self_or_duel) {
         Debug.Log ("is hello," + self_or_duel);
-        if (self_or_duel == 1) { }
+        if (self_or_duel == 1) { 
+            
+        }
     }
 
 }
+
+#if (UNITY_EDITOR) 
+[CustomEditor (typeof (CCardSetUp))]
+public class CCardSetUp_Editor : Editor {
+    int CD = 0;
+    int sider_phase = 10;
+    public override void OnInspectorGUI () {
+        DrawDefaultInspector ();
+        CCardSetUp d = (CCardSetUp) target;
+        EditorGUILayout.Space (50);
+        if (GUILayout.Button ("Test Open Self CC Info Panel")) {
+            d.OpenCCInfoPanel (1);
+        }
+
+        if (GUILayout.Button ("Test Open Duel CC Info Panel")) {
+            d.OpenCCInfoPanel (0);
+        }
+    }
+}
+
+#endif

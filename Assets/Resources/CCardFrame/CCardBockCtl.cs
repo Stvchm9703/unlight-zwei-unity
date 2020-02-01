@@ -269,8 +269,4 @@ public class CCardBockCtl : MonoBehaviour {
             this.DEFEqu = this.transform.Find ("frame/value/DEFplus").gameObject;
         }
     }
-
-    void Update () {
-
-    }
 }

@@ -11,7 +11,7 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
 
     public GameObject SelfStatusViewList, DuelStatusViewList;
     List<GameObject> SelfList, DuelList;
-    public List<ULZAsset.StatusObject> StatusOpt;
+    public List<StatusObject> StatusOpt;
     public string _asset_path {
         get {
             var tmp = "";
@@ -38,7 +38,7 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
         MainEffectAB = AssetBundle.LoadFromFile (Path.Combine (_asset_path, "status.ab"));
         if (MainEffectAB != null) {
             TextAsset ta = MainEffectAB.LoadAsset ("status.json") as TextAsset;
-            StatusOpt = JsonConvert.DeserializeObject<List<ULZAsset.StatusObject>> (ta.text);
+            StatusOpt = JsonConvert.DeserializeObject<List<StatusObject>> (ta.text);
         }
         if (SelfList == null) {
             SelfList = new List<GameObject> ();
@@ -57,7 +57,7 @@ public class StatusEffectMainViewCtl : MonoBehaviour {
                 }
             }
         }
-        var targ = new ULZAsset.StatusObject ();
+        var targ = new StatusObject ();
         foreach (var sobj in StatusOpt) {
             if (sobj.id == status_id) {
                 targ = sobj;

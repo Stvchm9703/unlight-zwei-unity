@@ -9,13 +9,13 @@ public class IP_StatusBox : MonoBehaviour {
     public TextMeshProUGUI Title;
     public Text desp;
     public StatusEffectMainViewCtl base_asset;
-    private void Start () {
+    private void Start() {
         if (base_asset == null) {
-            base_asset = this.transform.root.parent.Find ("EventSystem").GetComponent<StatusEffectMainViewCtl> ();
+            base_asset = this.transform.root.parent.Find("EventSystem").GetComponent<StatusEffectMainViewCtl>();
         }
 
     }
-    public void init (StatusObject so) {
+    public void init(StatusObject so) {
         string name_string = "", desp_string = "";
         switch (Application.systemLanguage) {
             case SystemLanguage.Chinese:
@@ -61,10 +61,10 @@ public class IP_StatusBox : MonoBehaviour {
         if (desp_string == "") {
             desp_string = so.caption.jp;
         }
-        Title.SetText (name_string);
+        Title.SetText(name_string);
         desp.text = desp_string;
 
-        var t2d = base_asset.MainEffectAB.LoadAsset (so.img) as Texture2D;
+        var t2d = base_asset.MainEffectAB.LoadAsset(so.img)as Texture2D;
         icon.texture = t2d;
 
     }

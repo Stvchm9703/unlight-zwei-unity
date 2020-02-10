@@ -5,7 +5,7 @@ public class DuelCCardViewCtl : MonoBehaviour, IPointerClickHandler, IPointerEnt
     public Transform outside;
     public Transform inside;
     public void OnPointerClick (PointerEventData eventData) {
-        this.gameObject.GetComponent<CCardCtl> ().OpenCCInfoPanel ();
+        // this.gameObject.GetComponent<CCardCtl> ().OpenCCInfoPanel ();
     }
     public void OnPointerEnter (PointerEventData eventData) {
         this.transform.DOMoveY (outside.position.y, 0.1f);

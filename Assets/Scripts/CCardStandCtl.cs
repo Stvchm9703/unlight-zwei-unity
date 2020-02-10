@@ -21,43 +21,36 @@ public class CCardStandCtl : MonoBehaviour {
     public GameObject SkillList;
 
     public float ratio;
-    void Start () {
+    void Start() {
         if (MainStand == null) {
-            MainStand = this.transform.Find ("cc/stand").gameObject;
+            MainStand = this.transform.Find("cc/stand").gameObject;
         }
         if (Shadow == null) {
-            Shadow = this.transform.Find ("cc/shadow").gameObject;
+            Shadow = this.transform.Find("cc/shadow").gameObject;
         }
         if (CCMainSet == null) {
-            CCMainSet = this.transform.Find ("cc").gameObject.GetComponent<Transform> ();
+            CCMainSet = this.transform.Find("cc").gameObject.GetComponent<Transform>();
         }
         if (main_ctl == null) {
-            main_ctl = this.transform.root.Find ("EventSystem").gameObject.GetComponent<CCardSetUp> ();
+            main_ctl = this.transform.root.Find("EventSystem").gameObject.GetComponent<CCardSetUp>();
         }
     }
-    public IEnumerator InitCCImg (AssetBundle ab, int level) {
+    public IEnumerator InitCCImg(AssetBundle ab, CardSet Cs) {
         if (ab == null) {
             yield return false;
         }
-        TextAsset ta = ab.LoadAsset ("card_set.json") as TextAsset;
-        var json = JsonConvert.DeserializeObject<CardObject> (ta.text);
 
-        for (int i = 0; i < json.card_set.Count; i++) {
-            if (json.card_set[i].level == level) {
-                MainStand_raw = json.card_set[i].stand_image;
-                Shadow_raw = json.card_set[i].bg_image;
-                break;
-            }
-        }
+        MainStand_raw = Cs.stand_image;
+        Shadow_raw = Cs.bg_image;
 
         if (MainStand == null) {
             yield return false;
         } else {
-            Texture2D tas = ab.LoadAsset (MainStand_raw.name) as Texture2D;
-            var ms_sprite = MainStand.GetComponent<SpriteRenderer> ();
-            ms_sprite.sprite = Sprite.Create (tas,
-                new Rect (0, 0, tas.width, tas.height),
-                new Vector2 (0.5f, 0f)
+            Texture2D tas = ab.LoadAsset(MainStand_raw.name)as Texture2D;
+            var ms_sprite = MainStand.GetComponent<SpriteRenderer>();
+            ms_sprite.sprite = Sprite.Create(tas,
+                new Rect(0, 0, tas.width, tas.height),
+                new Vector2(0.5f, 0f)
             );
             MainStand.AddComponent<BoxCollider2D>();
         }
@@ -65,27 +58,29 @@ public class CCardStandCtl : MonoBehaviour {
         if (Shadow == null) {
             yield return false;
         } else {
-            Texture2D tas = ab.LoadAsset (Shadow_raw.name) as Texture2D;
-            var ms_sprite = Shadow.GetComponent<SpriteRenderer> ();
-            ms_sprite.sprite = Sprite.Create (tas,
-                new Rect (0, 0, tas.width, tas.height),
-                new Vector2 (0.5f, 1f)
+            Texture2D tas = ab.LoadAsset(Shadow_raw.name)as Texture2D;
+            var ms_sprite = Shadow.GetComponent<SpriteRenderer>();
+            ms_sprite.sprite = Sprite.Create(tas,
+                new Rect(0, 0, tas.width, tas.height),
+                new Vector2(0.5f, 1f)
             );
         }
 
         if (CCMainSet == null) {
             yield return false;
         } else {
-            CCMainSet.localScale = new Vector3 (ratio, ratio, 1);
+            CCMainSet.localScale = new Vector3(ratio, ratio, 1);
         }
 
         yield return true;
     }
 
-    public void ClickTrig () {
+    public void ClickTrig() {
         Debug.Log("hi");
         if (main_ctl != null) {
-            main_ctl.OpenCCInfoPanel (is_self);
+            StartCoroutine(
+                main_ctl.OpenCCInfoPanel(is_self)
+            );
         }
     }
 

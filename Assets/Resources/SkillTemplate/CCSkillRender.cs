@@ -14,38 +14,12 @@ public class CCSkillRender : MonoBehaviour {
     public GameObject skill_prefab;
     public GameObject skl_ls;
     public GameObject MaskObj;
-    public IEnumerator InitCCImg (AssetBundle abs, int level) {
+    public IEnumerator InitCCImg (AssetBundle abs,List<SkillObject>skobj) {
         if (abs == null) {
             yield return false;
         }
-        TextAsset ta = abs.LoadAsset ("skill.json") as TextAsset;
-        TextAsset tb = abs.LoadAsset ("card_set.json") as TextAsset;
 
-        CardObject crd = JsonConvert.DeserializeObject<CardObject> (tb.text);
-        List<SkillObject> skjson = JsonConvert.DeserializeObject<List<SkillObject>> (ta.text);
-        List<CardSet> tmp = new List<CardSet> ();
-        foreach (var tt in (crd.card_set)) {
-            if (tt.level == level) {
-                tmp.Add (tt);
-            }
-        }
-        List<int> sumd = new List<int> ();
-        foreach (var tt in tmp) {
-            foreach (int d in tt.skill_pointer) {
-                if (!sumd.Contains (d)) {
-                    sumd.Add (d);
-                }
-            }
-        }
-        List<SkillObject> skj = new List<SkillObject> ();
-        foreach (var tt in sumd) {
-            foreach (var y in skjson) {
-                if (y.id == tt && !skj.Contains (y)) {
-                    skj.Add (y);
-                }
-            }
-        }
-        foreach (var tmpsk in skj) {
+        foreach (var tmpsk in skobj) {
             if (skl_ls.transform.Find (tmpsk.effect_image.name) == null) {
                 GameObject ff = GameObject.Instantiate (skill_prefab, skl_ls.transform);
                 ff.name = tmpsk.effect_image.name;

@@ -23,12 +23,12 @@ public class CCardCtl : MonoBehaviour {
     /// <summary>
     /// private Color : colour setting  
     /// </summary>
-    private Color _defaut_color { get { return new Color (1, 1, 1, 1); } }
-    private Color _damage_color { get { return new Color (1, 1, (float) (54 / 255), 1); } }
-    private Color _dead_color { get { return new Color (1, (float) (70 / 255), (float) (70 / 255), 1); } }
+    private Color _defaut_color { get { return new Color(1, 1, 1, 1); } }
+    private Color _damage_color { get { return new Color(1, 1, (float)(54 / 255), 1); } }
+    private Color _dead_color { get { return new Color(1, (float)(70 / 255), (float)(70 / 255), 1); } }
 
-    private Color _equ_color_a { get { return new Color ((float) (86 / 255), 1f, (float) (81 / 255), 1); } }
-    private Color _equ_color_b { get { return new Color (0, 0, 0, 1); } }
+    private Color _equ_color_a { get { return new Color((float)(86 / 255), 1f, (float)(81 / 255), 1); } }
+    private Color _equ_color_b { get { return new Color(0, 0, 0, 1); } }
 
     /// <summary>
     ///  HP / ATK / DEF : the instant value of the CC
@@ -47,20 +47,20 @@ public class CCardCtl : MonoBehaviour {
             if (value == this.HP_defaut) {
                 //  white
                 if (this.HPVal != null) {
-                    this.HPVal.GetComponent<Text> ().color = _defaut_color;
+                    this.HPVal.GetComponent<Text>().color = _defaut_color;
                 }
-            } else if (value > (int) (this.HP_defaut / 2) && this.HP_defaut > value) {
+            } else if (value > (int)(this.HP_defaut / 2) && this.HP_defaut > value) {
                 // yellow
                 if (this.HPVal != null) {
-                    this.HPVal.GetComponent<Text> ().color = _damage_color;
+                    this.HPVal.GetComponent<Text>().color = _damage_color;
                 }
             } else {
                 // Red
                 if (this.HPVal != null) {
-                    this.HPVal.GetComponent<Text> ().color = _damage_color;
+                    this.HPVal.GetComponent<Text>().color = _damage_color;
                 }
             }
-            this.HPVal.GetComponent<Text> ().text = value.ToString ();
+            this.HPVal.GetComponent<Text>().text = value.ToString();
         }
     }
     public int ATK {
@@ -77,20 +77,20 @@ public class CCardCtl : MonoBehaviour {
             if (value == this.ATK_defaut) {
                 //  white
                 if (this.ATKVal != null) {
-                    this.ATKVal.GetComponent<Text> ().color = _defaut_color;
+                    this.ATKVal.GetComponent<Text>().color = _defaut_color;
                 }
-            } else if (value > (int) (this.ATK_defaut / 2) && this.ATK_defaut > value) {
+            } else if (value > (int)(this.ATK_defaut / 2) && this.ATK_defaut > value) {
                 // yellow
                 if (this.ATKVal != null) {
-                    this.ATKVal.GetComponent<Text> ().color = _damage_color;
+                    this.ATKVal.GetComponent<Text>().color = _damage_color;
                 }
             } else {
                 // Red
                 if (this.ATKVal != null) {
-                    this.ATKVal.GetComponent<Text> ().color = _damage_color;
+                    this.ATKVal.GetComponent<Text>().color = _damage_color;
                 }
             }
-            this.ATKVal.GetComponent<Text> ().text = value.ToString ();
+            this.ATKVal.GetComponent<Text>().text = value.ToString();
         }
     }
     public int DEF {
@@ -107,20 +107,20 @@ public class CCardCtl : MonoBehaviour {
             if (value == this.DEF_defaut) {
                 //  white
                 if (this.DEFVal != null) {
-                    this.DEFVal.GetComponent<Text> ().color = _defaut_color;
+                    this.DEFVal.GetComponent<Text>().color = _defaut_color;
                 }
-            } else if (value > (int) (this.DEF_defaut / 2) && this.DEF_defaut > value) {
+            } else if (value > (int)(this.DEF_defaut / 2) && this.DEF_defaut > value) {
                 // yellow
                 if (this.DEFVal != null) {
-                    this.DEFVal.GetComponent<Text> ().color = _damage_color;
+                    this.DEFVal.GetComponent<Text>().color = _damage_color;
                 }
             } else {
                 // Red
                 if (this.DEFVal != null) {
-                    this.DEFVal.GetComponent<Text> ().color = _damage_color;
+                    this.DEFVal.GetComponent<Text>().color = _damage_color;
                 }
             }
-            this.DEFVal.GetComponent<Text> ().text = value.ToString ();
+            this.DEFVal.GetComponent<Text>().text = value.ToString();
         }
     }
 
@@ -135,71 +135,71 @@ public class CCardCtl : MonoBehaviour {
     public GameObject ATKEqu, DEFEqu;
 
     public SystemLanguage SL_setting;
-    public void InitImageResx () { }
-    public IEnumerator InitEquSetting (int atk, int def) {
+    public void InitImageResx() { }
+    public IEnumerator InitEquSetting(int atk, int def) {
         yield return null;
         this.ATK_equ = atk;
         if (atk > 0) {
-            this.ATKEqu.GetComponent<Text> ().text = "+" + atk.ToString ();
-            this.ATKEqu.GetComponent<Text> ().color = this._equ_color_a;
-            this.ATKEqu.GetComponent<Outline> ().effectColor = this._equ_color_b;
+            this.ATKEqu.GetComponent<Text>().text = "+" + atk.ToString();
+            this.ATKEqu.GetComponent<Text>().color = this._equ_color_a;
+            this.ATKEqu.GetComponent<Outline>().effectColor = this._equ_color_b;
         } else if (atk < 0) {
-            this.ATKEqu.GetComponent<Text> ().text = atk.ToString ();
-            this.ATKEqu.GetComponent<Text> ().color = this._equ_color_b;
-            this.ATKEqu.GetComponent<Outline> ().effectColor = this._equ_color_a;
+            this.ATKEqu.GetComponent<Text>().text = atk.ToString();
+            this.ATKEqu.GetComponent<Text>().color = this._equ_color_b;
+            this.ATKEqu.GetComponent<Outline>().effectColor = this._equ_color_a;
         } else {
-            this.ATKEqu.GetComponent<Text> ().text = "";
+            this.ATKEqu.GetComponent<Text>().text = "";
         }
         this.DEF_equ = def;
         if (def > 0) {
-            this.DEFEqu.GetComponent<Text> ().text = "+" + def.ToString ();
-            this.DEFEqu.GetComponent<Text> ().color = this._equ_color_a;
-            this.DEFEqu.GetComponent<Outline> ().effectColor = this._equ_color_b;
+            this.DEFEqu.GetComponent<Text>().text = "+" + def.ToString();
+            this.DEFEqu.GetComponent<Text>().color = this._equ_color_a;
+            this.DEFEqu.GetComponent<Outline>().effectColor = this._equ_color_b;
 
         } else if (def < 0) {
-            this.DEFEqu.GetComponent<Text> ().text = def.ToString ();
-            this.DEFEqu.GetComponent<Text> ().color = this._equ_color_b;
-            this.DEFEqu.GetComponent<Outline> ().effectColor = this._equ_color_a;
+            this.DEFEqu.GetComponent<Text>().text = def.ToString();
+            this.DEFEqu.GetComponent<Text>().color = this._equ_color_b;
+            this.DEFEqu.GetComponent<Outline>().effectColor = this._equ_color_a;
         } else {
-            this.DEFEqu.GetComponent<Text> ().text = "";
+            this.DEFEqu.GetComponent<Text>().text = "";
         }
         yield return true;
     }
 
-    public IEnumerator InitCCLvFrame () {
-        if (this.transform.Find ("CardFace/frame/lvtitle/num").gameObject) {
-            this.transform.Find ("CardFace/frame/lvtitle/num").gameObject.GetComponent<TextMeshProUGUI> ().SetText (
-                this.level.ToString ());
+    public IEnumerator InitCCLvFrame() {
+        if (this.transform.Find("CardFace/frame/lvtitle/num").gameObject) {
+            this.transform.Find("CardFace/frame/lvtitle/num").gameObject.GetComponent<TextMeshProUGUI>().SetText(
+                this.level.ToString());
         } else {
             yield return false;
         }
 
-        if (this.transform.Find ("CardFace/frame/lv").gameObject) {
-            this.transform.Find ("CardFace/frame/lv").gameObject.GetComponent<RawImage> ().texture =
-                Resources.Load<Texture2D> ("CCardFrame/Image/lv" + this.level.ToString ()) as Texture2D;
+        if (this.transform.Find("CardFace/frame/lv").gameObject) {
+            this.transform.Find("CardFace/frame/lv").gameObject.GetComponent<RawImage>().texture =
+                Resources.Load<Texture2D>("CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
         } else {
             yield return false;
         }
 
         yield return true;
     }
-    public IEnumerator InitCCImg (AssetBundle ab) {
+    public IEnumerator InitCCImg(AssetBundle ab) {
         if (ab) {
-            TextAsset ta = ab.LoadAsset ("card_set.json") as TextAsset;
-            var json = JsonConvert.DeserializeObject<ULZAsset.CardObject> (ta.text);
-            CardSet c_set = new CardSet ();
+            TextAsset ta = ab.LoadAsset("card_set.json")as TextAsset;
+            var json = JsonConvert.DeserializeObject<ULZAsset.CardObject>(ta.text);
+            CardSet c_set = new CardSet();
             string coverImgNm = "";
             for (int i = 0; i < json.card_set.Count; i++) {
                 if (json.card_set[i].level == this.level) {
                     c_set = json.card_set[i];
-                    coverImgNm = json.card_set[i].chara_image.name.Replace (".png", "");
+                    coverImgNm = json.card_set[i].chara_image.name.Replace(".png", "");
                     break;
                 }
             }
 
-            Texture2D tas = ab.LoadAsset (coverImgNm) as Texture2D;
+            Texture2D tas = ab.LoadAsset(coverImgNm)as Texture2D;
 
-            this.transform.Find ("CardFace/char").gameObject.GetComponent<RawImage> ().texture = tas;
+            this.transform.Find("CardFace/char").gameObject.GetComponent<RawImage>().texture = tas;
 
             string name_string = "";
             switch (SL_setting) {
@@ -232,10 +232,10 @@ public class CCardCtl : MonoBehaviour {
                 name_string = json.name.en;
             }
 
-            Debug.Log (c_set);
+            Debug.Log(c_set);
 
-            if (this.transform.Find ("CardFace/frame/name/val").gameObject) {
-                this.transform.Find ("CardFace/frame/name/val").gameObject.GetComponent<Text> ().text = name_string;
+            if (this.transform.Find("CardFace/frame/name/val").gameObject) {
+                this.transform.Find("CardFace/frame/name/val").gameObject.GetComponent<Text>().text = name_string;
                 this.HP_defaut = c_set.hp;
                 this.HP = c_set.hp;
                 this.ATK_defaut = c_set.ap;
@@ -252,28 +252,80 @@ public class CCardCtl : MonoBehaviour {
             yield return false;
         }
     }
-    public void OpenCCInfoPanel () {
+    public IEnumerator InitCCImg(AssetBundle ab, CardObject Co, CardSet Cs) {
+        if (ab) {
+            Texture2D tas = ab.LoadAsset(Cs.chara_image.name.Replace(".png", ""))as Texture2D;
+            this.transform.Find("CardFace/char").gameObject.GetComponent<RawImage>().texture = tas;
 
+            string name_string = "";
+            switch (SL_setting) {
+                case SystemLanguage.Chinese:
+                case SystemLanguage.ChineseTraditional:
+                    name_string = Co.name.tcn;
+                    break;
+                case SystemLanguage.ChineseSimplified:
+                    name_string = Co.name.scn;
+                    break;
+                case SystemLanguage.Japanese:
+                    name_string = Co.name.jp;
+                    break;
+                case SystemLanguage.Korean:
+                    name_string = Co.name.kr;
+                    break;
+                case SystemLanguage.Indonesian:
+                    name_string = Co.name.ina;
+                    break;
+                case SystemLanguage.Thai:
+                    name_string = Co.name.thai;
+                    break;
+                case SystemLanguage.English:
+                case SystemLanguage.Unknown:
+                default:
+                    name_string = Co.name.en;
+                    break;
+            }
+            if (name_string == "") {
+                name_string = Co.name.jp;
+            }
+
+
+            if (this.transform.Find("CardFace/frame/name/val").gameObject) {
+                this.transform.Find("CardFace/frame/name/val").gameObject.GetComponent<Text>().text = name_string;
+                this.HP_defaut = Cs.hp;
+                this.HP = Cs.hp;
+                this.ATK_defaut = Cs.ap;
+                this.ATK = Cs.ap;
+                this.DEF_defaut = Cs.dp;
+                this.DEF = Cs.dp;
+                yield return true;
+            } else {
+                yield return false;
+            }
+            // if (this.transform.Find())
+
+        } else {
+            yield return false;
+        }
     }
-    void Start () {
+    void Start() {
         if (this.HPVal == null) {
-            this.HPVal = this.transform.Find ("CardFace/frame/value/HP").gameObject;
+            this.HPVal = this.transform.Find("CardFace/frame/value/HP").gameObject;
         }
         if (this.ATKVal == null) {
-            this.ATKVal = this.transform.Find ("CardFace/frame/value/ATK").gameObject;
+            this.ATKVal = this.transform.Find("CardFace/frame/value/ATK").gameObject;
         }
         if (this.DEFVal == null) {
-            this.DEFVal = this.transform.Find ("CardFace/frame/value/DEF").gameObject;
+            this.DEFVal = this.transform.Find("CardFace/frame/value/DEF").gameObject;
         }
         if (this.ATKEqu == null) {
-            this.ATKEqu = this.transform.Find ("CardFace/frame/value/ATKplus").gameObject;
+            this.ATKEqu = this.transform.Find("CardFace/frame/value/ATKplus").gameObject;
         }
         if (this.DEFEqu == null) {
-            this.DEFEqu = this.transform.Find ("CardFace/frame/value/DEFplus").gameObject;
+            this.DEFEqu = this.transform.Find("CardFace/frame/value/DEFplus").gameObject;
         }
     }
 
-    void Update () {
+    void Update() {
 
     }
 }

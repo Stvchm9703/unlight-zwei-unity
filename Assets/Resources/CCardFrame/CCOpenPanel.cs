@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class CCOpenPanel : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
-    public CCardCtl main;
+    // public CCardCtl main;
     private void Start () {
-        if (!main) {
-            main = this.transform.parent.parent.gameObject.GetComponent<CCardCtl> ();
-        }
+        // if (!main) {
+        //     main = this.transform.parent.parent.gameObject.GetComponent<CCardCtl> ();
+        // }
     }
     public void OnPointerClick (PointerEventData eventData) {
-        main.OpenCCInfoPanel();
+        // main.OpenCCInfoPanel();
     }
     public void OnPointerEnter (PointerEventData eventData) {
         this.gameObject.GetComponent<RawImage> ().DOFade (1, 0.1f);

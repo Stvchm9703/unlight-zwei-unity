@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 
 namespace ULZAsset {
+
+    [System.Serializable]
     public class CardSet {
         public int id { get; set; }
         public int level { get; set; }
@@ -22,6 +24,7 @@ namespace ULZAsset {
         public List<int> skill_pointer { get; set; }
     }
 
+    [System.Serializable]
     public class MultiLang {
         public string jp { get; set; }
         public string en { get; set; }
@@ -33,6 +36,7 @@ namespace ULZAsset {
         public string thai { get; set; }
     }
 
+    [System.Serializable]
     public class CardObject {
         public int id { get; set; }
         public List<CardSet> card_set { get; set; }
@@ -41,6 +45,7 @@ namespace ULZAsset {
         public MultiLang caption { get; set; }
     }
 
+    [System.Serializable]
     public class SkillObject {
         public int id { get; set; }
         public int feat_no { get; set; }
@@ -52,6 +57,8 @@ namespace ULZAsset {
         public MultiLang name { get; set; }
         public MultiLang caption { get; set; }
     }
+
+    [System.Serializable]
     public class StatusObject {
         public int id { get; set; }
         public string img { get; set; }
@@ -59,8 +66,10 @@ namespace ULZAsset {
         public MultiLang name { get; set; }
         public MultiLang caption { get; set; }
     }
+
+    [System.Serializable]
     public class ImgSet {
-        public string name ;
+        public string name;
         public int height;
         public int width;
         public string type;

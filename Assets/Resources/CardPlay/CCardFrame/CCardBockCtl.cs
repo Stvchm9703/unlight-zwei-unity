@@ -7,7 +7,7 @@ using ULZAsset;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class CCardBockCtl : MonoBehaviour {
+public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
     public CCardSetUp main_ctl;
     public int CC_id = 0, Equ_id = -1, is_self = 1;
     public int level;
@@ -235,7 +235,7 @@ public class CCardBockCtl : MonoBehaviour {
             yield return false;
         }
     }
-    public void OpenCCInfoPanel() {
+    public void OnPointerClick(PointerEventData eventData) {
         StartCoroutine(main_ctl.OpenCCInfoPanel(is_self));
     }
     void Start() {

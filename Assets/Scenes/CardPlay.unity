@@ -8164,7 +8164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.22745098}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.011764706}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8237,8 +8237,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 65, y: -13}
-  m_SizeDelta: {x: -170, y: 110}
+  m_AnchoredPosition: {x: 25, y: -13}
+  m_SizeDelta: {x: -250, y: 110}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1263766252
 MonoBehaviour:
@@ -8253,7 +8253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.5686275}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.101960786}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8419,6 +8419,7 @@ MonoBehaviour:
     type: 3}
   ScrollParent: {fileID: 1303231590}
   sys_lang: 10
+  WaitForDestory: []
   status_ab: {fileID: 1191482907}
 --- !u!1 &1298052716
 GameObject:
@@ -9525,7 +9526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.011764706}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10916,6 +10917,7 @@ MonoBehaviour:
   Status_Info_Prefab: {fileID: 0}
   ScrollParent: {fileID: 0}
   sys_lang: 0
+  WaitForDestory: []
   status_ab: {fileID: 0}
 --- !u!1 &1769681338
 GameObject:
@@ -12600,7 +12602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

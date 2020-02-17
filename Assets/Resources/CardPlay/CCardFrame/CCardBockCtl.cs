@@ -177,7 +177,7 @@ public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
 
         if (this.transform.Find("frame/lv").gameObject) {
             this.transform.Find("frame/lv").gameObject.GetComponent<RawImage>().texture =
-                Resources.Load<Texture2D>("CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
+                Resources.Load<Texture2D>("CardPlay/CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
         } else {
             yield return false;
         }

@@ -15,7 +15,7 @@ public class RoomServiceConn : MonoBehaviour {
 
     public AsyncServerStreamingCall<RoomMsg>
         ChatRoomStream;
-    CancellationTokenSource CloseChatRoomToken;
+    public CancellationTokenSource CloseChatRoomToken;
 
     public bool IsHost = false;
     public bool IsWatcher = true;
@@ -88,7 +88,7 @@ public class RoomServiceConn : MonoBehaviour {
             throw;
         }
     }
-    public async Task<bool> SendMessage(string message) {
+    public async Task<RoomMsg> SendMessage(string message) {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
@@ -96,15 +96,14 @@ public class RoomServiceConn : MonoBehaviour {
             throw new System.Exception("NO_CURRENT_ROOM");
         }
         try {
-            var task = await this.client.SendMessageAsync(
-                new RoomMsg {
-                    Key = this.CurrentRoom.Key,
-                        FormId = this.CurrentUser.Id,
-                        Message = message,
-                        MsgType = RoomMsg.Types.MsgType.UserText
-                }
-            );
-            return true;
+            var msg = new RoomMsg {
+                Key = this.CurrentRoom.Key,
+                FormId = this.CurrentUser.Id,
+                Message = message,
+                MsgType = RoomMsg.Types.MsgType.UserText
+            };
+            var task = await this.client.SendMessageAsync(msg);
+            return msg;
         } catch (RpcException) {
             throw;
         }

@@ -46,6 +46,8 @@ public class CCardSetUp : MonoBehaviour {
     public CCSkillRender DuelCCSetSkill;
     public CCPhaseRender DuelCCSetPhase;
 
+    public ULVisualCtl is_panel_open;
+
     public string _asset_path {
         get {
             var tmp = "";
@@ -207,7 +209,8 @@ public class CCardSetUp : MonoBehaviour {
 
     public IEnumerator OpenCCInfoPanel(int self_or_duel) {
         Debug.Log("is hello," + self_or_duel);
-        if (InfoPanel.active == false) {
+        if (InfoPanel.active == false && is_panel_open.AnyPanel == false) {
+            is_panel_open.AnyPanel = true;
             InfoPanel.SetActive(true);
             if (self_or_duel == 1) {
                 StartCoroutine(
@@ -230,10 +233,12 @@ public class CCardSetUp : MonoBehaviour {
         yield return true;
     }
     public void CloseCCInfoPanel() {
-        InfoPanel.SetActive(false);
-        InfoPanel.GetComponent<CCInfoPanel>().Clean();
+        if (InfoPanel.active == true && is_panel_open.AnyPanel == true) {
+            InfoPanel.SetActive(false);
+            is_panel_open.AnyPanel = false;
+            InfoPanel.GetComponent<CCInfoPanel>().Clean();
+        }
     }
-
 }
 
 #if (UNITY_EDITOR) 

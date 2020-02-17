@@ -176,7 +176,7 @@ public class CCardCtl : MonoBehaviour {
 
         if (this.transform.Find("CardFace/frame/lv").gameObject) {
             this.transform.Find("CardFace/frame/lv").gameObject.GetComponent<RawImage>().texture =
-                Resources.Load<Texture2D>("CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
+                Resources.Load<Texture2D>("CardPlay/CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
         } else {
             yield return false;
         }

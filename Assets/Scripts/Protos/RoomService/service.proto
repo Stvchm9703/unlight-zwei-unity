@@ -1,0 +1,23 @@
+syntax="proto3";
+
+// import "message.proto";
+import "RoomService/message.proto";
+import "common.proto";
+// import "google/protobuf/empty.proto";
+package ULZProto;
+option csharp_namespace         = "ULZAsset.ProtoMod";
+option go_package               = "proto";
+
+
+
+service RoomService {
+    rpc CreateRoom      (RoomCreateReq)     returns (Room){ };
+    rpc GetRoomList     (RoomCreateReq)     returns (stream Room){ }; 
+    rpc GetRoomInfo     (RoomReq)           returns (Room){};
+    rpc UpdateRoom      (RoomCreateReq)     returns (Room){};
+    rpc ServerBroadcast (RoomReq)           returns (stream RoomMsg){};
+    rpc SendMessage     (RoomMsg)           returns (Empty){};
+    rpc QuitRoom        (RoomReq)           returns (Empty){}
+    rpc QuickPair       (RoomCreateReq)     returns (Room){};
+    rpc JoinRoom        (RoomReq)           returns (Room){};
+}

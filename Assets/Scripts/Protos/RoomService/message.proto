@@ -1,0 +1,126 @@
+syntax="proto3";
+import "common.proto";
+
+package ULZProto;
+option csharp_namespace         = "ULZAsset.ProtoMod";
+option go_package               = "proto";
+
+option java_multiple_files      = true;
+option java_package             = "io.grpc.ULZAsset.ProtoMod";
+option java_outer_classname     = "ULZAsset";
+
+
+// RmCharCardInfo
+//      Basic Character Card Infomation 
+message RmCharCardInfo {
+    int32                   card_id                 = 1;
+    int32                   level                   = 2;
+    int32                   rare                    = 3;
+    int32                   cost                    = 4;
+}
+
+
+/**
+RmUserInfo :
+    User basic Information for room info displaying
+**/
+message RmUserInfo{
+    string                  id                      = 1;
+    string                  name                    = 2;
+    int32                   level                   = 3;
+    string                  avat_icon               = 4;
+    string                  title                   = 5;
+    int32                   rank                    = 6;
+}
+
+
+
+/**
+Room :
+    Room Detail Information 
+**/
+message Room {
+    // Room-id the id
+    string                  id                      = 1;
+    // Room-Key the id 
+    string                  key                     = 2;    
+    // Room Password 
+    string                  password                = 3;
+    // User-info for room-host player
+    RmUserInfo              host                    = 4;    
+    // User-info for dueler-player 
+    RmUserInfo              dueler                  = 5;    
+    // Rooms Status 
+    RoomStatus              status                  = 7;
+    // Turns number of Game Duel 
+    int32                   turns                   = 8;
+    // Limitation for total Card-Deck
+    int32                   cost_limit_max          = 9;
+    int32                   cost_limit_min          = 10;
+    // Limitation for Charecter Card Cost
+    RmCharCardInfo          char_card_limit_max     = 11;
+    RmCharCardInfo          char_card_limit_min     = 12;
+    // 1vs1 or 3vs3
+    int32                   char_card_nvn           = 13;
+}
+
+
+
+
+enum RoomStatus {
+    ON_INIT         = 0;
+    ON_WAIT         = 1;
+    ON_START        = 2;
+    ON_END          = 3;
+    ON_DESTROY      = 4;
+}
+
+/**
+RmMsg : 
+    to pass the user message / stricker
+**/
+message RoomMsg {
+    string                  key                     = 1;
+    string                  form_id                 = 2;
+    string                  to_id                   = 3;
+    string                  message                 = 4;
+    MsgType                 msg_type                = 5;
+    enum MsgType {
+        USER_TEXT           = 0;
+        USER_STRICKER       = 1;
+        SYSTEM_INFO         = 2;
+        SYSTEM_WARN         = 3;
+        SYSTEM_ERR          = 4;
+    }
+}
+
+
+message RoomReq {
+    string                  key                     = 1;
+    RmUserInfo              user                    = 2;
+    bool                    is_duel                 = 3;
+    string                  password                = 4;
+}
+
+message RoomCreateReq {
+    string                  key                     = 1;
+    RmUserInfo              host                    = 2;
+    string                  password                = 3;
+    
+    int32                   cost_limit_max          = 4;
+    int32                   cost_limit_min          = 5;
+    // 1vs1 or 3vs3
+    int32                   char_card_nvn           = 6;
+    // Limitation for Charecter Card Cost
+    RmCharCardInfo          char_card_limit_max     = 7;
+    RmCharCardInfo          char_card_limit_min     = 8;
+
+}
+
+
+
+// message RoomListResp {
+//     repeated RoomSH         result                  = 1;
+//     ErrorMsg                error_msg               = 2;
+// }
+

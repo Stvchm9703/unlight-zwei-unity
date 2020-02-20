@@ -56,7 +56,7 @@ namespace ULZAsset.ProtoMod {
           "c2V0LlByb3RvTW9kYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomStatus), },  new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomStatus), }, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new [] { "CardId", "Level", "Rare", "Cost" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new [] { "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new [] { "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn" }, null, null, null),

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
+using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
 public class RoomServiceConn : MonoBehaviour {
@@ -17,14 +18,28 @@ public class RoomServiceConn : MonoBehaviour {
         ChatRoomStream;
     public CancellationTokenSource CloseChatRoomToken;
 
+    public CfServerSetting config;
     public bool IsHost = false;
     public bool IsWatcher = true;
-    private void Awake() {
-
+    void Awake() {
+        Debug.Log("on Awake process - Room-Service-Connector");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
+        if (objs.Length > 1) {
+            Destroy(this.gameObject);
+        } else {
+            DontDestroyOnLoad(this.gameObject);
+            this.gameObject.tag = "room_connector";
+        }
     }
 
-    void Start() {
-
+    public async Task<bool> InitSetup(CfServerSetting setting) {
+        config = setting;
+        this.main_ch = new Channel(
+            setting.Host + ":" + setting.Port.ToString() + "/room-service",
+            ChannelCredentials.Insecure
+        );
+        this.client = new RoomService.RoomServiceClient(this.main_ch);
+        return false;
     }
 
     public async Task<Room> CreateRoom(RoomCreateReq createReq) {
@@ -191,5 +206,18 @@ public class RoomServiceConn : MonoBehaviour {
             this.CloseChatRoomToken = new CancellationTokenSource();
         }
         return this.ChatRoomStream;
+    }
+    public async Task<bool> Kill() {
+        if (this.ChatRoomStream != null) {
+
+            this.CloseChatRoomToken.Cancel();
+            this.ChatRoomStream = null;
+        }
+        if (this.client != null) {
+            this.client = null;
+            await main_ch.ShutdownAsync();
+        }
+        Destroy(this.gameObject, 0.5f);
+        return true;
     }
 }

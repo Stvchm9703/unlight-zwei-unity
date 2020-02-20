@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - menu
+  - connecter
+  - room_connector
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,7 @@ namespace ULZAsset.Config {
     public class ConfigTempContainer {
         public string work_dir_path;
         public CfServerSetting remote;
+        public List<int> card_set;
     }
 
     [System.Serializable]
@@ -42,7 +43,13 @@ namespace ULZAsset.Config {
         public string KeyPemPath;
         public CfUserInfo UserInfo;
     }
-    
+
+    [System.Serializable]
+    public class CfCardVersion {
+        public string Version;
+        public List<int> Available;
+        public string LastUpdate;
+    }
 
     [System.Serializable]
     public class CfUserInfo {
@@ -57,6 +64,8 @@ namespace ULZAsset.Config {
         public static ConfigTempContainer LoadCfFile(string work_dir) {
             var t = new ConfigTempContainer();
             t.work_dir_path = work_dir;
+
+            // load config file
             string[] tpath = { work_dir, "config.yaml" };
             var r = Path.Combine(tpath);
             Debug.Log(r);
@@ -71,8 +80,28 @@ namespace ULZAsset.Config {
                     Debug.Log(e);
                 }
             }
+
             return t;
 
+        }
+
+        public static CfCardVersion LoadCardVersion(string work_dir) {
+            // load character card update file
+            string[] cpath = { work_dir, "card_set_update.yml" };
+            var r = Path.Combine(cpath);
+            var t = new CfCardVersion();
+            if (File.Exists(r)) {
+                try {
+                    using(StreamReader reader = new StreamReader(r)) {
+                        var deserializer = new DeserializerBuilder()
+                            .Build();
+                        t = deserializer.Deserialize<CfCardVersion>(reader);
+                    }
+                } catch (Exception e) {
+                    Debug.Log(e);
+                }
+            }
+            return t;
         }
 
         public static async Task<bool> CreateCfFile(string out_dir, CfServerSetting setting) {
@@ -85,5 +114,6 @@ namespace ULZAsset.Config {
             }
             return true;
         }
+
     }
 }

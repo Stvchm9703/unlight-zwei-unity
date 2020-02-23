@@ -74,6 +74,7 @@ public class ChatPanelCtl : MonoBehaviour {
     public async void SendMessageBtn() {
         var msg = await this.connecter.SendMessage(ChatInput.text);
         GenMessage(msg);
+        ChatInput.text = "";
     }
 
 }

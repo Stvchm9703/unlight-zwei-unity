@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Grpc.Core;
+using ULZAsset;
+using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +13,23 @@ public class RoomWaitCtl : MonoBehaviour {
     public Text DuelerName, DuelerLv, DuelerStatus;
     public GameObject ChangeDeck, ChangeSetting;
     public bool isReady;
+
+    public CfCardVersion card_setting;
+
+    public List<CardSet> Available;
     void Start() {
+        init_char_card_load();
+        // 
+        room_connector_load();
+    }
+    void init_char_card_load(){
+        card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
+        foreach(var t in card_setting.Available){
+            
+        }
+    }
+    void room_connector_load() {
+        // room-connector
         Debug.Log("RoomWaitCtl");
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
         Debug.Log("objs:" + objs.Length);
@@ -44,7 +62,6 @@ public class RoomWaitCtl : MonoBehaviour {
         }
         OnConnecterUpdate();
     }
-
     async void OnConnecterUpdate() {
         try {
             var t = this.Connecter.InitChatRoomStream();
@@ -77,4 +94,5 @@ public class RoomWaitCtl : MonoBehaviour {
         }
         SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
     }
+
 }

@@ -18,8 +18,10 @@ public class ChatPanelCtl : MonoBehaviour {
         if (ChatPanel == null) {
             this.ChatPanel = this.transform.Find("Scroll View/Viewport/Content").gameObject;
         }
-        if (this.connecter == null) {
-            this.connecter = this.transform.root.parent.Find("EventSystem").GetComponent<RoomServiceConn>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
+        foreach (var t in objs) {
+            Debug.Log(t.name);
+            this.connecter = t.GetComponent<RoomServiceConn>();
         }
         if (this.ChatInput == null) {
             this.ChatInput = this.transform.Find("InputField").GetComponent<InputField>();

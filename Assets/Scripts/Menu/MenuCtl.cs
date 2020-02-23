@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ULZAsset.Config;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using ULZAsset.Config;
 public class MenuCtl : MonoBehaviour {
- 
+
     public void GotoRoomSearch() {
         SceneManager.LoadScene("RoomSearch", LoadSceneMode.Single);
     }
@@ -12,7 +12,7 @@ public class MenuCtl : MonoBehaviour {
         SceneManager.LoadScene("", LoadSceneMode.Single);
     }
     public void GotoSetting() {
-        SceneManager.LoadScene("Setting", LoadSceneMode.Single);
+        SceneManager.LoadScene("AccountCreate", LoadSceneMode.Single);
     }
     public void CloseProg() {
         Application.Quit();

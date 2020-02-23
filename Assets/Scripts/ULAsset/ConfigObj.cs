@@ -40,6 +40,17 @@ namespace ULZAsset.Config {
         public string Password;
         public string Key;
         public string KeyPemPath;
+        public CfUserInfo UserInfo;
+    }
+    
+
+    [System.Serializable]
+    public class CfUserInfo {
+        public string Id;
+        public string Name;
+        public string Title;
+        public int Level;
+        public int Rank;
     }
 
     public static class ConfigContainer {

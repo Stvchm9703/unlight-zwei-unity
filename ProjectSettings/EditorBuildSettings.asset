@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RoomSearch.unity
     guid: bbc76fbf715021d41b66e807137f0a30
+  - enabled: 1
+    path: Assets/Scenes/AccountCreate.unity
+    guid: 898e634545e914d428f0147b6320b227
+  - enabled: 1
+    path: Assets/Scenes/RoomWait.unity
+    guid: 4466b2ecb8f68bb40b8e8555fa7c3b6b
   m_configObjects: {}

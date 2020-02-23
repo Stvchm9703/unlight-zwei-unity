@@ -71,10 +71,7 @@ public class AC_CertConn : MonoBehaviour {
                 Password = password,
             };
             CheckCredResp result = await this.create_auth_cli.CheckCredAsync(req);
-            if (result.ErrorMsg != null) {
-                Debug.Log(result.ErrorMsg);
-                return false;
-            }
+    
             ConfigForm.Username = username;
             ConfigForm.Password = password;
 
@@ -141,18 +138,6 @@ public class AC_CertConn : MonoBehaviour {
             this.main_room_chan = new Channel(
                 ip_address, port, crt
             );
-            // this.test_cli = new RoomStatus.RoomStatusClient(this.main_room_chan);
-
-            // test run 
-            Debug.Log("test run");
-
-            // Metadata mtd = new Metadata();
-            // mtd.Add("username", ConfigForm.Username);
-            // mtd.Add("password", ConfigForm.Password);
-
-            // var d = await this.test_cli.GetRoomListAsync(new RoomListReq {
-            //     Requirement = "",
-            // }, mtd);
 
             if (ConfigForm.Connector == "") {
                 ConfigForm.Connector = "grpc";
@@ -175,7 +160,7 @@ public class AC_CertConn : MonoBehaviour {
 
     public async Task<bool> SaveAsset() {
         ConfigForm.KeyPemPath = "%StreamAsset%/" + "key.pem";
-        // Config.CreateCfFile(ConfigPath.StreamingAsset, ConfigForm);
+        ConfigContainer.CreateCfFile(ConfigPath.StreamingAsset, ConfigForm);
         string[] tpath = { ConfigPath.StreamingAsset, "key.pem" };
 
         File.WriteAllText(

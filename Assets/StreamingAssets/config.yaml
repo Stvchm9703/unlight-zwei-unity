@@ -1,0 +1,14 @@
+Connector: grpc
+Host: "192.168.0.102"
+Port: 11000
+Database: ""
+Username: "user1"
+Password: "1234"
+Key: ""
+KeyPemPath: "%StreamAsset%/key.pem"
+UserInfo:
+  Id: 1
+  Name: user1
+  Title: super
+  Level: 1
+  Rank: 1

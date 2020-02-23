@@ -8789,7 +8789,6 @@ GameObject:
   - component: {fileID: 1191482905}
   - component: {fileID: 1191482906}
   - component: {fileID: 1191482907}
-  - component: {fileID: 1191482908}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: GameController
@@ -8912,20 +8911,6 @@ MonoBehaviour:
   SelfList: []
   DuelList: []
   StatusOpt: []
---- !u!114 &1191482908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191482901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08a27ac63bd7b24ab39428b7fb63219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsHost: 0
-  IsWatcher: 1
 --- !u!1 &1214785740
 GameObject:
   m_ObjectHideFlags: 0
@@ -11118,9 +11103,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1446398962}
+  - component: {fileID: 1446398963}
   m_Layer: 0
-  m_Name: Connecter
-  m_TagString: Untagged
+  m_Name: Connecter-should-remove
+  m_TagString: room_connector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11139,6 +11125,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446398963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446398961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08a27ac63bd7b24ab39428b7fb63219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config:
+    Connector: 
+    Host: 
+    Port: 0
+    Database: 
+    Username: 
+    Password: 
+    Key: 
+    KeyPemPath: 
+    UserInfo:
+      Id: 
+      Name: 
+      Title: 
+      Level: 0
+      Rank: 0
+  IsHost: 0
+  IsWatcher: 1
 --- !u!1001 &1462939432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12471,7 +12486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3c0417136451946bf17a226327293c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connecter: {fileID: 1191482908}
+  connecter: {fileID: 0}
   ChatPanel: {fileID: 124701917}
   NamePref: {fileID: 451541937750174395, guid: 6425752020bc43d4ab1d8767eebfd2d0, type: 3}
   DespPref: {fileID: 8483827048734099190, guid: cb09bc185e1eab84783bce4fd55af97b,

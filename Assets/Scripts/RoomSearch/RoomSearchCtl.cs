@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class RoomSearchCtl : MonoBehaviour {
 
     public RoomCreateReq createReq;
     public CfServerSetting setting;
+    public List<Room> rmInSort;
     Room reflect_room;
     void Start() {
         if (this.Connecter == null) {
@@ -40,18 +42,24 @@ public class RoomSearchCtl : MonoBehaviour {
     }
     public async void RefetchRoomList() {
         clearRoomList();
-        var room_list = await this.Connecter.GetRoomList(createReq);
-        foreach (Room rm in room_list) {
+        if (createReq == null)createReq = new RoomCreateReq();
+
+        rmInSort = await this.Connecter.GetRoomList(createReq);
+        foreach (Room rm in rmInSort) {
+            Debug.Log(rm.Key);
             if (rm.Status != RoomStatus.OnDestroy) {
                 GameObject rmobj = (GameObject)Instantiate(
                     this.RoomPrefab, this.ScrollcContent.transform);
                 rmobj.transform.Find("ID").GetComponent<Text>().text = "ID:" + rm.Id;
                 rmobj.transform.Find("Host/name").GetComponent<Text>().text = "Host:" + rm.Host.Name;
                 rmobj.transform.Find("Host/lv").GetComponent<Text>().text = "Lv:" + rm.Host.Level.ToString();
-                rmobj.transform.Find("Dueler/name").GetComponent<Text>().text =
-                    "Dueler:" + rm.Dueler.Name;
-                rmobj.transform.Find("Dueler/lv").GetComponent<Text>().text =
-                    "Lv:" + rm.Dueler.ToString();
+                if (rm.Dueler != null) {
+                    rmobj.transform.Find("Dueler/name").GetComponent<Text>().text = "Dueler:" + rm.Dueler.Name;
+                    rmobj.transform.Find("Dueler/lv").GetComponent<Text>().text = "Lv:" + rm.Dueler.ToString();
+                } else {
+                    rmobj.transform.Find("Dueler/name").GetComponent<Text>().text = "Dueler:";
+                    rmobj.transform.Find("Dueler/lv").GetComponent<Text>().text = "";
+                }
                 rmobj.transform.Find("nvn/Text").GetComponent<Text>().text = rm.CharCardNvn + "VS" + rm.CharCardNvn;
                 string status_str = "";
                 switch (rm.Status) {
@@ -92,8 +100,17 @@ public class RoomSearchCtl : MonoBehaviour {
     public async void CreateRoom() {
         var create_req = new RoomCreateReq {
             // Password = 
+            Host = new RmUserInfo {
+            Id = setting.UserInfo.Id,
+            Name = setting.UserInfo.Name,
+            Level = setting.UserInfo.Level,
+            Rank = setting.UserInfo.Rank,
+            },
+
             CostLimitMax = Mathf.RoundToInt(TotalCost.MaxValue) * 10,
+
             CostLimitMin = Mathf.RoundToInt(TotalCost.MinValue) * 10,
+
             CharCardLimitMax = new RmCharCardInfo {
             Cost = Mathf.RoundToInt(CardCost.MaxValue)
             },
@@ -102,19 +119,29 @@ public class RoomSearchCtl : MonoBehaviour {
             },
             CharCardNvn = nvnOption.value,
         };
+        // Debug.Log(JsonUtility.ToJson(createReq));
         var v = await this.Connecter.CreateRoom(create_req);
-        if (v != null) {
-
+        Debug.Log(this.Connecter.CurrentRoom.Key);
+        if (this.Connecter.CurrentRoom != null) {
+            SceneManager.LoadScene("RoomWait", LoadSceneMode.Single);
         }
     }
     public void WatchOnlyRoom(string roomkey) {
-
+        Debug.Log("key:" + roomkey);
     }
     public void GoToRoom(string roomKey) {
-
+        Debug.Log("go key:" + roomKey);
+        if (this.Connecter.CurrentRoom == null) {
+            foreach (var rm in rmInSort) {
+                if (rm.Key == roomKey) {
+                    this.Connecter.CurrentRoom = rm;
+                }
+            }
+        }
+        SceneManager.LoadScene("RoomWait", LoadSceneMode.Single);
     }
     public async void BackToMenu() {
-        await this.Connecter.Kill();
+        // await this.Connecter.Kill();
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

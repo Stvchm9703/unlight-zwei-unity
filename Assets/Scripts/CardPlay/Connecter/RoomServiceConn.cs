@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
+using Newtonsoft.Json;
 using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
@@ -32,13 +33,24 @@ public class RoomServiceConn : MonoBehaviour {
         }
     }
 
-    public async Task<bool> InitSetup(CfServerSetting setting) {
+    public bool InitSetup(CfServerSetting setting) {
         config = setting;
+        // this.main_ch = new Channel(
+        //     setting.Host + ":" + setting.Port.ToString() + "/room-service",
+        //     ChannelCredentials.Insecure
+        // );
         this.main_ch = new Channel(
-            setting.Host + ":" + setting.Port.ToString() + "/room-service",
+            setting.Host, setting.Port,
             ChannelCredentials.Insecure
         );
         this.client = new RoomService.RoomServiceClient(this.main_ch);
+        this.CurrentUser = new RmUserInfo {
+            Id = setting.UserInfo.Id,
+            Name = setting.UserInfo.Name,
+            Level = setting.UserInfo.Level,
+            Rank = setting.UserInfo.Rank,
+        };
+
         return false;
     }
 
@@ -48,7 +60,8 @@ public class RoomServiceConn : MonoBehaviour {
         }
         try {
             var create_task = await this.client.CreateRoomAsync(createReq);
-            CurrentRoom = create_task;
+            Debug.Log(create_task);
+            this.CurrentRoom = create_task;
             this.IsHost = true;
             this.IsWatcher = false;
             return create_task;
@@ -82,12 +95,17 @@ public class RoomServiceConn : MonoBehaviour {
             CancellationTokenSource close_tkn = new CancellationTokenSource();
             List<Room> return_list = new List<Room>();
             using(var stream_task = this.client.GetRoomList(searchReq)) {
+                // Debug.Log(stream_task);
                 while (await stream_task.ResponseStream.MoveNext(close_tkn.Token)) {
+                    Debug.Log(stream_task.ResponseStream.Current);
                     return_list.Add(stream_task.ResponseStream.Current);
                 }
             }
             return return_list;
         } catch (RpcException) {
+            Debug.LogError(this.client);
+            Debug.LogError(this.config);
+            // Debug.LogError(this.)
             throw;
         }
     }
@@ -116,6 +134,26 @@ public class RoomServiceConn : MonoBehaviour {
                 FormId = this.CurrentUser.Id,
                 Message = message,
                 MsgType = RoomMsg.Types.MsgType.UserText
+            };
+            var task = await this.client.SendMessageAsync(msg);
+            return msg;
+        } catch (RpcException) {
+            throw;
+        }
+    }
+    public async Task<RoomMsg> SystemSendMessage(string message) {
+        if (main_ch == null || client == null) {
+            throw new System.Exception("CONNECT_CLIENT_IS_NULL");
+        }
+        if (CurrentRoom == null) {
+            throw new System.Exception("NO_CURRENT_ROOM");
+        }
+        try {
+            var msg = new RoomMsg {
+                Key = this.CurrentRoom.Key,
+                FormId = this.CurrentUser.Id,
+                Message = message,
+                MsgType = RoomMsg.Types.MsgType.SystemInfo,
             };
             var task = await this.client.SendMessageAsync(msg);
             return msg;
@@ -200,7 +238,7 @@ public class RoomServiceConn : MonoBehaviour {
             this.ChatRoomStream = this.client.ServerBroadcast(
                 new RoomReq {
                     Key = this.CurrentRoom.Key,
-                        User = this.CurrentUser,
+                    User = this.CurrentUser,
                 }
             );
             this.CloseChatRoomToken = new CancellationTokenSource();

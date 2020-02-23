@@ -55,7 +55,9 @@ public class ChatPanelCtl : MonoBehaviour {
 
     public void GenMessage(RoomMsg msg) {
         GameObject title = (GameObject)Instantiate(NamePref, ChatPanel.transform);
-        title.GetComponent<Text>().text = msg.FormId;
+        title.GetComponent<Text>().text =
+            msg.FmName +
+            "\t< id : " + msg.FromId.ToString() + ">";
 
         if (msg.MsgType == RoomMsg.Types.MsgType.UserText) {
             GameObject info = (GameObject)Instantiate(DespPref, ChatPanel.transform);
@@ -64,7 +66,12 @@ public class ChatPanelCtl : MonoBehaviour {
         return;
     }
 
-    public async void SendMessage() {
+    /// <summary>
+    /// SendMessageBtn : 
+    ///     Button trigger to send message   
+    /// </summary>
+    /// <returns></returns>
+    public async void SendMessageBtn() {
         var msg = await this.connecter.SendMessage(ChatInput.text);
         GenMessage(msg);
     }
@@ -85,7 +92,7 @@ public class ChatPanelCtlEditor : Editor {
 
         if (GUILayout.Button("Test for Generate Text message")) {
             var msg = new RoomMsg {
-                FormId = "test_id",
+                FromId = "test_id",
                 Message = test_message,
                 MsgType = RoomMsg.Types.MsgType.UserText,
             };

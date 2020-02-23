@@ -131,7 +131,8 @@ public class RoomServiceConn : MonoBehaviour {
         try {
             var msg = new RoomMsg {
                 Key = this.CurrentRoom.Key,
-                FormId = this.CurrentUser.Id,
+                FromId = this.CurrentUser.Id,
+                FmName = this.CurrentUser.Name,
                 Message = message,
                 MsgType = RoomMsg.Types.MsgType.UserText
             };
@@ -151,7 +152,8 @@ public class RoomServiceConn : MonoBehaviour {
         try {
             var msg = new RoomMsg {
                 Key = this.CurrentRoom.Key,
-                FormId = this.CurrentUser.Id,
+                FromId = this.CurrentUser.Id,
+                FmName = this.CurrentUser.Name,
                 Message = message,
                 MsgType = RoomMsg.Types.MsgType.SystemInfo,
             };
@@ -173,9 +175,10 @@ public class RoomServiceConn : MonoBehaviour {
             var task = await this.client.SendMessageAsync(
                 new RoomMsg {
                     Key = this.CurrentRoom.Key,
-                        FormId = this.CurrentUser.Id,
-                        Message = stricker_id,
-                        MsgType = RoomMsg.Types.MsgType.UserStricker
+                    FromId = this.CurrentUser.Id,
+                    FmName = this.CurrentUser.Name,
+                    Message = stricker_id,
+                    MsgType = RoomMsg.Types.MsgType.UserStricker,
                 }
             );
             return true;

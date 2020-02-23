@@ -24,43 +24,43 @@ namespace ULZAsset.ProtoMod {
     static MessageReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChlSb29tU2VydmljZS9tZXNzYWdlLnByb3RvEghVTFpQcm90bxoMY29tbW9u",
-          "LnByb3RvIkwKDlJtQ2hhckNhcmRJbmZvEg8KB2NhcmRfaWQYASABKAUSDQoF",
-          "bGV2ZWwYAiABKAUSDAoEcmFyZRgDIAEoBRIMCgRjb3N0GAQgASgFImUKClJt",
-          "VXNlckluZm8SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVsZXZlbBgD",
-          "IAEoBRIRCglhdmF0X2ljb24YBCABKAkSDQoFdGl0bGUYBSABKAkSDAoEcmFu",
-          "axgGIAEoBSLlAgoEUm9vbRIKCgJpZBgBIAEoCRILCgNrZXkYAiABKAkSEAoI",
-          "cGFzc3dvcmQYAyABKAkSIgoEaG9zdBgEIAEoCzIULlVMWlByb3RvLlJtVXNl",
-          "ckluZm8SJAoGZHVlbGVyGAUgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5mbxIk",
-          "CgZzdGF0dXMYByABKA4yFC5VTFpQcm90by5Sb29tU3RhdHVzEg0KBXR1cm5z",
-          "GAggASgFEhYKDmNvc3RfbGltaXRfbWF4GAkgASgFEhYKDmNvc3RfbGltaXRf",
-          "bWluGAogASgFEjUKE2NoYXJfY2FyZF9saW1pdF9tYXgYCyABKAsyGC5VTFpQ",
-          "cm90by5SbUNoYXJDYXJkSW5mbxI1ChNjaGFyX2NhcmRfbGltaXRfbWluGAwg",
-          "ASgLMhguVUxaUHJvdG8uUm1DaGFyQ2FyZEluZm8SFQoNY2hhcl9jYXJkX252",
-          "bhgNIAEoBSLTAQoHUm9vbU1zZxILCgNrZXkYASABKAkSDwoHZm9ybV9pZBgC",
-          "IAEoCRINCgV0b19pZBgDIAEoCRIPCgdtZXNzYWdlGAQgASgJEisKCG1zZ190",
-          "eXBlGAUgASgOMhkuVUxaUHJvdG8uUm9vbU1zZy5Nc2dUeXBlIl0KB01zZ1R5",
-          "cGUSDQoJVVNFUl9URVhUEAASEQoNVVNFUl9TVFJJQ0tFUhABEg8KC1NZU1RF",
-          "TV9JTkZPEAISDwoLU1lTVEVNX1dBUk4QAxIOCgpTWVNURU1fRVJSEAQiXQoH",
-          "Um9vbVJlcRILCgNrZXkYASABKAkSIgoEdXNlchgCIAEoCzIULlVMWlByb3Rv",
-          "LlJtVXNlckluZm8SDwoHaXNfZHVlbBgDIAEoCBIQCghwYXNzd29yZBgEIAEo",
-          "CSKHAgoNUm9vbUNyZWF0ZVJlcRILCgNrZXkYASABKAkSIgoEaG9zdBgCIAEo",
-          "CzIULlVMWlByb3RvLlJtVXNlckluZm8SEAoIcGFzc3dvcmQYAyABKAkSFgoO",
-          "Y29zdF9saW1pdF9tYXgYBCABKAUSFgoOY29zdF9saW1pdF9taW4YBSABKAUS",
-          "FQoNY2hhcl9jYXJkX252bhgGIAEoBRI1ChNjaGFyX2NhcmRfbGltaXRfbWF4",
-          "GAcgASgLMhguVUxaUHJvdG8uUm1DaGFyQ2FyZEluZm8SNQoTY2hhcl9jYXJk",
-          "X2xpbWl0X21pbhgIIAEoCzIYLlVMWlByb3RvLlJtQ2hhckNhcmRJbmZvKlAK",
-          "ClJvb21TdGF0dXMSCwoHT05fSU5JVBAAEgsKB09OX1dBSVQQARIMCghPTl9T",
-          "VEFSVBACEgoKBk9OX0VORBADEg4KCk9OX0RFU1RST1kQBEJCChlpby5ncnBj",
-          "LlVMWkFzc2V0LlByb3RvTW9kQghVTFpBc3NldFABWgVwcm90b6oCEVVMWkFz",
-          "c2V0LlByb3RvTW9kYgZwcm90bzM="));
+          "ChlSb29tU2VydmljZS9tZXNzYWdlLnByb3RvEghVTFpQcm90byJMCg5SbUNo",
+          "YXJDYXJkSW5mbxIPCgdjYXJkX2lkGAEgASgFEg0KBWxldmVsGAIgASgFEgwK",
+          "BHJhcmUYAyABKAUSDAoEY29zdBgEIAEoBSJlCgpSbVVzZXJJbmZvEgoKAmlk",
+          "GAEgASgJEgwKBG5hbWUYAiABKAkSDQoFbGV2ZWwYAyABKAUSEQoJYXZhdF9p",
+          "Y29uGAQgASgJEg0KBXRpdGxlGAUgASgJEgwKBHJhbmsYBiABKAUi5QIKBFJv",
+          "b20SCgoCaWQYASABKAkSCwoDa2V5GAIgASgJEhAKCHBhc3N3b3JkGAMgASgJ",
+          "EiIKBGhvc3QYBCABKAsyFC5VTFpQcm90by5SbVVzZXJJbmZvEiQKBmR1ZWxl",
+          "chgFIAEoCzIULlVMWlByb3RvLlJtVXNlckluZm8SJAoGc3RhdHVzGAcgASgO",
+          "MhQuVUxaUHJvdG8uUm9vbVN0YXR1cxINCgV0dXJucxgIIAEoBRIWCg5jb3N0",
+          "X2xpbWl0X21heBgJIAEoBRIWCg5jb3N0X2xpbWl0X21pbhgKIAEoBRI1ChNj",
+          "aGFyX2NhcmRfbGltaXRfbWF4GAsgASgLMhguVUxaUHJvdG8uUm1DaGFyQ2Fy",
+          "ZEluZm8SNQoTY2hhcl9jYXJkX2xpbWl0X21pbhgMIAEoCzIYLlVMWlByb3Rv",
+          "LlJtQ2hhckNhcmRJbmZvEhUKDWNoYXJfY2FyZF9udm4YDSABKAUi9QEKB1Jv",
+          "b21Nc2cSCwoDa2V5GAEgASgJEg8KB2Zyb21faWQYAiABKAkSDwoHZm1fbmFt",
+          "ZRgDIAEoCRINCgV0b19pZBgEIAEoCRIPCgd0b19uYW1lGAUgASgJEg8KB21l",
+          "c3NhZ2UYBiABKAkSKwoIbXNnX3R5cGUYByABKA4yGS5VTFpQcm90by5Sb29t",
+          "TXNnLk1zZ1R5cGUiXQoHTXNnVHlwZRINCglVU0VSX1RFWFQQABIRCg1VU0VS",
+          "X1NUUklDS0VSEAESDwoLU1lTVEVNX0lORk8QAhIPCgtTWVNURU1fV0FSThAD",
+          "Eg4KClNZU1RFTV9FUlIQBCJdCgdSb29tUmVxEgsKA2tleRgBIAEoCRIiCgR1",
+          "c2VyGAIgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5mbxIPCgdpc19kdWVsGAMg",
+          "ASgIEhAKCHBhc3N3b3JkGAQgASgJIocCCg1Sb29tQ3JlYXRlUmVxEgsKA2tl",
+          "eRgBIAEoCRIiCgRob3N0GAIgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5mbxIQ",
+          "CghwYXNzd29yZBgDIAEoCRIWCg5jb3N0X2xpbWl0X21heBgEIAEoBRIWCg5j",
+          "b3N0X2xpbWl0X21pbhgFIAEoBRIVCg1jaGFyX2NhcmRfbnZuGAYgASgFEjUK",
+          "E2NoYXJfY2FyZF9saW1pdF9tYXgYByABKAsyGC5VTFpQcm90by5SbUNoYXJD",
+          "YXJkSW5mbxI1ChNjaGFyX2NhcmRfbGltaXRfbWluGAggASgLMhguVUxaUHJv",
+          "dG8uUm1DaGFyQ2FyZEluZm8qUAoKUm9vbVN0YXR1cxILCgdPTl9JTklUEAAS",
+          "CwoHT05fV0FJVBABEgwKCE9OX1NUQVJUEAISCgoGT05fRU5EEAMSDgoKT05f",
+          "REVTVFJPWRAEQkIKGWlvLmdycGMuVUxaQXNzZXQuUHJvdG9Nb2RCCFVMWkFz",
+          "c2V0UAFaBXByb3RvqgIRVUxaQXNzZXQuUHJvdG9Nb2RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
+        new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomStatus), }, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new [] { "CardId", "Level", "Rare", "Cost" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new [] { "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new [] { "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new [] { "Key", "FormId", "ToId", "Message", "MsgType" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new [] { "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new [] { "Key", "User", "IsDuel", "Password" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new [] { "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null)
         }));
@@ -1113,8 +1113,10 @@ namespace ULZAsset.ProtoMod {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RoomMsg(RoomMsg other) : this() {
       key_ = other.key_;
-      formId_ = other.formId_;
+      fromId_ = other.fromId_;
+      fmName_ = other.fmName_;
       toId_ = other.toId_;
+      toName_ = other.toName_;
       message_ = other.message_;
       msgType_ = other.msgType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1136,19 +1138,30 @@ namespace ULZAsset.ProtoMod {
       }
     }
 
-    /// <summary>Field number for the "form_id" field.</summary>
-    public const int FormIdFieldNumber = 2;
-    private string formId_ = "";
+    /// <summary>Field number for the "from_id" field.</summary>
+    public const int FromIdFieldNumber = 2;
+    private string fromId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string FormId {
-      get { return formId_; }
+    public string FromId {
+      get { return fromId_; }
       set {
-        formId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        fromId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "fm_name" field.</summary>
+    public const int FmNameFieldNumber = 3;
+    private string fmName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FmName {
+      get { return fmName_; }
+      set {
+        fmName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "to_id" field.</summary>
-    public const int ToIdFieldNumber = 3;
+    public const int ToIdFieldNumber = 4;
     private string toId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string ToId {
@@ -1158,8 +1171,19 @@ namespace ULZAsset.ProtoMod {
       }
     }
 
+    /// <summary>Field number for the "to_name" field.</summary>
+    public const int ToNameFieldNumber = 5;
+    private string toName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ToName {
+      get { return toName_; }
+      set {
+        toName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "message" field.</summary>
-    public const int MessageFieldNumber = 4;
+    public const int MessageFieldNumber = 6;
     private string message_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Message {
@@ -1170,7 +1194,7 @@ namespace ULZAsset.ProtoMod {
     }
 
     /// <summary>Field number for the "msg_type" field.</summary>
-    public const int MsgTypeFieldNumber = 5;
+    public const int MsgTypeFieldNumber = 7;
     private global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType msgType_ = global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType MsgType {
@@ -1194,8 +1218,10 @@ namespace ULZAsset.ProtoMod {
         return true;
       }
       if (Key != other.Key)return false;
-      if (FormId != other.FormId)return false;
+      if (FromId != other.FromId)return false;
+      if (FmName != other.FmName)return false;
       if (ToId != other.ToId)return false;
+      if (ToName != other.ToName)return false;
       if (Message != other.Message)return false;
       if (MsgType != other.MsgType)return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1205,8 +1231,10 @@ namespace ULZAsset.ProtoMod {
     public override int GetHashCode() {
       int hash = 1;
       if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (FormId.Length != 0)hash ^= FormId.GetHashCode();
+      if (FromId.Length != 0)hash ^= FromId.GetHashCode();
+      if (FmName.Length != 0)hash ^= FmName.GetHashCode();
       if (ToId.Length != 0)hash ^= ToId.GetHashCode();
+      if (ToName.Length != 0)hash ^= ToName.GetHashCode();
       if (Message.Length != 0)hash ^= Message.GetHashCode();
       if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText)hash ^= MsgType.GetHashCode();
       if (_unknownFields != null) {
@@ -1226,20 +1254,28 @@ namespace ULZAsset.ProtoMod {
         output.WriteRawTag(10);
         output.WriteString(Key);
       }
-      if (FormId.Length != 0) {
+      if (FromId.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(FormId);
+        output.WriteString(FromId);
+      }
+      if (FmName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(FmName);
       }
       if (ToId.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(ToId);
       }
+      if (ToName.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ToName);
+      }
       if (Message.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(50);
         output.WriteString(Message);
       }
       if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(56);
         output.WriteEnum((int)MsgType);
       }
       if (_unknownFields != null) {
@@ -1253,11 +1289,17 @@ namespace ULZAsset.ProtoMod {
       if (Key.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
       }
-      if (FormId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(FormId);
+      if (FromId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromId);
+      }
+      if (FmName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FmName);
       }
       if (ToId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ToId);
+      }
+      if (ToName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ToName);
       }
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
@@ -1279,11 +1321,17 @@ namespace ULZAsset.ProtoMod {
       if (other.Key.Length != 0) {
         Key = other.Key;
       }
-      if (other.FormId.Length != 0) {
-        FormId = other.FormId;
+      if (other.FromId.Length != 0) {
+        FromId = other.FromId;
+      }
+      if (other.FmName.Length != 0) {
+        FmName = other.FmName;
       }
       if (other.ToId.Length != 0) {
         ToId = other.ToId;
+      }
+      if (other.ToName.Length != 0) {
+        ToName = other.ToName;
       }
       if (other.Message.Length != 0) {
         Message = other.Message;
@@ -1308,20 +1356,30 @@ namespace ULZAsset.ProtoMod {
             }
           case 18:
             {
-              FormId = input.ReadString();
+              FromId = input.ReadString();
               break;
             }
           case 26:
             {
-              ToId = input.ReadString();
+              FmName = input.ReadString();
               break;
             }
           case 34:
             {
+              ToId = input.ReadString();
+              break;
+            }
+          case 42:
+            {
+              ToName = input.ReadString();
+              break;
+            }
+          case 50:
+            {
               Message = input.ReadString();
               break;
             }
-          case 40:
+          case 56:
             {
               MsgType = (global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType)input.ReadEnum();
               break;

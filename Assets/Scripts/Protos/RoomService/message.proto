@@ -1,5 +1,5 @@
 syntax="proto3";
-import "common.proto";
+// import "common.proto";
 
 package ULZProto;
 option csharp_namespace         = "ULZAsset.ProtoMod";
@@ -81,10 +81,12 @@ RmMsg :
 **/
 message RoomMsg {
     string                  key                     = 1;
-    string                  form_id                 = 2;
-    string                  to_id                   = 3;
-    string                  message                 = 4;
-    MsgType                 msg_type                = 5;
+    string                  from_id                 = 2; 
+    string                  fm_name                 = 3;
+    string                  to_id                   = 4;
+    string                  to_name                 = 5;
+    string                  message                 = 6;
+    MsgType                 msg_type                = 7;
     enum MsgType {
         USER_TEXT           = 0;
         USER_STRICKER       = 1;

@@ -30,6 +30,7 @@ public class RoomWaitCtl : MonoBehaviour {
     public CCInfoPanel InfoPanel;
     public GameObject ChangeDeckPanel;
     List<GameObject> CardOption;
+    public Dictionary<string, AssetBundle> CCAsset;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
     public AssetBundle picked_ab;
@@ -53,12 +54,14 @@ public class RoomWaitCtl : MonoBehaviour {
         // AvailableCCAsset = new List<AssetBundle>();
         this.CardOption = new List<GameObject>();
         this.SkillObjectDict = new Dictionary<string, List<SkillObject>>();
+        this.CCAsset = new Dictionary<string, AssetBundle>();
         foreach (var t in card_setting.Available) {
             AssetBundle ptmp = AssetBundle.LoadFromFile(
                 Path.Combine(
                     ConfigPath.Asset_path,
                     "CC" + (t.ToString()).PadLeft(2, '0') + ".ab")
             );
+            this.CCAsset.Add("cc" + t.ToString(), ptmp);
             // AvailableCCAsset.Add(ptmp);
             TextAsset ta = ptmp.LoadAsset("card_set.json")as TextAsset;
             TextAsset ska = ptmp.LoadAsset("skill.json")as TextAsset;
@@ -71,7 +74,7 @@ public class RoomWaitCtl : MonoBehaviour {
             foreach (var cs in Dataset.card_set) {
                 GameObject gotmp = (GameObject)Instantiate(CCardPrefab, ChangeDeckContent.transform);
                 var card_face = gotmp.GetComponent<CCardCtl>();
-                card_face.CC_id = cs.id;
+                card_face.CC_id = Dataset.id;
                 card_face.level = cs.level;
                 StartCoroutine(card_face.InitCCImg(ptmp, Dataset, cs));
                 StartCoroutine(card_face.InitCCLvFrame());
@@ -98,8 +101,7 @@ public class RoomWaitCtl : MonoBehaviour {
                     }
                 }
                 this.SkillObjectDict.Add(
-                    t.ToString() +
-                    "R" + cs.id.ToString(),
+                    t.ToString() + "R" + cs.id.ToString(),
                     skj
                 );
 
@@ -148,6 +150,7 @@ public class RoomWaitCtl : MonoBehaviour {
             var t = this.Connecter.InitChatRoomStream();
             while (await t.ResponseStream.MoveNext(this.Connecter.CloseChatRoomToken.Token)) {
                 var inst_msg = t.ResponseStream.Current;
+                Debug.Log(inst_msg.Message);
                 if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
                     if (inst_msg.Message == "Dueler:GameSet:Ready") {
                         isReady = true;
@@ -158,6 +161,8 @@ public class RoomWaitCtl : MonoBehaviour {
                         string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
                         var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
                         updatePanel_init(rm);
+                    } else if (inst_msg.Message.Contains("CardChange::")) {
+                        OnConnecterUpdate_CardChange(inst_msg.Message);
                     }
                 }
             }
@@ -165,9 +170,40 @@ public class RoomWaitCtl : MonoBehaviour {
             Debug.LogError(e);
         }
     }
+    public void OnConnecterUpdate_CardChange(string msg) {
+        string js_str = msg.Replace("CardChange::", "");
+        Debug.Log(js_str);
+        RmChangeCharCard msg_blk = JsonConvert.DeserializeObject<RmChangeCharCard>(js_str);
+        CardSet tmp = new CardSet();
+        foreach (var gobj in CardOption) {
+            var f = gobj.GetComponent<CCardCtl>();
+            if (f.original.id == msg_blk.cardset_id &&
+                f.CC_id == msg_blk.charcard_id) {
+                tmp = f.original;
+            }
+        }
+        var ab_tmp = CCAsset["cc" + msg_blk.charcard_id];
+        var card_json_tmp = CCAsset["cc" + msg_blk.charcard_id].LoadAsset("card_set.json")as TextAsset;
+        var Dataset = JsonConvert.DeserializeObject<CardObject>(card_json_tmp.text);
+        if (msg_blk.side == "Host") {
+            this.HostCard.CC_id = msg_blk.charcard_id;
+            this.HostCard.level = msg_blk.level;
+            StartCoroutine(this.HostCard.InitCCImg(
+                ab_tmp, Dataset, tmp));
+            StartCoroutine(this.HostCard.InitCCLvFrame());
+            StartCoroutine(this.HostCard.InitEquSetting(0, 0));
+        } else {
+            this.DuelerCard.CC_id = msg_blk.charcard_id;
+            this.DuelerCard.level = msg_blk.level;
+            StartCoroutine(this.DuelerCard.InitCCImg(
+                ab_tmp, Dataset, tmp));
+            StartCoroutine(this.DuelerCard.InitCCLvFrame());
+            StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
+        }
+    }
     public async void QuitRoom() {
         if (this.Connecter.CurrentRoom != null) {
-            // await this.Connecter.QuitRoom();
+            // await this.Connecter.QuitRoom(); 
         }
         SceneManager.LoadScene("RoomSearch", LoadSceneMode.Single);
     }
@@ -185,7 +221,7 @@ public class RoomWaitCtl : MonoBehaviour {
         picked_ab = ab;
         picked_cardObj = cardObject;
         picked_cardSet = cardSet;
-        picked.CC_id = cardSet.id;
+        picked.CC_id = cardObject.id;
         picked.level = cardSet.level;
         StartCoroutine(picked.InitCCImg(ab, cardObject, cardSet));
         StartCoroutine(picked.InitCCLvFrame());
@@ -222,12 +258,13 @@ public class RoomWaitCtl : MonoBehaviour {
                 StartCoroutine(this.DuelerCard.InitCCLvFrame());
                 StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             }
-            await this.Connecter.SystemSendMessage(
-                JsonUtility.ToJson(new RmChangeCharCard {
+            await this.Connecter.SystemSendMessage("CardChange::" +
+                JsonConvert.SerializeObject(new RmChangeCharCard {
                     user_id = this.Connecter.CurrentUser.Id,
                         side = this.Connecter.IsHost ? "Host" : "Dueler",
                         charcard_id = this.picked.CC_id,
                         cardset_id = this.picked.original.id,
+                        level = this.picked.level,
                 })
             );
         }

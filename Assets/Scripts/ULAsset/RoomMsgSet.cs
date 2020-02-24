@@ -5,5 +5,6 @@ namespace ULZAsset.MsgExtension {
         public string side;
         public int charcard_id;
         public int cardset_id;
+        public int level;
     }
 }

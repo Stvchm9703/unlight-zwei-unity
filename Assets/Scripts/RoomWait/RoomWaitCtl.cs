@@ -9,15 +9,20 @@ using ULZAsset.ProtoMod;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 public class RoomWaitCtl : MonoBehaviour {
     public RoomServiceConn Connecter;
+    // base layout
     public Text HostName, HostLv, HostStatus;
     public Text DuelerName, DuelerLv, DuelerStatus;
-    public GameObject ChangeDeckPanel, ChangeSettingPanel;
+    public CCardCtl HostCard, DuelerCard;
+    public GameObject ChangeDeckBtn, ChangeSettingBtn;
     public bool isReady;
 
+    // Card info
     public CfCardVersion card_setting;
 
+    // Change Panel related
     public GameObject CCardPrefab;
     public GameObject ChangeDeckContent;
 
@@ -27,11 +32,18 @@ public class RoomWaitCtl : MonoBehaviour {
     public AssetBundle picked_ab;
     public CardObject picked_cardObj;
     public CardSet picked_cardSet;
+
+    // Update Panel related
+    public Dropdown UP_deckType;
+    public GameObject UP_totalCardDeckCost, UP_CharecterCardLimit;
+    public RoomCreateReq UP_updateReq;
+
+    // public base function
     void Start() {
         init_char_card_load();
-        // 
         room_connector_load();
     }
+    // privated init loading
     void init_char_card_load() {
         card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
         // AvailableCCAsset = new List<AssetBundle>();
@@ -62,7 +74,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 StartCoroutine(card_face.InitEquSetting(0, 0));
                 Button gotmp_btn = gotmp.AddComponent<Button>();
                 gotmp_btn.onClick.AddListener(
-                    () => OnCardClick(ptmp, Dataset, cs)
+                    () => ChangePanel_OnCardClick(ptmp, Dataset, cs)
                 );
 
                 List<int> sumd = new List<int>();
@@ -99,11 +111,11 @@ public class RoomWaitCtl : MonoBehaviour {
         }
         Debug.Log("this.Connecter:" + this.Connecter == null);
         if (this.Connecter.IsWatcher) {
-            ChangeDeckPanel.SetActive(false);
-            ChangeSettingPanel.SetActive(false);
+            ChangeDeckBtn.SetActive(false);
+            ChangeSettingBtn.SetActive(false);
         } else {
             if (!this.Connecter.IsHost) {
-                ChangeSettingPanel.SetActive(false);
+                ChangeSettingBtn.SetActive(false);
             }
         }
 
@@ -120,6 +132,7 @@ public class RoomWaitCtl : MonoBehaviour {
             DuelerLv.text = this.Connecter.CurrentRoom.Dueler.Level.ToString();
             DuelerStatus.text = "";
         }
+        updatePanel_init(this.Connecter.CurrentRoom);
         OnConnecterUpdate();
     }
     async void OnConnecterUpdate() {
@@ -155,7 +168,8 @@ public class RoomWaitCtl : MonoBehaviour {
         SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
     }
 
-    public void OnCardClick(AssetBundle ab, CardObject cardObject, CardSet cardSet) {
+    // ChangePanel related
+    public void ChangePanel_OnCardClick(AssetBundle ab, CardObject cardObject, CardSet cardSet) {
         picked_ab = ab;
         picked_cardObj = cardObject;
         picked_cardSet = cardSet;
@@ -166,7 +180,7 @@ public class RoomWaitCtl : MonoBehaviour {
         StartCoroutine(picked.InitEquSetting(0, 0));
     }
 
-    public void OpenInfoPanel() {
+    public void ChangePanel_OpenInfoPanel() {
         InfoPanel.gameObject.SetActive(true);
         StartCoroutine(
             InfoPanel.InitSkipStatus(
@@ -177,7 +191,89 @@ public class RoomWaitCtl : MonoBehaviour {
                 ],
                 picked_cardObj.id, picked_cardSet.level
             ));
+    }
+    public void ChangePanel_OkBtn() {
+        if (!this.Connecter.IsWatcher) {
+            if (this.Connecter.IsHost) {
+                this.HostCard.CC_id = this.picked.CC_id;
+                this.HostCard.level = this.picked.level;
+                StartCoroutine(this.HostCard.InitCCImg(
+                    picked_ab, picked_cardObj, picked_cardSet));
+                StartCoroutine(this.HostCard.InitCCLvFrame());
+                StartCoroutine(this.HostCard.InitEquSetting(0, 0));
+            } else {
+                this.DuelerCard.CC_id = this.picked.CC_id;
+                this.DuelerCard.level = this.picked.level;
+                StartCoroutine(this.DuelerCard.InitCCImg(
+                    picked_ab, picked_cardObj, picked_cardSet));
+                StartCoroutine(this.DuelerCard.InitCCLvFrame());
+                StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
+            }
+        }
+        this.InfoPanel.gameObject.SetActive(false);
+    }
 
+    // Updated Panel related
+    void updatePanel_init(Room roomInfo) {
+        Debug.Log("in update-panel-init");
+        this.UP_updateReq = new RoomCreateReq();
+        switch (roomInfo.CharCardNvn) {
+            case 3:
+                this.UP_deckType.value = 1;
+                break;
+            default:
+            case 1:
+                this.UP_deckType.value = 0;
+                break;
+        }
+        this.UP_deckType.onValueChanged.AddListener((int v) => {
+            switch (v) {
+                default:
+                    case 0:
+                    this.UP_updateReq.CharCardNvn = 1;
+                break;
+                case 1:
+                        this.UP_updateReq.CharCardNvn = 3;
+                    break;
+            }
+        });
+
+        // TotalCardDeckCost Slider
+        var totalCardDeckCost = this.UP_totalCardDeckCost.transform.Find("Range Slider").GetComponent<RangeSlider>();
+        totalCardDeckCost.MinValue = roomInfo.CostLimitMin / 10;
+        totalCardDeckCost.MaxValue = roomInfo.CostLimitMax / 10;
+        totalCardDeckCost.OnValueChanged.AddListener((float min, float max) => {
+            this.UP_totalCardDeckCost.transform.Find("MaxVal").GetComponent<Text>().text =
+                "(Current:" + (Mathf.RoundToInt(max) * 10).ToString() + ")";
+            this.UP_totalCardDeckCost.transform.Find("MinVal").GetComponent<Text>().text =
+                "(Current:" + (Mathf.RoundToInt(min) * 10).ToString() + ")";
+
+            this.UP_updateReq.CostLimitMax = Mathf.RoundToInt(max) * 10;
+            this.UP_updateReq.CostLimitMin = Mathf.RoundToInt(min) * 10;
+        });
+
+        // TotalCardDeckCost Slider
+        var CharCardCost = this.UP_CharecterCardLimit.transform.Find("Range Slider").GetComponent<RangeSlider>();
+        CharCardCost.MinValue = roomInfo.CostLimitMin / 10;
+        CharCardCost.MaxValue = roomInfo.CostLimitMax / 10;
+        CharCardCost.OnValueChanged.AddListener((float min, float max) => {
+            this.UP_CharecterCardLimit.transform.Find("MaxVal").GetComponent<Text>().text =
+                "(Current:" + (Mathf.RoundToInt(max) * 10).ToString() + ")";
+            this.UP_CharecterCardLimit.transform.Find("MinVal").GetComponent<Text>().text =
+                "(Current:" + (Mathf.RoundToInt(min) * 10).ToString() + ")";
+            this.UP_updateReq.CharCardLimitMax = new RmCharCardInfo {
+                Cost = Mathf.RoundToInt(max)
+            };
+            this.UP_updateReq.CharCardLimitMin = new RmCharCardInfo {
+                Cost = Mathf.RoundToInt(min)
+            };
+        });
+
+    }
+    public void UpdatePanel_OnUpdateClicked() {
+        // send update via room-conn
+        Debug.Log(this.UP_updateReq);
+        // this.Connecter.UpdateRoom(UP_updateReq);
     }
 
 }

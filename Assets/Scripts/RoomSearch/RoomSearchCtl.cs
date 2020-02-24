@@ -98,6 +98,17 @@ public class RoomSearchCtl : MonoBehaviour {
     }
 
     public async void CreateRoom() {
+        Debug.Log("nvnOption:" + nvnOption.value);
+        var conv_nvnOpt = 1;
+        switch (nvnOption.value) {
+            default:
+                case 0:
+                conv_nvnOpt = 1;
+            break;
+            case 1:
+                    conv_nvnOpt = 3;
+                break;
+        }
         var create_req = new RoomCreateReq {
             // Password = 
             Host = new RmUserInfo {
@@ -117,7 +128,7 @@ public class RoomSearchCtl : MonoBehaviour {
             CharCardLimitMin = new RmCharCardInfo {
             Cost = Mathf.RoundToInt(CardCost.MinValue),
             },
-            CharCardNvn = nvnOption.value,
+            CharCardNvn = conv_nvnOpt,
         };
         // Debug.Log(JsonUtility.ToJson(createReq));
         var v = await this.Connecter.CreateRoom(create_req);

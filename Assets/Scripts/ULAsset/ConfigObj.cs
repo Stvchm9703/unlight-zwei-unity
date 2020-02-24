@@ -21,7 +21,28 @@ namespace ULZAsset.Config {
 #endif
             }
         }
-
+        public static string Asset_path {
+            get {
+                var tmp = "";
+                switch (Application.platform) {
+                    case RuntimePlatform.WindowsEditor:
+                    case RuntimePlatform.WindowsPlayer:
+                        tmp = Path.Combine("win", "x86");
+                        break;
+                    case RuntimePlatform.Android:
+                        tmp = "android";
+                        break;
+                    case RuntimePlatform.IPhonePlayer:
+                        tmp = "ios";
+                        break;
+                    case RuntimePlatform.OSXEditor:
+                    case RuntimePlatform.OSXPlayer:
+                        tmp = "mac";
+                        break;
+                }
+                return Path.Combine(Application.streamingAssetsPath, tmp);
+            }
+        }
     }
 
     [System.Serializable]
@@ -87,8 +108,9 @@ namespace ULZAsset.Config {
 
         public static CfCardVersion LoadCardVersion(string work_dir) {
             // load character card update file
-            string[] cpath = { work_dir, "card_set_update.yml" };
+            string[] cpath = { work_dir, "card_set_update.log.yml" };
             var r = Path.Combine(cpath);
+            Debug.Log(r);
             var t = new CfCardVersion();
             if (File.Exists(r)) {
                 try {

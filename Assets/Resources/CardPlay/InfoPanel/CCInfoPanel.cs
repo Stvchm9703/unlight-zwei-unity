@@ -115,6 +115,73 @@ public class CCInfoPanel : MonoBehaviour {
         // StartCoroutine();
         yield return true;
     }
+
+    public IEnumerator InitSkipStatus(
+        AssetBundle tar_asset,
+        CardObject json, CardSet cs, List<SkillObject> sko,
+        int cc_id, int level
+    ) {
+        // yield return null;
+        card_face.CC_id = cc_id;
+        card_face.level = level;
+        StartCoroutine(card_face.InitCCImg(tar_asset, json, cs));
+        StartCoroutine(card_face.InitCCLvFrame());
+        StartCoroutine(card_face.InitEquSetting(0, 0));
+        string name_string = "", desp_string = "";
+        switch (sys_lang) {
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseTraditional:
+                name_string = json.name.tcn;
+                desp_string = json.caption.tcn;
+                break;
+            case SystemLanguage.ChineseSimplified:
+                name_string = json.name.scn;
+                desp_string = json.caption.scn;
+
+                break;
+            case SystemLanguage.Japanese:
+                name_string = json.name.jp;
+                desp_string = json.caption.jp;
+
+                break;
+            case SystemLanguage.Korean:
+                name_string = json.name.kr;
+                desp_string = json.caption.kr;
+                break;
+            case SystemLanguage.Indonesian:
+                name_string = json.name.ina;
+                desp_string = json.caption.ina;
+                break;
+            case SystemLanguage.Thai:
+                name_string = json.name.thai;
+                desp_string = json.caption.thai;
+                break;
+            case SystemLanguage.English:
+            case SystemLanguage.Unknown:
+            default:
+                name_string = json.name.en;
+                desp_string = json.caption.en;
+                break;
+        }
+        if (name_string == "") {
+            name_string = json.name.jp;
+            desp_string = json.caption.jp;
+        }
+
+        CC_Title.text = name_string;
+        CC_Desp.text = desp_string;
+
+        // Skill Related 
+        foreach (SkillObject t in sko) {
+            GameObject ff = (GameObject)Instantiate(
+                Skill_Info_Prefab, ScrollParent.transform);
+            ff.GetComponent<IP_SkillBox>().init(t);
+            this.WaitForDestory.Add(ff);
+        }
+
+        // StartCoroutine();
+        yield return true;
+    }
     public void Clean() {
         foreach (var go in this.WaitForDestory)
             Destroy(go);

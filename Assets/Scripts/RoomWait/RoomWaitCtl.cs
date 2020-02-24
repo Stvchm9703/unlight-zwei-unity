@@ -5,6 +5,7 @@ using Grpc.Core;
 using Newtonsoft.Json;
 using ULZAsset;
 using ULZAsset.Config;
+using ULZAsset.MsgExtension;
 using ULZAsset.ProtoMod;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,6 +28,8 @@ public class RoomWaitCtl : MonoBehaviour {
     public GameObject ChangeDeckContent;
 
     public CCInfoPanel InfoPanel;
+    public GameObject ChangeDeckPanel;
+    List<GameObject> CardOption;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
     public AssetBundle picked_ab;
@@ -34,6 +37,7 @@ public class RoomWaitCtl : MonoBehaviour {
     public CardSet picked_cardSet;
 
     // Update Panel related
+    public GameObject UpdatePanel;
     public Dropdown UP_deckType;
     public GameObject UP_totalCardDeckCost, UP_CharecterCardLimit;
     public RoomCreateReq UP_updateReq;
@@ -47,7 +51,7 @@ public class RoomWaitCtl : MonoBehaviour {
     void init_char_card_load() {
         card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
         // AvailableCCAsset = new List<AssetBundle>();
-        // AvailableCard = new List<CardSet>();
+        this.CardOption = new List<GameObject>();
         this.SkillObjectDict = new Dictionary<string, List<SkillObject>>();
         foreach (var t in card_setting.Available) {
             AssetBundle ptmp = AssetBundle.LoadFromFile(
@@ -76,7 +80,9 @@ public class RoomWaitCtl : MonoBehaviour {
                 gotmp_btn.onClick.AddListener(
                     () => ChangePanel_OnCardClick(ptmp, Dataset, cs)
                 );
+                this.CardOption.Add(gotmp);
 
+                // skill-obk list for info-panel
                 List<int> sumd = new List<int>();
                 foreach (int d in cs.skill_pointer) {
                     if (!sumd.Contains(d)) {
@@ -100,6 +106,7 @@ public class RoomWaitCtl : MonoBehaviour {
             }
         }
     }
+
     void room_connector_load() {
         // room-connector
         Debug.Log("RoomWaitCtl");
@@ -133,6 +140,7 @@ public class RoomWaitCtl : MonoBehaviour {
             DuelerStatus.text = "";
         }
         updatePanel_init(this.Connecter.CurrentRoom);
+
         OnConnecterUpdate();
     }
     async void OnConnecterUpdate() {
@@ -146,6 +154,10 @@ public class RoomWaitCtl : MonoBehaviour {
                         this.DuelerStatus.text = "Ready!";
                     } else if (inst_msg.Message == "Host:GameSet:Ready" && isReady) {
                         SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                    } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
+                        string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
+                        var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
+                        updatePanel_init(rm);
                     }
                 }
             }
@@ -192,7 +204,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 picked_cardObj.id, picked_cardSet.level
             ));
     }
-    public void ChangePanel_OkBtn() {
+    public async void ChangePanel_OkBtn() {
         if (!this.Connecter.IsWatcher) {
             if (this.Connecter.IsHost) {
                 this.HostCard.CC_id = this.picked.CC_id;
@@ -201,6 +213,7 @@ public class RoomWaitCtl : MonoBehaviour {
                     picked_ab, picked_cardObj, picked_cardSet));
                 StartCoroutine(this.HostCard.InitCCLvFrame());
                 StartCoroutine(this.HostCard.InitEquSetting(0, 0));
+                // this.Connecter.SystemSendMessage();
             } else {
                 this.DuelerCard.CC_id = this.picked.CC_id;
                 this.DuelerCard.level = this.picked.level;
@@ -209,14 +222,23 @@ public class RoomWaitCtl : MonoBehaviour {
                 StartCoroutine(this.DuelerCard.InitCCLvFrame());
                 StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             }
+            await this.Connecter.SystemSendMessage(
+                JsonUtility.ToJson(new RmChangeCharCard {
+                    user_id = this.Connecter.CurrentUser.Id,
+                        side = this.Connecter.IsHost ? "Host" : "Dueler",
+                        charcard_id = this.picked.CC_id,
+                        cardset_id = this.picked.original.id,
+                })
+            );
         }
-        this.InfoPanel.gameObject.SetActive(false);
+        this.ChangeDeckPanel.SetActive(false);
     }
 
     // Updated Panel related
     void updatePanel_init(Room roomInfo) {
         Debug.Log("in update-panel-init");
         this.UP_updateReq = new RoomCreateReq();
+        this.UP_updateReq.Key = this.Connecter.CurrentRoom.Key;
         switch (roomInfo.CharCardNvn) {
             case 3:
                 this.UP_deckType.value = 1;
@@ -238,10 +260,16 @@ public class RoomWaitCtl : MonoBehaviour {
             }
         });
 
+        Debug.Log("CostMin::" + roomInfo.CostLimitMin.ToString());
+        Debug.Log("CostMax::" + roomInfo.CostLimitMax.ToString());
         // TotalCardDeckCost Slider
         var totalCardDeckCost = this.UP_totalCardDeckCost.transform.Find("Range Slider").GetComponent<RangeSlider>();
-        totalCardDeckCost.MinValue = roomInfo.CostLimitMin / 10;
-        totalCardDeckCost.MaxValue = roomInfo.CostLimitMax / 10;
+
+        totalCardDeckCost.LowValue = roomInfo.CostLimitMin / 10;
+        if (roomInfo.CharCardLimitMax != null) {
+            totalCardDeckCost.HighValue = roomInfo.CostLimitMax / 10;
+        }
+
         totalCardDeckCost.OnValueChanged.AddListener((float min, float max) => {
             this.UP_totalCardDeckCost.transform.Find("MaxVal").GetComponent<Text>().text =
                 "(Current:" + (Mathf.RoundToInt(max) * 10).ToString() + ")";
@@ -252,15 +280,21 @@ public class RoomWaitCtl : MonoBehaviour {
             this.UP_updateReq.CostLimitMin = Mathf.RoundToInt(min) * 10;
         });
 
-        // TotalCardDeckCost Slider
+        Debug.Log("CC-CostMin::" + roomInfo.CharCardLimitMin.Cost.ToString());
+        Debug.Log("CC-CostMax::" + roomInfo.CharCardLimitMax.Cost.ToString());
+        // CharacterCard Slider
         var CharCardCost = this.UP_CharecterCardLimit.transform.Find("Range Slider").GetComponent<RangeSlider>();
-        CharCardCost.MinValue = roomInfo.CostLimitMin / 10;
-        CharCardCost.MaxValue = roomInfo.CostLimitMax / 10;
+        if (roomInfo.CharCardLimitMin != null) {
+            CharCardCost.LowValue = roomInfo.CharCardLimitMin.Cost;
+        }
+        if (roomInfo.CharCardLimitMax != null) {
+            CharCardCost.HighValue = roomInfo.CharCardLimitMax.Cost;
+        }
         CharCardCost.OnValueChanged.AddListener((float min, float max) => {
             this.UP_CharecterCardLimit.transform.Find("MaxVal").GetComponent<Text>().text =
-                "(Current:" + (Mathf.RoundToInt(max) * 10).ToString() + ")";
+                "(Current:" + (Mathf.RoundToInt(max)).ToString() + ")";
             this.UP_CharecterCardLimit.transform.Find("MinVal").GetComponent<Text>().text =
-                "(Current:" + (Mathf.RoundToInt(min) * 10).ToString() + ")";
+                "(Current:" + (Mathf.RoundToInt(min)).ToString() + ")";
             this.UP_updateReq.CharCardLimitMax = new RmCharCardInfo {
                 Cost = Mathf.RoundToInt(max)
             };
@@ -268,12 +302,26 @@ public class RoomWaitCtl : MonoBehaviour {
                 Cost = Mathf.RoundToInt(min)
             };
         });
-
+        on_requirement_update();
     }
-    public void UpdatePanel_OnUpdateClicked() {
+    public async void UpdatePanel_OnUpdateClicked() {
         // send update via room-conn
-        Debug.Log(this.UP_updateReq);
-        // this.Connecter.UpdateRoom(UP_updateReq);
+        await this.Connecter.UpdateRoom(UP_updateReq);
+        this.UpdatePanel.SetActive(false);
+    }
+
+    void on_requirement_update() {
+        foreach (var gobj in this.CardOption) {
+            var tmp = gobj.GetComponent<CCardCtl>().original.deck_cost;
+            if (
+                tmp < this.Connecter.CurrentRoom.CharCardLimitMin.Cost ||
+                tmp > this.Connecter.CurrentRoom.CharCardLimitMax.Cost
+            ) {
+                gobj.SetActive(false);
+            } else {
+                gobj.SetActive(true);
+            }
+        }
     }
 
 }

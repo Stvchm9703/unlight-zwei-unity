@@ -118,15 +118,14 @@ public class RoomSearchCtl : MonoBehaviour {
             Rank = setting.UserInfo.Rank,
             },
 
-            CostLimitMax = Mathf.RoundToInt(TotalCost.MaxValue) * 10,
-
-            CostLimitMin = Mathf.RoundToInt(TotalCost.MinValue) * 10,
+            CostLimitMax = Mathf.RoundToInt(TotalCost.HighValue) * 10,
+            CostLimitMin = Mathf.RoundToInt(TotalCost.LowValue) * 10,
 
             CharCardLimitMax = new RmCharCardInfo {
-            Cost = Mathf.RoundToInt(CardCost.MaxValue)
+            Cost = Mathf.RoundToInt(CardCost.HighValue)
             },
             CharCardLimitMin = new RmCharCardInfo {
-            Cost = Mathf.RoundToInt(CardCost.MinValue),
+            Cost = Mathf.RoundToInt(CardCost.LowValue),
             },
             CharCardNvn = conv_nvnOpt,
         };

@@ -119,7 +119,9 @@ public class IP_SkillBox : MonoBehaviour {
                 cond_init.transform.Find("Text").GetComponent<Text>().text =
                     tmpa[0] + "=";
                 for (int y = 1; y < Int32.Parse(tmpa[1]); y++) {
-                    GameObject con_clo = (GameObject)Instantiate(cond_init);
+                    GameObject con_clo = (GameObject)Instantiate(
+                        cond_init, 
+                        this.transform.Find("condition"));
                     cond_list.Add(con_clo);
                 }
             }

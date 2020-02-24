@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CCardCtl : MonoBehaviour {
 
+    public CardSet original;
     public int CC_id = 0, Equ_id = -1;
     public int level;
     public int HP_defaut, ATK_defaut, DEF_defaut;
@@ -186,7 +187,7 @@ public class CCardCtl : MonoBehaviour {
     public IEnumerator InitCCImg(AssetBundle ab) {
         if (ab) {
             TextAsset ta = ab.LoadAsset("card_set.json")as TextAsset;
-            var json = JsonConvert.DeserializeObject<ULZAsset.CardObject>(ta.text);
+            var json = JsonConvert.DeserializeObject<CardObject>(ta.text);
             CardSet c_set = new CardSet();
             string coverImgNm = "";
             for (int i = 0; i < json.card_set.Count; i++) {
@@ -253,6 +254,7 @@ public class CCardCtl : MonoBehaviour {
         }
     }
     public IEnumerator InitCCImg(AssetBundle ab, CardObject Co, CardSet Cs) {
+        this.original = Cs;
         if (ab) {
             Texture2D tas = ab.LoadAsset(Cs.chara_image.name.Replace(".png", ""))as Texture2D;
             this.transform.Find("CardFace/char").gameObject.GetComponent<RawImage>().texture = tas;
@@ -287,7 +289,6 @@ public class CCardCtl : MonoBehaviour {
             if (name_string == "") {
                 name_string = Co.name.jp;
             }
-
 
             if (this.transform.Find("CardFace/frame/name/val").gameObject) {
                 this.transform.Find("CardFace/frame/name/val").gameObject.GetComponent<Text>().text = name_string;

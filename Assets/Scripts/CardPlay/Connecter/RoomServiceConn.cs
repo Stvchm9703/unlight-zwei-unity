@@ -70,7 +70,7 @@ public class RoomServiceConn : MonoBehaviour {
         }
     }
 
-    public async Task<Room> GetRoom(string room_key, string password) {
+    public async Task<Room> GetRoom(string room_key, string password , bool isDueler = false) {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
@@ -80,7 +80,7 @@ public class RoomServiceConn : MonoBehaviour {
             });
             CurrentRoom = get_task;
             this.IsHost = false;
-            this.IsWatcher = true;
+            this.IsWatcher = !isDueler;
             return get_task;
         } catch (RpcException) {
             throw;

@@ -23,24 +23,26 @@ namespace ULZAsset.ProtoMod {
 
     static ServiceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-        string.Concat(
-          "ChlSb29tU2VydmljZS9zZXJ2aWNlLnByb3RvEghVTFpQcm90bxoZUm9vbVNl",
-          "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMvwDCgtSb29tU2Vy",
-          "dmljZRI3CgpDcmVhdGVSb29tEhcuVUxaUHJvdG8uUm9vbUNyZWF0ZVJlcRoO",
-          "LlVMWlByb3RvLlJvb20iABI6CgtHZXRSb29tTGlzdBIXLlVMWlByb3RvLlJv",
-          "b21DcmVhdGVSZXEaDi5VTFpQcm90by5Sb29tIgAwARIyCgtHZXRSb29tSW5m",
-          "bxIRLlVMWlByb3RvLlJvb21SZXEaDi5VTFpQcm90by5Sb29tIgASNwoKVXBk",
-          "YXRlUm9vbRIXLlVMWlByb3RvLlJvb21DcmVhdGVSZXEaDi5VTFpQcm90by5S",
-          "b29tIgASOwoPU2VydmVyQnJvYWRjYXN0EhEuVUxaUHJvdG8uUm9vbVJlcRoR",
-          "LlVMWlByb3RvLlJvb21Nc2ciADABEjMKC1NlbmRNZXNzYWdlEhEuVUxaUHJv",
-          "dG8uUm9vbU1zZxoPLlVMWlByb3RvLkVtcHR5IgASMAoIUXVpdFJvb20SES5V",
-          "TFpQcm90by5Sb29tUmVxGg8uVUxaUHJvdG8uRW1wdHkiABI2CglRdWlja1Bh",
-          "aXISFy5VTFpQcm90by5Sb29tQ3JlYXRlUmVxGg4uVUxaUHJvdG8uUm9vbSIA",
-          "Ei8KCEpvaW5Sb29tEhEuVUxaUHJvdG8uUm9vbVJlcRoOLlVMWlByb3RvLlJv",
-          "b20iAEIbWgVwcm90b6oCEVVMWkFzc2V0LlByb3RvTW9kYgZwcm90bzM="));
+          string.Concat(
+            "ChlSb29tU2VydmljZS9zZXJ2aWNlLnByb3RvEghVTFpQcm90bxoZUm9vbVNl",
+            "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMsAECgtSb29tU2Vy",
+            "dmljZRI3CgpDcmVhdGVSb29tEhcuVUxaUHJvdG8uUm9vbUNyZWF0ZVJlcRoO",
+            "LlVMWlByb3RvLlJvb20iABI6CgtHZXRSb29tTGlzdBIXLlVMWlByb3RvLlJv",
+            "b21DcmVhdGVSZXEaDi5VTFpQcm90by5Sb29tIgAwARIyCgtHZXRSb29tSW5m",
+            "bxIRLlVMWlByb3RvLlJvb21SZXEaDi5VTFpQcm90by5Sb29tIgASNwoKVXBk",
+            "YXRlUm9vbRIXLlVMWlByb3RvLlJvb21DcmVhdGVSZXEaDi5VTFpQcm90by5S",
+            "b29tIgASQQoNQnJvYWRjYXN0SW5mbxIRLlVMWlByb3RvLlJvb21SZXEaGy5V",
+            "TFpQcm90by5Sb29tQnJvYWRjYXN0SW5mbyIAEjwKClVwZGF0ZUNhcmQSGy5V",
+            "TFpQcm90by5Sb29tVXBkYXRlQ2FyZFJlcRoPLlVMWlByb3RvLkVtcHR5IgAS",
+            "MwoLU2VuZE1lc3NhZ2USES5VTFpQcm90by5Sb29tTXNnGg8uVUxaUHJvdG8u",
+            "RW1wdHkiABIwCghRdWl0Um9vbRIRLlVMWlByb3RvLlJvb21SZXEaDy5VTFpQ",
+            "cm90by5FbXB0eSIAEjYKCVF1aWNrUGFpchIXLlVMWlByb3RvLlJvb21DcmVh",
+            "dGVSZXEaDi5VTFpQcm90by5Sb29tIgASLwoISm9pblJvb20SES5VTFpQcm90",
+            "by5Sb29tUmVxGg4uVUxaUHJvdG8uUm9vbSIAQhtaBXByb3RvqgIRVUxaQXNz",
+            "ZXQuUHJvdG9Nb2RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(null, null));
+          new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(null, null, null));
     }
     #endregion
 

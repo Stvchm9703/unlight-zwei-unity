@@ -15,8 +15,10 @@ namespace ULZAsset.ProtoMod {
     static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomCreateReq> __Marshaller_ULZProto_RoomCreateReq = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomCreateReq.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.Room> __Marshaller_ULZProto_Room = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.Room.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomReq> __Marshaller_ULZProto_RoomReq = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomReq.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomMsg> __Marshaller_ULZProto_RoomMsg = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomMsg.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomBroadcastInfo> __Marshaller_ULZProto_RoomBroadcastInfo = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomBroadcastInfo.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomUpdateCardReq> __Marshaller_ULZProto_RoomUpdateCardReq = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomUpdateCardReq.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.Empty> __Marshaller_ULZProto_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.Empty.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::ULZAsset.ProtoMod.RoomMsg> __Marshaller_ULZProto_RoomMsg = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ULZAsset.ProtoMod.RoomMsg.Parser.ParseFrom);
 
     static readonly grpc::Method<global::ULZAsset.ProtoMod.RoomCreateReq, global::ULZAsset.ProtoMod.Room> __Method_CreateRoom = new grpc::Method<global::ULZAsset.ProtoMod.RoomCreateReq, global::ULZAsset.ProtoMod.Room>(
         grpc::MethodType.Unary,
@@ -46,12 +48,19 @@ namespace ULZAsset.ProtoMod {
         __Marshaller_ULZProto_RoomCreateReq,
         __Marshaller_ULZProto_Room);
 
-    static readonly grpc::Method<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomMsg> __Method_ServerBroadcast = new grpc::Method<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomMsg>(
-        grpc::MethodType.ServerStreaming,
+    static readonly grpc::Method<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomBroadcastInfo> __Method_BroadcastInfo = new grpc::Method<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomBroadcastInfo>(
+        grpc::MethodType.Unary,
         __ServiceName,
-        "ServerBroadcast",
+        "BroadcastInfo",
         __Marshaller_ULZProto_RoomReq,
-        __Marshaller_ULZProto_RoomMsg);
+        __Marshaller_ULZProto_RoomBroadcastInfo);
+
+    static readonly grpc::Method<global::ULZAsset.ProtoMod.RoomUpdateCardReq, global::ULZAsset.ProtoMod.Empty> __Method_UpdateCard = new grpc::Method<global::ULZAsset.ProtoMod.RoomUpdateCardReq, global::ULZAsset.ProtoMod.Empty>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateCard",
+        __Marshaller_ULZProto_RoomUpdateCardReq,
+        __Marshaller_ULZProto_Empty);
 
     static readonly grpc::Method<global::ULZAsset.ProtoMod.RoomMsg, global::ULZAsset.ProtoMod.Empty> __Method_SendMessage = new grpc::Method<global::ULZAsset.ProtoMod.RoomMsg, global::ULZAsset.ProtoMod.Empty>(
         grpc::MethodType.Unary,
@@ -111,7 +120,12 @@ namespace ULZAsset.ProtoMod {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task ServerBroadcast(global::ULZAsset.ProtoMod.RoomReq request, grpc::IServerStreamWriter<global::ULZAsset.ProtoMod.RoomMsg> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::ULZAsset.ProtoMod.RoomBroadcastInfo> BroadcastInfo(global::ULZAsset.ProtoMod.RoomReq request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::ULZAsset.ProtoMod.Empty> UpdateCard(global::ULZAsset.ProtoMod.RoomUpdateCardReq request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -217,13 +231,37 @@ namespace ULZAsset.ProtoMod {
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateRoom, null, options, request);
       }
-      public virtual grpc::AsyncServerStreamingCall<global::ULZAsset.ProtoMod.RoomMsg> ServerBroadcast(global::ULZAsset.ProtoMod.RoomReq request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::ULZAsset.ProtoMod.RoomBroadcastInfo BroadcastInfo(global::ULZAsset.ProtoMod.RoomReq request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ServerBroadcast(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return BroadcastInfo(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncServerStreamingCall<global::ULZAsset.ProtoMod.RoomMsg> ServerBroadcast(global::ULZAsset.ProtoMod.RoomReq request, grpc::CallOptions options)
+      public virtual global::ULZAsset.ProtoMod.RoomBroadcastInfo BroadcastInfo(global::ULZAsset.ProtoMod.RoomReq request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncServerStreamingCall(__Method_ServerBroadcast, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_BroadcastInfo, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::ULZAsset.ProtoMod.RoomBroadcastInfo> BroadcastInfoAsync(global::ULZAsset.ProtoMod.RoomReq request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return BroadcastInfoAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::ULZAsset.ProtoMod.RoomBroadcastInfo> BroadcastInfoAsync(global::ULZAsset.ProtoMod.RoomReq request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_BroadcastInfo, null, options, request);
+      }
+      public virtual global::ULZAsset.ProtoMod.Empty UpdateCard(global::ULZAsset.ProtoMod.RoomUpdateCardReq request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateCard(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::ULZAsset.ProtoMod.Empty UpdateCard(global::ULZAsset.ProtoMod.RoomUpdateCardReq request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateCard, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::ULZAsset.ProtoMod.Empty> UpdateCardAsync(global::ULZAsset.ProtoMod.RoomUpdateCardReq request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateCardAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::ULZAsset.ProtoMod.Empty> UpdateCardAsync(global::ULZAsset.ProtoMod.RoomUpdateCardReq request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateCard, null, options, request);
       }
       public virtual global::ULZAsset.ProtoMod.Empty SendMessage(global::ULZAsset.ProtoMod.RoomMsg request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -305,7 +343,8 @@ namespace ULZAsset.ProtoMod {
           .AddMethod(__Method_GetRoomList, serviceImpl.GetRoomList)
           .AddMethod(__Method_GetRoomInfo, serviceImpl.GetRoomInfo)
           .AddMethod(__Method_UpdateRoom, serviceImpl.UpdateRoom)
-          .AddMethod(__Method_ServerBroadcast, serviceImpl.ServerBroadcast)
+          .AddMethod(__Method_BroadcastInfo, serviceImpl.BroadcastInfo)
+          .AddMethod(__Method_UpdateCard, serviceImpl.UpdateCard)
           .AddMethod(__Method_SendMessage, serviceImpl.SendMessage)
           .AddMethod(__Method_QuitRoom, serviceImpl.QuitRoom)
           .AddMethod(__Method_QuickPair, serviceImpl.QuickPair)
@@ -322,7 +361,8 @@ namespace ULZAsset.ProtoMod {
       serviceBinder.AddMethod(__Method_GetRoomList, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::ULZAsset.ProtoMod.RoomCreateReq, global::ULZAsset.ProtoMod.Room>(serviceImpl.GetRoomList));
       serviceBinder.AddMethod(__Method_GetRoomInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.Room>(serviceImpl.GetRoomInfo));
       serviceBinder.AddMethod(__Method_UpdateRoom, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomCreateReq, global::ULZAsset.ProtoMod.Room>(serviceImpl.UpdateRoom));
-      serviceBinder.AddMethod(__Method_ServerBroadcast, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomMsg>(serviceImpl.ServerBroadcast));
+      serviceBinder.AddMethod(__Method_BroadcastInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.RoomBroadcastInfo>(serviceImpl.BroadcastInfo));
+      serviceBinder.AddMethod(__Method_UpdateCard, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomUpdateCardReq, global::ULZAsset.ProtoMod.Empty>(serviceImpl.UpdateCard));
       serviceBinder.AddMethod(__Method_SendMessage, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomMsg, global::ULZAsset.ProtoMod.Empty>(serviceImpl.SendMessage));
       serviceBinder.AddMethod(__Method_QuitRoom, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomReq, global::ULZAsset.ProtoMod.Empty>(serviceImpl.QuitRoom));
       serviceBinder.AddMethod(__Method_QuickPair, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::ULZAsset.ProtoMod.RoomCreateReq, global::ULZAsset.ProtoMod.Room>(serviceImpl.QuickPair));

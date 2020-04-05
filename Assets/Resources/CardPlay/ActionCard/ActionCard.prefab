@@ -763,6 +763,11 @@ MonoBehaviour:
   InitialPos: {x: 100, y: 50, z: 0}
   InitialRotate: {x: 0, y: 0, z: 0, w: 0}
   DestroyPos: {x: 200, y: 200, z: 0}
+  up_val_go: {fileID: 2639964889924202945}
+  dw_val_go: {fileID: 2639964891620650463}
+  up_type_ri: {fileID: 2639964889770694794}
+  dw_type_ri: {fileID: 2639964890533024770}
+  up_type_rt: {fileID: 2639964889770694793}
 --- !u!1 &2639964891620650460
 GameObject:
   m_ObjectHideFlags: 0

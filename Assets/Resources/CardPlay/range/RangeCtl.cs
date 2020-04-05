@@ -10,8 +10,8 @@ public class RangeCtl : MonoBehaviour {
     public float Long, Middle, Short;
 
     void Start() {
-        this.RgShort.DOFade(0,0f);
-        this.RgLong.DOFade(0,0);
+        this.RgShort.DOFade(0, 0f);
+        this.RgLong.DOFade(0, 0);
     }
     public void MoveToShortRange() {
         var tmpshort = DOTween.Sequence()

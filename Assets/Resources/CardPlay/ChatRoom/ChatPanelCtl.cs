@@ -29,15 +29,15 @@ public class ChatPanelCtl : MonoBehaviour {
     }
 
     async void OnConnecterUpdate() {
-        try {
-            var t = this.connecter.InitChatRoomStream();
-            while (await t.ResponseStream.MoveNext(connecter.CloseChatRoomToken.Token)) {
-                GenMessage(t.ResponseStream.Current);
-            }
-        } catch (RpcException e) {
-            Debug.LogError(e);
-        }
+        // GenMessage(t.ResponseStream.Current);
+        Debug.Log("start to connect Broadcast");
+        this.connecter.AddPendingEventFunc(
+            (object caller, RoomMsg msgpack) =>
+            GenMessage(msgpack)
+        );
+        await this.connecter.ConnectToBroadcast();
     }
+
     public void OpenPanel() {
         if (PanelPrevent.AnyPanel == false && this.PanelDisplay.activeSelf == false) {
             PanelPrevent.AnyPanel = true;

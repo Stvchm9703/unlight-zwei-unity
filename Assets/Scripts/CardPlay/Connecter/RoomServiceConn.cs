@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Newtonsoft.Json;
+using ULZAsset;
 using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
@@ -15,13 +16,14 @@ public class RoomServiceConn : MonoBehaviour {
     public Room CurrentRoom;
     public RmUserInfo CurrentUser;
 
-    public AsyncServerStreamingCall<RoomMsg>
-        ChatRoomStream;
-    public CancellationTokenSource CloseChatRoomToken;
+    public WSConnect wsConnect;
+    List<System.EventHandler<WebSocketSharp.MessageEventArgs>> wscHandler =
+        new List<System.EventHandler<WebSocketSharp.MessageEventArgs>>();
 
     public CfServerSetting config;
     public bool IsHost = false;
     public bool IsWatcher = true;
+
     void Awake() {
         Debug.Log("on Awake process - Room-Service-Connector");
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
@@ -70,7 +72,7 @@ public class RoomServiceConn : MonoBehaviour {
         }
     }
 
-    public async Task<Room> GetRoom(string room_key, string password , bool isDueler = false) {
+    public async Task<Room> GetRoom(string room_key, string password, bool isDueler = false) {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
@@ -175,10 +177,10 @@ public class RoomServiceConn : MonoBehaviour {
             var task = await this.client.SendMessageAsync(
                 new RoomMsg {
                     Key = this.CurrentRoom.Key,
-                    FromId = this.CurrentUser.Id,
-                    FmName = this.CurrentUser.Name,
-                    Message = stricker_id,
-                    MsgType = RoomMsg.Types.MsgType.UserStricker,
+                        FromId = this.CurrentUser.Id,
+                        FmName = this.CurrentUser.Name,
+                        Message = stricker_id,
+                        MsgType = RoomMsg.Types.MsgType.UserStricker,
                 }
             );
             return true;
@@ -216,44 +218,118 @@ public class RoomServiceConn : MonoBehaviour {
             throw new System.Exception("CURRENT_ROOM_EXIST");
         }
         try {
-            CloseChatRoomToken.Cancel();
-            while (CloseChatRoomToken.IsCancellationRequested) {
-                var get_task = await this.client.QuitRoomAsync(new RoomReq {
-                    Key = CurrentRoom.Key,
-                        User = CurrentUser
-                });
-                CurrentRoom = null;
-                return true;
-            }
+            await this.DisconnectToBroadcast();
+            var get_task = await this.client.QuitRoomAsync(new RoomReq {
+                Key = CurrentRoom.Key,
+                    User = CurrentUser
+            });
+            CurrentRoom = null;
             return true;
         } catch (RpcException) {
             throw;
         }
     }
-    public AsyncServerStreamingCall<RoomMsg> InitChatRoomStream() {
+    public async Task<bool> ChangeCharCard(int charcard_id, int cardset_id, int level) {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
-        if (CurrentRoom == null) {
-            throw new System.Exception("CURRENT_ROOM_NOT_EXIST");
+        if (CurrentRoom != null) {
+            throw new System.Exception("CURRENT_ROOM_EXIST");
         }
-        if (this.ChatRoomStream == null) {
-            this.ChatRoomStream = this.client.ServerBroadcast(
-                new RoomReq {
-                    Key = this.CurrentRoom.Key,
-                    User = this.CurrentUser,
-                }
-            );
-            this.CloseChatRoomToken = new CancellationTokenSource();
+        try {
+            await this.client.UpdateCardAsync(new RoomUpdateCardReq {
+                Side = this.IsHost ? 0 : 1,
+                    Key = CurrentRoom.Key,
+                    CharcardId = charcard_id,
+                    CardsetId = cardset_id,
+                    Level = level
+            });
+            return true;
+        } catch (RpcException) {
+            throw;
         }
-        return this.ChatRoomStream;
     }
-    public async Task<bool> Kill() {
-        if (this.ChatRoomStream != null) {
 
-            this.CloseChatRoomToken.Cancel();
-            this.ChatRoomStream = null;
+    /// <summary>
+    /// ConnectToBroadcast : the Broadcast handler
+    /// </summary>
+    /// <returns></returns>
+    public async Task<bool> ConnectToBroadcast() {
+        Debug.Log("try connect to Broacast");
+        if (this.wsConnect == null) {
+            this.wsConnect = new WSConnect();
         }
+        var conn = await this.wsConnect.ConnectToBroadcast(
+            this.CurrentRoom.Key, this.config, wscHandler);
+        if (!conn) {
+            return false;
+        }
+        // await this.conn.RoomBroadcast.EmitAsync("join_room", this.current_room.Key);
+        return true;
+    }
+
+    /// <summary>
+    /// AddPendingEventFunc : 
+    ///     to add mounting function in WebSocketBroadcast.OnMessage 
+    /// </summary>
+    /// <param name="funcHandler">
+    ///     the event handler that mount with the MessageEventArg
+    ///     P.S.: Add the event-handler before the WebSocket Connect (ConnectToBroadcast)
+    /// </param>
+    /// <returns></returns>
+    public bool AddPendingEventFunc(System.EventHandler<WebSocketSharp.MessageEventArgs> funcHandler) {
+        this.wscHandler.Add(funcHandler);
+        return true;
+    }
+
+    /// <summary>
+    /// AddPendingEventFunc : 
+    ///     to add mounting function in WebSocketBroadcast.OnMessage
+    /// </summary>
+    /// <param name="funcHandler">
+    /// the event handler that mount with the RoomMsg 
+    ///     Note: this method have the wrapped function to Parse the message to 
+    ///         predefined Msg ( for ULZ-RoomService Connector )
+    /// </param>
+    /// <returns></returns>
+    public bool AddPendingEventFunc(System.EventHandler<RoomMsg> funcHandler) {
+        var wrapFunc = new System.EventHandler<WebSocketSharp.MessageEventArgs>((co, msg) => {
+            Debug.Log($"sender:{co.ToString()}");
+            Debug.Log($"Msg :{msg.Type.ToString()}");
+            var msgBlock = RoomMsg.Parser.ParseFrom(
+                msg.RawData
+            );
+            funcHandler(co, msgBlock);
+        });
+        this.wscHandler.Add(wrapFunc);
+        return true;
+    }
+
+    /// <summary>
+    /// ClearPendingEventFunc(): 
+    ///     to clear up the current mounted function in OnMessage event-handler  
+    ///     
+    /// </summary>
+    /// <returns></returns>
+    public bool ClearPendingEventFunc() {
+        foreach (var trig in this.wscHandler) {
+            Debug.Log("try remove func");
+            this.wsConnect.ClearEventFunc(trig);
+        }
+        return true;
+    }
+    public async Task<bool> DisconnectToBroadcast() {
+        this.ClearPendingEventFunc();
+        return await this.wsConnect.DisconnectToBroadcast();
+    }
+
+    public async Task<bool> Kill() {
+        // if (this.ChatRoomStream != null) {
+
+        //     this.CloseChatRoomToken.Cancel();
+        //     this.ChatRoomStream = null;
+        // }
+        await this.DisconnectToBroadcast();
         if (this.client != null) {
             this.client = null;
             await main_ch.ShutdownAsync();

@@ -62,6 +62,14 @@ message Room {
     RmCharCardInfo          char_card_limit_min     = 12;
     // 1vs1 or 3vs3
     int32                   char_card_nvn           = 13;
+    // host-inst
+    int32                   host_charcard_id        = 14;
+    int32                   host_cardset_id         = 15;
+    int32                   host_cardlevel          = 16;
+    // duel-inst
+    int32                   duel_charcard_id        = 17;
+    int32                   duel_cardset_id         = 18;
+    int32                   duel_cardlevel          = 19;
 }
 
 
@@ -120,7 +128,26 @@ message RoomCreateReq {
 }
 
 
+message RoomBroadcastInfo {
+    string                  key                     = 1;
+    string                  ip                      = 2;
+    int32                   port                    = 3;
+    string                  protocal                = 4;
+    bytes                   securl                  = 5;
+}
 
+
+message RoomUpdateCardReq {
+    string                  key                     = 1;
+    PlayerSide              side                    = 2;
+    int32                   charcard_id             = 3;
+    int32                   cardset_id              = 4;
+    int32                   level                   = 5;
+    enum    PlayerSide  {
+        HOST                        = 0;
+        DUELER                      = 1;
+    }
+}
 // message RoomListResp {
 //     repeated RoomSH         result                  = 1;
 //     ErrorMsg                error_msg               = 2;

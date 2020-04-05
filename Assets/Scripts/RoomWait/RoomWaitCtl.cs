@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Google.Protobuf;
 using Grpc.Core;
 using Newtonsoft.Json;
 using ULZAsset;
@@ -146,55 +147,61 @@ public class RoomWaitCtl : MonoBehaviour {
         OnConnecterUpdate();
     }
     async void OnConnecterUpdate() {
-        try {
-            var t = this.Connecter.InitChatRoomStream();
-            while (await t.ResponseStream.MoveNext(this.Connecter.CloseChatRoomToken.Token)) {
-                var inst_msg = t.ResponseStream.Current;
-                Debug.Log(inst_msg.Message);
-                if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
-                    if (inst_msg.Message == "Dueler:GameSet:Ready") {
-                        isReady = true;
-                        this.DuelerStatus.text = "Ready!";
-                    } else if (inst_msg.Message == "Host:GameSet:Ready" && isReady) {
-                        SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-                    } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
-                        string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
-                        var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
-                        updatePanel_init(rm);
-                    } else if (inst_msg.Message.Contains("CardChange::")) {
-                        OnConnecterUpdate_CardChange(inst_msg.Message);
-                    }
-                }
+        Debug.Log("start to connect Broadcast");
+        this.Connecter.AddPendingEventFunc(
+            (object caller, RoomMsg msgpack) =>
+            msgSystMsg(caller, msgpack)
+        );
+        await this.Connecter.ConnectToBroadcast();
+    }
+
+    async void msgSystMsg(object caller, RoomMsg inst_msg) {
+        if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
+            if (inst_msg.Message == "Dueler:GameSet:Ready") {
+                isReady = true;
+                this.DuelerStatus.text = "Ready!";
+            } else if (inst_msg.Message == "Host:GameSet:Ready" && isReady) {
+                SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+            } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
+                string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
+                var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
+                updatePanel_init(rm);
+            } else if (inst_msg.Message.Contains("CardChange::")) {
+                OnConnecterUpdate_CardChange(inst_msg.Message);
             }
-        } catch (RpcException e) {
-            Debug.LogError(e);
         }
     }
+
+    // async void msgSystMsgErrorHandler(RoomMsg inst_msg) {
+
+    // }
     public void OnConnecterUpdate_CardChange(string msg) {
         string js_str = msg.Replace("CardChange::", "");
         Debug.Log(js_str);
-        RmChangeCharCard msg_blk = JsonConvert.DeserializeObject<RmChangeCharCard>(js_str);
+        RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseFrom(
+            ByteString.FromBase64(js_str));
+        // JsonConvert.DeserializeObject<RmChangeCharCard>(js_str);
         CardSet tmp = new CardSet();
         foreach (var gobj in CardOption) {
             var f = gobj.GetComponent<CCardCtl>();
-            if (f.original.id == msg_blk.cardset_id &&
-                f.CC_id == msg_blk.charcard_id) {
+            if (f.original.id == msg_blk.CardsetId &&
+                f.CC_id == msg_blk.CharcardId) {
                 tmp = f.original;
             }
         }
-        var ab_tmp = CCAsset["cc" + msg_blk.charcard_id];
-        var card_json_tmp = CCAsset["cc" + msg_blk.charcard_id].LoadAsset("card_set.json")as TextAsset;
+        var ab_tmp = CCAsset["cc" + msg_blk.CharcardId];
+        var card_json_tmp = CCAsset["cc" + msg_blk.CharcardId].LoadAsset("card_set.json")as TextAsset;
         var Dataset = JsonConvert.DeserializeObject<CardObject>(card_json_tmp.text);
-        if (msg_blk.side == "Host") {
-            this.HostCard.CC_id = msg_blk.charcard_id;
-            this.HostCard.level = msg_blk.level;
+        if (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host) {
+            this.HostCard.CC_id = msg_blk.CharcardId;
+            this.HostCard.level = msg_blk.Level;
             StartCoroutine(this.HostCard.InitCCImg(
                 ab_tmp, Dataset, tmp));
             StartCoroutine(this.HostCard.InitCCLvFrame());
             StartCoroutine(this.HostCard.InitEquSetting(0, 0));
         } else {
-            this.DuelerCard.CC_id = msg_blk.charcard_id;
-            this.DuelerCard.level = msg_blk.level;
+            this.DuelerCard.CC_id = msg_blk.CharcardId;
+            this.DuelerCard.level = msg_blk.Level;
             StartCoroutine(this.DuelerCard.InitCCImg(
                 ab_tmp, Dataset, tmp));
             StartCoroutine(this.DuelerCard.InitCCLvFrame());
@@ -203,16 +210,18 @@ public class RoomWaitCtl : MonoBehaviour {
     }
     public async void QuitRoom() {
         if (this.Connecter.CurrentRoom != null) {
-            // await this.Connecter.QuitRoom(); 
+            await this.Connecter.QuitRoom();
         }
         SceneManager.LoadScene("RoomSearch", LoadSceneMode.Single);
     }
-    public void ReadyBtn() {
+
+    public async void ReadyBtn() {
         if (!this.Connecter.IsHost) {
-            this.Connecter.SystemSendMessage("Dueler:GameSet:Ready");
+            await this.Connecter.SystemSendMessage("Dueler:GameSet:Ready");
         } else {
-            this.Connecter.SystemSendMessage("Host:GameSet:Ready");
+            await this.Connecter.SystemSendMessage("Host:GameSet:Ready");
         }
+        this.Connecter.ClearPendingEventFunc();
         SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
     }
 
@@ -258,15 +267,21 @@ public class RoomWaitCtl : MonoBehaviour {
                 StartCoroutine(this.DuelerCard.InitCCLvFrame());
                 StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             }
-            await this.Connecter.SystemSendMessage("CardChange::" +
-                JsonConvert.SerializeObject(new RmChangeCharCard {
-                    user_id = this.Connecter.CurrentUser.Id,
-                        side = this.Connecter.IsHost ? "Host" : "Dueler",
-                        charcard_id = this.picked.CC_id,
-                        cardset_id = this.picked.original.id,
-                        level = this.picked.level,
-                })
+            await this.Connecter.ChangeCharCard(
+                this.picked.CC_id,
+                this.picked.original.id,
+                this.picked.level
             );
+            // await this.Connecter.SystemSendMessage("CardChange::" +
+            //     JsonConvert.SerializeObject(new RmChangeCharCard {
+            //         user_id = this.Connecter.CurrentUser.Id,
+            //             side = this.Connecter.IsHost ? "Host" : "Dueler",
+            //             charcard_id = this.picked.CC_id,
+            //             cardset_id = this.picked.original.id,
+            //             level = this.picked.level,
+            //     })
+            // );
+
         }
         this.ChangeDeckPanel.SetActive(false);
     }

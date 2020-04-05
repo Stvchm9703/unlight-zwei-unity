@@ -57,45 +57,60 @@ public class CCPhaseRender : MonoBehaviour {
         Debug.Log(phase);
         switch (phase) {
 
-            case EventHookPhase.MoveCardDropPhase: //30
-                if (event_phase == EventHookType.Before) {
-                    this.cAnimator.Play("move");
-                    yield return new WaitForSeconds(1.5f);
-                }
-                break;
-            case EventHookPhase.FinishMovePhase: //50
-                if (event_phase == EventHookType.Before) {
-                    this.cAnimator.Play("move_left");
-                    yield return new WaitForSeconds(1.5f);
-                }
-                break;
-
-            case EventHookPhase.AttackCardDropPhasePA: //80
-                if (event_phase == EventHookType.Before) {
-                    if (is_first_attack) {
-                        this.cAnimator.Play("atk_ready");
+            // Move-phase in 
+            case EventHookPhase.MoveCardDropPhase:
+                { //30
+                    if (event_phase == EventHookType.Before) {
+                        this.cAnimator.Play("move");
                         yield return new WaitForSeconds(1.5f);
-                        this.cAnimator.Play("atk_pick_up_" + dist);
-                    } // atk
-                    else {
-                        this.cAnimator.Play("def_ready");
-                    } // def
-                } else if (event_phase == EventHookType.After) {
-                    if (is_first_attack) {
-                        this.cAnimator.Play("atk_ok_state_" + dist);
-                    } // atk - end of picking
+                    }
+                    break;
                 }
-                yield return new WaitForSeconds(1.5f);
-                break;
+                // Move-phase out
+            case EventHookPhase.FinishMovePhase:
+                { //50
+                    if (event_phase == EventHookType.Before) {
+                        this.cAnimator.Play("move_left");
+                        yield return new WaitForSeconds(1.5f);
+                    }
+                    break;
+                }
+
+                // wiede
+            case EventHookPhase.AttackCardDropPhasePA:
+                { //80
+                    if (event_phase == EventHookType.Before) {
+                        if (is_first_attack) {
+                            this.cAnimator.Play("atk_ready");
+                            yield return new WaitForSeconds(1.5f);
+                            this.cAnimator.Play("atk_pick_up_" + dist);
+                        } // atk
+                        else {
+                            this.cAnimator.Play("def_ready");
+                        } // def
+                    } else if (event_phase == EventHookType.After) {
+                        if (is_first_attack) {
+                            this.cAnimator.Play("atk_ok_state_" + dist);
+                        } // atk - end of picking
+                    }
+                    yield return new WaitForSeconds(1.5f);
+                    break;
+                }
             case EventHookPhase.DefenceCardDropPhasePA: //90
                 if (event_phase == EventHookType.Before) {
                     if (!is_first_attack) {
-                        this.cAnimator.Play("def_pick_up");
-                    } //def
+                        this.cAnimator.Play("atk_ready");
+                        yield return new WaitForSeconds(1.5f);
+                        this.cAnimator.Play("atk_pick_up_" + dist);
+                    } else {
+                        this.cAnimator.Play("def_ready");
+                    } // def
                 } else if (event_phase == EventHookType.After) {
                     if (!is_first_attack) {
                         this.cAnimator.Play("def_ok_state");
-                    } //def
+                    } else {
+                        this.cAnimator.Play("atk_ok_state_" + dist);
+                    }
                 }
                 yield return new WaitForSeconds(1.5f);
                 break;
@@ -154,10 +169,8 @@ public class CCPhaseRender : MonoBehaviour {
         // this.cAnimator.speed = 1f;
     }
 
-    public void test_PlayAnimation(int phase, int event_phase) {
-        StartCoroutine(PlayAnimation(
-            (EventHookPhase)Enum.ToObject(typeof(EventHookPhase), phase * 10),
-            (EventHookType)Enum.ToObject(typeof(EventHookType), event_phase)));
+    public void test_PlayAnimation(EventHookPhase phase, EventHookType type) {
+        StartCoroutine(PlayAnimation(phase, type));
     }
 }
 
@@ -166,22 +179,34 @@ public class CCPhaseRender : MonoBehaviour {
 public class CCPhaseRender_Editor : Editor {
     int CD = 0;
     int sider_phase = 10;
+
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
         CCPhaseRender d = (CCPhaseRender)target;
-        sider_phase = EditorGUILayout.IntSlider("sider-phase", sider_phase, 3, 19);
-        CD = EditorGUILayout.IntSlider("Type", CD, 0, 3);
 
-        if (GUILayout.Button("Test Move Phase")) {
-            d.test_PlayAnimation(sider_phase, CD);
+        if (GUILayout.Button("Test Move Phase in")) {
+            d.test_PlayAnimation(EventHookPhase.MoveCardDropPhase, EventHookType.Before);
+        }
+        if (GUILayout.Button("Test Move Phase out")) {
+            d.test_PlayAnimation(EventHookPhase.FinishMovePhase, EventHookType.Before);
         }
 
-        if (GUILayout.Button("Test Atk Phase")) {
-            d.test_PlayAnimation(1, CD);
+        if (GUILayout.Button("Test ATK Phase in")) {
+            d.test_PlayAnimation(EventHookPhase.AttackCardDropPhasePA, EventHookType.Before);
+        }
+        if (GUILayout.Button("Test ATK Phase out")) {
+            d.test_PlayAnimation(EventHookPhase.AttackCardDropPhasePA, EventHookType.After);
         }
 
-        if (GUILayout.Button("Test Def Phase")) {
-            d.test_PlayAnimation(2, CD);
+        if (GUILayout.Button("Test DEF Phase in")) {
+            d.test_PlayAnimation(EventHookPhase.DefenceCardDropPhasePA, EventHookType.Before);
+        }
+        if (GUILayout.Button("Test DEF Phase out")) {
+            d.test_PlayAnimation(EventHookPhase.DefenceCardDropPhasePA, EventHookType.After);
+        }
+
+        if (GUILayout.Button("Test Dice Phase ")) {
+            d.test_PlayAnimation(EventHookPhase.DetermineBattlePointPhasePA, EventHookType.Before);
         }
 
     }

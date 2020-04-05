@@ -23,54 +23,70 @@ namespace ULZAsset.ProtoMod {
 
     static MessageReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-        string.Concat(
-          "ChlSb29tU2VydmljZS9tZXNzYWdlLnByb3RvEghVTFpQcm90byJMCg5SbUNo",
-          "YXJDYXJkSW5mbxIPCgdjYXJkX2lkGAEgASgFEg0KBWxldmVsGAIgASgFEgwK",
-          "BHJhcmUYAyABKAUSDAoEY29zdBgEIAEoBSJlCgpSbVVzZXJJbmZvEgoKAmlk",
-          "GAEgASgJEgwKBG5hbWUYAiABKAkSDQoFbGV2ZWwYAyABKAUSEQoJYXZhdF9p",
-          "Y29uGAQgASgJEg0KBXRpdGxlGAUgASgJEgwKBHJhbmsYBiABKAUi5QIKBFJv",
-          "b20SCgoCaWQYASABKAkSCwoDa2V5GAIgASgJEhAKCHBhc3N3b3JkGAMgASgJ",
-          "EiIKBGhvc3QYBCABKAsyFC5VTFpQcm90by5SbVVzZXJJbmZvEiQKBmR1ZWxl",
-          "chgFIAEoCzIULlVMWlByb3RvLlJtVXNlckluZm8SJAoGc3RhdHVzGAcgASgO",
-          "MhQuVUxaUHJvdG8uUm9vbVN0YXR1cxINCgV0dXJucxgIIAEoBRIWCg5jb3N0",
-          "X2xpbWl0X21heBgJIAEoBRIWCg5jb3N0X2xpbWl0X21pbhgKIAEoBRI1ChNj",
-          "aGFyX2NhcmRfbGltaXRfbWF4GAsgASgLMhguVUxaUHJvdG8uUm1DaGFyQ2Fy",
-          "ZEluZm8SNQoTY2hhcl9jYXJkX2xpbWl0X21pbhgMIAEoCzIYLlVMWlByb3Rv",
-          "LlJtQ2hhckNhcmRJbmZvEhUKDWNoYXJfY2FyZF9udm4YDSABKAUi9QEKB1Jv",
-          "b21Nc2cSCwoDa2V5GAEgASgJEg8KB2Zyb21faWQYAiABKAkSDwoHZm1fbmFt",
-          "ZRgDIAEoCRINCgV0b19pZBgEIAEoCRIPCgd0b19uYW1lGAUgASgJEg8KB21l",
-          "c3NhZ2UYBiABKAkSKwoIbXNnX3R5cGUYByABKA4yGS5VTFpQcm90by5Sb29t",
-          "TXNnLk1zZ1R5cGUiXQoHTXNnVHlwZRINCglVU0VSX1RFWFQQABIRCg1VU0VS",
-          "X1NUUklDS0VSEAESDwoLU1lTVEVNX0lORk8QAhIPCgtTWVNURU1fV0FSThAD",
-          "Eg4KClNZU1RFTV9FUlIQBCJdCgdSb29tUmVxEgsKA2tleRgBIAEoCRIiCgR1",
-          "c2VyGAIgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5mbxIPCgdpc19kdWVsGAMg",
-          "ASgIEhAKCHBhc3N3b3JkGAQgASgJIocCCg1Sb29tQ3JlYXRlUmVxEgsKA2tl",
-          "eRgBIAEoCRIiCgRob3N0GAIgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5mbxIQ",
-          "CghwYXNzd29yZBgDIAEoCRIWCg5jb3N0X2xpbWl0X21heBgEIAEoBRIWCg5j",
-          "b3N0X2xpbWl0X21pbhgFIAEoBRIVCg1jaGFyX2NhcmRfbnZuGAYgASgFEjUK",
-          "E2NoYXJfY2FyZF9saW1pdF9tYXgYByABKAsyGC5VTFpQcm90by5SbUNoYXJD",
-          "YXJkSW5mbxI1ChNjaGFyX2NhcmRfbGltaXRfbWluGAggASgLMhguVUxaUHJv",
-          "dG8uUm1DaGFyQ2FyZEluZm8qUAoKUm9vbVN0YXR1cxILCgdPTl9JTklUEAAS",
-          "CwoHT05fV0FJVBABEgwKCE9OX1NUQVJUEAISCgoGT05fRU5EEAMSDgoKT05f",
-          "REVTVFJPWRAEQkIKGWlvLmdycGMuVUxaQXNzZXQuUHJvdG9Nb2RCCFVMWkFz",
-          "c2V0UAFaBXByb3RvqgIRVUxaQXNzZXQuUHJvdG9Nb2RiBnByb3RvMw=="));
+          string.Concat(
+            "ChlSb29tU2VydmljZS9tZXNzYWdlLnByb3RvEghVTFpQcm90byJMCg5SbUNo",
+            "YXJDYXJkSW5mbxIPCgdjYXJkX2lkGAEgASgFEg0KBWxldmVsGAIgASgFEgwK",
+            "BHJhcmUYAyABKAUSDAoEY29zdBgEIAEoBSJlCgpSbVVzZXJJbmZvEgoKAmlk",
+            "GAEgASgJEgwKBG5hbWUYAiABKAkSDQoFbGV2ZWwYAyABKAUSEQoJYXZhdF9p",
+            "Y29uGAQgASgJEg0KBXRpdGxlGAUgASgJEgwKBHJhbmsYBiABKAUi+wMKBFJv",
+            "b20SCgoCaWQYASABKAkSCwoDa2V5GAIgASgJEhAKCHBhc3N3b3JkGAMgASgJ",
+            "EiIKBGhvc3QYBCABKAsyFC5VTFpQcm90by5SbVVzZXJJbmZvEiQKBmR1ZWxl",
+            "chgFIAEoCzIULlVMWlByb3RvLlJtVXNlckluZm8SJAoGc3RhdHVzGAcgASgO",
+            "MhQuVUxaUHJvdG8uUm9vbVN0YXR1cxINCgV0dXJucxgIIAEoBRIWCg5jb3N0",
+            "X2xpbWl0X21heBgJIAEoBRIWCg5jb3N0X2xpbWl0X21pbhgKIAEoBRI1ChNj",
+            "aGFyX2NhcmRfbGltaXRfbWF4GAsgASgLMhguVUxaUHJvdG8uUm1DaGFyQ2Fy",
+            "ZEluZm8SNQoTY2hhcl9jYXJkX2xpbWl0X21pbhgMIAEoCzIYLlVMWlByb3Rv",
+            "LlJtQ2hhckNhcmRJbmZvEhUKDWNoYXJfY2FyZF9udm4YDSABKAUSGAoQaG9z",
+            "dF9jaGFyY2FyZF9pZBgOIAEoBRIXCg9ob3N0X2NhcmRzZXRfaWQYDyABKAUS",
+            "FgoOaG9zdF9jYXJkbGV2ZWwYECABKAUSGAoQZHVlbF9jaGFyY2FyZF9pZBgR",
+            "IAEoBRIXCg9kdWVsX2NhcmRzZXRfaWQYEiABKAUSFgoOZHVlbF9jYXJkbGV2",
+            "ZWwYEyABKAUi9QEKB1Jvb21Nc2cSCwoDa2V5GAEgASgJEg8KB2Zyb21faWQY",
+            "AiABKAkSDwoHZm1fbmFtZRgDIAEoCRINCgV0b19pZBgEIAEoCRIPCgd0b19u",
+            "YW1lGAUgASgJEg8KB21lc3NhZ2UYBiABKAkSKwoIbXNnX3R5cGUYByABKA4y",
+            "GS5VTFpQcm90by5Sb29tTXNnLk1zZ1R5cGUiXQoHTXNnVHlwZRINCglVU0VS",
+            "X1RFWFQQABIRCg1VU0VSX1NUUklDS0VSEAESDwoLU1lTVEVNX0lORk8QAhIP",
+            "CgtTWVNURU1fV0FSThADEg4KClNZU1RFTV9FUlIQBCJdCgdSb29tUmVxEgsK",
+            "A2tleRgBIAEoCRIiCgR1c2VyGAIgASgLMhQuVUxaUHJvdG8uUm1Vc2VySW5m",
+            "bxIPCgdpc19kdWVsGAMgASgIEhAKCHBhc3N3b3JkGAQgASgJIocCCg1Sb29t",
+            "Q3JlYXRlUmVxEgsKA2tleRgBIAEoCRIiCgRob3N0GAIgASgLMhQuVUxaUHJv",
+            "dG8uUm1Vc2VySW5mbxIQCghwYXNzd29yZBgDIAEoCRIWCg5jb3N0X2xpbWl0",
+            "X21heBgEIAEoBRIWCg5jb3N0X2xpbWl0X21pbhgFIAEoBRIVCg1jaGFyX2Nh",
+            "cmRfbnZuGAYgASgFEjUKE2NoYXJfY2FyZF9saW1pdF9tYXgYByABKAsyGC5V",
+            "TFpQcm90by5SbUNoYXJDYXJkSW5mbxI1ChNjaGFyX2NhcmRfbGltaXRfbWlu",
+            "GAggASgLMhguVUxaUHJvdG8uUm1DaGFyQ2FyZEluZm8iXAoRUm9vbUJyb2Fk",
+            "Y2FzdEluZm8SCwoDa2V5GAEgASgJEgoKAmlwGAIgASgJEgwKBHBvcnQYAyAB",
+            "KAUSEAoIcHJvdG9jYWwYBCABKAkSDgoGc2VjdXJsGAUgASgMIrIBChFSb29t",
+            "VXBkYXRlQ2FyZFJlcRILCgNrZXkYASABKAkSNAoEc2lkZRgCIAEoDjImLlVM",
+            "WlByb3RvLlJvb21VcGRhdGVDYXJkUmVxLlBsYXllclNpZGUSEwoLY2hhcmNh",
+            "cmRfaWQYAyABKAUSEgoKY2FyZHNldF9pZBgEIAEoBRINCgVsZXZlbBgFIAEo",
+            "BSIiCgpQbGF5ZXJTaWRlEggKBEhPU1QQABIKCgZEVUVMRVIQASpQCgpSb29t",
+            "U3RhdHVzEgsKB09OX0lOSVQQABILCgdPTl9XQUlUEAESDAoIT05fU1RBUlQQ",
+            "AhIKCgZPTl9FTkQQAxIOCgpPTl9ERVNUUk9ZEARCQgoZaW8uZ3JwYy5VTFpB",
+            "c3NldC5Qcm90b01vZEIIVUxaQXNzZXRQAVoFcHJvdG+qAhFVTFpBc3NldC5Q",
+            "cm90b01vZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomStatus), }, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new [] { "CardId", "Level", "Rare", "Cost" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new [] { "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new [] { "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new [] { "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new [] { "Key", "User", "IsDuel", "Password" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new [] { "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null)
-        }));
+          new pbr::FileDescriptor[] { },
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ULZAsset.ProtoMod.RoomStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new[]{ "CardId", "Level", "Rare", "Cost" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new[]{ "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new[]{ "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn", "HostCharcardId", "HostCardsetId", "HostCardlevel", "DuelCharcardId", "DuelCardsetId", "DuelCardlevel" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new[]{ "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new[]{ "Key", "User", "IsDuel", "Password" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new[]{ "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomBroadcastInfo), global::ULZAsset.ProtoMod.RoomBroadcastInfo.Parser, new[]{ "Key", "Ip", "Port", "Protocal", "Securl" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq), global::ULZAsset.ProtoMod.RoomUpdateCardReq.Parser, new[]{ "Key", "Side", "CharcardId", "CardsetId", "Level" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide) }, null, null)
+          }));
     }
     #endregion
 
   }
   #region Enums
   public enum RoomStatus {
-    [pbr::OriginalName("ON_INIT")] OnInit = 0, [pbr::OriginalName("ON_WAIT")] OnWait = 1, [pbr::OriginalName("ON_START")] OnStart = 2, [pbr::OriginalName("ON_END")] OnEnd = 3, [pbr::OriginalName("ON_DESTROY")] OnDestroy = 4,
+    [pbr::OriginalName("ON_INIT")] OnInit = 0,
+    [pbr::OriginalName("ON_WAIT")] OnWait = 1,
+    [pbr::OriginalName("ON_START")] OnStart = 2,
+    [pbr::OriginalName("ON_END")] OnEnd = 3,
+    [pbr::OriginalName("ON_DESTROY")] OnDestroy = 4,
   }
 
   #endregion
@@ -174,20 +190,20 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (CardId != other.CardId)return false;
-      if (Level != other.Level)return false;
-      if (Rare != other.Rare)return false;
-      if (Cost != other.Cost)return false;
+      if (CardId != other.CardId) return false;
+      if (Level != other.Level) return false;
+      if (Rare != other.Rare) return false;
+      if (Cost != other.Cost) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (CardId != 0)hash ^= CardId.GetHashCode();
-      if (Level != 0)hash ^= Level.GetHashCode();
-      if (Rare != 0)hash ^= Rare.GetHashCode();
-      if (Cost != 0)hash ^= Cost.GetHashCode();
+      if (CardId != 0) hash ^= CardId.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (Rare != 0) hash ^= Rare.GetHashCode();
+      if (Cost != 0) hash ^= Cost.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -267,29 +283,26 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 8:
-            {
-              CardId = input.ReadInt32();
-              break;
-            }
-          case 16:
-            {
-              Level = input.ReadInt32();
-              break;
-            }
-          case 24:
-            {
-              Rare = input.ReadInt32();
-              break;
-            }
-          case 32:
-            {
-              Cost = input.ReadInt32();
-              break;
-            }
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            CardId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Level = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Rare = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Cost = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -419,24 +432,24 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id)return false;
-      if (Name != other.Name)return false;
-      if (Level != other.Level)return false;
-      if (AvatIcon != other.AvatIcon)return false;
-      if (Title != other.Title)return false;
-      if (Rank != other.Rank)return false;
+      if (Id != other.Id) return false;
+      if (Name != other.Name) return false;
+      if (Level != other.Level) return false;
+      if (AvatIcon != other.AvatIcon) return false;
+      if (Title != other.Title) return false;
+      if (Rank != other.Rank) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id.Length != 0)hash ^= Id.GetHashCode();
-      if (Name.Length != 0)hash ^= Name.GetHashCode();
-      if (Level != 0)hash ^= Level.GetHashCode();
-      if (AvatIcon.Length != 0)hash ^= AvatIcon.GetHashCode();
-      if (Title.Length != 0)hash ^= Title.GetHashCode();
-      if (Rank != 0)hash ^= Rank.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (AvatIcon.Length != 0) hash ^= AvatIcon.GetHashCode();
+      if (Title.Length != 0) hash ^= Title.GetHashCode();
+      if (Rank != 0) hash ^= Rank.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -536,39 +549,34 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 10:
-            {
-              Id = input.ReadString();
-              break;
-            }
-          case 18:
-            {
-              Name = input.ReadString();
-              break;
-            }
-          case 24:
-            {
-              Level = input.ReadInt32();
-              break;
-            }
-          case 34:
-            {
-              AvatIcon = input.ReadString();
-              break;
-            }
-          case 42:
-            {
-              Title = input.ReadString();
-              break;
-            }
-          case 48:
-            {
-              Rank = input.ReadInt32();
-              break;
-            }
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 24: {
+            Level = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            AvatIcon = input.ReadString();
+            break;
+          }
+          case 42: {
+            Title = input.ReadString();
+            break;
+          }
+          case 48: {
+            Rank = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -617,6 +625,12 @@ namespace ULZAsset.ProtoMod {
       charCardLimitMax_ = other.charCardLimitMax_ != null ? other.charCardLimitMax_.Clone() : null;
       charCardLimitMin_ = other.charCardLimitMin_ != null ? other.charCardLimitMin_.Clone() : null;
       charCardNvn_ = other.charCardNvn_;
+      hostCharcardId_ = other.hostCharcardId_;
+      hostCardsetId_ = other.hostCardsetId_;
+      hostCardlevel_ = other.hostCardlevel_;
+      duelCharcardId_ = other.duelCharcardId_;
+      duelCardsetId_ = other.duelCardsetId_;
+      duelCardlevel_ = other.duelCardlevel_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -787,6 +801,78 @@ namespace ULZAsset.ProtoMod {
       }
     }
 
+    /// <summary>Field number for the "host_charcard_id" field.</summary>
+    public const int HostCharcardIdFieldNumber = 14;
+    private int hostCharcardId_;
+    /// <summary>
+    /// host-inst
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int HostCharcardId {
+      get { return hostCharcardId_; }
+      set {
+        hostCharcardId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "host_cardset_id" field.</summary>
+    public const int HostCardsetIdFieldNumber = 15;
+    private int hostCardsetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int HostCardsetId {
+      get { return hostCardsetId_; }
+      set {
+        hostCardsetId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "host_cardlevel" field.</summary>
+    public const int HostCardlevelFieldNumber = 16;
+    private int hostCardlevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int HostCardlevel {
+      get { return hostCardlevel_; }
+      set {
+        hostCardlevel_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "duel_charcard_id" field.</summary>
+    public const int DuelCharcardIdFieldNumber = 17;
+    private int duelCharcardId_;
+    /// <summary>
+    /// duel-inst
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DuelCharcardId {
+      get { return duelCharcardId_; }
+      set {
+        duelCharcardId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "duel_cardset_id" field.</summary>
+    public const int DuelCardsetIdFieldNumber = 18;
+    private int duelCardsetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DuelCardsetId {
+      get { return duelCardsetId_; }
+      set {
+        duelCardsetId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "duel_cardlevel" field.</summary>
+    public const int DuelCardlevelFieldNumber = 19;
+    private int duelCardlevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int DuelCardlevel {
+      get { return duelCardlevel_; }
+      set {
+        duelCardlevel_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Room);
@@ -800,36 +886,48 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id)return false;
-      if (Key != other.Key)return false;
-      if (Password != other.Password)return false;
-      if (!object.Equals(Host, other.Host))return false;
-      if (!object.Equals(Dueler, other.Dueler))return false;
-      if (Status != other.Status)return false;
-      if (Turns != other.Turns)return false;
-      if (CostLimitMax != other.CostLimitMax)return false;
-      if (CostLimitMin != other.CostLimitMin)return false;
-      if (!object.Equals(CharCardLimitMax, other.CharCardLimitMax))return false;
-      if (!object.Equals(CharCardLimitMin, other.CharCardLimitMin))return false;
-      if (CharCardNvn != other.CharCardNvn)return false;
+      if (Id != other.Id) return false;
+      if (Key != other.Key) return false;
+      if (Password != other.Password) return false;
+      if (!object.Equals(Host, other.Host)) return false;
+      if (!object.Equals(Dueler, other.Dueler)) return false;
+      if (Status != other.Status) return false;
+      if (Turns != other.Turns) return false;
+      if (CostLimitMax != other.CostLimitMax) return false;
+      if (CostLimitMin != other.CostLimitMin) return false;
+      if (!object.Equals(CharCardLimitMax, other.CharCardLimitMax)) return false;
+      if (!object.Equals(CharCardLimitMin, other.CharCardLimitMin)) return false;
+      if (CharCardNvn != other.CharCardNvn) return false;
+      if (HostCharcardId != other.HostCharcardId) return false;
+      if (HostCardsetId != other.HostCardsetId) return false;
+      if (HostCardlevel != other.HostCardlevel) return false;
+      if (DuelCharcardId != other.DuelCharcardId) return false;
+      if (DuelCardsetId != other.DuelCardsetId) return false;
+      if (DuelCardlevel != other.DuelCardlevel) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id.Length != 0)hash ^= Id.GetHashCode();
-      if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (Password.Length != 0)hash ^= Password.GetHashCode();
-      if (host_ != null)hash ^= Host.GetHashCode();
-      if (dueler_ != null)hash ^= Dueler.GetHashCode();
-      if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit)hash ^= Status.GetHashCode();
-      if (Turns != 0)hash ^= Turns.GetHashCode();
-      if (CostLimitMax != 0)hash ^= CostLimitMax.GetHashCode();
-      if (CostLimitMin != 0)hash ^= CostLimitMin.GetHashCode();
-      if (charCardLimitMax_ != null)hash ^= CharCardLimitMax.GetHashCode();
-      if (charCardLimitMin_ != null)hash ^= CharCardLimitMin.GetHashCode();
-      if (CharCardNvn != 0)hash ^= CharCardNvn.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (host_ != null) hash ^= Host.GetHashCode();
+      if (dueler_ != null) hash ^= Dueler.GetHashCode();
+      if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) hash ^= Status.GetHashCode();
+      if (Turns != 0) hash ^= Turns.GetHashCode();
+      if (CostLimitMax != 0) hash ^= CostLimitMax.GetHashCode();
+      if (CostLimitMin != 0) hash ^= CostLimitMin.GetHashCode();
+      if (charCardLimitMax_ != null) hash ^= CharCardLimitMax.GetHashCode();
+      if (charCardLimitMin_ != null) hash ^= CharCardLimitMin.GetHashCode();
+      if (CharCardNvn != 0) hash ^= CharCardNvn.GetHashCode();
+      if (HostCharcardId != 0) hash ^= HostCharcardId.GetHashCode();
+      if (HostCardsetId != 0) hash ^= HostCardsetId.GetHashCode();
+      if (HostCardlevel != 0) hash ^= HostCardlevel.GetHashCode();
+      if (DuelCharcardId != 0) hash ^= DuelCharcardId.GetHashCode();
+      if (DuelCardsetId != 0) hash ^= DuelCardsetId.GetHashCode();
+      if (DuelCardlevel != 0) hash ^= DuelCardlevel.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -865,7 +963,7 @@ namespace ULZAsset.ProtoMod {
       }
       if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) {
         output.WriteRawTag(56);
-        output.WriteEnum((int)Status);
+        output.WriteEnum((int) Status);
       }
       if (Turns != 0) {
         output.WriteRawTag(64);
@@ -891,6 +989,30 @@ namespace ULZAsset.ProtoMod {
         output.WriteRawTag(104);
         output.WriteInt32(CharCardNvn);
       }
+      if (HostCharcardId != 0) {
+        output.WriteRawTag(112);
+        output.WriteInt32(HostCharcardId);
+      }
+      if (HostCardsetId != 0) {
+        output.WriteRawTag(120);
+        output.WriteInt32(HostCardsetId);
+      }
+      if (HostCardlevel != 0) {
+        output.WriteRawTag(128, 1);
+        output.WriteInt32(HostCardlevel);
+      }
+      if (DuelCharcardId != 0) {
+        output.WriteRawTag(136, 1);
+        output.WriteInt32(DuelCharcardId);
+      }
+      if (DuelCardsetId != 0) {
+        output.WriteRawTag(144, 1);
+        output.WriteInt32(DuelCardsetId);
+      }
+      if (DuelCardlevel != 0) {
+        output.WriteRawTag(152, 1);
+        output.WriteInt32(DuelCardlevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -915,7 +1037,7 @@ namespace ULZAsset.ProtoMod {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Dueler);
       }
       if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Status);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (Turns != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Turns);
@@ -934,6 +1056,24 @@ namespace ULZAsset.ProtoMod {
       }
       if (CharCardNvn != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(CharCardNvn);
+      }
+      if (HostCharcardId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HostCharcardId);
+      }
+      if (HostCardsetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HostCardsetId);
+      }
+      if (HostCardlevel != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(HostCardlevel);
+      }
+      if (DuelCharcardId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(DuelCharcardId);
+      }
+      if (DuelCardsetId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(DuelCardsetId);
+      }
+      if (DuelCardlevel != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(DuelCardlevel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -994,6 +1134,24 @@ namespace ULZAsset.ProtoMod {
       if (other.CharCardNvn != 0) {
         CharCardNvn = other.CharCardNvn;
       }
+      if (other.HostCharcardId != 0) {
+        HostCharcardId = other.HostCharcardId;
+      }
+      if (other.HostCardsetId != 0) {
+        HostCardsetId = other.HostCardsetId;
+      }
+      if (other.HostCardlevel != 0) {
+        HostCardlevel = other.HostCardlevel;
+      }
+      if (other.DuelCharcardId != 0) {
+        DuelCharcardId = other.DuelCharcardId;
+      }
+      if (other.DuelCardsetId != 0) {
+        DuelCardsetId = other.DuelCardsetId;
+      }
+      if (other.DuelCardlevel != 0) {
+        DuelCardlevel = other.DuelCardlevel;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1001,81 +1159,94 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 10:
-            {
-              Id = input.ReadString();
-              break;
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            Key = input.ReadString();
+            break;
+          }
+          case 26: {
+            Password = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (host_ == null) {
+              Host = new global::ULZAsset.ProtoMod.RmUserInfo();
             }
-          case 18:
-            {
-              Key = input.ReadString();
-              break;
+            input.ReadMessage(Host);
+            break;
+          }
+          case 42: {
+            if (dueler_ == null) {
+              Dueler = new global::ULZAsset.ProtoMod.RmUserInfo();
             }
-          case 26:
-            {
-              Password = input.ReadString();
-              break;
+            input.ReadMessage(Dueler);
+            break;
+          }
+          case 56: {
+            Status = (global::ULZAsset.ProtoMod.RoomStatus) input.ReadEnum();
+            break;
+          }
+          case 64: {
+            Turns = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            CostLimitMax = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            CostLimitMin = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            if (charCardLimitMax_ == null) {
+              CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
             }
-          case 34:
-            {
-              if (host_ == null) {
-                Host = new global::ULZAsset.ProtoMod.RmUserInfo();
-              }
-              input.ReadMessage(Host);
-              break;
+            input.ReadMessage(CharCardLimitMax);
+            break;
+          }
+          case 98: {
+            if (charCardLimitMin_ == null) {
+              CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
             }
-          case 42:
-            {
-              if (dueler_ == null) {
-                Dueler = new global::ULZAsset.ProtoMod.RmUserInfo();
-              }
-              input.ReadMessage(Dueler);
-              break;
-            }
-          case 56:
-            {
-              Status = (global::ULZAsset.ProtoMod.RoomStatus)input.ReadEnum();
-              break;
-            }
-          case 64:
-            {
-              Turns = input.ReadInt32();
-              break;
-            }
-          case 72:
-            {
-              CostLimitMax = input.ReadInt32();
-              break;
-            }
-          case 80:
-            {
-              CostLimitMin = input.ReadInt32();
-              break;
-            }
-          case 90:
-            {
-              if (charCardLimitMax_ == null) {
-                CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
-              }
-              input.ReadMessage(CharCardLimitMax);
-              break;
-            }
-          case 98:
-            {
-              if (charCardLimitMin_ == null) {
-                CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
-              }
-              input.ReadMessage(CharCardLimitMin);
-              break;
-            }
-          case 104:
-            {
-              CharCardNvn = input.ReadInt32();
-              break;
-            }
+            input.ReadMessage(CharCardLimitMin);
+            break;
+          }
+          case 104: {
+            CharCardNvn = input.ReadInt32();
+            break;
+          }
+          case 112: {
+            HostCharcardId = input.ReadInt32();
+            break;
+          }
+          case 120: {
+            HostCardsetId = input.ReadInt32();
+            break;
+          }
+          case 128: {
+            HostCardlevel = input.ReadInt32();
+            break;
+          }
+          case 136: {
+            DuelCharcardId = input.ReadInt32();
+            break;
+          }
+          case 144: {
+            DuelCardsetId = input.ReadInt32();
+            break;
+          }
+          case 152: {
+            DuelCardlevel = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -1217,26 +1388,26 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Key != other.Key)return false;
-      if (FromId != other.FromId)return false;
-      if (FmName != other.FmName)return false;
-      if (ToId != other.ToId)return false;
-      if (ToName != other.ToName)return false;
-      if (Message != other.Message)return false;
-      if (MsgType != other.MsgType)return false;
+      if (Key != other.Key) return false;
+      if (FromId != other.FromId) return false;
+      if (FmName != other.FmName) return false;
+      if (ToId != other.ToId) return false;
+      if (ToName != other.ToName) return false;
+      if (Message != other.Message) return false;
+      if (MsgType != other.MsgType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (FromId.Length != 0)hash ^= FromId.GetHashCode();
-      if (FmName.Length != 0)hash ^= FmName.GetHashCode();
-      if (ToId.Length != 0)hash ^= ToId.GetHashCode();
-      if (ToName.Length != 0)hash ^= ToName.GetHashCode();
-      if (Message.Length != 0)hash ^= Message.GetHashCode();
-      if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText)hash ^= MsgType.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (FromId.Length != 0) hash ^= FromId.GetHashCode();
+      if (FmName.Length != 0) hash ^= FmName.GetHashCode();
+      if (ToId.Length != 0) hash ^= ToId.GetHashCode();
+      if (ToName.Length != 0) hash ^= ToName.GetHashCode();
+      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) hash ^= MsgType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1276,7 +1447,7 @@ namespace ULZAsset.ProtoMod {
       }
       if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
         output.WriteRawTag(56);
-        output.WriteEnum((int)MsgType);
+        output.WriteEnum((int) MsgType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1305,7 +1476,7 @@ namespace ULZAsset.ProtoMod {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
       }
       if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)MsgType);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MsgType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1346,44 +1517,38 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 10:
-            {
-              Key = input.ReadString();
-              break;
-            }
-          case 18:
-            {
-              FromId = input.ReadString();
-              break;
-            }
-          case 26:
-            {
-              FmName = input.ReadString();
-              break;
-            }
-          case 34:
-            {
-              ToId = input.ReadString();
-              break;
-            }
-          case 42:
-            {
-              ToName = input.ReadString();
-              break;
-            }
-          case 50:
-            {
-              Message = input.ReadString();
-              break;
-            }
-          case 56:
-            {
-              MsgType = (global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType)input.ReadEnum();
-              break;
-            }
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 18: {
+            FromId = input.ReadString();
+            break;
+          }
+          case 26: {
+            FmName = input.ReadString();
+            break;
+          }
+          case 34: {
+            ToId = input.ReadString();
+            break;
+          }
+          case 42: {
+            ToName = input.ReadString();
+            break;
+          }
+          case 50: {
+            Message = input.ReadString();
+            break;
+          }
+          case 56: {
+            MsgType = (global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) input.ReadEnum();
+            break;
+          }
         }
       }
     }
@@ -1393,7 +1558,11 @@ namespace ULZAsset.ProtoMod {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static partial class Types {
       public enum MsgType {
-        [pbr::OriginalName("USER_TEXT")] UserText = 0, [pbr::OriginalName("USER_STRICKER")] UserStricker = 1, [pbr::OriginalName("SYSTEM_INFO")] SystemInfo = 2, [pbr::OriginalName("SYSTEM_WARN")] SystemWarn = 3, [pbr::OriginalName("SYSTEM_ERR")] SystemErr = 4,
+        [pbr::OriginalName("USER_TEXT")] UserText = 0,
+        [pbr::OriginalName("USER_STRICKER")] UserStricker = 1,
+        [pbr::OriginalName("SYSTEM_INFO")] SystemInfo = 2,
+        [pbr::OriginalName("SYSTEM_WARN")] SystemWarn = 3,
+        [pbr::OriginalName("SYSTEM_ERR")] SystemErr = 4,
       }
 
     }
@@ -1495,20 +1664,20 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Key != other.Key)return false;
-      if (!object.Equals(User, other.User))return false;
-      if (IsDuel != other.IsDuel)return false;
-      if (Password != other.Password)return false;
+      if (Key != other.Key) return false;
+      if (!object.Equals(User, other.User)) return false;
+      if (IsDuel != other.IsDuel) return false;
+      if (Password != other.Password) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (user_ != null)hash ^= User.GetHashCode();
-      if (IsDuel != false)hash ^= IsDuel.GetHashCode();
-      if (Password.Length != 0)hash ^= Password.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (user_ != null) hash ^= User.GetHashCode();
+      if (IsDuel != false) hash ^= IsDuel.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1591,32 +1760,29 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 10:
-            {
-              Key = input.ReadString();
-              break;
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (user_ == null) {
+              User = new global::ULZAsset.ProtoMod.RmUserInfo();
             }
-          case 18:
-            {
-              if (user_ == null) {
-                User = new global::ULZAsset.ProtoMod.RmUserInfo();
-              }
-              input.ReadMessage(User);
-              break;
-            }
-          case 24:
-            {
-              IsDuel = input.ReadBool();
-              break;
-            }
-          case 34:
-            {
-              Password = input.ReadString();
-              break;
-            }
+            input.ReadMessage(User);
+            break;
+          }
+          case 24: {
+            IsDuel = input.ReadBool();
+            break;
+          }
+          case 34: {
+            Password = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -1771,28 +1937,28 @@ namespace ULZAsset.ProtoMod {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Key != other.Key)return false;
-      if (!object.Equals(Host, other.Host))return false;
-      if (Password != other.Password)return false;
-      if (CostLimitMax != other.CostLimitMax)return false;
-      if (CostLimitMin != other.CostLimitMin)return false;
-      if (CharCardNvn != other.CharCardNvn)return false;
-      if (!object.Equals(CharCardLimitMax, other.CharCardLimitMax))return false;
-      if (!object.Equals(CharCardLimitMin, other.CharCardLimitMin))return false;
+      if (Key != other.Key) return false;
+      if (!object.Equals(Host, other.Host)) return false;
+      if (Password != other.Password) return false;
+      if (CostLimitMax != other.CostLimitMax) return false;
+      if (CostLimitMin != other.CostLimitMin) return false;
+      if (CharCardNvn != other.CharCardNvn) return false;
+      if (!object.Equals(CharCardLimitMax, other.CharCardLimitMax)) return false;
+      if (!object.Equals(CharCardLimitMin, other.CharCardLimitMin)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (host_ != null)hash ^= Host.GetHashCode();
-      if (Password.Length != 0)hash ^= Password.GetHashCode();
-      if (CostLimitMax != 0)hash ^= CostLimitMax.GetHashCode();
-      if (CostLimitMin != 0)hash ^= CostLimitMin.GetHashCode();
-      if (CharCardNvn != 0)hash ^= CharCardNvn.GetHashCode();
-      if (charCardLimitMax_ != null)hash ^= CharCardLimitMax.GetHashCode();
-      if (charCardLimitMin_ != null)hash ^= CharCardLimitMin.GetHashCode();
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (host_ != null) hash ^= Host.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (CostLimitMax != 0) hash ^= CostLimitMax.GetHashCode();
+      if (CostLimitMin != 0) hash ^= CostLimitMin.GetHashCode();
+      if (CharCardNvn != 0) hash ^= CharCardNvn.GetHashCode();
+      if (charCardLimitMax_ != null) hash ^= CharCardLimitMax.GetHashCode();
+      if (charCardLimitMin_ != null) hash ^= CharCardLimitMin.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1921,61 +2087,548 @@ namespace ULZAsset.ProtoMod {
     public void MergeFrom(pb::CodedInputStream input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch (tag) {
-          default : _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-          case 10:
-            {
-              Key = input.ReadString();
-              break;
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (host_ == null) {
+              Host = new global::ULZAsset.ProtoMod.RmUserInfo();
             }
-          case 18:
-            {
-              if (host_ == null) {
-                Host = new global::ULZAsset.ProtoMod.RmUserInfo();
-              }
-              input.ReadMessage(Host);
-              break;
+            input.ReadMessage(Host);
+            break;
+          }
+          case 26: {
+            Password = input.ReadString();
+            break;
+          }
+          case 32: {
+            CostLimitMax = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            CostLimitMin = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            CharCardNvn = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            if (charCardLimitMax_ == null) {
+              CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
             }
-          case 26:
-            {
-              Password = input.ReadString();
-              break;
+            input.ReadMessage(CharCardLimitMax);
+            break;
+          }
+          case 66: {
+            if (charCardLimitMin_ == null) {
+              CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
             }
-          case 32:
-            {
-              CostLimitMax = input.ReadInt32();
-              break;
-            }
-          case 40:
-            {
-              CostLimitMin = input.ReadInt32();
-              break;
-            }
-          case 48:
-            {
-              CharCardNvn = input.ReadInt32();
-              break;
-            }
-          case 58:
-            {
-              if (charCardLimitMax_ == null) {
-                CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
-              }
-              input.ReadMessage(CharCardLimitMax);
-              break;
-            }
-          case 66:
-            {
-              if (charCardLimitMin_ == null) {
-                CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
-              }
-              input.ReadMessage(CharCardLimitMin);
-              break;
-            }
+            input.ReadMessage(CharCardLimitMin);
+            break;
+          }
         }
       }
     }
+
+  }
+
+  public sealed partial class RoomBroadcastInfo : pb::IMessage<RoomBroadcastInfo> {
+    private static readonly pb::MessageParser<RoomBroadcastInfo> _parser = new pb::MessageParser<RoomBroadcastInfo>(() => new RoomBroadcastInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RoomBroadcastInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomBroadcastInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomBroadcastInfo(RoomBroadcastInfo other) : this() {
+      key_ = other.key_;
+      ip_ = other.ip_;
+      port_ = other.port_;
+      protocal_ = other.protocal_;
+      securl_ = other.securl_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomBroadcastInfo Clone() {
+      return new RoomBroadcastInfo(this);
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 1;
+    private string key_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "ip" field.</summary>
+    public const int IpFieldNumber = 2;
+    private string ip_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Ip {
+      get { return ip_; }
+      set {
+        ip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "port" field.</summary>
+    public const int PortFieldNumber = 3;
+    private int port_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Port {
+      get { return port_; }
+      set {
+        port_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "protocal" field.</summary>
+    public const int ProtocalFieldNumber = 4;
+    private string protocal_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Protocal {
+      get { return protocal_; }
+      set {
+        protocal_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "securl" field.</summary>
+    public const int SecurlFieldNumber = 5;
+    private pb::ByteString securl_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Securl {
+      get { return securl_; }
+      set {
+        securl_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RoomBroadcastInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RoomBroadcastInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Key != other.Key) return false;
+      if (Ip != other.Ip) return false;
+      if (Port != other.Port) return false;
+      if (Protocal != other.Protocal) return false;
+      if (Securl != other.Securl) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (Ip.Length != 0) hash ^= Ip.GetHashCode();
+      if (Port != 0) hash ^= Port.GetHashCode();
+      if (Protocal.Length != 0) hash ^= Protocal.GetHashCode();
+      if (Securl.Length != 0) hash ^= Securl.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (Ip.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Ip);
+      }
+      if (Port != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Port);
+      }
+      if (Protocal.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Protocal);
+      }
+      if (Securl.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(Securl);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (Ip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Ip);
+      }
+      if (Port != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Port);
+      }
+      if (Protocal.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Protocal);
+      }
+      if (Securl.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Securl);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RoomBroadcastInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.Ip.Length != 0) {
+        Ip = other.Ip;
+      }
+      if (other.Port != 0) {
+        Port = other.Port;
+      }
+      if (other.Protocal.Length != 0) {
+        Protocal = other.Protocal;
+      }
+      if (other.Securl.Length != 0) {
+        Securl = other.Securl;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 18: {
+            Ip = input.ReadString();
+            break;
+          }
+          case 24: {
+            Port = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            Protocal = input.ReadString();
+            break;
+          }
+          case 42: {
+            Securl = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class RoomUpdateCardReq : pb::IMessage<RoomUpdateCardReq> {
+    private static readonly pb::MessageParser<RoomUpdateCardReq> _parser = new pb::MessageParser<RoomUpdateCardReq>(() => new RoomUpdateCardReq());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RoomUpdateCardReq> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomUpdateCardReq() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomUpdateCardReq(RoomUpdateCardReq other) : this() {
+      key_ = other.key_;
+      side_ = other.side_;
+      charcardId_ = other.charcardId_;
+      cardsetId_ = other.cardsetId_;
+      level_ = other.level_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RoomUpdateCardReq Clone() {
+      return new RoomUpdateCardReq(this);
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 1;
+    private string key_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "side" field.</summary>
+    public const int SideFieldNumber = 2;
+    private global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide side_ = global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide Side {
+      get { return side_; }
+      set {
+        side_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "charcard_id" field.</summary>
+    public const int CharcardIdFieldNumber = 3;
+    private int charcardId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CharcardId {
+      get { return charcardId_; }
+      set {
+        charcardId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "cardset_id" field.</summary>
+    public const int CardsetIdFieldNumber = 4;
+    private int cardsetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CardsetId {
+      get { return cardsetId_; }
+      set {
+        cardsetId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 5;
+    private int level_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RoomUpdateCardReq);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RoomUpdateCardReq other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Key != other.Key) return false;
+      if (Side != other.Side) return false;
+      if (CharcardId != other.CharcardId) return false;
+      if (CardsetId != other.CardsetId) return false;
+      if (Level != other.Level) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) hash ^= Side.GetHashCode();
+      if (CharcardId != 0) hash ^= CharcardId.GetHashCode();
+      if (CardsetId != 0) hash ^= CardsetId.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Side);
+      }
+      if (CharcardId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(CharcardId);
+      }
+      if (CardsetId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(CardsetId);
+      }
+      if (Level != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Level);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Side);
+      }
+      if (CharcardId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CharcardId);
+      }
+      if (CardsetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CardsetId);
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RoomUpdateCardReq other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+        Side = other.Side;
+      }
+      if (other.CharcardId != 0) {
+        CharcardId = other.CharcardId;
+      }
+      if (other.CardsetId != 0) {
+        CardsetId = other.CardsetId;
+      }
+      if (other.Level != 0) {
+        Level = other.Level;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 16: {
+            Side = (global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            CharcardId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            CardsetId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Level = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the RoomUpdateCardReq message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public enum PlayerSide {
+        [pbr::OriginalName("HOST")] Host = 0,
+        [pbr::OriginalName("DUELER")] Dueler = 1,
+      }
+
+    }
+    #endregion
 
   }
 

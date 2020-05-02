@@ -162,6 +162,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
     async void msgSystMsg(object caller, NATS.Client.MsgHandlerEventArgs income) {
         var inst_msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
+        Debug.Log(inst_msg.Message);
         if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
             if (inst_msg.Message == "Dueler:GameSet:Ready") {
                 isReady = true;
@@ -177,14 +178,10 @@ public class RoomWaitCtl : MonoBehaviour {
             }
         }
     }
-   
 
     public void OnConnecterUpdate_CardChange(string msg) {
         string js_str = msg.Replace("CardChange::", "");
-        Debug.Log(js_str);
-        RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseFrom(
-            ByteString.FromBase64(js_str));
-        // JsonConvert.DeserializeObject<RmChangeCharCard>(js_str);
+        RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson( js_str );
         CardSet tmp = new CardSet();
         foreach (var gobj in CardOption) {
             var f = gobj.GetComponent<CCardCtl>();

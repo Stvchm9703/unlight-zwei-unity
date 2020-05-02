@@ -25,24 +25,25 @@ namespace ULZAsset.ProtoMod {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChlSb29tU2VydmljZS9zZXJ2aWNlLnByb3RvEghVTFpQcm90bxoZUm9vbVNl",
-            "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMsAECgtSb29tU2Vy",
+            "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMv0ECgtSb29tU2Vy",
             "dmljZRI3CgpDcmVhdGVSb29tEhcuVUxaUHJvdG8uUm9vbUNyZWF0ZVJlcRoO",
             "LlVMWlByb3RvLlJvb20iABI6CgtHZXRSb29tTGlzdBIXLlVMWlByb3RvLlJv",
             "b21DcmVhdGVSZXEaDi5VTFpQcm90by5Sb29tIgAwARIyCgtHZXRSb29tSW5m",
             "bxIRLlVMWlByb3RvLlJvb21SZXEaDi5VTFpQcm90by5Sb29tIgASNwoKVXBk",
             "YXRlUm9vbRIXLlVMWlByb3RvLlJvb21DcmVhdGVSZXEaDi5VTFpQcm90by5S",
-            "b29tIgASQQoNQnJvYWRjYXN0SW5mbxIRLlVMWlByb3RvLlJvb21SZXEaGy5V",
-            "TFpQcm90by5Sb29tQnJvYWRjYXN0SW5mbyIAEjwKClVwZGF0ZUNhcmQSGy5V",
-            "TFpQcm90by5Sb29tVXBkYXRlQ2FyZFJlcRoPLlVMWlByb3RvLkVtcHR5IgAS",
-            "MwoLU2VuZE1lc3NhZ2USES5VTFpQcm90by5Sb29tTXNnGg8uVUxaUHJvdG8u",
-            "RW1wdHkiABIwCghRdWl0Um9vbRIRLlVMWlByb3RvLlJvb21SZXEaDy5VTFpQ",
-            "cm90by5FbXB0eSIAEjYKCVF1aWNrUGFpchIXLlVMWlByb3RvLlJvb21DcmVh",
-            "dGVSZXEaDi5VTFpQcm90by5Sb29tIgASLwoISm9pblJvb20SES5VTFpQcm90",
-            "by5Sb29tUmVxGg4uVUxaUHJvdG8uUm9vbSIAQhtaBXByb3RvqgIRVUxaQXNz",
-            "ZXQuUHJvdG9Nb2RiBnByb3RvMw=="));
+            "b29tIgASPAoKVXBkYXRlQ2FyZBIbLlVMWlByb3RvLlJvb21VcGRhdGVDYXJk",
+            "UmVxGg8uVUxaUHJvdG8uRW1wdHkiABJBCg1Ccm9hZGNhc3RJbmZvEhEuVUxa",
+            "UHJvdG8uUm9vbVJlcRobLlVMWlByb3RvLlJvb21Ccm9hZGNhc3RJbmZvIgAS",
+            "OwoPU2VydmVyQnJvYWRjYXN0EhEuVUxaUHJvdG8uUm9vbVJlcRoRLlVMWlBy",
+            "b3RvLlJvb21Nc2ciADABEjMKC1NlbmRNZXNzYWdlEhEuVUxaUHJvdG8uUm9v",
+            "bU1zZxoPLlVMWlByb3RvLkVtcHR5IgASMAoIUXVpdFJvb20SES5VTFpQcm90",
+            "by5Sb29tUmVxGg8uVUxaUHJvdG8uRW1wdHkiABI2CglRdWlja1BhaXISFy5V",
+            "TFpQcm90by5Sb29tQ3JlYXRlUmVxGg4uVUxaUHJvdG8uUm9vbSIAEi8KCEpv",
+            "aW5Sb29tEhEuVUxaUHJvdG8uUm9vbVJlcRoOLlVMWlByb3RvLlJvb20iAEIb",
+            "WgVwcm90b6oCEVVMWkFzc2V0LlByb3RvTW9kYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null,  null));
+          new pbr::GeneratedClrTypeInfo( null, null));
     }
     #endregion
 

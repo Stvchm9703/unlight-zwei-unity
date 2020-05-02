@@ -15,8 +15,9 @@ service RoomService {
     rpc GetRoomList     (RoomCreateReq)     returns (stream Room){ }; 
     rpc GetRoomInfo     (RoomReq)           returns (Room){};
     rpc UpdateRoom      (RoomCreateReq)     returns (Room){};
-    rpc BroadcastInfo   (RoomReq)           returns (RoomBroadcastInfo){};
     rpc UpdateCard      (RoomUpdateCardReq) returns (Empty){};
+    rpc BroadcastInfo   (RoomReq)           returns (RoomBroadcastInfo){};
+    rpc ServerBroadcast (RoomReq)           returns (stream RoomMsg){};
     rpc SendMessage     (RoomMsg)           returns (Empty){};
     rpc QuitRoom        (RoomReq)           returns (Empty){}
     rpc QuickPair       (RoomCreateReq)     returns (Room){};

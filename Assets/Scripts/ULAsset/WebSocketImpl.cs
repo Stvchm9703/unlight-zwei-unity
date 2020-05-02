@@ -16,7 +16,7 @@ namespace ULZAsset {
         private static readonly ManualResetEvent ExitEvent = new ManualResetEvent(false);
 
         public async Task<bool> ConnectToBroadcast(string RoomKey, CfServerSetting conf = null) {
-            var wsclient = new WebSocket($"ws://{conf.Host}:8000/{RoomKey}");
+            var wsclient = new WebSocket($"ws://{conf.RoomService.Host}:8000/{RoomKey}");
             wsclient.OnOpen += (type, e) => {
                 Debug.Log($"Reconnection happened, type: {type}, url: {wsclient.Url}");
             };
@@ -40,7 +40,7 @@ namespace ULZAsset {
 
         public async Task<bool> ConnectToBroadcast(
             string RoomKey,
-            CfServerSetting conf = null,
+            CfServiceClientSetting conf = null,
             List<EventHandler<MessageEventArgs>> MsgHandler = null
         ) {
             var wsclient = new WebSocket($"ws://{conf.Host}:11020/{RoomKey}");

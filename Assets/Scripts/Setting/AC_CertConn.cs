@@ -12,7 +12,8 @@ using ULZAsset.Config;
 using ULZAsset.ProtoMod;
 using UnityEngine;
 public class AC_CertConn : MonoBehaviour {
-    public CfServerSetting ConfigForm;
+    // public CfServerSetting ConfigForm;
+    public CfServiceClientSetting ConfigForm;
 
     private Channel auth_chan, main_room_chan;
     private RoomService.RoomServiceClient test_cli;
@@ -160,7 +161,9 @@ public class AC_CertConn : MonoBehaviour {
 
     public async Task<bool> SaveAsset() {
         ConfigForm.KeyPemPath = "%StreamAsset%/" + "key.pem";
-        ConfigContainer.CreateCfFile(ConfigPath.StreamingAsset, ConfigForm);
+        var cfForm = new CfServerSetting();
+        cfForm.CredService = ConfigForm;
+        ConfigContainer.CreateCfFile(ConfigPath.StreamingAsset, cfForm);
         string[] tpath = { ConfigPath.StreamingAsset, "key.pem" };
 
         File.WriteAllText(

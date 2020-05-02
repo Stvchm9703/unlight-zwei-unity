@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
+using NATS.Client;
 using Newtonsoft.Json;
 using ULZAsset;
 using ULZAsset.Config;
@@ -24,6 +25,8 @@ public class RoomServiceConn : MonoBehaviour {
     public bool IsHost = false;
     public bool IsWatcher = true;
 
+    // NATS impl
+    public Options natOpt;
     void Awake() {
         Debug.Log("on Awake process - Room-Service-Connector");
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
@@ -42,7 +45,7 @@ public class RoomServiceConn : MonoBehaviour {
         //     ChannelCredentials.Insecure
         // );
         this.main_ch = new Channel(
-            setting.Host, setting.Port,
+            setting.RoomService.Host, setting.RoomService.Port,
             ChannelCredentials.Insecure
         );
         this.client = new RoomService.RoomServiceClient(this.main_ch);
@@ -52,6 +55,9 @@ public class RoomServiceConn : MonoBehaviour {
             Level = setting.UserInfo.Level,
             Rank = setting.UserInfo.Rank,
         };
+
+        this.natOpt = ConnectionFactory.GetDefaultOptions();
+        this.natOpt.Url = $"{setting.RoomService.StreamSetting.Connector}://{setting.RoomService.StreamSetting.Host}:{setting.RoomService.StreamSetting.Port}";
 
         return false;
     }
@@ -214,8 +220,8 @@ public class RoomServiceConn : MonoBehaviour {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
-        if (CurrentRoom != null) {
-            throw new System.Exception("CURRENT_ROOM_EXIST");
+        if (CurrentRoom == null) {
+            throw new System.Exception("CURRENT_ROOM_IS_NULL");
         }
         try {
             await this.DisconnectToBroadcast();
@@ -233,12 +239,14 @@ public class RoomServiceConn : MonoBehaviour {
         if (main_ch == null || client == null) {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
-        if (CurrentRoom != null) {
-            throw new System.Exception("CURRENT_ROOM_EXIST");
+        if (CurrentRoom == null) {
+            throw new System.Exception("CURRENT_ROOM_IS_NULL");
         }
         try {
             await this.client.UpdateCardAsync(new RoomUpdateCardReq {
-                Side = this.IsHost ? 0 : 1,
+                Side = this.IsHost ?
+                    RoomUpdateCardReq.Types.PlayerSide.Host :
+                    RoomUpdateCardReq.Types.PlayerSide.Dueler,
                     Key = CurrentRoom.Key,
                     CharcardId = charcard_id,
                     CardsetId = cardset_id,
@@ -260,7 +268,7 @@ public class RoomServiceConn : MonoBehaviour {
             this.wsConnect = new WSConnect();
         }
         var conn = await this.wsConnect.ConnectToBroadcast(
-            this.CurrentRoom.Key, this.config, wscHandler);
+            this.CurrentRoom.Key, this.config.RoomService, wscHandler);
         if (!conn) {
             return false;
         }

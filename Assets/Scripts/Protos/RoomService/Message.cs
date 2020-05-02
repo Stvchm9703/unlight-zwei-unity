@@ -66,15 +66,15 @@ namespace ULZAsset.ProtoMod {
             "cm90b01vZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ULZAsset.ProtoMod.RoomStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new[]{ "CardId", "Level", "Rare", "Cost" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new[]{ "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new[]{ "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn", "HostCharcardId", "HostCardsetId", "HostCardlevel", "DuelCharcardId", "DuelCardsetId", "DuelCardlevel" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new[]{ "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new[]{ "Key", "User", "IsDuel", "Password" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new[]{ "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomBroadcastInfo), global::ULZAsset.ProtoMod.RoomBroadcastInfo.Parser, new[]{ "Key", "Ip", "Port", "Protocal", "Securl" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq), global::ULZAsset.ProtoMod.RoomUpdateCardReq.Parser, new[]{ "Key", "Side", "CharcardId", "CardsetId", "Level" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide) }, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ULZAsset.ProtoMod.RoomStatus), },  new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new[]{ "CardId", "Level", "Rare", "Cost" }, null, null,  null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new[]{ "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null,null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new[]{ "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn", "HostCharcardId", "HostCardsetId", "HostCardlevel", "DuelCharcardId", "DuelCardsetId", "DuelCardlevel" }, null,  null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new[]{ "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new[]{ "Key", "User", "IsDuel", "Password" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new[]{ "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null,  null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomBroadcastInfo), global::ULZAsset.ProtoMod.RoomBroadcastInfo.Parser, new[]{ "Key", "Ip", "Port", "Protocal", "Securl" }, null, null,  null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq), global::ULZAsset.ProtoMod.RoomUpdateCardReq.Parser, new[]{ "Key", "Side", "CharcardId", "CardsetId", "Level" }, null, new[]{ typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide) }, null)
           }));
     }
     #endregion

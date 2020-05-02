@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Grpc.Core;
+using NATS.Client;
 using ULZAsset.ProtoMod;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class ChatPanelCtl : MonoBehaviour {
     public InputField ChatInput;
     public ULVisualCtl PanelPrevent;
     public GameObject PanelDisplay;
+
+    public IConnection NatsConn;
     void Start() {
         if (ChatPanel == null) {
             this.ChatPanel = this.transform.Find("Scroll View/Viewport/Content").gameObject;
@@ -26,6 +29,15 @@ public class ChatPanelCtl : MonoBehaviour {
         if (this.ChatInput == null) {
             this.ChatInput = this.transform.Find("InputField").GetComponent<InputField>();
         }
+    }
+
+    void natsConnInit() {
+        var natsSetting = this.connecter.config.RoomService.StreamSetting;
+        var natsOpt = ConnectionFactory.GetDefaultOptions();
+        natsOpt.Url = $"{natsSetting.Connector}://{natsSetting.Host}:{natsSetting.Port}";
+        this.NatsConn = new ConnectionFactory().CreateConnection(natsOpt);
+        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.connecter.CurrentRoom.Key}",
+            (obj, msg) => EventGenMessage(msg));
     }
 
     async void OnConnecterUpdate() {
@@ -52,7 +64,19 @@ public class ChatPanelCtl : MonoBehaviour {
 
         }
     }
+    public void EventGenMessage(NATS.Client.MsgHandlerEventArgs income) {
+        var msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
+        GameObject title = (GameObject)Instantiate(NamePref, ChatPanel.transform);
+        title.GetComponent<Text>().text =
+            msg.FmName +
+            "\t< id : " + msg.FromId.ToString() + ">";
 
+        if (msg.MsgType == RoomMsg.Types.MsgType.UserText) {
+            GameObject info = (GameObject)Instantiate(DespPref, ChatPanel.transform);
+            info.GetComponent<Text>().text = msg.Message;
+        }
+        return;
+    }
     public void GenMessage(RoomMsg msg) {
         GameObject title = (GameObject)Instantiate(NamePref, ChatPanel.transform);
         title.GetComponent<Text>().text =

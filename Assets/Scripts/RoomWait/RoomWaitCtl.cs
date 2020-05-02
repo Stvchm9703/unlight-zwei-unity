@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Google.Protobuf;
 using Grpc.Core;
+using NATS.Client;
 using Newtonsoft.Json;
 using ULZAsset;
 using ULZAsset.Config;
@@ -44,6 +46,7 @@ public class RoomWaitCtl : MonoBehaviour {
     public GameObject UP_totalCardDeckCost, UP_CharecterCardLimit;
     public RoomCreateReq UP_updateReq;
 
+    public IConnection NatsConn;
     // public base function
     void Start() {
         init_char_card_load();
@@ -148,14 +151,17 @@ public class RoomWaitCtl : MonoBehaviour {
     }
     async void OnConnecterUpdate() {
         Debug.Log("start to connect Broadcast");
-        this.Connecter.AddPendingEventFunc(
-            (object caller, RoomMsg msgpack) =>
-            msgSystMsg(caller, msgpack)
-        );
-        await this.Connecter.ConnectToBroadcast();
+        Debug.Log(this.Connecter.config.RoomService);
+        var natsSetting = this.Connecter.config.RoomService.StreamSetting;
+        var natsOpt = ConnectionFactory.GetDefaultOptions();
+        natsOpt.Url = $"{natsSetting.Connector}://{natsSetting.Host}:{natsSetting.Port}";
+        this.NatsConn = new ConnectionFactory().CreateConnection(natsOpt);
+        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.Connecter.CurrentRoom.Key}", (obj, msg) => msgSystMsg(obj, msg));
+
     }
 
-    async void msgSystMsg(object caller, RoomMsg inst_msg) {
+    async void msgSystMsg(object caller, NATS.Client.MsgHandlerEventArgs income) {
+        var inst_msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
         if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
             if (inst_msg.Message == "Dueler:GameSet:Ready") {
                 isReady = true;
@@ -171,10 +177,8 @@ public class RoomWaitCtl : MonoBehaviour {
             }
         }
     }
+   
 
-    // async void msgSystMsgErrorHandler(RoomMsg inst_msg) {
-
-    // }
     public void OnConnecterUpdate_CardChange(string msg) {
         string js_str = msg.Replace("CardChange::", "");
         Debug.Log(js_str);
@@ -374,6 +378,11 @@ public class RoomWaitCtl : MonoBehaviour {
                 gobj.SetActive(true);
             }
         }
+    }
+
+    private void OnDestroy() {
+        this.NatsConn.DrainAsync();
+        this.NatsConn.Close();
     }
 
 }

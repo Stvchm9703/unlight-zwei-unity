@@ -54,6 +54,15 @@ namespace ULZAsset.Config {
 
     [System.Serializable]
     public class CfServerSetting {
+        public CfServiceClientSetting RoomService;
+        public CfServiceClientSetting CredService;
+        public CfServiceClientSetting GameDuelService;
+        public CfUserInfo UserInfo;
+    }
+
+    [System.Serializable]
+    public class CfServiceClientSetting {
+        public string ServiceName;
         public string Connector;
         public string Host;
         public int Port;
@@ -62,7 +71,16 @@ namespace ULZAsset.Config {
         public string Password;
         public string Key;
         public string KeyPemPath;
-        public CfUserInfo UserInfo;
+        public CfStreamSetting StreamSetting;
+    }
+
+    [System.Serializable]
+    public class CfStreamSetting {
+        public string Connector;
+        public string Host;
+        public int Port;
+        public string KeyPemPath;
+
     }
 
     [System.Serializable]

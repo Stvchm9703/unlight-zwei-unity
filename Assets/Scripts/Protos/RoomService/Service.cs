@@ -42,7 +42,7 @@ namespace ULZAsset.ProtoMod {
             "ZXQuUHJvdG9Nb2RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, null, null));
+          new pbr::GeneratedClrTypeInfo(null,  null));
     }
     #endregion
 

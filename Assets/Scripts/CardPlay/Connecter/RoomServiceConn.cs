@@ -205,8 +205,9 @@ public class RoomServiceConn : MonoBehaviour {
         try {
             var get_task = await this.client.JoinRoomAsync(new RoomReq {
                 Key = roomKey,
-                    Password = password,
-                    User = CurrentUser
+                Password = password,
+                User = CurrentUser,
+                IsDuel = true,
             });
             CurrentRoom = get_task;
             this.IsHost = false;

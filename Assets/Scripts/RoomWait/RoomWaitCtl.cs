@@ -21,7 +21,7 @@ public class RoomWaitCtl : MonoBehaviour {
     public Text DuelerName, DuelerLv, DuelerStatus;
     public CCardCtl HostCard, DuelerCard;
     public GameObject ChangeDeckBtn, ChangeSettingBtn;
-    public bool isReady;
+    public bool isReady, selfReady;
 
     // Card info
     public CfCardVersion card_setting;
@@ -164,11 +164,18 @@ public class RoomWaitCtl : MonoBehaviour {
         var inst_msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
         Debug.Log(inst_msg.Message);
         if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
-            if (inst_msg.Message == "Dueler:GameSet:Ready") {
+            if (inst_msg.Message == "Dueler:GameSet:Ready" && this.Connecter.IsHost) {
                 isReady = true;
                 this.DuelerStatus.text = "Ready!";
-            } else if (inst_msg.Message == "Host:GameSet:Ready" && isReady) {
-                SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                if (this.isReady && this.selfReady) {
+                    SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                }
+            } else if (inst_msg.Message == "Host:GameSet:Ready" && !this.Connecter.IsHost) {
+                isReady = true;
+                this.HostStatus.text = "Ready";
+                if (this.isReady && this.selfReady) {
+                    SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                }
             } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
                 string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
                 var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
@@ -181,7 +188,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
     public void OnConnecterUpdate_CardChange(string msg) {
         string js_str = msg.Replace("CardChange::", "");
-        RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson( js_str );
+        RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson(js_str);
         CardSet tmp = new CardSet();
         foreach (var gobj in CardOption) {
             var f = gobj.GetComponent<CCardCtl>();
@@ -217,13 +224,18 @@ public class RoomWaitCtl : MonoBehaviour {
     }
 
     public async void ReadyBtn() {
+        this.selfReady = true;
         if (!this.Connecter.IsHost) {
             await this.Connecter.SystemSendMessage("Dueler:GameSet:Ready");
+            this.DuelerStatus.text = "Ready!";
         } else {
             await this.Connecter.SystemSendMessage("Host:GameSet:Ready");
+            this.HostStatus.text = "Ready";
         }
-        this.Connecter.ClearPendingEventFunc();
-        SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+        // this.Connecter.ClearPendingEventFunc();
+        if (this.isReady && this.selfReady) {
+            SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+        }
     }
 
     // ChangePanel related

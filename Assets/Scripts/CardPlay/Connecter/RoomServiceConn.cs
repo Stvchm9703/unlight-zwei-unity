@@ -17,9 +17,9 @@ public class RoomServiceConn : MonoBehaviour {
     public Room CurrentRoom;
     public RmUserInfo CurrentUser;
 
-    public WSConnect wsConnect;
-    List<System.EventHandler<WebSocketSharp.MessageEventArgs>> wscHandler =
-        new List<System.EventHandler<WebSocketSharp.MessageEventArgs>>();
+    // public WSConnect wsConnect;
+    // List<System.EventHandler<WebSocketSharp.MessageEventArgs>> wscHandler =
+    //     new List<System.EventHandler<WebSocketSharp.MessageEventArgs>>();
 
     public CfServerSetting config;
     public bool IsHost = false;
@@ -263,19 +263,19 @@ public class RoomServiceConn : MonoBehaviour {
     /// ConnectToBroadcast : the Broadcast handler
     /// </summary>
     /// <returns></returns>
-    public async Task<bool> ConnectToBroadcast() {
-        Debug.Log("try connect to Broacast");
-        if (this.wsConnect == null) {
-            this.wsConnect = new WSConnect();
-        }
-        var conn = await this.wsConnect.ConnectToBroadcast(
-            this.CurrentRoom.Key, this.config.RoomService, wscHandler);
-        if (!conn) {
-            return false;
-        }
-        // await this.conn.RoomBroadcast.EmitAsync("join_room", this.current_room.Key);
-        return true;
-    }
+    // public async Task<bool> ConnectToBroadcast() {
+    //     Debug.Log("try connect to Broacast");
+    //     if (this.wsConnect == null) {
+    //         this.wsConnect = new WSConnect();
+    //     }
+    //     var conn = await this.wsConnect.ConnectToBroadcast(
+    //         this.CurrentRoom.Key, this.config.RoomService, wscHandler);
+    //     if (!conn) {
+    //         return false;
+    //     }
+    //     // await this.conn.RoomBroadcast.EmitAsync("join_room", this.current_room.Key);
+    //     return true;
+    // }
 
     /// <summary>
     /// AddPendingEventFunc : 
@@ -286,10 +286,10 @@ public class RoomServiceConn : MonoBehaviour {
     ///     P.S.: Add the event-handler before the WebSocket Connect (ConnectToBroadcast)
     /// </param>
     /// <returns></returns>
-    public bool AddPendingEventFunc(System.EventHandler<WebSocketSharp.MessageEventArgs> funcHandler) {
-        this.wscHandler.Add(funcHandler);
-        return true;
-    }
+    // public bool AddPendingEventFunc(System.EventHandler<WebSocketSharp.MessageEventArgs> funcHandler) {
+    //     this.wscHandler.Add(funcHandler);
+    //     return true;
+    // }
 
     /// <summary>
     /// AddPendingEventFunc : 
@@ -301,18 +301,18 @@ public class RoomServiceConn : MonoBehaviour {
     ///         predefined Msg ( for ULZ-RoomService Connector )
     /// </param>
     /// <returns></returns>
-    public bool AddPendingEventFunc(System.EventHandler<RoomMsg> funcHandler) {
-        var wrapFunc = new System.EventHandler<WebSocketSharp.MessageEventArgs>((co, msg) => {
-            Debug.Log($"sender:{co.ToString()}");
-            Debug.Log($"Msg :{msg.Type.ToString()}");
-            var msgBlock = RoomMsg.Parser.ParseFrom(
-                msg.RawData
-            );
-            funcHandler(co, msgBlock);
-        });
-        this.wscHandler.Add(wrapFunc);
-        return true;
-    }
+    // public bool AddPendingEventFunc(System.EventHandler<RoomMsg> funcHandler) {
+    //     var wrapFunc = new System.EventHandler<WebSocketSharp.MessageEventArgs>((co, msg) => {
+    //         Debug.Log($"sender:{co.ToString()}");
+    //         Debug.Log($"Msg :{msg.Type.ToString()}");
+    //         var msgBlock = RoomMsg.Parser.ParseFrom(
+    //             msg.RawData
+    //         );
+    //         funcHandler(co, msgBlock);
+    //     });
+    //     this.wscHandler.Add(wrapFunc);
+    //     return true;
+    // }
 
     /// <summary>
     /// ClearPendingEventFunc(): 
@@ -320,16 +320,17 @@ public class RoomServiceConn : MonoBehaviour {
     ///     
     /// </summary>
     /// <returns></returns>
-    public bool ClearPendingEventFunc() {
-        foreach (var trig in this.wscHandler) {
-            Debug.Log("try remove func");
-            this.wsConnect.ClearEventFunc(trig);
-        }
-        return true;
-    }
+    // public bool ClearPendingEventFunc() {
+    //     foreach (var trig in this.wscHandler) {
+    //         Debug.Log("try remove func");
+    //         this.wsConnect.ClearEventFunc(trig);
+    //     }
+    //     return true;
+    // }
     public async Task<bool> DisconnectToBroadcast() {
-        this.ClearPendingEventFunc();
-        return await this.wsConnect.DisconnectToBroadcast();
+        // this.ClearPendingEventFunc();
+        // return await this.wsConnect.DisconnectToBroadcast();
+        return false;
     }
 
     public async Task<bool> Kill() {

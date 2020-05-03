@@ -40,15 +40,15 @@ public class ChatPanelCtl : MonoBehaviour {
             (obj, msg) => EventGenMessage(msg));
     }
 
-    async void OnConnecterUpdate() {
-        // GenMessage(t.ResponseStream.Current);
-        Debug.Log("start to connect Broadcast");
-        this.connecter.AddPendingEventFunc(
-            (object caller, RoomMsg msgpack) =>
-            GenMessage(msgpack)
-        );
-        await this.connecter.ConnectToBroadcast();
-    }
+    // async void OnConnecterUpdate() {
+    //     // GenMessage(t.ResponseStream.Current);
+    //     Debug.Log("start to connect Broadcast");
+    //     this.connecter.AddPendingEventFunc(
+    //         (object caller, RoomMsg msgpack) =>
+    //         GenMessage(msgpack)
+    //     );
+    //     await this.connecter.ConnectToBroadcast();
+    // }
 
     public void OpenPanel() {
         if (PanelPrevent.AnyPanel == false && this.PanelDisplay.activeSelf == false) {

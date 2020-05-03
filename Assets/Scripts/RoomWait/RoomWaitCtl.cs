@@ -197,8 +197,10 @@ public class RoomWaitCtl : MonoBehaviour {
                 tmp = f.original;
             }
         }
-        var ab_tmp = CCAsset["cc" + msg_blk.CharcardId];
-        var card_json_tmp = CCAsset["cc" + msg_blk.CharcardId].LoadAsset("card_set.json")as TextAsset;
+        Debug.Log(tmp);
+        Debug.Log("cc" + msg_blk.CharcardId.ToString());
+        var ab_tmp = CCAsset["cc" + msg_blk.CharcardId.ToString()];
+        var card_json_tmp = CCAsset["cc" + msg_blk.CharcardId.ToString()].LoadAsset("card_set.json")as TextAsset;
         var Dataset = JsonConvert.DeserializeObject<CardObject>(card_json_tmp.text);
         if (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host) {
             this.HostCard.CC_id = msg_blk.CharcardId;

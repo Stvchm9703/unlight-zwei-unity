@@ -200,7 +200,7 @@ public class RoomServiceConn : MonoBehaviour {
             throw new System.Exception("CONNECT_CLIENT_IS_NULL");
         }
         if (CurrentRoom != null) {
-            throw new System.Exception("CURRENT_ROOM_EXIST");
+            throw new System.Exception($"CURRENT_ROOM_EXIST::{this.CurrentRoom.ToString()}");
         }
         try {
             var get_task = await this.client.JoinRoomAsync(new RoomReq {

@@ -142,9 +142,11 @@ public class RoomSearchCtl : MonoBehaviour {
     public async void GoToRoom(Room rm) {
         Debug.Log("go key:" + rm.Key);
         if (this.Connecter.CurrentRoom == null) {
-            this.Connecter.CurrentRoom = rm;
+            // this.Connecter.CurrentRoom = rm;
             if (rm.Dueler == null) {
                 await this.Connecter.JoinRoom(rm.Key, rm.Password);
+            } else {
+                Debug.Log("watch only ?");
             }
         }
         SceneManager.LoadScene("RoomWait", LoadSceneMode.Single);

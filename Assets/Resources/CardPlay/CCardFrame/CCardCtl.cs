@@ -254,6 +254,7 @@ public class CCardCtl : MonoBehaviour {
         }
     }
     public IEnumerator InitCCImg(AssetBundle ab, CardObject Co, CardSet Cs) {
+        Debug.Log($"ab:{ab == null},Co:{Co == null},Cs:{Cs == null}");
         this.original = Cs;
         if (ab) {
             Texture2D tas = ab.LoadAsset(Cs.chara_image.name.Replace(".png", ""))as Texture2D;

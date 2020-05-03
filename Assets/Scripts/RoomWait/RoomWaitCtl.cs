@@ -32,11 +32,13 @@ public class RoomWaitCtl : MonoBehaviour {
 
     public CCInfoPanel InfoPanel;
     public GameObject ChangeDeckPanel;
-    List<GameObject> CardOption;
-    public Dictionary<string, AssetBundle> CCAsset;
+    public List<GameObject> CardOption;
+    public Dictionary<string, CardSet> CardOptionIns;
+    public Dictionary<string, CardObject> CardObjectDic;
+    // public Dictionary<string, AssetBundle> CCAsset;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
-    public AssetBundle picked_ab;
+    public AssetBundle picked_ab, HostCardAB, DuelCardAB;
     public CardObject picked_cardObj;
     public CardSet picked_cardSet;
 
@@ -45,6 +47,9 @@ public class RoomWaitCtl : MonoBehaviour {
     public Dropdown UP_deckType;
     public GameObject UP_totalCardDeckCost, UP_CharecterCardLimit;
     public RoomCreateReq UP_updateReq;
+
+    public CardSet HostCardSet, DuelCardSet;
+    public CardObject HostCardObj, DuelCardObj;
 
     public IConnection NatsConn;
     // public base function
@@ -56,21 +61,29 @@ public class RoomWaitCtl : MonoBehaviour {
     void init_char_card_load() {
         card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
         // AvailableCCAsset = new List<AssetBundle>();
+        this.DuelCardSet = new CardSet();
+        this.DuelCardObj = new CardObject();
+        this.HostCardSet = new CardSet();
+        this.HostCardObj = new CardObject();
+
         this.CardOption = new List<GameObject>();
+        this.CardOptionIns = new Dictionary<string, CardSet>();
         this.SkillObjectDict = new Dictionary<string, List<SkillObject>>();
-        this.CCAsset = new Dictionary<string, AssetBundle>();
+        this.CardObjectDic = new Dictionary<string, CardObject>();
+        // this.CCAsset = new Dictionary<string, AssetBundle>();
         foreach (var t in card_setting.Available) {
             AssetBundle ptmp = AssetBundle.LoadFromFile(
                 Path.Combine(
                     ConfigPath.Asset_path,
                     "CC" + (t.ToString()).PadLeft(2, '0') + ".ab")
             );
-            this.CCAsset.Add("cc" + t.ToString(), ptmp);
             // AvailableCCAsset.Add(ptmp);
             TextAsset ta = ptmp.LoadAsset("card_set.json")as TextAsset;
             TextAsset ska = ptmp.LoadAsset("skill.json")as TextAsset;
 
-            var Dataset = JsonConvert.DeserializeObject<CardObject>(ta.text);
+            CardObject Dataset = JsonConvert.DeserializeObject<CardObject>(ta.text);
+            this.CardObjectDic.Add("cc" + t, Dataset);
+
             List<SkillObject> tmp_sk = JsonConvert.DeserializeObject<List<SkillObject>>(ska.text);
 
             // CardSet
@@ -81,6 +94,8 @@ public class RoomWaitCtl : MonoBehaviour {
                 card_face.CC_id = Dataset.id;
                 card_face.level = cs.level;
                 card_face.original = cs;
+                // Debug.Log($"{card_face.CC_id};{card_face.original.id}");
+
                 StartCoroutine(card_face.InitCCImg(ptmp, Dataset, cs));
                 StartCoroutine(card_face.InitCCLvFrame());
                 StartCoroutine(card_face.InitEquSetting(0, 0));
@@ -88,8 +103,12 @@ public class RoomWaitCtl : MonoBehaviour {
                 gotmp_btn.onClick.AddListener(
                     () => ChangePanel_OnCardClick(ptmp, Dataset, cs)
                 );
-                
+
                 this.CardOption.Add(gotmp);
+                this.CardOptionIns.Add(
+                    "cc_" + t.ToString() + "_" + cs.id.ToString(),
+                    cs
+                );
 
                 // skill-obk list for info-panel
                 List<int> sumd = new List<int>();
@@ -113,6 +132,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
             }
         }
+
     }
 
     void room_connector_load() {
@@ -165,6 +185,7 @@ public class RoomWaitCtl : MonoBehaviour {
     async void msgSystMsg(object caller, NATS.Client.MsgHandlerEventArgs income) {
         var inst_msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
         Debug.Log(inst_msg.Message);
+        Debug.Log(inst_msg.MsgType.ToString());
         if (inst_msg.MsgType == RoomMsg.Types.MsgType.SystemInfo) {
             if (inst_msg.Message == "Dueler:GameSet:Ready" && this.Connecter.IsHost) {
                 isReady = true;
@@ -190,32 +211,49 @@ public class RoomWaitCtl : MonoBehaviour {
 
     public void OnConnecterUpdate_CardChange(string msg) {
         string js_str = msg.Replace("CardChange::", "");
+        Debug.Log(js_str);
+
         RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson(js_str);
-        CardSet tmp = new CardSet();
-        foreach (var gobj in CardOption) {
-            var f = gobj.GetComponent<CCardCtl>();
-            if (f.original.id == msg_blk.CardsetId &&
-                f.CC_id == msg_blk.CharcardId) {
-                tmp = f.original;
-            }
-        }
-        Debug.Log(tmp);
+        Debug.Log($"{msg_blk.CharcardId}, {msg_blk.CardsetId}, {msg_blk.Level}");
+
+        CardSet tmp = this.CardOptionIns["cc_" + msg_blk.CharcardId + "_" + msg_blk.CardsetId];
+        Debug.Log($"{tmp.id},{tmp.level}");
         Debug.Log("cc" + msg_blk.CharcardId.ToString());
-        var ab_tmp = CCAsset["cc" + msg_blk.CharcardId.ToString()];
-        var card_json_tmp = CCAsset["cc" + msg_blk.CharcardId.ToString()].LoadAsset("card_set.json")as TextAsset;
-        var Dataset = JsonConvert.DeserializeObject<CardObject>(card_json_tmp.text);
+
+        CardObject Dataset = this.CardObjectDic["cc" + msg_blk.CharcardId];
+        Debug.Log($"dt_set:{Dataset.id}");
+
+
+        AssetBundle ab_tmp = AssetBundle.LoadFromFile(
+            Path.Combine(
+                ConfigPath.Asset_path,
+                "CC" + (msg_blk.CharcardId.ToString()).PadLeft(2, '0') + ".ab")
+        );
+        // Debug.Log($"{ab_tmp.GetAllAssetNames()}");
+
         if (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host) {
-            this.HostCard.CC_id = msg_blk.CharcardId;
-            this.HostCard.level = msg_blk.Level;
-            StartCoroutine(this.HostCard.InitCCImg(
-                ab_tmp, Dataset, tmp));
+            this.HostCard.CC_id = Dataset.id;
+            this.HostCard.level = tmp.level;
+            this.HostCardAB = ab_tmp;
+            // Debug.Log($"ab:{this.HostCardAB.name}");
+            this.HostCardObj = Dataset;
+            // Debug.Log($"Co:{this.HostCardObj.id}");
+            this.HostCardSet = tmp;
+            // Debug.Log($"Cs:{this.HostCardSet.id}");
+
+            StartCoroutine(this.HostCard.InitCCImg(this.HostCardAB, this.HostCardObj, this.HostCardSet));
             StartCoroutine(this.HostCard.InitCCLvFrame());
             StartCoroutine(this.HostCard.InitEquSetting(0, 0));
+
         } else {
-            this.DuelerCard.CC_id = msg_blk.CharcardId;
-            this.DuelerCard.level = msg_blk.Level;
-            StartCoroutine(this.DuelerCard.InitCCImg(
-                ab_tmp, Dataset, tmp));
+            this.DuelerCard.CC_id = Dataset.id;
+            this.DuelerCard.level = tmp.level;
+
+            this.DuelCardAB = ab_tmp;
+            this.DuelCardObj = Dataset;
+            this.DuelCardSet = tmp;
+
+            StartCoroutine(this.DuelerCard.InitCCImg(this.DuelCardAB, this.DuelCardObj, this.DuelCardSet));
             StartCoroutine(this.DuelerCard.InitCCLvFrame());
             StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
         }

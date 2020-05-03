@@ -80,6 +80,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 var card_face = gotmp.GetComponent<CCardCtl>();
                 card_face.CC_id = Dataset.id;
                 card_face.level = cs.level;
+                card_face.original = cs;
                 StartCoroutine(card_face.InitCCImg(ptmp, Dataset, cs));
                 StartCoroutine(card_face.InitCCLvFrame());
                 StartCoroutine(card_face.InitEquSetting(0, 0));
@@ -87,6 +88,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 gotmp_btn.onClick.AddListener(
                     () => ChangePanel_OnCardClick(ptmp, Dataset, cs)
                 );
+                
                 this.CardOption.Add(gotmp);
 
                 // skill-obk list for info-panel

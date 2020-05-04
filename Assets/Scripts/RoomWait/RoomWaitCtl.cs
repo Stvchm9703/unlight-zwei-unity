@@ -263,45 +263,29 @@ public class RoomWaitCtl : MonoBehaviour {
         RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson(js_str);
         Debug.Log($"{msg_blk.CharcardId}, {msg_blk.CardsetId}, {msg_blk.Level}");
 
-        CardSet tmp = this.CardOptionIns["cc_" + msg_blk.CharcardId + "_" + msg_blk.CardsetId];
-        Debug.Log($"{tmp.id},{tmp.level}");
-        Debug.Log("cc" + msg_blk.CharcardId.ToString());
-
-        CardObject Dataset = this.CardObjectDic["cc" + msg_blk.CharcardId];
-        Debug.Log($"dt_set:{Dataset.id}");
-
+        var tmp = this.CardOptionIns["cc_" + msg_blk.CharcardId + "_" + msg_blk.CardsetId];
+        var Dataset = this.CardObjectDic["cc" + msg_blk.CharcardId];
         var tmpAssetPack = this.CardAssetPack[$"cc_{Dataset.id}_{tmp.id}"];
 
-        if (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host) {
-            Debug.Log("HostCardLoad");
+        if (
+            (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host && !this.Connecter.IsHost) ||
+            this.Connecter.IsWatcher
+        ) {
             this.HostCard.CC_id = Dataset.id;
             this.HostCard.level = tmp.level;
-            Debug.Log(msg_blk.CharcardId);
-            // Debug.Log(ptmp.name);
-            // this.HostCardAB = this.CardAB[Dataset.id - 1];
             this.HostCardObj = Dataset;
             this.HostCardSet = tmp;
             this.HostCardAB = tmpAssetPack;
-            Debug.Log("StartCoroutine");
-            Debug.Log($"{this.HostCardAB.id} , {this.HostCardAB.chara_image.name}");
-
-            // this.HostCardAB = this.CardAssetPack.
             this.isHostUpdated = true;
-        } else {
-            // yield return true;
-            Debug.Log("HostCardLoad");
+        } else if (
+            (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Dueler && this.Connecter.IsHost) ||
+            this.Connecter.IsWatcher
+        ) {
             this.DuelerCard.CC_id = Dataset.id;
             this.DuelerCard.level = tmp.level;
-            Debug.Log(msg_blk.CharcardId);
-            // Debug.Log(ptmp.name);
-            // this.HostCardAB = this.CardAB[Dataset.id - 1];
             this.DuelCardObj = Dataset;
             this.DuelCardSet = tmp;
             this.DuelCardAB = tmpAssetPack;
-            Debug.Log("StartCoroutine");
-            Debug.Log($"{this.DuelCardAB.id} , {this.DuelCardAB.chara_image.name}");
-
-            // this.DuelCardAB = this.CardAssetPack.
             this.isDuelUpdated = true;
         }
 
@@ -329,18 +313,6 @@ public class RoomWaitCtl : MonoBehaviour {
     }
 
     // ChangePanel related
-    public void ChangePanel_OnCardClick(AssetBundle ab, CardObject cardObject, CardSet cardSet) {
-        picked_ab = ab;
-
-        picked_cardObj = cardObject;
-        picked_cardSet = cardSet;
-        picked.CC_id = cardObject.id;
-        picked.level = cardSet.level;
-        StartCoroutine(picked.InitCCImg(picked_ab, cardObject, cardSet));
-        StartCoroutine(picked.InitCCLvFrame());
-        StartCoroutine(picked.InitEquSetting(0, 0));
-    }
-
     public void ChangePanel_OnCardClick(CardObject cardObject, CardSet cardSet) {
         // picked_ab = this.CardAB[cardObject.id - 1];
 
@@ -371,6 +343,9 @@ public class RoomWaitCtl : MonoBehaviour {
             if (this.Connecter.IsHost) {
                 this.HostCard.CC_id = this.picked.CC_id;
                 this.HostCard.level = this.picked.level;
+                this.HostCardObj = this.picked_cardObj;
+                this.HostCardSet = this.picked_cardSet;
+                this.HostCardAB = this.PickedCardAB;
                 StartCoroutine(this.HostCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));
                 StartCoroutine(this.HostCard.InitCCLvFrame());
@@ -379,10 +354,11 @@ public class RoomWaitCtl : MonoBehaviour {
             } else {
                 this.DuelerCard.CC_id = this.picked.CC_id;
                 this.DuelerCard.level = this.picked.level;
+                this.DuelCardObj = this.picked_cardObj;
+                this.DuelCardSet = this.picked_cardSet;
+                this.DuelCardAB = this.PickedCardAB;
                 StartCoroutine(this.DuelerCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));
-                // StartCoroutine(this.DuelerCard.InitCCImg(
-                //     picked_ab, picked_cardObj, picked_cardSet));
                 StartCoroutine(this.DuelerCard.InitCCLvFrame());
                 StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             }

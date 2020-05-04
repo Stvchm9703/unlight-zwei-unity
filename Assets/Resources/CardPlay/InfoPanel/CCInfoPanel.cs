@@ -117,14 +117,14 @@ public class CCInfoPanel : MonoBehaviour {
     }
 
     public IEnumerator InitSkipStatus(
-        AssetBundle tar_asset,
-        CardObject json, CardSet cs, List<SkillObject> sko,
+        // AssetBundle tar_asset,
+        CardObject json, CardSetPack cs, List<SkillObject> sko,
         int cc_id, int level
     ) {
         // yield return null;
         card_face.CC_id = cc_id;
         card_face.level = level;
-        StartCoroutine(card_face.InitCCImg(tar_asset, json, cs));
+        StartCoroutine(card_face.InitCCImg2(json, cs));
         StartCoroutine(card_face.InitCCLvFrame());
         StartCoroutine(card_face.InitEquSetting(0, 0));
         string name_string = "", desp_string = "";
@@ -173,10 +173,12 @@ public class CCInfoPanel : MonoBehaviour {
 
         // Skill Related 
         foreach (SkillObject t in sko) {
-            GameObject ff = (GameObject)Instantiate(
-                Skill_Info_Prefab, ScrollParent.transform);
-            ff.GetComponent<IP_SkillBox>().init(t);
-            this.WaitForDestory.Add(ff);
+            if (cs.skill_pointer.Contains(t.id)) {
+                GameObject ff = (GameObject)Instantiate(
+                    Skill_Info_Prefab, ScrollParent.transform);
+                ff.GetComponent<IP_SkillBox>().init(t);
+                this.WaitForDestory.Add(ff);
+            }
         }
 
         // StartCoroutine();

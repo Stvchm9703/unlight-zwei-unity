@@ -166,7 +166,33 @@ public class CCardCtl : MonoBehaviour {
         }
         yield return true;
     }
+    public void InitEquSetting2(int atk, int def) {
+        this.ATK_equ = atk;
+        if (atk > 0) {
+            this.ATKEqu.GetComponent<Text>().text = "+" + atk.ToString();
+            this.ATKEqu.GetComponent<Text>().color = this._equ_color_a;
+            this.ATKEqu.GetComponent<Outline>().effectColor = this._equ_color_b;
+        } else if (atk < 0) {
+            this.ATKEqu.GetComponent<Text>().text = atk.ToString();
+            this.ATKEqu.GetComponent<Text>().color = this._equ_color_b;
+            this.ATKEqu.GetComponent<Outline>().effectColor = this._equ_color_a;
+        } else {
+            this.ATKEqu.GetComponent<Text>().text = "";
+        }
+        this.DEF_equ = def;
+        if (def > 0) {
+            this.DEFEqu.GetComponent<Text>().text = "+" + def.ToString();
+            this.DEFEqu.GetComponent<Text>().color = this._equ_color_a;
+            this.DEFEqu.GetComponent<Outline>().effectColor = this._equ_color_b;
 
+        } else if (def < 0) {
+            this.DEFEqu.GetComponent<Text>().text = def.ToString();
+            this.DEFEqu.GetComponent<Text>().color = this._equ_color_b;
+            this.DEFEqu.GetComponent<Outline>().effectColor = this._equ_color_a;
+        } else {
+            this.DEFEqu.GetComponent<Text>().text = "";
+        }
+    }
     public IEnumerator InitCCLvFrame() {
         if (this.transform.Find("CardFace/frame/lvtitle/num").gameObject) {
             this.transform.Find("CardFace/frame/lvtitle/num").gameObject.GetComponent<TextMeshProUGUI>().SetText(
@@ -183,6 +209,18 @@ public class CCardCtl : MonoBehaviour {
         }
 
         yield return true;
+    }
+
+    public void InitCCLvFrame2() {
+        if (this.transform.Find("CardFace/frame/lvtitle/num").gameObject) {
+            this.transform.Find("CardFace/frame/lvtitle/num").gameObject.GetComponent<TextMeshProUGUI>().SetText(
+                this.level.ToString());
+        } 
+
+        if (this.transform.Find("CardFace/frame/lv").gameObject) {
+            this.transform.Find("CardFace/frame/lv").gameObject.GetComponent<RawImage>().texture =
+                Resources.Load<Texture2D>("CardPlay/CCardFrame/Image/lv" + this.level.ToString())as Texture2D;
+        } 
     }
     public IEnumerator InitCCImg(AssetBundle ab) {
         if (ab) {
@@ -309,6 +347,158 @@ public class CCardCtl : MonoBehaviour {
             yield return false;
         }
     }
+
+    public IEnumerator InitCCImg2(Texture2D CharImg, CardObject Co, CardSet Cs) {
+        // Debug.Log($"ab:{ab == null},Co:{Co == null},Cs:{Cs == null}");
+        this.original = Cs;
+        this.transform.Find("CardFace/char").gameObject.GetComponent<RawImage>().texture = CharImg;
+
+        string name_string = "";
+        switch (SL_setting) {
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseTraditional:
+                name_string = Co.name.tcn;
+                break;
+            case SystemLanguage.ChineseSimplified:
+                name_string = Co.name.scn;
+                break;
+            case SystemLanguage.Japanese:
+                name_string = Co.name.jp;
+                break;
+            case SystemLanguage.Korean:
+                name_string = Co.name.kr;
+                break;
+            case SystemLanguage.Indonesian:
+                name_string = Co.name.ina;
+                break;
+            case SystemLanguage.Thai:
+                name_string = Co.name.thai;
+                break;
+            case SystemLanguage.English:
+            case SystemLanguage.Unknown:
+            default:
+                name_string = Co.name.en;
+                break;
+        }
+        if (name_string == "") {
+            name_string = Co.name.jp;
+        }
+
+        if (this.transform.Find("CardFace/frame/name/val").gameObject) {
+            this.transform.Find("CardFace/frame/name/val").gameObject.GetComponent<Text>().text = name_string;
+            this.HP_defaut = Cs.hp;
+            this.HP = Cs.hp;
+            this.ATK_defaut = Cs.ap;
+            this.ATK = Cs.ap;
+            this.DEF_defaut = Cs.dp;
+            this.DEF = Cs.dp;
+            yield return true;
+        } else {
+            yield return false;
+        }
+        // if (this.transform.Find())
+        yield return true;
+    }
+
+    public IEnumerator InitCCImg2(CardObject Co, CardSetPack Cs) {
+        // Debug.Log($"ab:{ab == null},Co:{Co == null},Cs:{Cs == null}");
+        // this.original = Cs;
+        this.transform.Find("CardFace/char").gameObject.GetComponent<RawImage>().texture = Cs.chara_image_t2;
+
+        string name_string = "";
+        switch (SL_setting) {
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseTraditional:
+                name_string = Co.name.tcn;
+                break;
+            case SystemLanguage.ChineseSimplified:
+                name_string = Co.name.scn;
+                break;
+            case SystemLanguage.Japanese:
+                name_string = Co.name.jp;
+                break;
+            case SystemLanguage.Korean:
+                name_string = Co.name.kr;
+                break;
+            case SystemLanguage.Indonesian:
+                name_string = Co.name.ina;
+                break;
+            case SystemLanguage.Thai:
+                name_string = Co.name.thai;
+                break;
+            case SystemLanguage.English:
+            case SystemLanguage.Unknown:
+            default:
+                name_string = Co.name.en;
+                break;
+        }
+        if (name_string == "") {
+            name_string = Co.name.jp;
+        }
+
+        if (this.transform.Find("CardFace/frame/name/val").gameObject) {
+            this.transform.Find("CardFace/frame/name/val").gameObject.GetComponent<Text>().text = name_string;
+            this.HP_defaut = Cs.hp;
+            this.HP = Cs.hp;
+            this.ATK_defaut = Cs.ap;
+            this.ATK = Cs.ap;
+            this.DEF_defaut = Cs.dp;
+            this.DEF = Cs.dp;
+            yield return true;
+        } else {
+            yield return false;
+        }
+        // if (this.transform.Find())
+        yield return true;
+    }
+
+    public void InitCCImg3(CardObject Co, CardSetPack Cs) {
+        Debug.Log($",Co:{Co == null},Cs:{Cs == null}");
+        // this.original = Cs;
+        Debug.Log($"{Cs.chara_image_t2.name}");
+        this.transform.Find("CardFace/char").GetComponent<RawImage>().texture = Cs.chara_image_t2;
+
+        string name_string = "";
+        switch (SL_setting) {
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseTraditional:
+                name_string = Co.name.tcn;
+                break;
+            case SystemLanguage.ChineseSimplified:
+                name_string = Co.name.scn;
+                break;
+            case SystemLanguage.Japanese:
+                name_string = Co.name.jp;
+                break;
+            case SystemLanguage.Korean:
+                name_string = Co.name.kr;
+                break;
+            case SystemLanguage.Indonesian:
+                name_string = Co.name.ina;
+                break;
+            case SystemLanguage.Thai:
+                name_string = Co.name.thai;
+                break;
+            case SystemLanguage.English:
+            case SystemLanguage.Unknown:
+            default:
+                name_string = Co.name.en;
+                break;
+        }
+        if (name_string == "") {
+            name_string = Co.name.jp;
+        }
+        this.transform.Find("CardFace/frame/name/val").GetComponent<Text>().text = name_string;
+        this.HP_defaut = Cs.hp;
+        this.HP = Cs.hp;
+        this.ATK_defaut = Cs.ap;
+        this.ATK = Cs.ap;
+        this.DEF_defaut = Cs.dp;
+        this.DEF = Cs.dp;
+        Debug.Log("done");
+        // if (this.transform.Find())
+    }
+
     void Start() {
         if (this.HPVal == null) {
             this.HPVal = this.transform.Find("CardFace/frame/value/HP").gameObject;
@@ -325,9 +515,5 @@ public class CCardCtl : MonoBehaviour {
         if (this.DEFEqu == null) {
             this.DEFEqu = this.transform.Find("CardFace/frame/value/DEFplus").gameObject;
         }
-    }
-
-    void Update() {
-
     }
 }

@@ -110,6 +110,10 @@ public class IP_SkillBox : MonoBehaviour {
             } else if (card_cond[i].Contains("D")) {
                 cond_init.GetComponent<Image>().color = new Color(0f, 0f, 0.7f, 1f);
                 tmp = card_cond[i].Replace("D", "");
+            } else if (card_cond[i].Contains("W")) {
+                cond_init.GetComponent<Image>().color = new Color(0.9f, 0.9f, 0.9f, 1f);
+                cond_init.transform.Find("Text").GetComponent<Text>().color = new Color(0f, 0f, 0f, 1f);
+                tmp = card_cond[i].Replace("W", "");
             }
             if (tmp.Contains("+")) {
                 cond_init.transform.Find("Text").GetComponent<Text>().text =
@@ -120,7 +124,7 @@ public class IP_SkillBox : MonoBehaviour {
                     tmpa[0] + "=";
                 for (int y = 1; y < Int32.Parse(tmpa[1]); y++) {
                     GameObject con_clo = (GameObject)Instantiate(
-                        cond_init, 
+                        cond_init,
                         this.transform.Find("condition"));
                     cond_list.Add(con_clo);
                 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-// using Unity;
+using UnityEngine;
 
 namespace ULZAsset {
     [System.Serializable]
@@ -74,4 +74,42 @@ namespace ULZAsset {
         public int width;
         public string type;
     }
+
+    [System.Serializable]
+    public class CardAssetPackage {
+        public int id { get; set; }
+        public List<CardSetPack> card_set { get; set; }
+        public MultiLang name { get; set; }
+        public MultiLang ab_name { get; set; }
+        public MultiLang caption { get; set; }
+    }
+
+    [System.Serializable]
+    public class CardSetPack {
+        public int id { get; set; }
+        public int level { get; set; }
+        public int hp { get; set; }
+        public int ap { get; set; }
+
+        public int dp { get; set; }
+        public int rarity { get; set; }
+        public int deck_cost { get; set; }
+        public int slot { get; set; }
+        public ImgSet stand_image;
+        public Texture2D stand_image_t2;
+        public ImgSet chara_image;
+        public Texture2D chara_image_t2;
+        public ImgSet artifact_image;
+        public Texture2D artifact_image_t2;
+
+        public ImgSet bg_image;
+        public Texture2D bg_image_t2;
+
+        public int next_id { get; set; }
+        public int kind { get; set; }
+        public string created_at { get; set; }
+        public object skill { get; set; }
+        public List<int> skill_pointer { get; set; }
+    }
+
 }

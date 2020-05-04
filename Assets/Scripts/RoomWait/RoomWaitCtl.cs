@@ -33,12 +33,17 @@ public class RoomWaitCtl : MonoBehaviour {
     public CCInfoPanel InfoPanel;
     public GameObject ChangeDeckPanel;
     public List<GameObject> CardOption;
+    // public Dictionary<string, AssetBundle> CardAB;
+    // public List<AssetBundle> CardAB;
+    public Dictionary<string, CardSetPack> CardAssetPack;
+
     public Dictionary<string, CardSet> CardOptionIns;
     public Dictionary<string, CardObject> CardObjectDic;
     // public Dictionary<string, AssetBundle> CCAsset;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
-    public AssetBundle picked_ab, HostCardAB, DuelCardAB;
+    public AssetBundle picked_ab;
+
     public CardObject picked_cardObj;
     public CardSet picked_cardSet;
 
@@ -50,17 +55,39 @@ public class RoomWaitCtl : MonoBehaviour {
 
     public CardSet HostCardSet, DuelCardSet;
     public CardObject HostCardObj, DuelCardObj;
-
+    public CardSetPack HostCardAB, DuelCardAB, PickedCardAB;
+    public bool isHostUpdated = false, isDuelUpdated = false;
     public IConnection NatsConn;
     // public base function
     void Start() {
         init_char_card_load();
         room_connector_load();
     }
+
+    void Update() {
+        if (isHostUpdated) {
+            StartCoroutine(this.HostCard.InitCCImg2(this.HostCardObj, this.HostCardAB));
+            StartCoroutine(this.HostCard.InitCCLvFrame());
+            StartCoroutine(this.HostCard.InitEquSetting(0, 0));
+            isHostUpdated = false;
+        }
+
+        if (isDuelUpdated) {
+            StartCoroutine(this.DuelerCard.InitCCImg2(this.DuelCardObj, this.DuelCardAB));
+            StartCoroutine(this.DuelerCard.InitCCLvFrame());
+            StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
+            isDuelUpdated = false;
+        }
+    }
+
     // privated init loading
     void init_char_card_load() {
         card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
         // AvailableCCAsset = new List<AssetBundle>();
+        // this.CardAB = new Dictionary<string, AssetBundle>();
+        // this.CardAB = new List<AssetBundle>();
+        this.CardAssetPack = new Dictionary<string, CardSetPack>();
+
         this.DuelCardSet = new CardSet();
         this.DuelCardObj = new CardObject();
         this.HostCardSet = new CardSet();
@@ -70,13 +97,12 @@ public class RoomWaitCtl : MonoBehaviour {
         this.CardOptionIns = new Dictionary<string, CardSet>();
         this.SkillObjectDict = new Dictionary<string, List<SkillObject>>();
         this.CardObjectDic = new Dictionary<string, CardObject>();
-        // this.CCAsset = new Dictionary<string, AssetBundle>();
+
         foreach (var t in card_setting.Available) {
             AssetBundle ptmp = AssetBundle.LoadFromFile(
-                Path.Combine(
-                    ConfigPath.Asset_path,
-                    "CC" + (t.ToString()).PadLeft(2, '0') + ".ab")
+                Path.Combine(ConfigPath.Asset_path, "CC" + (t.ToString()).PadLeft(2, '0') + ".ab")
             );
+
             // AvailableCCAsset.Add(ptmp);
             TextAsset ta = ptmp.LoadAsset("card_set.json")as TextAsset;
             TextAsset ska = ptmp.LoadAsset("skill.json")as TextAsset;
@@ -88,6 +114,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
             // CardSet
             // AvailableCard.AddRange(Dataset.card_set);
+
             foreach (var cs in Dataset.card_set) {
                 GameObject gotmp = (GameObject)Instantiate(CCardPrefab, ChangeDeckContent.transform);
                 var card_face = gotmp.GetComponent<CCardCtl>();
@@ -96,41 +123,58 @@ public class RoomWaitCtl : MonoBehaviour {
                 card_face.original = cs;
                 // Debug.Log($"{card_face.CC_id};{card_face.original.id}");
 
-                StartCoroutine(card_face.InitCCImg(ptmp, Dataset, cs));
+                var ttty = new CardSetPack() {
+                    level = cs.level,
+                    hp = cs.hp,
+                    ap = cs.ap,
+                    dp = cs.dp,
+                    rarity = cs.rarity,
+                    deck_cost = cs.deck_cost,
+                    slot = cs.slot,
+                    next_id = cs.next_id,
+                    kind = cs.kind,
+                    created_at = cs.created_at,
+                    skill = cs.skill,
+                    skill_pointer = cs.skill_pointer,
+
+                    stand_image = cs.stand_image,
+                    chara_image = cs.chara_image,
+                    artifact_image = cs.artifact_image,
+                    bg_image = cs.bg_image,
+                };
+                Texture2D tas = ptmp.LoadAsset(cs.chara_image.name.Replace(".png", ""))as Texture2D;
+                ttty.chara_image_t2 = tas;
+                this.CardAssetPack.Add(
+                    $"cc_{Dataset.id}_{cs.id}",
+                    ttty
+                );
+
+                StartCoroutine(card_face.InitCCImg2(tas, Dataset, cs));
                 StartCoroutine(card_face.InitCCLvFrame());
                 StartCoroutine(card_face.InitEquSetting(0, 0));
                 Button gotmp_btn = gotmp.AddComponent<Button>();
-                gotmp_btn.onClick.AddListener(
-                    () => ChangePanel_OnCardClick(ptmp, Dataset, cs)
-                );
-
+                gotmp_btn.onClick.AddListener(() => ChangePanel_OnCardClick(Dataset, cs));
                 this.CardOption.Add(gotmp);
-                this.CardOptionIns.Add(
-                    "cc_" + t.ToString() + "_" + cs.id.ToString(),
-                    cs
-                );
+                this.CardOptionIns.Add("cc_" + t.ToString() + "_" + cs.id.ToString(), cs);
 
                 // skill-obk list for info-panel
-                List<int> sumd = new List<int>();
-                foreach (int d in cs.skill_pointer) {
-                    if (!sumd.Contains(d)) {
-                        sumd.Add(d);
-                    }
-                }
-                List<SkillObject> skj = new List<SkillObject>();
-                foreach (var tt in sumd) {
-                    foreach (var y in tmp_sk) {
-                        if (y.id == tt && !skj.Contains(y)) {
-                            skj.Add(y);
-                        }
-                    }
-                }
-                this.SkillObjectDict.Add(
-                    t.ToString() + "R" + cs.id.ToString(),
-                    skj
-                );
 
+                // List<int> sumd = new List<int>();
+                // foreach (int d in cs.skill_pointer) {
+                //     if (!sumd.Contains(d)) {
+                //         sumd.Add(d);
+                //     }
+                // }
+                List<SkillObject> skj = new List<SkillObject>();
+                foreach (var y in tmp_sk) {
+                    if (cs.skill_pointer.Contains(y.id) && !skj.Contains(y)) {
+                        skj.Add(y);
+                    }
+                }
+                this.SkillObjectDict.Add(t.ToString() + "R" + cs.id.ToString(), skj);
             }
+            // this.CardAB.Add(ptmp);
+            ptmp.Unload(false);
         }
 
     }
@@ -171,18 +215,21 @@ public class RoomWaitCtl : MonoBehaviour {
 
         OnConnecterUpdate();
     }
-    async void OnConnecterUpdate() {
+    void OnConnecterUpdate() {
         Debug.Log("start to connect Broadcast");
         Debug.Log(this.Connecter.config.RoomService);
         var natsSetting = this.Connecter.config.RoomService.StreamSetting;
         var natsOpt = ConnectionFactory.GetDefaultOptions();
         natsOpt.Url = $"{natsSetting.Connector}://{natsSetting.Host}:{natsSetting.Port}";
         this.NatsConn = new ConnectionFactory().CreateConnection(natsOpt);
-        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.Connecter.CurrentRoom.Key}", (obj, msg) => msgSystMsg(obj, msg));
 
+        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.Connecter.CurrentRoom.Key}",
+            (obj, msg) => msgSystMsg(obj, msg)
+        );
     }
 
     async void msgSystMsg(object caller, NATS.Client.MsgHandlerEventArgs income) {
+        Debug.Log(caller);
         var inst_msg = RoomMsg.Parser.ParseFrom(income.Message.Data);
         Debug.Log(inst_msg.Message);
         Debug.Log(inst_msg.MsgType.ToString());
@@ -201,16 +248,16 @@ public class RoomWaitCtl : MonoBehaviour {
                 }
             } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
                 string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
-                var rm = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
-                updatePanel_init(rm);
+                var roomInfo = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
+                updatePanel_init(roomInfo);
             } else if (inst_msg.Message.Contains("CardChange::")) {
-                OnConnecterUpdate_CardChange(inst_msg.Message);
+                OnConnecterUpdate_CardChange(inst_msg);
             }
         }
     }
 
-    public void OnConnecterUpdate_CardChange(string msg) {
-        string js_str = msg.Replace("CardChange::", "");
+    public void OnConnecterUpdate_CardChange(RoomMsg msg) {
+        string js_str = msg.Message.Replace("CardChange::", "");
         Debug.Log(js_str);
 
         RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson(js_str);
@@ -223,40 +270,41 @@ public class RoomWaitCtl : MonoBehaviour {
         CardObject Dataset = this.CardObjectDic["cc" + msg_blk.CharcardId];
         Debug.Log($"dt_set:{Dataset.id}");
 
-
-        AssetBundle ab_tmp = AssetBundle.LoadFromFile(
-            Path.Combine(
-                ConfigPath.Asset_path,
-                "CC" + (msg_blk.CharcardId.ToString()).PadLeft(2, '0') + ".ab")
-        );
-        // Debug.Log($"{ab_tmp.GetAllAssetNames()}");
+        var tmpAssetPack = this.CardAssetPack[$"cc_{Dataset.id}_{tmp.id}"];
 
         if (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host) {
+            Debug.Log("HostCardLoad");
             this.HostCard.CC_id = Dataset.id;
             this.HostCard.level = tmp.level;
-            this.HostCardAB = ab_tmp;
-            // Debug.Log($"ab:{this.HostCardAB.name}");
+            Debug.Log(msg_blk.CharcardId);
+            // Debug.Log(ptmp.name);
+            // this.HostCardAB = this.CardAB[Dataset.id - 1];
             this.HostCardObj = Dataset;
-            // Debug.Log($"Co:{this.HostCardObj.id}");
             this.HostCardSet = tmp;
-            // Debug.Log($"Cs:{this.HostCardSet.id}");
+            this.HostCardAB = tmpAssetPack;
+            Debug.Log("StartCoroutine");
+            Debug.Log($"{this.HostCardAB.id} , {this.HostCardAB.chara_image.name}");
 
-            StartCoroutine(this.HostCard.InitCCImg(this.HostCardAB, this.HostCardObj, this.HostCardSet));
-            StartCoroutine(this.HostCard.InitCCLvFrame());
-            StartCoroutine(this.HostCard.InitEquSetting(0, 0));
-
+            // this.HostCardAB = this.CardAssetPack.
+            this.isHostUpdated = true;
         } else {
+            // yield return true;
+            Debug.Log("HostCardLoad");
             this.DuelerCard.CC_id = Dataset.id;
             this.DuelerCard.level = tmp.level;
-
-            this.DuelCardAB = ab_tmp;
+            Debug.Log(msg_blk.CharcardId);
+            // Debug.Log(ptmp.name);
+            // this.HostCardAB = this.CardAB[Dataset.id - 1];
             this.DuelCardObj = Dataset;
             this.DuelCardSet = tmp;
+            this.DuelCardAB = tmpAssetPack;
+            Debug.Log("StartCoroutine");
+            Debug.Log($"{this.DuelCardAB.id} , {this.DuelCardAB.chara_image.name}");
 
-            StartCoroutine(this.DuelerCard.InitCCImg(this.DuelCardAB, this.DuelCardObj, this.DuelCardSet));
-            StartCoroutine(this.DuelerCard.InitCCLvFrame());
-            StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
+            // this.DuelCardAB = this.CardAssetPack.
+            this.isDuelUpdated = true;
         }
+
     }
     public async void QuitRoom() {
         if (this.Connecter.CurrentRoom != null) {
@@ -283,11 +331,25 @@ public class RoomWaitCtl : MonoBehaviour {
     // ChangePanel related
     public void ChangePanel_OnCardClick(AssetBundle ab, CardObject cardObject, CardSet cardSet) {
         picked_ab = ab;
+
         picked_cardObj = cardObject;
         picked_cardSet = cardSet;
         picked.CC_id = cardObject.id;
         picked.level = cardSet.level;
-        StartCoroutine(picked.InitCCImg(ab, cardObject, cardSet));
+        StartCoroutine(picked.InitCCImg(picked_ab, cardObject, cardSet));
+        StartCoroutine(picked.InitCCLvFrame());
+        StartCoroutine(picked.InitEquSetting(0, 0));
+    }
+
+    public void ChangePanel_OnCardClick(CardObject cardObject, CardSet cardSet) {
+        // picked_ab = this.CardAB[cardObject.id - 1];
+
+        picked_cardObj = cardObject;
+        picked_cardSet = cardSet;
+        picked.CC_id = cardObject.id;
+        picked.level = cardSet.level;
+        PickedCardAB = this.CardAssetPack[$"cc_{cardObject.id}_{cardSet.id}"];
+        StartCoroutine(picked.InitCCImg2(cardObject, PickedCardAB));
         StartCoroutine(picked.InitCCLvFrame());
         StartCoroutine(picked.InitEquSetting(0, 0));
     }
@@ -296,7 +358,7 @@ public class RoomWaitCtl : MonoBehaviour {
         InfoPanel.gameObject.SetActive(true);
         StartCoroutine(
             InfoPanel.InitSkipStatus(
-                picked_ab, picked_cardObj, picked_cardSet,
+                picked_cardObj, PickedCardAB,
                 this.SkillObjectDict[
                     picked_cardObj.id.ToString() +
                     "R" + picked_cardSet.id.ToString()
@@ -309,16 +371,18 @@ public class RoomWaitCtl : MonoBehaviour {
             if (this.Connecter.IsHost) {
                 this.HostCard.CC_id = this.picked.CC_id;
                 this.HostCard.level = this.picked.level;
-                StartCoroutine(this.HostCard.InitCCImg(
-                    picked_ab, picked_cardObj, picked_cardSet));
+                StartCoroutine(this.HostCard.InitCCImg2(
+                    picked_cardObj, PickedCardAB));
                 StartCoroutine(this.HostCard.InitCCLvFrame());
                 StartCoroutine(this.HostCard.InitEquSetting(0, 0));
                 // this.Connecter.SystemSendMessage();
             } else {
                 this.DuelerCard.CC_id = this.picked.CC_id;
                 this.DuelerCard.level = this.picked.level;
-                StartCoroutine(this.DuelerCard.InitCCImg(
-                    picked_ab, picked_cardObj, picked_cardSet));
+                StartCoroutine(this.DuelerCard.InitCCImg2(
+                    picked_cardObj, PickedCardAB));
+                // StartCoroutine(this.DuelerCard.InitCCImg(
+                //     picked_ab, picked_cardObj, picked_cardSet));
                 StartCoroutine(this.DuelerCard.InitCCLvFrame());
                 StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             }
@@ -327,15 +391,6 @@ public class RoomWaitCtl : MonoBehaviour {
                 this.picked.original.id,
                 this.picked.level
             );
-            // await this.Connecter.SystemSendMessage("CardChange::" +
-            //     JsonConvert.SerializeObject(new RmChangeCharCard {
-            //         user_id = this.Connecter.CurrentUser.Id,
-            //             side = this.Connecter.IsHost ? "Host" : "Dueler",
-            //             charcard_id = this.picked.CC_id,
-            //             cardset_id = this.picked.original.id,
-            //             level = this.picked.level,
-            //     })
-            // );
 
         }
         this.ChangeDeckPanel.SetActive(false);
@@ -343,6 +398,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
     // Updated Panel related
     void updatePanel_init(Room roomInfo) {
+
         Debug.Log("in update-panel-init");
         this.UP_updateReq = new RoomCreateReq();
         this.UP_updateReq.Key = this.Connecter.CurrentRoom.Key;
@@ -432,8 +488,10 @@ public class RoomWaitCtl : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        this.NatsConn.DrainAsync();
-        this.NatsConn.Close();
+        if (this.NatsConn != null) {
+            this.NatsConn.DrainAsync();
+            this.NatsConn.Close();
+        }
     }
 
 }

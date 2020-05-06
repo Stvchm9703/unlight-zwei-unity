@@ -37,7 +37,6 @@ public class RoomWaitCtl : MonoBehaviour {
     // public List<AssetBundle> CardAB;
     public Dictionary<string, CardSetPack> CardAssetPack;
 
-    public Dictionary<string, CardSet> CardOptionIns;
     public Dictionary<string, CardObject> CardObjectDic;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
@@ -64,6 +63,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
     void Update() {
         if (isHostUpdated) {
+            Debug.Log("host updating");
             StartCoroutine(this.HostCard.InitCCImg2(this.HostCardObj, this.HostCardAB));
             StartCoroutine(this.HostCard.InitCCLvFrame());
             StartCoroutine(this.HostCard.InitEquSetting(0, 0));
@@ -71,10 +71,16 @@ public class RoomWaitCtl : MonoBehaviour {
         }
 
         if (isDuelUpdated) {
+            Debug.Log("duel updating");
+
             StartCoroutine(this.DuelerCard.InitCCImg2(this.DuelCardObj, this.DuelCardAB));
             StartCoroutine(this.DuelerCard.InitCCLvFrame());
             StartCoroutine(this.DuelerCard.InitEquSetting(0, 0));
             isDuelUpdated = false;
+        }
+
+        if (this.isReady && this.selfReady) {
+            SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
         }
     }
 
@@ -89,7 +95,6 @@ public class RoomWaitCtl : MonoBehaviour {
         this.HostCardObj = new CardObject();
 
         this.CardOption = new List<GameObject>();
-        this.CardOptionIns = new Dictionary<string, CardSet>();
         this.SkillObjectDict = new Dictionary<string, List<SkillObject>>();
         this.CardObjectDic = new Dictionary<string, CardObject>();
 
@@ -103,7 +108,7 @@ public class RoomWaitCtl : MonoBehaviour {
             TextAsset ska = ptmp.LoadAsset("skill.json")as TextAsset;
 
             CardObject Dataset = JsonConvert.DeserializeObject<CardObject>(ta.text);
-            this.CardObjectDic.Add("cc" + t, Dataset);
+            this.CardObjectDic.Add($"cc_{t.ToString()}", Dataset);
 
             List<SkillObject> tmp_sk = JsonConvert.DeserializeObject<List<SkillObject>>(ska.text);
 
@@ -115,9 +120,10 @@ public class RoomWaitCtl : MonoBehaviour {
                 var card_face = gotmp.GetComponent<CCardCtl>();
                 card_face.CC_id = Dataset.id;
                 card_face.level = cs.level;
-             
+
                 Texture2D tas = ptmp.LoadAsset(cs.chara_image.name.Replace(".png", ""))as Texture2D;
                 cs.chara_image_t2 = tas;
+
                 this.CardAssetPack.Add(
                     $"cc_{Dataset.id}_{cs.id}",
                     cs
@@ -129,7 +135,6 @@ public class RoomWaitCtl : MonoBehaviour {
                 Button gotmp_btn = gotmp.AddComponent<Button>();
                 gotmp_btn.onClick.AddListener(() => ChangePanel_OnCardClick(Dataset, cs));
                 this.CardOption.Add(gotmp);
-                // this.CardOptionIns.Add("cc_" + t.ToString() + "_" + cs.id.ToString(), cs);               
                 List<SkillObject> skj = new List<SkillObject>();
                 foreach (var y in tmp_sk) {
                     if (cs.skill_pointer.Contains(y.id) && !skj.Contains(y)) {
@@ -200,15 +205,15 @@ public class RoomWaitCtl : MonoBehaviour {
             if (inst_msg.Message == "Dueler:GameSet:Ready" && this.Connecter.IsHost) {
                 isReady = true;
                 this.DuelerStatus.text = "Ready!";
-                if (this.isReady && this.selfReady) {
-                    SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-                }
+                // if (this.isReady && this.selfReady) {
+                //     SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                // }
             } else if (inst_msg.Message == "Host:GameSet:Ready" && !this.Connecter.IsHost) {
                 isReady = true;
                 this.HostStatus.text = "Ready";
-                if (this.isReady && this.selfReady) {
-                    SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-                }
+                // if (this.isReady && this.selfReady) {
+                //     SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
+                // }
             } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
                 string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
                 var roomInfo = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
@@ -226,16 +231,17 @@ public class RoomWaitCtl : MonoBehaviour {
         RoomUpdateCardReq msg_blk = RoomUpdateCardReq.Parser.ParseJson(js_str);
         Debug.Log($"{msg_blk.CharcardId}, {msg_blk.CardsetId}, {msg_blk.Level}");
 
-        var tmp = this.CardOptionIns["cc_" + msg_blk.CharcardId + "_" + msg_blk.CardsetId];
-        var Dataset = this.CardObjectDic["cc" + msg_blk.CharcardId];
-        var tmpAssetPack = this.CardAssetPack[$"cc_{Dataset.id}_{tmp.id}"];
+        var Dataset = this.CardObjectDic[$"cc_{msg_blk.CharcardId.ToString()}"];
+        Debug.Log($"Dataset.name{Dataset.name.jp}");
+
+        var tmpAssetPack = this.CardAssetPack[$"cc_{msg_blk.CharcardId.ToString()}_{msg_blk.CardsetId.ToString()}"];
 
         if (
             (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Host && !this.Connecter.IsHost) ||
             this.Connecter.IsWatcher
         ) {
             this.HostCard.CC_id = Dataset.id;
-            this.HostCard.level = tmp.level;
+            this.HostCard.level = tmpAssetPack.level;
             this.HostCardObj = Dataset;
             this.HostCardAB = tmpAssetPack;
             this.isHostUpdated = true;
@@ -244,7 +250,7 @@ public class RoomWaitCtl : MonoBehaviour {
             this.Connecter.IsWatcher
         ) {
             this.DuelerCard.CC_id = Dataset.id;
-            this.DuelerCard.level = tmp.level;
+            this.DuelerCard.level = tmpAssetPack.level;
             this.DuelCardObj = Dataset;
             this.DuelCardAB = tmpAssetPack;
             this.isDuelUpdated = true;
@@ -259,18 +265,16 @@ public class RoomWaitCtl : MonoBehaviour {
     }
 
     public async void ReadyBtn() {
-        this.selfReady = true;
+
         if (!this.Connecter.IsHost) {
             await this.Connecter.SystemSendMessage("Dueler:GameSet:Ready");
             this.DuelerStatus.text = "Ready!";
         } else {
             await this.Connecter.SystemSendMessage("Host:GameSet:Ready");
-            this.HostStatus.text = "Ready";
+            this.HostStatus.text = "Ready!";
         }
-        // this.Connecter.ClearPendingEventFunc();
-        if (this.isReady && this.selfReady) {
-            SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-        }
+        // // this.Connecter.ClearPendingEventFunc();
+        this.selfReady = true;
     }
 
     // ChangePanel related
@@ -306,18 +310,15 @@ public class RoomWaitCtl : MonoBehaviour {
                 this.HostCard.CC_id = this.picked.CC_id;
                 this.HostCard.level = this.picked.level;
                 this.HostCardObj = this.picked_cardObj;
-                // this.HostCardSet = this.picked_cardSet;
                 this.HostCardAB = this.PickedCardAB;
                 StartCoroutine(this.HostCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));
                 StartCoroutine(this.HostCard.InitCCLvFrame());
                 StartCoroutine(this.HostCard.InitEquSetting(0, 0));
-                // this.Connecter.SystemSendMessage();
             } else {
                 this.DuelerCard.CC_id = this.picked.CC_id;
                 this.DuelerCard.level = this.picked.level;
                 this.DuelCardObj = this.picked_cardObj;
-                // this.DuelCardSet = this.picked_cardSet;
                 this.DuelCardAB = this.PickedCardAB;
                 StartCoroutine(this.DuelerCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));

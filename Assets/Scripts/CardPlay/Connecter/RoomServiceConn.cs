@@ -17,16 +17,18 @@ public class RoomServiceConn : MonoBehaviour {
     public Room CurrentRoom;
     public RmUserInfo CurrentUser;
     public CfServerSetting config;
-    public bool IsHost = false;
-    public bool IsWatcher = true;
-    
+    public bool IsHost = false, IsWatcher = true, SelfKill;
+
     // NATS impl
     public NATS.Client.Options natOpt;
     public NATS.Client.IConnection natsConn;
     void Awake() {
         Debug.Log("on Awake process - Room-Service-Connector");
+
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
-        if (objs.Length > 1) {
+        if (this.SelfKill) {
+            Destroy(this.gameObject);
+        } else  if (objs.Length > 1) {
             Destroy(this.gameObject);
         } else {
             DontDestroyOnLoad(this.gameObject);
@@ -201,9 +203,9 @@ public class RoomServiceConn : MonoBehaviour {
         try {
             var get_task = await this.client.JoinRoomAsync(new RoomReq {
                 Key = roomKey,
-                Password = password,
-                User = CurrentUser,
-                IsDuel = true,
+                    Password = password,
+                    User = CurrentUser,
+                    IsDuel = true,
             });
             CurrentRoom = get_task;
             this.IsHost = false;

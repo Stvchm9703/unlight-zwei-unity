@@ -28,7 +28,7 @@ public class RoomServiceConn : MonoBehaviour {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
         if (this.SelfKill) {
             Destroy(this.gameObject);
-        } else  if (objs.Length > 1) {
+        } else if (objs.Length > 1) {
             Destroy(this.gameObject);
         } else {
             DontDestroyOnLoad(this.gameObject);
@@ -87,6 +87,22 @@ public class RoomServiceConn : MonoBehaviour {
             CurrentRoom = get_task;
             this.IsHost = false;
             this.IsWatcher = !isDueler;
+            return get_task;
+        } catch (RpcException) {
+            throw;
+        }
+    }
+
+    public async Task<Room> RefreshRoom(string room_key, string password) {
+        if (main_ch == null || client == null) {
+            throw new System.Exception("CONNECT_CLIENT_IS_NULL");
+        }
+        try {
+            var get_task = await this.client.GetRoomInfoAsync(new RoomReq {
+                Key = room_key, Password = password
+            });
+            CurrentRoom = get_task;
+            this.IsHost = false;
             return get_task;
         } catch (RpcException) {
             throw;

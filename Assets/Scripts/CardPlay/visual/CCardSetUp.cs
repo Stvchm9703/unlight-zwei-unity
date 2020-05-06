@@ -114,14 +114,15 @@ public class CCardSetUp : MonoBehaviour {
       this.DuelCCSetStand = this.transform.root.parent.Find("StandLayer/DuelStand").gameObject.GetComponent<CCardStandCtl>();
     }
 
+    
     this.DuelCCSetBlock.level = DuelCC_Level;
 
     this.DuelCCSetBlock.is_self = 0;
     this.DuelCCSetStand.is_self = 0;
 
+    StartCoroutine(this.DuelCCSetBlock.InitCCImg(this.DuelDataSet, this.DuelDataCardSet));
     StartCoroutine(this.DuelCCSetBlock.InitCCLvFrame());
     StartCoroutine(this.DuelCCSetBlock.InitEquSetting(duel_atk_equ, duel_def_equ));
-    StartCoroutine(this.DuelCCSetBlock.InitCCImg(this.DuelDataSet, this.DuelDataCardSet));
     StartCoroutine(this.DuelCCSetStand.InitCCImg(this.DuelDataCardSet));
     StartCoroutine(this.DuelCCSetSkill.InitCCImg2(this.DuelSkillObject));
     StartCoroutine(this.DuelCCSetPhase.InitCCImg2(this.DuelDataCardSet));
@@ -228,7 +229,7 @@ public class CCardSetUp : MonoBehaviour {
           InfoPanel.GetComponent<CCInfoPanel>().Init(
             this.DuelDataSet, this.DuelDataCardSet,
             this.DuelSkillObject,
-            false, this.DuelCC_ID, this.DuelCC_Level
+            true, this.DuelCC_ID, this.DuelCC_Level
           ));
       }
     }

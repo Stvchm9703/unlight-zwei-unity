@@ -61,7 +61,7 @@ public class RoomWaitCtl : MonoBehaviour {
         room_connector_load();
     }
 
-    void Update() {
+    async void Update() {
         if (isHostUpdated) {
             Debug.Log("host updating");
             StartCoroutine(this.HostCard.InitCCImg2(this.HostCardObj, this.HostCardAB));
@@ -80,6 +80,7 @@ public class RoomWaitCtl : MonoBehaviour {
         }
 
         if (this.isReady && this.selfReady) {
+            var room = await this.Connecter.RefreshRoom(this.Connecter.CurrentRoom.Key, this.Connecter.CurrentRoom.Password);
             SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
         }
     }
@@ -205,15 +206,10 @@ public class RoomWaitCtl : MonoBehaviour {
             if (inst_msg.Message == "Dueler:GameSet:Ready" && this.Connecter.IsHost) {
                 isReady = true;
                 this.DuelerStatus.text = "Ready!";
-                // if (this.isReady && this.selfReady) {
-                //     SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-                // }
             } else if (inst_msg.Message == "Host:GameSet:Ready" && !this.Connecter.IsHost) {
                 isReady = true;
                 this.HostStatus.text = "Ready";
-                // if (this.isReady && this.selfReady) {
-                //     SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
-                // }
+
             } else if (inst_msg.Message.Contains("UPDATE_ROOM:pw::") && !this.Connecter.IsHost) {
                 string _pw = inst_msg.Message.Replace("UPDATE_ROOM:pw::", "");
                 var roomInfo = await this.Connecter.GetRoom(this.Connecter.CurrentRoom.Key, _pw, !this.Connecter.IsWatcher);
@@ -245,6 +241,7 @@ public class RoomWaitCtl : MonoBehaviour {
             this.HostCardObj = Dataset;
             this.HostCardAB = tmpAssetPack;
             this.isHostUpdated = true;
+
         } else if (
             (msg_blk.Side == RoomUpdateCardReq.Types.PlayerSide.Dueler && this.Connecter.IsHost) ||
             this.Connecter.IsWatcher

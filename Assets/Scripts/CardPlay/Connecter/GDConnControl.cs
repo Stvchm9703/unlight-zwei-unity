@@ -34,7 +34,7 @@ public class GDConnControl : MonoBehaviour {
 
     public bool UpdateFlag;
     // Life-cycle of the process
-    void Start() { 
+    void Start() {
         StartCoroutine(FullSetup());
     }
     private void Update() {
@@ -85,7 +85,13 @@ public class GDConnControl : MonoBehaviour {
         if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
             yield break;
         }
+        Debug.Log($"{this.RoomConn.CurrentRoom.HostCharcardId} , {this.RoomConn.CurrentRoom.HostCardsetId}");
+        Debug.Log($"{this.RoomConn.CurrentRoom.DuelCharcardId} , {this.RoomConn.CurrentRoom.DuelCardsetId}");
+
         if (!this.RoomConn.IsHost) {
+            var ttt = this.transform.parent.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
+
+            Debug.Log(ttt.name);
             this.HostPhaseRender =
                 this.transform.parent.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
             this.DuelPhaseRender =
@@ -105,18 +111,18 @@ public class GDConnControl : MonoBehaviour {
             this.cCardResx.SelfCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
 
         } else {
-            this.cCardResx.DuelCC_ID = this.RoomConn.CurrentRoom.DuelCharcardId;
-            this.cCardResx.DuelCC_Level = this.RoomConn.CurrentRoom.DuelCardlevel;
-            this.cCardResx.DuelCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
-
             this.cCardResx.SelfCC_ID = this.RoomConn.CurrentRoom.HostCharcardId;
             this.cCardResx.SelfCC_Level = this.RoomConn.CurrentRoom.HostCardlevel;
             this.cCardResx.SelfCardSet_ID = this.RoomConn.CurrentRoom.HostCardsetId;
+
+            this.cCardResx.DuelCC_ID = this.RoomConn.CurrentRoom.DuelCharcardId;
+            this.cCardResx.DuelCC_Level = this.RoomConn.CurrentRoom.DuelCardlevel;
+            this.cCardResx.DuelCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
         }
 
-        yield return(this.cCardResx.StartResxLoad());
-        yield return(this.cCardResx.SelfCCImplement());
-        yield return(this.cCardResx.DuelCCImplement());
+        yield return (this.cCardResx.StartResxLoad());
+        yield return (this.cCardResx.SelfCCImplement());
+        yield return (this.cCardResx.DuelCCImplement());
     }
 
     void OnSubMsgHandle(object caller, NATS.Client.MsgHandlerEventArgs income) {

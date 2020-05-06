@@ -277,10 +277,10 @@ public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
             this.ATK = Cs.ap;
             this.DEF_defaut = Cs.dp;
             this.DEF = Cs.dp;
-            yield return true;
         } else {
             yield return false;
         }
+        yield return true;
 
     }
     public void OnPointerClick(PointerEventData eventData) {

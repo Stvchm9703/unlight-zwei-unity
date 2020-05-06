@@ -34,7 +34,17 @@ public class GDConnControl : MonoBehaviour {
 
     public bool UpdateFlag;
     // Life-cycle of the process
-    async void Start() {
+    void Start() { 
+        StartCoroutine(FullSetup());
+    }
+    private void Update() {
+        if (UpdateFlag) {
+            UpdateFlag = false;
+        }
+    }
+    IEnumerator FullSetup() {
+        yield return new WaitForSeconds(5);
+
         GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
         foreach (var t in objs) {
             Debug.Log(t.name);
@@ -42,18 +52,16 @@ public class GDConnControl : MonoBehaviour {
             // this.CurrentRoom = v.CurrentRoom;
             this.RoomConn = v;
         }
-        await this.InitConnSetup(this.RoomConn.config);
+        this.InitConnSetup(this.RoomConn.config);
+        yield return true;
+
         if (RoomConn.IsHost && !RoomConn.IsWatcher) {
-            await this.CreateGameSet(this.RoomConn.CurrentRoom.CharCardNvn);
+            this.CreateGameSet(this.RoomConn.CurrentRoom.CharCardNvn);
         } else {
-            await this.GetGameData(this.RoomConn.CurrentRoom.Key, RoomConn.IsWatcher);
+            this.GetGameData(this.RoomConn.CurrentRoom.Key, RoomConn.IsWatcher);
         }
-        InitGameCtlSetup();
-    }
-    private void Update() {
-        if (UpdateFlag) {
-            UpdateFlag = false;
-        }
+        yield return InitGameCtlSetup();
+        yield return true;
     }
     // Custom Code 
     public async Task<bool> InitConnSetup(CfServerSetting setting) {
@@ -73,9 +81,9 @@ public class GDConnControl : MonoBehaviour {
         return false;
     }
 
-    public void InitGameCtlSetup() {
+    IEnumerator InitGameCtlSetup() {
         if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
-            return;
+            yield break;
         }
         if (!this.RoomConn.IsHost) {
             this.HostPhaseRender =
@@ -106,9 +114,9 @@ public class GDConnControl : MonoBehaviour {
             this.cCardResx.SelfCardSet_ID = this.RoomConn.CurrentRoom.HostCardsetId;
         }
 
-        StartCoroutine(this.cCardResx.StartResxLoad());
-        StartCoroutine(this.cCardResx.SelfCCImplement());
-        StartCoroutine(this.cCardResx.DuelCCImplement());
+        yield return(this.cCardResx.StartResxLoad());
+        yield return(this.cCardResx.SelfCCImplement());
+        yield return(this.cCardResx.DuelCCImplement());
     }
 
     void OnSubMsgHandle(object caller, NATS.Client.MsgHandlerEventArgs income) {

@@ -64,10 +64,10 @@ public class GDConnControl : MonoBehaviour {
         );
 
         this.GDSClient = new GameDuelService.GameDuelServiceClient(this.main_ch);
-
+        var streamSet = setting.GameDuelService.StreamSetting;
         this.natOpt = ConnectionFactory.GetDefaultOptions();
-        this.natOpt.Url = $"{setting.GameDuelService.StreamSetting.Connector}://{setting.GameDuelService.StreamSetting.Host}:{setting.GameDuelService.StreamSetting.Port}";
-
+        this.natOpt.Url = $"{streamSet.Connector}://{streamSet.Host}:{streamSet.Port}";
+        Debug.Log(this.natOpt.Url);
         this.natConn = new ConnectionFactory().CreateConnection(this.natOpt);
         natConn.SubscribeAsync($"ULZ.GDSvc/{this.CurrentRoom.Key}", OnSubMsgHandle);
         return false;

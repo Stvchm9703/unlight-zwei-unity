@@ -235,6 +235,54 @@ public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
             yield return false;
         }
     }
+
+    public IEnumerator InitCCImg(CardObject Co, CardSetPack Cs) {
+        string name_string = "";
+        switch (SL_setting) {
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseTraditional:
+                name_string = Co.name.tcn;
+                break;
+            case SystemLanguage.ChineseSimplified:
+                name_string = Co.name.scn;
+                break;
+            case SystemLanguage.Japanese:
+                name_string = Co.name.jp;
+                break;
+            case SystemLanguage.Korean:
+                name_string = Co.name.kr;
+                break;
+            case SystemLanguage.Indonesian:
+                name_string = Co.name.ina;
+                break;
+            case SystemLanguage.Thai:
+                name_string = Co.name.thai;
+                break;
+            case SystemLanguage.English:
+            case SystemLanguage.Unknown:
+            default:
+                name_string = Co.name.en;
+                break;
+        }
+        if (name_string == "") {
+            name_string = Co.name.en;
+        }
+
+        if (this.transform.Find("frame/name/val").gameObject) {
+            this.transform.Find("frame/name/val").gameObject.GetComponent<Text>().text = name_string;
+            this.HP_defaut = Cs.hp;
+            this.HPDefault.GetComponent<Text>().text = "/" + Cs.hp.ToString();
+            this.HP = Cs.hp;
+            this.ATK_defaut = Cs.ap;
+            this.ATK = Cs.ap;
+            this.DEF_defaut = Cs.dp;
+            this.DEF = Cs.dp;
+            yield return true;
+        } else {
+            yield return false;
+        }
+
+    }
     public void OnPointerClick(PointerEventData eventData) {
         StartCoroutine(main_ctl.OpenCCInfoPanel(is_self));
     }

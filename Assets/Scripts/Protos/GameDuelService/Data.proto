@@ -1,0 +1,230 @@
+syntax="proto3";
+
+// import "common.proto";
+import  "GameDuelService/EventHookPhase.proto";
+
+package ULZProto;
+option  go_package = ".;proto";
+option  csharp_namespace         = "ULZAsset.ProtoMod.GameDuelService";
+
+
+// -------------------------------------------------------------
+// ANCHOR: data-struct for all game struct
+// SECTION: Data.proto
+enum    PlayerSide  {
+    HOST                        = 0;
+    DUELER                      = 1;
+}
+
+enum    EventCardType {
+    NULL                        = 0;
+    ATTACK                      = 1;
+    DEFENCE                     = 2;
+    GUN                         = 3;
+    MOVE                        = 4;
+    STAR                        = 5;
+}
+
+enum    EventCardPos {
+    BLOCK                       = 0; 
+    INSIDE                      = 1;
+    OUTSIDE                     = 2;
+    DESTROY                     = 3;
+}
+
+enum    RangeType {
+    SHORT                       = 0;
+    MIDDLE                      = 1;
+    LONG                        = 2;
+}
+
+enum    MovePhaseOpt        {
+    NO_MOVE                     = 0;
+    FORWARD                     = 1;
+    BACKWARD                    = 2;
+    STAY                        = 3;
+    CHANGE                      = 4;
+}
+// -------------------------------------------------------------
+
+
+// GameDataSet 
+//      the whole instance game-duel set 
+message GameDataSet {
+    //  room_key, see also RoomService/message.proto : Room 
+    string                      room_key                = 1;
+    //  host_id, the user-id of host player 
+    string                      host_id                 = 2;
+    //  dueler_id, the user-id of dueler player
+    string                      duel_id                 = 3;
+    //  game_turn, the number of turns in game
+    int32                       game_turn               = 4;
+      
+    //  host_card_deck, the character card  
+    repeated CharCardSet        host_card_deck          = 5;
+    //  duel_card_deck, the character card
+    repeated CharCardSet        duel_card_deck          = 6;
+    
+    //  host_curr_card, current on-used char-card 
+    int32                       host_curr_card_key      = 7;
+    //  dueler_curr_card, current on-used char-card 
+    int32                       duel_curr_card_key      = 8;
+    
+    //  host_event_card_deck
+    repeated EventCard          host_event_card_deck    = 9;
+    //  duel_event_card_deck
+    repeated EventCard          duel_event_card_deck    = 10;
+
+    //  curr_range
+    RangeType                   range                   = 11;
+    // nvn 
+    int32                       nvn                     = 12;
+    PlayerSide                  first_attack             = 13;
+    PlayerSide                  curr_phase              = 14;
+    //  event_phase, the event hook phase 
+    EventHookPhase              event_phase             = 15;
+    //  hook_type, the event hook type
+    EventHookType               hook_type               = 16;
+    //  Effect-result
+    repeated EffectResult       effect_counter          = 17;
+}
+
+
+
+// CharCardSet 
+// 
+message CharCardSet {
+    int32                       char_id                 = 1;
+    int32                       card_id                 = 2;
+    int32                       hp_inst                 = 3;
+    int32                       ap_inst                 = 4;
+    int32                       dp_inst                 = 5;
+    int32                       hp_orig                 = 6;
+    int32                       ap_orig                 = 7;
+    int32                       dp_orig                 = 8;
+    int32                       level                   = 9;
+    repeated StatusSet          status_inst             = 10;
+    CharCardEquSet              equ_set                 = 11;
+}
+
+message CharCardEquSet {
+    int32                       equ_id                  = 1;
+    int32                       hp                      = 2;
+    int32                       ap                      = 3;
+    int32                       dp                      = 4;
+}
+
+
+message EventCard {
+    int32                       id                      = 1;
+    EventCardType               up_option               = 2;
+    int32                       up_val                  = 3;
+    EventCardType               down_option             = 4;
+    int32                       down_val                = 5;
+    EventCardPos                position                = 6;
+    bool                        is_invert               = 7;
+    EventCardFunc               func_mount              = 8;
+    int32                       mount_val               = 9;
+}
+
+enum    EventCardFunc {
+    null                        = 0;
+    occur_chance_event          = 1;
+    occur_heal_event            = 2;
+    occur_cure_event            = 3;
+    occur_quick_event           = 4;
+    occur_curse_event           = 5;
+    occur_chalice_event         = 6;
+    occur_poison_event          = 7;
+    occur_damage_event          = 8;
+}
+
+message SkillSet {
+    int32                       id                      = 1;
+    int32                       feat_no                 = 2;
+    int32                       pow                     = 3;
+    string                      cond_string             = 4;
+    repeated SkillCardCond      cond_card               = 5;
+    repeated RangeType          cond_range              = 6;
+}
+ enum    SignEq {
+    EQUAL                       = 0;
+    GREATER                     = 1;
+    LESSER                      = 2;
+    ANY                         = 3;
+}
+message SkillCardCond {
+    EventCardType               type                    = 1;
+    int32                       val                     = 2;
+    SignEq                      compare                 = 3;  
+}
+
+
+// sprite-display 
+message StatusSet {
+    int32                       id                      = 1;
+    string                      status_id               = 2;
+    int32                       remain_cd               = 3;
+    int32                       feat_no                 = 4;
+    int32                       pow                     = 5;
+}
+
+
+//  EffectResult & EffectCounter
+//      same as 2D-table status[][]
+
+
+
+message EffectResult {
+    // targer 
+    int32                       tar_card                = 1;
+    PlayerSide                  tar_side                = 2;
+    // trigger-time
+    EffectTiming                trigger_time            = 3;
+    EffectTiming                end_time                = 4;
+    
+    // effect
+    EffectOption                ef_option               = 5;
+    int32                       hp                      = 6;
+    int32                       ap                      = 7;
+    int32                       dp                      = 8;
+    int32                       mp                      = 9;
+    bool                        disable_move            = 10;
+    bool                        disable_atk             = 11;
+    bool                        disable_def             = 12;
+    bool                        disable_draw            = 13;
+    bool                        disable_change          = 14;
+    string                      binding_func            = 15;
+    
+    // 
+    int32                       remain_cd               = 16;
+    string                      assign_from             = 17;
+    int32                       skill_id                = 18;
+    int32                       status_id               = 19;
+}
+
+enum    EffectOption{
+    // Status_Addition :
+    //    like +3-Move, by cd to change the +/- value
+    Status_Addition             = 0;
+    //  Instance_Change :
+    //    like posion, it will -1 to inst_value in CC
+    Instance_Change             = 1;
+    // Status_FixVal :
+    //    like Ex Indomitable Spirit , it will last one blood
+    Status_FixValue             = 2;
+    // Hard_Status_FicValue,
+    // Somehow, Some Damage is 
+    // "whatever card is not current use, but still give the damn damage"
+    Hard_Instance_Change        = 3;
+}
+
+// !SECTION: Data.proto
+
+message  EffectTiming {
+    EventHookPhase              event_phase             = 1;
+    EventHookType               hook_type               = 2;
+    int32                       sub_count               = 3;
+}
+
+

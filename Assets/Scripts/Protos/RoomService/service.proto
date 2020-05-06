@@ -5,7 +5,7 @@ import "RoomService/message.proto";
 import "common.proto";
 // import "google/protobuf/empty.proto";
 package ULZProto;
-option csharp_namespace         = "ULZAsset.ProtoMod";
+option csharp_namespace         = "ULZAsset.ProtoMod.RoomService";
 option go_package               = "proto";
 
 

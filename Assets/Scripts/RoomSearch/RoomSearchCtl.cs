@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using ULZAsset.Config;
-using ULZAsset.ProtoMod;
+using ULZAsset.ProtoMod.RoomService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

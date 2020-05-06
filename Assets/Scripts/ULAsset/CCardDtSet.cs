@@ -39,7 +39,7 @@ namespace ULZAsset {
     [System.Serializable]
     public class CardObject {
         public int id { get; set; }
-        public List<CardSet> card_set { get; set; }
+        public List<CardSetPack> card_set { get; set; }
         public MultiLang name { get; set; }
         public MultiLang ab_name { get; set; }
         public MultiLang caption { get; set; }
@@ -52,6 +52,7 @@ namespace ULZAsset {
         public int pow { get; set; }
         public string dice_attribute { get; set; }
         public ImgSet effect_image { get; set; }
+        public Texture2D effect_image_t2;
         public string condition { get; set; }
         public string created_at { get; set; }
         public MultiLang name { get; set; }
@@ -110,6 +111,7 @@ namespace ULZAsset {
         public string created_at { get; set; }
         public object skill { get; set; }
         public List<int> skill_pointer { get; set; }
+        public List<SkillObject> skill_obj ;
     }
 
 }

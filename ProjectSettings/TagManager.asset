@@ -7,6 +7,7 @@ TagManager:
   - menu
   - connecter
   - room_connector
+  - gd_connector
   layers:
   - Default
   - TransparentFX

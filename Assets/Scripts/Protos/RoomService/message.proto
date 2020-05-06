@@ -2,7 +2,7 @@ syntax="proto3";
 // import "common.proto";
 
 package ULZProto;
-option csharp_namespace         = "ULZAsset.ProtoMod";
+option csharp_namespace         = "ULZAsset.ProtoMod.RoomService";
 option go_package               = "proto";
 
 option java_multiple_files      = true;

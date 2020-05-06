@@ -46,6 +46,33 @@ public class CCSkillRender : MonoBehaviour {
         yield return true;
     }
 
+    public IEnumerator InitCCImg2(List<SkillObject> skobj) {
+        foreach (var tmpsk in skobj) {
+            if (skl_ls.transform.Find(tmpsk.effect_image.name) == null) {
+                GameObject ff = GameObject.Instantiate(skill_prefab, skl_ls.transform);
+                ff.name = tmpsk.effect_image.name;
+                ff.GetComponent<CCSkillObj>().import_info(tmpsk);
+                ff.transform.SetParent(skl_ls.transform);
+                var ffsp = ff.GetComponent<SpriteRenderer>();
+                Texture2D tas = tmpsk.effect_image_t2;
+                ffsp.sprite = Sprite.Create(tas,
+                    new Rect(0, 0, tas.width, tas.height),
+                    new Vector2(0.5f, 0.5f)
+                );
+
+                float orig_ratio = ((float)tas.height / (float)tas.width) /
+                    ((float)tmpsk.effect_image.height / (float)tmpsk.effect_image.width);
+
+                ff.GetComponent<Transform>().localScale *= new Vector2(orig_ratio, 1);
+                ffsp.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                ffsp.sortingLayerName = "skill_render";
+                Skill_preload.Add(ff);
+                ff.SetActive(false);
+            }
+        }
+        yield return true;
+    }
+
     public IEnumerator PlayAnim(int skill_id) {
         GameObject tmp = null;
         foreach (var tt in Skill_preload) {

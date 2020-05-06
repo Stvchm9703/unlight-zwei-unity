@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using ULZAsset;
 using ULZAsset.Config;
 using ULZAsset.MsgExtension;
-using ULZAsset.ProtoMod;
+using ULZAsset.ProtoMod.RoomService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,13 +39,12 @@ public class RoomWaitCtl : MonoBehaviour {
 
     public Dictionary<string, CardSet> CardOptionIns;
     public Dictionary<string, CardObject> CardObjectDic;
-    // public Dictionary<string, AssetBundle> CCAsset;
     public Dictionary<string, List<SkillObject>> SkillObjectDict;
     public CCardCtl picked;
     public AssetBundle picked_ab;
 
     public CardObject picked_cardObj;
-    public CardSet picked_cardSet;
+    public CardSetPack picked_cardSet;
 
     // Update Panel related
     public GameObject UpdatePanel;
@@ -53,7 +52,6 @@ public class RoomWaitCtl : MonoBehaviour {
     public GameObject UP_totalCardDeckCost, UP_CharecterCardLimit;
     public RoomCreateReq UP_updateReq;
 
-    public CardSet HostCardSet, DuelCardSet;
     public CardObject HostCardObj, DuelCardObj;
     public CardSetPack HostCardAB, DuelCardAB, PickedCardAB;
     public bool isHostUpdated = false, isDuelUpdated = false;
@@ -83,14 +81,11 @@ public class RoomWaitCtl : MonoBehaviour {
     // privated init loading
     void init_char_card_load() {
         card_setting = ConfigContainer.LoadCardVersion(ConfigPath.StreamingAsset);
-        // AvailableCCAsset = new List<AssetBundle>();
-        // this.CardAB = new Dictionary<string, AssetBundle>();
-        // this.CardAB = new List<AssetBundle>();
         this.CardAssetPack = new Dictionary<string, CardSetPack>();
 
-        this.DuelCardSet = new CardSet();
+        // this.DuelCardSet = new CardSet();
         this.DuelCardObj = new CardObject();
-        this.HostCardSet = new CardSet();
+        // this.HostCardSet = new CardSet();
         this.HostCardObj = new CardObject();
 
         this.CardOption = new List<GameObject>();
@@ -120,51 +115,21 @@ public class RoomWaitCtl : MonoBehaviour {
                 var card_face = gotmp.GetComponent<CCardCtl>();
                 card_face.CC_id = Dataset.id;
                 card_face.level = cs.level;
-                card_face.original = cs;
-                // Debug.Log($"{card_face.CC_id};{card_face.original.id}");
-
-                var ttty = new CardSetPack() {
-                    level = cs.level,
-                    hp = cs.hp,
-                    ap = cs.ap,
-                    dp = cs.dp,
-                    rarity = cs.rarity,
-                    deck_cost = cs.deck_cost,
-                    slot = cs.slot,
-                    next_id = cs.next_id,
-                    kind = cs.kind,
-                    created_at = cs.created_at,
-                    skill = cs.skill,
-                    skill_pointer = cs.skill_pointer,
-
-                    stand_image = cs.stand_image,
-                    chara_image = cs.chara_image,
-                    artifact_image = cs.artifact_image,
-                    bg_image = cs.bg_image,
-                };
+             
                 Texture2D tas = ptmp.LoadAsset(cs.chara_image.name.Replace(".png", ""))as Texture2D;
-                ttty.chara_image_t2 = tas;
+                cs.chara_image_t2 = tas;
                 this.CardAssetPack.Add(
                     $"cc_{Dataset.id}_{cs.id}",
-                    ttty
+                    cs
                 );
 
-                StartCoroutine(card_face.InitCCImg2(tas, Dataset, cs));
+                StartCoroutine(card_face.InitCCImg2(Dataset, cs));
                 StartCoroutine(card_face.InitCCLvFrame());
                 StartCoroutine(card_face.InitEquSetting(0, 0));
                 Button gotmp_btn = gotmp.AddComponent<Button>();
                 gotmp_btn.onClick.AddListener(() => ChangePanel_OnCardClick(Dataset, cs));
                 this.CardOption.Add(gotmp);
-                this.CardOptionIns.Add("cc_" + t.ToString() + "_" + cs.id.ToString(), cs);
-
-                // skill-obk list for info-panel
-
-                // List<int> sumd = new List<int>();
-                // foreach (int d in cs.skill_pointer) {
-                //     if (!sumd.Contains(d)) {
-                //         sumd.Add(d);
-                //     }
-                // }
+                // this.CardOptionIns.Add("cc_" + t.ToString() + "_" + cs.id.ToString(), cs);               
                 List<SkillObject> skj = new List<SkillObject>();
                 foreach (var y in tmp_sk) {
                     if (cs.skill_pointer.Contains(y.id) && !skj.Contains(y)) {
@@ -223,9 +188,7 @@ public class RoomWaitCtl : MonoBehaviour {
         natsOpt.Url = $"{natsSetting.Connector}://{natsSetting.Host}:{natsSetting.Port}";
         this.NatsConn = new ConnectionFactory().CreateConnection(natsOpt);
 
-        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.Connecter.CurrentRoom.Key}",
-            (obj, msg) => msgSystMsg(obj, msg)
-        );
+        NatsConn.SubscribeAsync($"ULZ.RmSvc/{this.Connecter.CurrentRoom.Key}", msgSystMsg);
     }
 
     async void msgSystMsg(object caller, NATS.Client.MsgHandlerEventArgs income) {
@@ -274,7 +237,6 @@ public class RoomWaitCtl : MonoBehaviour {
             this.HostCard.CC_id = Dataset.id;
             this.HostCard.level = tmp.level;
             this.HostCardObj = Dataset;
-            this.HostCardSet = tmp;
             this.HostCardAB = tmpAssetPack;
             this.isHostUpdated = true;
         } else if (
@@ -284,7 +246,6 @@ public class RoomWaitCtl : MonoBehaviour {
             this.DuelerCard.CC_id = Dataset.id;
             this.DuelerCard.level = tmp.level;
             this.DuelCardObj = Dataset;
-            this.DuelCardSet = tmp;
             this.DuelCardAB = tmpAssetPack;
             this.isDuelUpdated = true;
         }
@@ -313,15 +274,15 @@ public class RoomWaitCtl : MonoBehaviour {
     }
 
     // ChangePanel related
-    public void ChangePanel_OnCardClick(CardObject cardObject, CardSet cardSet) {
+    public void ChangePanel_OnCardClick(CardObject cardObject, CardSetPack cardSet) {
         // picked_ab = this.CardAB[cardObject.id - 1];
 
         picked_cardObj = cardObject;
         picked_cardSet = cardSet;
         picked.CC_id = cardObject.id;
         picked.level = cardSet.level;
-        PickedCardAB = this.CardAssetPack[$"cc_{cardObject.id}_{cardSet.id}"];
-        StartCoroutine(picked.InitCCImg2(cardObject, PickedCardAB));
+        // PickedCardAB = this.CardAssetPack[$"cc_{cardObject.id}_{cardSet.id}"];
+        StartCoroutine(picked.InitCCImg2(cardObject, cardSet));
         StartCoroutine(picked.InitCCLvFrame());
         StartCoroutine(picked.InitEquSetting(0, 0));
     }
@@ -344,7 +305,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 this.HostCard.CC_id = this.picked.CC_id;
                 this.HostCard.level = this.picked.level;
                 this.HostCardObj = this.picked_cardObj;
-                this.HostCardSet = this.picked_cardSet;
+                // this.HostCardSet = this.picked_cardSet;
                 this.HostCardAB = this.PickedCardAB;
                 StartCoroutine(this.HostCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));
@@ -355,7 +316,7 @@ public class RoomWaitCtl : MonoBehaviour {
                 this.DuelerCard.CC_id = this.picked.CC_id;
                 this.DuelerCard.level = this.picked.level;
                 this.DuelCardObj = this.picked_cardObj;
-                this.DuelCardSet = this.picked_cardSet;
+                // this.DuelCardSet = this.picked_cardSet;
                 this.DuelCardAB = this.PickedCardAB;
                 StartCoroutine(this.DuelerCard.InitCCImg2(
                     picked_cardObj, PickedCardAB));

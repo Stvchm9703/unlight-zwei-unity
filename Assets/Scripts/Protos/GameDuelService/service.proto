@@ -1,0 +1,124 @@
+syntax  =   "proto3";
+import      "GameDuelService/message.proto";
+import      "common.proto";
+import      "GameDuelService/Data.proto";
+
+package     ULZProto;
+option go_package               = ".;proto";
+option csharp_namespace         = "ULZAsset.ProtoMod.GameDuelService";
+
+// ANCHOR: service-func for GameDuelService
+// SECTION: service.proto
+service GameDuelService {
+//  Basic Server Function
+    rpc ServerBroadcast     (GDGetInfoReq)              returns (stream GDBroadcastResp);
+    rpc CreateGame          (GDCreateReq)               returns (       GameDataSet);
+    rpc GetGameData         (GDGetInfoReq)              returns (       GameDataSet);
+    rpc QuitGame            (GDCreateReq)               returns (       Empty);
+
+// GameSet Logic Function
+//   instance card move               
+    rpc InstSetEventCard    (GDInstanceDT)              returns (       Empty);
+
+    // skip
+    // rpc InstGetEventCard    (GDGetInfoReq)              returns (       GDInstanceDT);
+
+// Draw-phase : confirm 
+// NOTE: After Broadcast Send <[ refill_action_card_phase ]>,
+//   Client set the event-card by < InstSetEventCard > 
+//   { from their deck to own hand };
+//   then, send this < DrawPhaseConfirm > to notify the server 
+//   that `client ready to start next phase [move_card_drop_phase]`
+    rpc DrawPhaseConfirm    (GDGetInfoReq)              returns (       Empty);
+    
+    
+// Move-phase : confirm
+// NOTE:   After Broadcast Send <[ move_card_drop_phase ]>,
+//   Client set the event-card by < InstSetEventCard >
+//       { from their own hand to out-side };
+//   Then send this < MovePhaseConfirm > to notify the server
+//   that `client ready to start next phase [determine_move_phase]`
+    rpc MovePhaseConfirm    (GDMoveConfirmReq)          returns (       Empty);
+
+// Move-phase : result
+// NOTE:   After Broadcast Send 
+//   <[  determine_move_phase , 
+//       GET_MOVE_PHASE_RESULT 
+//   ]>,
+//   Client need to get the < move-result >,
+//   by sending this < MovePhaseResult > request;
+//   Then, Server take request to check out to
+//   start next phase [finish_move_phase / chara_change_phase];
+//   Server will broadcast [finish_move_phase / chara_change_phase];
+    
+    rpc MovePhaseResult     (GDGetInfoReq)              returns (       GDMoveConfirmResp);
+
+    
+// Attack/Defence : confirm
+// NOTE:  After Broadcast Send 
+//   <[  (attack_card_drop_phase|defence_card_drop_phase), 
+//       phase_ab 
+//   ]>
+//   Player Client (Attacker|Defencer) set the event-card by 
+//   < InstSetEventCard > { from their own hand to out-side };
+//   Then send this < ADPhaseConfirm > to notify the server
+//   that `client ready to start next phase []`
+
+    rpc ADPhaseConfirm      (GDADConfirmReq)            returns (       Empty);
+    
+// Attack/Defence : result
+// NOTE:   After Broadcast Send 
+//   <[  (attack_card_drop_phase|defence_card_drop_phase) , 
+//       phase_ab, 
+//       (GET_ATK_PHASE_RESULT|GET_DEF_PHASE_RESULT) 
+//   ]>,
+//   Client need to get the < AD-result >,
+//   by sending this < ADPhaseResult > request;
+//   Then, Server take request to check out to
+//   start next phase [];
+//   Server will broadcast next phase [];
+
+    rpc ADPhaseResult       (GDGetInfoReq)              returns (       GDADResultResp);
+
+
+// Once the [defence_card_drop_phase] done (feedbacked)
+// ServerBroacast :
+//   1. send [determine_battle_point_phase]
+//   2. Random Dice Result 
+//   3. Set Result to tmp-data
+//   4. send [battle_result_phase]
+//   5. wait ADPhaseDiceResult
+
+// Attack/Defence : DiceSet
+// NOTE:   After Broadcast Send 
+//   <[  battle_result_phase, phase_ab,]>,
+//   Client need to get the < ADPhase-DiceSet >,
+//   by sending this < ADPhase-DiceSet > request;
+//   Then, Client may start their dice-rolling animation
+//   After two side client sent this request ,  
+//   Server should ready for [damage_phase];
+
+    rpc ADPhaseDiceResult   (GDGetInfoReq)              returns (       GDADDiceResult);
+
+
+// if dead-character raised,
+// server should raise [dead_chara_change_phase];
+
+// ChangeCharaPhase : Confirm and Result
+// FIXME : 3v3 may need it, but 1v1 is not implement;
+    rpc ChangePhaseConfirm  (GDChangeConfirmReq)        returns (       Empty);
+// ChangeCharaPhase : Confirm and Result
+// FIXME : 3v3 may need it, but 1v1 is not implement;
+    rpc ChangePhaseResult   (GDGetInfoReq)              returns (       Empty);
+    
+// Event-Phase : Confirm
+// NOTE: Once the Server send any phase notify 
+//   the client may send feedback to server that ready for phase 
+    rpc EventPhaseConfirm   (GDPhaseConfirmReq)         returns (       Empty);
+    // Event-Phase : Confirm
+// NOTE: Once the Server send any phase notify 
+//   the client may send feedback to server that ready for phase 
+    rpc EventPhaseResult    (GDGetInfoReq)              returns (       GDPhaseConfirmResp);
+}
+
+// !SECTION: service.proto

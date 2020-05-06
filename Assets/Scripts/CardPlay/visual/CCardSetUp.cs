@@ -1,263 +1,268 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 using ULZAsset;
 using UnityEditor;
 using UnityEngine;
 public class CCardSetUp : MonoBehaviour {
-    // ----------------------------------------------------
-    // CC Card Prefab
-    AssetBundle SelfCC_AB, DuelCC_AB;
-    /// <summary>
-    /// Self CC
-    /// </summary>
-    public GameObject CCardPrefab;
+  // ----------------------------------------------------
+  // CC Card Prefab
+  // AssetBundle SelfCC_AB, DuelCC_AB;
+  /// <summary>
+  /// Self CC
+  /// </summary>
+  public GameObject CCardPrefab;
+  public List<CardSetPack> ABPreloaded;
 
-    public int SelfCC_ID;
-    [MinAttribute(1)]
-    public int SelfCC_Level;
-    public CardObject SelfDataSet;
-    public CardSet SelfDataCardSet;
-    public List<SkillObject> SelfSkillObject;
+  public int SelfCC_ID, SelfCC_Level, SelfCardSet_ID;
+  public CardObject SelfDataSet;
+  public CardSetPack SelfDataCardSet;
+  public List<SkillObject> SelfSkillObject;
 
-    public CCardBockCtl SelfCCSetBlock;
-    public CCardStandCtl SelfCCSetStand;
-    // public CCardStandCtl SelfCCSetStand_v2;
-    public int self_atk_equ = 0, self_def_equ = 0;
-    public CCSkillRender SelfCCSetSkill;
-    public CCPhaseRender SelfCCSetPhase;
+  public CCardBockCtl SelfCCSetBlock;
+  public CCardStandCtl SelfCCSetStand;
+  // public CCardStandCtl SelfCCSetStand_v2;
+  public int self_atk_equ = 0, self_def_equ = 0;
+  public CCSkillRender SelfCCSetSkill;
+  public CCPhaseRender SelfCCSetPhase;
 
-    /// <summary>
-    /// Duel CC
-    /// </summary>
-    public int DuelCC_ID;
-    [MinAttribute(1)]
-    public int DuelCC_Level;
-    public CardObject DuelDataSet;
-    public CardSet DuelDataCardSet;
-    public List<SkillObject> DuelSkillObject;
+  /// <summary>
+  /// Duel CC
+  /// </summary>
+  [MinAttribute(1)]
+  public int DuelCC_ID, DuelCC_Level, DuelCardSet_ID;
+  public CardObject DuelDataSet;
+  public CardSetPack DuelDataCardSet;
+  public List<SkillObject> DuelSkillObject;
 
-    public CCardBockCtl DuelCCSetBlock;
-    // public CCardStandCtl DuelCCSetStand;
-    public CCardStandCtl DuelCCSetStand;
-    public int duel_atk_equ = 0, duel_def_equ = 0;
-    public CCSkillRender DuelCCSetSkill;
-    public CCPhaseRender DuelCCSetPhase;
+  public CCardBockCtl DuelCCSetBlock;
+  // public CCardStandCtl DuelCCSetStand;
+  public CCardStandCtl DuelCCSetStand;
+  public int duel_atk_equ = 0, duel_def_equ = 0;
+  public CCSkillRender DuelCCSetSkill;
+  public CCPhaseRender DuelCCSetPhase;
 
-    public ULVisualCtl is_panel_open;
+  public ULVisualCtl is_panel_open;
 
-    public string _asset_path {
-        get {
-            var tmp = "";
-            switch (Application.platform) {
-                case RuntimePlatform.WindowsEditor:
-                case RuntimePlatform.WindowsPlayer:
-                    tmp = Path.Combine("win", "x86");
-                    break;
-                case RuntimePlatform.Android:
-                    tmp = "android";
-                    break;
-                case RuntimePlatform.IPhonePlayer:
-                    tmp = "ios";
-                    break;
-                case RuntimePlatform.OSXEditor:
-                case RuntimePlatform.OSXPlayer:
-                    tmp = "mac";
-                    break;
-            }
-            return Path.Combine(Application.streamingAssetsPath, tmp);
-        }
+  public string _asset_path {
+    get {
+      var tmp = "";
+      switch (Application.platform) {
+        case RuntimePlatform.WindowsEditor:
+        case RuntimePlatform.WindowsPlayer:
+          tmp = Path.Combine("win", "x86");
+          break;
+        case RuntimePlatform.Android:
+          tmp = "android";
+          break;
+        case RuntimePlatform.IPhonePlayer:
+          tmp = "ios";
+          break;
+        case RuntimePlatform.OSXEditor:
+        case RuntimePlatform.OSXPlayer:
+          tmp = "mac";
+          break;
+      }
+      return Path.Combine(Application.streamingAssetsPath, tmp);
+    }
+  }
+
+  /// <summary>
+  /// InfoPanel
+  /// </summary>
+  public GameObject InfoPanel;
+
+  public IEnumerator SelfCCImplement() {
+
+    this.SelfSkillObject = this.SelfDataCardSet.skill_obj;
+
+    if (this.SelfCCSetBlock == null) {
+      this.SelfCCSetBlock = this.transform.root.parent.Find("Canvas/BlockLayout/CardBlock").gameObject.GetComponent<CCardBockCtl>();
     }
 
-    /// <summary>
-    /// InfoPanel
-    /// </summary>
-    public GameObject InfoPanel;
+    if (this.SelfCCSetStand == null) {
+      this.SelfCCSetStand = this.transform.root.parent.Find("StandLayer/SelfStand").gameObject.GetComponent<CCardStandCtl>();
+    }
 
-    public IEnumerator StartSelfCCImplement() {
-        // Debug.Log ("start : " + _asset_path);
-        this.SelfCC_AB = AssetBundle.LoadFromFile(
-            Path.Combine(_asset_path, "CC" + (
-                SelfCC_ID.ToString()
-            ).PadLeft(2, '0') + ".ab")
-        );
+    this.SelfCCSetBlock.level = this.SelfCC_Level;
 
-        if (this.SelfCC_AB == null) {
-            yield return null;
-        }
-        TextAsset ta = this.SelfCC_AB.LoadAsset("card_set.json")as TextAsset;
-        TextAsset ska = this.SelfCC_AB.LoadAsset("skill.json")as TextAsset;
+    this.SelfCCSetBlock.is_self = 1;
+    this.SelfCCSetStand.is_self = 1;
+    // this.SelfCCSetStand_v2.is_self = 1;
 
-        this.SelfDataSet = JsonConvert.DeserializeObject<CardObject>(ta.text);
-        for (int i = 0; i < this.SelfDataSet.card_set.Count; i++) {
-            if (this.SelfDataSet.card_set[i].level == this.SelfCC_Level) {
-                this.SelfDataCardSet = this.SelfDataSet.card_set[i];
-                break;
-            }
-        }
-        List<SkillObject> tmp_sk = JsonConvert.DeserializeObject<List<SkillObject>>(ska.text);
+    StartCoroutine(this.SelfCCSetBlock.InitCCLvFrame());
+    StartCoroutine(this.SelfCCSetBlock.InitEquSetting(self_atk_equ, self_def_equ));
+    StartCoroutine(this.SelfCCSetBlock.InitCCImg(this.SelfDataSet, this.SelfDataCardSet));
+    StartCoroutine(this.SelfCCSetStand.InitCCImg(this.SelfDataCardSet));
+    StartCoroutine(this.SelfCCSetSkill.InitCCImg2(this.SelfSkillObject));
+    StartCoroutine(this.SelfCCSetPhase.InitCCImg2(this.SelfDataCardSet));
+    yield return true;
 
-        List<int> sumd = new List<int>();
-        foreach (int d in SelfDataCardSet.skill_pointer) {
+  }
+  public IEnumerator DuelCCImplement() {
+
+    this.DuelSkillObject = this.DuelDataCardSet.skill_obj;
+
+    if (this.DuelCCSetBlock == null) {
+      this.DuelCCSetBlock = this.transform.root.parent.Find("Canvas/BlockLayout/DuelCardBlock").gameObject.GetComponent<CCardBockCtl>();
+    }
+
+    if (this.DuelCCSetStand == null) {
+      this.DuelCCSetStand = this.transform.root.parent.Find("StandLayer/DuelStand").gameObject.GetComponent<CCardStandCtl>();
+    }
+
+    this.DuelCCSetBlock.level = DuelCC_Level;
+
+    this.DuelCCSetBlock.is_self = 0;
+    this.DuelCCSetStand.is_self = 0;
+
+    StartCoroutine(this.DuelCCSetBlock.InitCCLvFrame());
+    StartCoroutine(this.DuelCCSetBlock.InitEquSetting(duel_atk_equ, duel_def_equ));
+    StartCoroutine(this.DuelCCSetBlock.InitCCImg(this.DuelDataSet, this.DuelDataCardSet));
+    StartCoroutine(this.DuelCCSetStand.InitCCImg(this.DuelDataCardSet));
+    StartCoroutine(this.DuelCCSetSkill.InitCCImg2(this.DuelSkillObject));
+    StartCoroutine(this.DuelCCSetPhase.InitCCImg2(this.DuelDataCardSet));
+
+    yield return true;
+
+  }
+  public IEnumerator StartResxLoad() {
+    // yield return false;
+    // this.SelfDataSet = new CardObject();
+    // this.
+    this.ABPreloaded = new List<CardSetPack>();
+    List<int> used_cc_id = new List<int> {
+      this.SelfCC_ID,
+      this.DuelCC_ID
+    }.Distinct().ToList();
+
+    List<int> used_cc_set_id = new List<int> { this.SelfCardSet_ID, this.DuelCardSet_ID };
+    foreach (var tmp in used_cc_id) {
+      var abs = AssetBundle.LoadFromFile(
+        Path.Combine(_asset_path, "CC" + (
+          tmp.ToString()
+        ).PadLeft(2, '0') + ".ab")
+      );
+
+      if (abs == null) {
+        yield return null;
+      }
+      TextAsset ta = abs.LoadAsset("card_set.json")as TextAsset;
+      TextAsset ska = abs.LoadAsset("skill.json")as TextAsset;
+
+      CardObject co = JsonConvert.DeserializeObject<CardObject>(ta.text);
+      List<SkillObject> tmp_sk = JsonConvert.DeserializeObject<List<SkillObject>>(ska.text);
+
+      foreach (var cs in co.card_set) {
+        if (used_cc_set_id.Contains(cs.id)) {
+          CardSetPack csp = new CardSetPack();
+          csp = cs;
+          csp.chara_image_t2 = abs.LoadAsset(csp.chara_image.name.Replace(".png", ""))as Texture2D;
+          csp.stand_image_t2 = abs.LoadAsset(csp.stand_image.name.Replace(".png", ""))as Texture2D;
+          csp.bg_image_t2 = abs.LoadAsset(csp.bg_image.name.Replace(".png", ""))as Texture2D;
+          csp.artifact_image_t2 = abs.LoadAsset(csp.artifact_image.name.Replace(".png", ""))as Texture2D;
+
+          List<int> sumd = new List<int>();
+          foreach (int d in csp.skill_pointer) {
             if (!sumd.Contains(d)) {
-                sumd.Add(d);
+              sumd.Add(d);
             }
-        }
-        List<SkillObject> skj = new List<SkillObject>();
-        foreach (var tt in sumd) {
-            foreach (var y in tmp_sk) {
-                if (y.id == tt && !skj.Contains(y)) {
-                    skj.Add(y);
-                }
+          }
+          List<SkillObject> skj = new List<SkillObject>();
+          foreach (var y in tmp_sk) {
+            if (sumd.Contains(y.id) && !skj.Contains(y)) {
+              skj.Add(y);
             }
+          }
+
+          foreach (var y in skj) {
+            y.effect_image_t2 = abs.LoadAsset(y.effect_image.name.Replace(".png", ""))as Texture2D;
+          }
+
+          csp.skill_obj = skj;
+
+          // this.ABPreloaded.Add(csp);
+          if (csp.id == this.SelfCardSet_ID) {
+            this.SelfDataSet = co;
+            this.SelfDataCardSet = csp;
+          } else if (csp.id == this.DuelCardSet_ID) {
+            this.DuelDataSet = co;
+            this.DuelDataCardSet = csp;
+          }
+          this.ABPreloaded.Add(csp);
         }
+      }
 
-        this.SelfSkillObject = skj;
+      abs.Unload(false);
+    };
 
-        if (this.SelfCCSetBlock == null) {
-            this.SelfCCSetBlock = this.transform.root.parent.Find("Canvas/BlockLayout/CardBlock").gameObject.GetComponent<CCardBockCtl>();
-        }
+    yield return true;
+  }
 
-        if (this.SelfCCSetStand == null) {
-            this.SelfCCSetStand = this.transform.root.parent.Find("StandLayer/SelfStand").gameObject.GetComponent<CCardStandCtl>();
-        }
+  // CC Stand Setup
+  public void TestLoad() {
 
-        this.SelfCCSetBlock.level = this.SelfCC_Level;
+    StartCoroutine(StartResxLoad());
+    StartCoroutine(SelfCCImplement());
+    StartCoroutine(DuelCCImplement());
 
-        this.SelfCCSetBlock.is_self = 1;
-        this.SelfCCSetStand.is_self = 1;
-        // this.SelfCCSetStand_v2.is_self = 1;
+  }
 
-        StartCoroutine(this.SelfCCSetBlock.InitCCLvFrame());
-        StartCoroutine(this.SelfCCSetBlock.InitEquSetting(self_atk_equ, self_def_equ));
-        StartCoroutine(this.SelfCCSetBlock.InitCCImg(this.SelfCC_AB, this.SelfDataSet, this.SelfDataCardSet));
-        StartCoroutine(this.SelfCCSetStand.InitCCImg(this.SelfCC_AB, this.SelfDataCardSet));
-        StartCoroutine(this.SelfCCSetSkill.InitCCImg(this.SelfCC_AB, this.SelfSkillObject));
-        StartCoroutine(this.SelfCCSetPhase.InitCCImg(this.SelfCC_AB, this.SelfDataCardSet));
-        yield return true;
-
+  public IEnumerator OpenCCInfoPanel(int self_or_duel) {
+    Debug.Log("is hello," + self_or_duel);
+    if (InfoPanel.active == false && is_panel_open.AnyPanel == false) {
+      is_panel_open.AnyPanel = true;
+      InfoPanel.SetActive(true);
+      if (self_or_duel == 1) {
+        StartCoroutine(
+          InfoPanel.GetComponent<CCInfoPanel>().Init(
+            this.SelfDataSet, this.SelfDataCardSet,
+            this.SelfSkillObject,
+            true, this.SelfCC_ID, this.SelfCC_Level
+          ));
+      } else {
+        StartCoroutine(
+          InfoPanel.GetComponent<CCInfoPanel>().Init(
+            this.DuelDataSet, this.DuelDataCardSet,
+            this.DuelSkillObject,
+            false, this.DuelCC_ID, this.DuelCC_Level
+          ));
+      }
     }
-    public IEnumerator StartDuelCCImplement() {
-        // Debug.Log ("start : " + _asset_path);
-        this.DuelCC_AB = AssetBundle.LoadFromFile(Path.Combine(_asset_path, "CC" + (
-            DuelCC_ID.ToString()
-        ).PadLeft(2, '0') + ".ab"));
-
-        if (this.DuelCC_AB == null) {
-            yield return null;
-        }
-        TextAsset ta = this.DuelCC_AB.LoadAsset("card_set.json")as TextAsset;
-        TextAsset ska = this.DuelCC_AB.LoadAsset("skill.json")as TextAsset;
-
-        this.DuelDataSet = JsonConvert.DeserializeObject<CardObject>(ta.text);
-        for (int i = 0; i < this.DuelDataSet.card_set.Count; i++) {
-            if (this.DuelDataSet.card_set[i].level == this.DuelCC_Level) {
-                this.DuelDataCardSet = this.DuelDataSet.card_set[i];
-                break;
-            }
-        }
-        List<SkillObject> tmp_sk = JsonConvert.DeserializeObject<List<SkillObject>>(ska.text);
-
-        List<int> sumd = new List<int>();
-        foreach (int d in DuelDataCardSet.skill_pointer) {
-            if (!sumd.Contains(d)) {
-                sumd.Add(d);
-            }
-        }
-        List<SkillObject> skj = new List<SkillObject>();
-        foreach (var tt in sumd) {
-            foreach (var y in tmp_sk) {
-                if (y.id == tt && !skj.Contains(y)) {
-                    skj.Add(y);
-                }
-            }
-        }
-
-        DuelSkillObject = skj;
-
-        if (this.DuelCCSetBlock == null) {
-            this.DuelCCSetBlock = this.transform.root.parent.Find("Canvas/BlockLayout/DuelCardBlock").gameObject.GetComponent<CCardBockCtl>();
-        }
-
-        if (this.DuelCCSetStand == null) {
-            this.DuelCCSetStand = this.transform.root.parent.Find("StandLayer/DuelStand").gameObject.GetComponent<CCardStandCtl>();
-        }
-
-        this.DuelCCSetBlock.level = DuelCC_Level;
-
-        this.DuelCCSetBlock.is_self = 0;
-        this.DuelCCSetStand.is_self = 0;
-
-        StartCoroutine(this.DuelCCSetBlock.InitCCLvFrame());
-        StartCoroutine(this.DuelCCSetBlock.InitEquSetting(duel_atk_equ, duel_def_equ));
-        StartCoroutine(this.DuelCCSetBlock.InitCCImg(this.DuelCC_AB, this.DuelDataSet, this.DuelDataCardSet));
-        StartCoroutine(this.DuelCCSetStand.InitCCImg(this.DuelCC_AB, this.DuelDataCardSet));
-        StartCoroutine(this.DuelCCSetSkill.InitCCImg(this.DuelCC_AB, this.DuelSkillObject));
-        StartCoroutine(this.DuelCCSetPhase.InitCCImg(this.DuelCC_AB, this.DuelDataCardSet));
-
-        yield return true;
-
+    yield return true;
+  }
+  public void CloseCCInfoPanel() {
+    if (InfoPanel.active == true && is_panel_open.AnyPanel == true) {
+      InfoPanel.SetActive(false);
+      is_panel_open.AnyPanel = false;
+      InfoPanel.GetComponent<CCInfoPanel>().Clean();
     }
-
-    // CC Stand Setup
-    void Start() {
-        StartCoroutine(StartSelfCCImplement());
-        StartCoroutine(StartDuelCCImplement());
-    }
-
-    public IEnumerator OpenCCInfoPanel(int self_or_duel) {
-        Debug.Log("is hello," + self_or_duel);
-        if (InfoPanel.active == false && is_panel_open.AnyPanel == false) {
-            is_panel_open.AnyPanel = true;
-            InfoPanel.SetActive(true);
-            if (self_or_duel == 1) {
-                StartCoroutine(
-                    InfoPanel.GetComponent<CCInfoPanel>().Init(
-                        this.SelfCC_AB,
-                        this.SelfDataSet, this.SelfDataCardSet,
-                        this.SelfSkillObject,
-                        true, this.SelfCC_ID, this.SelfCC_Level
-                    ));
-            } else {
-                StartCoroutine(
-                    InfoPanel.GetComponent<CCInfoPanel>().Init(
-                        this.DuelCC_AB,
-                        this.DuelDataSet, this.DuelDataCardSet,
-                        this.DuelSkillObject,
-                        true, this.DuelCC_ID, this.DuelCC_Level
-                    ));
-            }
-        }
-        yield return true;
-    }
-    public void CloseCCInfoPanel() {
-        if (InfoPanel.active == true && is_panel_open.AnyPanel == true) {
-            InfoPanel.SetActive(false);
-            is_panel_open.AnyPanel = false;
-            InfoPanel.GetComponent<CCInfoPanel>().Clean();
-        }
-    }
+  }
 }
 
 #if (UNITY_EDITOR) 
 [CustomEditor(typeof(CCardSetUp))]
 public class CCardSetUp_Editor : Editor {
-    int CD = 0;
-    int sider_phase = 10;
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-        CCardSetUp d = (CCardSetUp)target;
-        EditorGUILayout.Space(50);
-        if (GUILayout.Button("Test Open Self CC Info Panel")) {
-            d.OpenCCInfoPanel(1);
-        }
-
-        if (GUILayout.Button("Test Open Duel CC Info Panel")) {
-            d.OpenCCInfoPanel(0);
-        }
+  int CD = 0;
+  int sider_phase = 10;
+  public override void OnInspectorGUI() {
+    DrawDefaultInspector();
+    CCardSetUp d = (CCardSetUp)target;
+    EditorGUILayout.Space(20);
+    if (GUILayout.Button("Test Load Asset ")) {
+      d.TestLoad();
     }
+    EditorGUILayout.Space(20);
+    if (GUILayout.Button("Test Open Self CC Info Panel")) {
+      d.OpenCCInfoPanel(1);
+    }
+    if (GUILayout.Button("Test Open Duel CC Info Panel")) {
+      d.OpenCCInfoPanel(0);
+    }
+  }
 }
 
 #endif

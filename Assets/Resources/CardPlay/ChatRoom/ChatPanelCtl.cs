@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Grpc.Core;
 using NATS.Client;
-using ULZAsset.ProtoMod;
+using ULZAsset.ProtoMod.RoomService;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;

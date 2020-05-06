@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace ULZAsset.ProtoMod {
+namespace ULZAsset.ProtoMod.RoomService {
 
   /// <summary>Holder for reflection information generated from RoomService/message.proto</summary>
   public static partial class MessageReflection {
@@ -61,20 +61,20 @@ namespace ULZAsset.ProtoMod {
           "cmRfaWQYAyABKAUSEgoKY2FyZHNldF9pZBgEIAEoBRINCgVsZXZlbBgFIAEo",
           "BSIiCgpQbGF5ZXJTaWRlEggKBEhPU1QQABIKCgZEVUVMRVIQASpQCgpSb29t",
           "U3RhdHVzEgsKB09OX0lOSVQQABILCgdPTl9XQUlUEAESDAoIT05fU1RBUlQQ",
-          "AhIKCgZPTl9FTkQQAxIOCgpPTl9ERVNUUk9ZEARCQgoZaW8uZ3JwYy5VTFpB",
-          "c3NldC5Qcm90b01vZEIIVUxaQXNzZXRQAVoFcHJvdG+qAhFVTFpBc3NldC5Q",
-          "cm90b01vZGIGcHJvdG8z"));
+          "AhIKCgZPTl9FTkQQAxIOCgpPTl9ERVNUUk9ZEARCTgoZaW8uZ3JwYy5VTFpB",
+          "c3NldC5Qcm90b01vZEIIVUxaQXNzZXRQAVoFcHJvdG+qAh1VTFpBc3NldC5Q",
+          "cm90b01vZC5Sb29tU2VydmljZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomStatus), }, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmCharCardInfo), global::ULZAsset.ProtoMod.RmCharCardInfo.Parser, new [] { "CardId", "Level", "Rare", "Cost" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RmUserInfo), global::ULZAsset.ProtoMod.RmUserInfo.Parser, new [] { "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.Room), global::ULZAsset.ProtoMod.Room.Parser, new [] { "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn", "HostCharcardId", "HostCardsetId", "HostCardlevel", "DuelCharcardId", "DuelCardsetId", "DuelCardlevel" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomMsg), global::ULZAsset.ProtoMod.RoomMsg.Parser, new [] { "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomReq), global::ULZAsset.ProtoMod.RoomReq.Parser, new [] { "Key", "User", "IsDuel", "Password" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomCreateReq), global::ULZAsset.ProtoMod.RoomCreateReq.Parser, new [] { "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomBroadcastInfo), global::ULZAsset.ProtoMod.RoomBroadcastInfo.Parser, new [] { "Key", "Ip", "Port", "Protocal", "Securl" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq), global::ULZAsset.ProtoMod.RoomUpdateCardReq.Parser, new [] { "Key", "Side", "CharcardId", "CardsetId", "Level" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide) }, null)
+        new pbr::GeneratedClrTypeInfo(new [] { typeof(global::ULZAsset.ProtoMod.RoomService.RoomStatus), }, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo), global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo.Parser, new [] { "CardId", "Level", "Rare", "Cost" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RmUserInfo), global::ULZAsset.ProtoMod.RoomService.RmUserInfo.Parser, new [] { "Id", "Name", "Level", "AvatIcon", "Title", "Rank" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.Room), global::ULZAsset.ProtoMod.RoomService.Room.Parser, new [] { "Id", "Key", "Password", "Host", "Dueler", "Status", "Turns", "CostLimitMax", "CostLimitMin", "CharCardLimitMax", "CharCardLimitMin", "CharCardNvn", "HostCharcardId", "HostCardsetId", "HostCardlevel", "DuelCharcardId", "DuelCardsetId", "DuelCardlevel" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RoomMsg), global::ULZAsset.ProtoMod.RoomService.RoomMsg.Parser, new [] { "Key", "FromId", "FmName", "ToId", "ToName", "Message", "MsgType" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType) }, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RoomReq), global::ULZAsset.ProtoMod.RoomService.RoomReq.Parser, new [] { "Key", "User", "IsDuel", "Password" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RoomCreateReq), global::ULZAsset.ProtoMod.RoomService.RoomCreateReq.Parser, new [] { "Key", "Host", "Password", "CostLimitMax", "CostLimitMin", "CharCardNvn", "CharCardLimitMax", "CharCardLimitMin" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RoomBroadcastInfo), global::ULZAsset.ProtoMod.RoomService.RoomBroadcastInfo.Parser, new [] { "Key", "Ip", "Port", "Protocal", "Securl" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq), global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Parser, new [] { "Key", "Side", "CharcardId", "CardsetId", "Level" }, null, new [] { typeof(global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide) }, null)
         }));
     }
     #endregion
@@ -100,7 +100,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[0]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -321,7 +321,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[1]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -600,7 +600,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[2]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -687,12 +687,12 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "host" field.</summary>
     public const int HostFieldNumber = 4;
-    private global::ULZAsset.ProtoMod.RmUserInfo host_;
+    private global::ULZAsset.ProtoMod.RoomService.RmUserInfo host_;
     /// <summary>
     /// User-info for room-host player
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmUserInfo Host {
+    public global::ULZAsset.ProtoMod.RoomService.RmUserInfo Host {
       get { return host_; }
       set {
         host_ = value;
@@ -701,12 +701,12 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "dueler" field.</summary>
     public const int DuelerFieldNumber = 5;
-    private global::ULZAsset.ProtoMod.RmUserInfo dueler_;
+    private global::ULZAsset.ProtoMod.RoomService.RmUserInfo dueler_;
     /// <summary>
     /// User-info for dueler-player 
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmUserInfo Dueler {
+    public global::ULZAsset.ProtoMod.RoomService.RmUserInfo Dueler {
       get { return dueler_; }
       set {
         dueler_ = value;
@@ -715,12 +715,12 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 7;
-    private global::ULZAsset.ProtoMod.RoomStatus status_ = global::ULZAsset.ProtoMod.RoomStatus.OnInit;
+    private global::ULZAsset.ProtoMod.RoomService.RoomStatus status_ = global::ULZAsset.ProtoMod.RoomService.RoomStatus.OnInit;
     /// <summary>
     /// Rooms Status 
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RoomStatus Status {
+    public global::ULZAsset.ProtoMod.RoomService.RoomStatus Status {
       get { return status_; }
       set {
         status_ = value;
@@ -768,12 +768,12 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "char_card_limit_max" field.</summary>
     public const int CharCardLimitMaxFieldNumber = 11;
-    private global::ULZAsset.ProtoMod.RmCharCardInfo charCardLimitMax_;
+    private global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo charCardLimitMax_;
     /// <summary>
     /// Limitation for Charecter Card Cost
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmCharCardInfo CharCardLimitMax {
+    public global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo CharCardLimitMax {
       get { return charCardLimitMax_; }
       set {
         charCardLimitMax_ = value;
@@ -782,9 +782,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "char_card_limit_min" field.</summary>
     public const int CharCardLimitMinFieldNumber = 12;
-    private global::ULZAsset.ProtoMod.RmCharCardInfo charCardLimitMin_;
+    private global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo charCardLimitMin_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmCharCardInfo CharCardLimitMin {
+    public global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo CharCardLimitMin {
       get { return charCardLimitMin_; }
       set {
         charCardLimitMin_ = value;
@@ -919,7 +919,7 @@ namespace ULZAsset.ProtoMod {
       if (Password.Length != 0)hash ^= Password.GetHashCode();
       if (host_ != null)hash ^= Host.GetHashCode();
       if (dueler_ != null)hash ^= Dueler.GetHashCode();
-      if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit)hash ^= Status.GetHashCode();
+      if (Status != global::ULZAsset.ProtoMod.RoomService.RoomStatus.OnInit)hash ^= Status.GetHashCode();
       if (Turns != 0)hash ^= Turns.GetHashCode();
       if (CostLimitMax != 0)hash ^= CostLimitMax.GetHashCode();
       if (CostLimitMin != 0)hash ^= CostLimitMin.GetHashCode();
@@ -965,7 +965,7 @@ namespace ULZAsset.ProtoMod {
         output.WriteRawTag(42);
         output.WriteMessage(Dueler);
       }
-      if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) {
+      if (Status != global::ULZAsset.ProtoMod.RoomService.RoomStatus.OnInit) {
         output.WriteRawTag(56);
         output.WriteEnum((int)Status);
       }
@@ -1040,7 +1040,7 @@ namespace ULZAsset.ProtoMod {
       if (dueler_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Dueler);
       }
-      if (Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) {
+      if (Status != global::ULZAsset.ProtoMod.RoomService.RoomStatus.OnInit) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Status);
       }
       if (Turns != 0) {
@@ -1101,17 +1101,17 @@ namespace ULZAsset.ProtoMod {
       }
       if (other.host_ != null) {
         if (host_ == null) {
-          Host = new global::ULZAsset.ProtoMod.RmUserInfo();
+          Host = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
         }
         Host.MergeFrom(other.Host);
       }
       if (other.dueler_ != null) {
         if (dueler_ == null) {
-          Dueler = new global::ULZAsset.ProtoMod.RmUserInfo();
+          Dueler = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
         }
         Dueler.MergeFrom(other.Dueler);
       }
-      if (other.Status != global::ULZAsset.ProtoMod.RoomStatus.OnInit) {
+      if (other.Status != global::ULZAsset.ProtoMod.RoomService.RoomStatus.OnInit) {
         Status = other.Status;
       }
       if (other.Turns != 0) {
@@ -1125,13 +1125,13 @@ namespace ULZAsset.ProtoMod {
       }
       if (other.charCardLimitMax_ != null) {
         if (charCardLimitMax_ == null) {
-          CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+          CharCardLimitMax = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
         }
         CharCardLimitMax.MergeFrom(other.CharCardLimitMax);
       }
       if (other.charCardLimitMin_ != null) {
         if (charCardLimitMin_ == null) {
-          CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+          CharCardLimitMin = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
         }
         CharCardLimitMin.MergeFrom(other.CharCardLimitMin);
       }
@@ -1184,7 +1184,7 @@ namespace ULZAsset.ProtoMod {
           case 34:
             {
               if (host_ == null) {
-                Host = new global::ULZAsset.ProtoMod.RmUserInfo();
+                Host = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
               }
               input.ReadMessage(Host);
               break;
@@ -1192,14 +1192,14 @@ namespace ULZAsset.ProtoMod {
           case 42:
             {
               if (dueler_ == null) {
-                Dueler = new global::ULZAsset.ProtoMod.RmUserInfo();
+                Dueler = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
               }
               input.ReadMessage(Dueler);
               break;
             }
           case 56:
             {
-              Status = (global::ULZAsset.ProtoMod.RoomStatus)input.ReadEnum();
+              Status = (global::ULZAsset.ProtoMod.RoomService.RoomStatus)input.ReadEnum();
               break;
             }
           case 64:
@@ -1220,7 +1220,7 @@ namespace ULZAsset.ProtoMod {
           case 90:
             {
               if (charCardLimitMax_ == null) {
-                CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+                CharCardLimitMax = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
               }
               input.ReadMessage(CharCardLimitMax);
               break;
@@ -1228,7 +1228,7 @@ namespace ULZAsset.ProtoMod {
           case 98:
             {
               if (charCardLimitMin_ == null) {
-                CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+                CharCardLimitMin = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
               }
               input.ReadMessage(CharCardLimitMin);
               break;
@@ -1287,7 +1287,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[3]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1387,9 +1387,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "msg_type" field.</summary>
     public const int MsgTypeFieldNumber = 7;
-    private global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType msgType_ = global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText;
+    private global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType msgType_ = global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType.UserText;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType MsgType {
+    public global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType MsgType {
       get { return msgType_; }
       set {
         msgType_ = value;
@@ -1428,7 +1428,7 @@ namespace ULZAsset.ProtoMod {
       if (ToId.Length != 0)hash ^= ToId.GetHashCode();
       if (ToName.Length != 0)hash ^= ToName.GetHashCode();
       if (Message.Length != 0)hash ^= Message.GetHashCode();
-      if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText)hash ^= MsgType.GetHashCode();
+      if (MsgType != global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType.UserText)hash ^= MsgType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1466,7 +1466,7 @@ namespace ULZAsset.ProtoMod {
         output.WriteRawTag(50);
         output.WriteString(Message);
       }
-      if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
+      if (MsgType != global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType.UserText) {
         output.WriteRawTag(56);
         output.WriteEnum((int)MsgType);
       }
@@ -1496,7 +1496,7 @@ namespace ULZAsset.ProtoMod {
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
       }
-      if (MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
+      if (MsgType != global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType.UserText) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)MsgType);
       }
       if (_unknownFields != null) {
@@ -1528,7 +1528,7 @@ namespace ULZAsset.ProtoMod {
       if (other.Message.Length != 0) {
         Message = other.Message;
       }
-      if (other.MsgType != global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType.UserText) {
+      if (other.MsgType != global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType.UserText) {
         MsgType = other.MsgType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1573,7 +1573,7 @@ namespace ULZAsset.ProtoMod {
             }
           case 56:
             {
-              MsgType = (global::ULZAsset.ProtoMod.RoomMsg.Types.MsgType)input.ReadEnum();
+              MsgType = (global::ULZAsset.ProtoMod.RoomService.RoomMsg.Types.MsgType)input.ReadEnum();
               break;
             }
         }
@@ -1601,7 +1601,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[4]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1643,9 +1643,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "user" field.</summary>
     public const int UserFieldNumber = 2;
-    private global::ULZAsset.ProtoMod.RmUserInfo user_;
+    private global::ULZAsset.ProtoMod.RoomService.RmUserInfo user_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmUserInfo User {
+    public global::ULZAsset.ProtoMod.RoomService.RmUserInfo User {
       get { return user_; }
       set {
         user_ = value;
@@ -1766,7 +1766,7 @@ namespace ULZAsset.ProtoMod {
       }
       if (other.user_ != null) {
         if (user_ == null) {
-          User = new global::ULZAsset.ProtoMod.RmUserInfo();
+          User = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
         }
         User.MergeFrom(other.User);
       }
@@ -1794,7 +1794,7 @@ namespace ULZAsset.ProtoMod {
           case 18:
             {
               if (user_ == null) {
-                User = new global::ULZAsset.ProtoMod.RmUserInfo();
+                User = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
               }
               input.ReadMessage(User);
               break;
@@ -1823,7 +1823,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[5]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1869,9 +1869,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "host" field.</summary>
     public const int HostFieldNumber = 2;
-    private global::ULZAsset.ProtoMod.RmUserInfo host_;
+    private global::ULZAsset.ProtoMod.RoomService.RmUserInfo host_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmUserInfo Host {
+    public global::ULZAsset.ProtoMod.RoomService.RmUserInfo Host {
       get { return host_; }
       set {
         host_ = value;
@@ -1927,12 +1927,12 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "char_card_limit_max" field.</summary>
     public const int CharCardLimitMaxFieldNumber = 7;
-    private global::ULZAsset.ProtoMod.RmCharCardInfo charCardLimitMax_;
+    private global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo charCardLimitMax_;
     /// <summary>
     /// Limitation for Charecter Card Cost
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmCharCardInfo CharCardLimitMax {
+    public global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo CharCardLimitMax {
       get { return charCardLimitMax_; }
       set {
         charCardLimitMax_ = value;
@@ -1941,9 +1941,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "char_card_limit_min" field.</summary>
     public const int CharCardLimitMinFieldNumber = 8;
-    private global::ULZAsset.ProtoMod.RmCharCardInfo charCardLimitMin_;
+    private global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo charCardLimitMin_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RmCharCardInfo CharCardLimitMin {
+    public global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo CharCardLimitMin {
       get { return charCardLimitMin_; }
       set {
         charCardLimitMin_ = value;
@@ -2078,7 +2078,7 @@ namespace ULZAsset.ProtoMod {
       }
       if (other.host_ != null) {
         if (host_ == null) {
-          Host = new global::ULZAsset.ProtoMod.RmUserInfo();
+          Host = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
         }
         Host.MergeFrom(other.Host);
       }
@@ -2096,13 +2096,13 @@ namespace ULZAsset.ProtoMod {
       }
       if (other.charCardLimitMax_ != null) {
         if (charCardLimitMax_ == null) {
-          CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+          CharCardLimitMax = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
         }
         CharCardLimitMax.MergeFrom(other.CharCardLimitMax);
       }
       if (other.charCardLimitMin_ != null) {
         if (charCardLimitMin_ == null) {
-          CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+          CharCardLimitMin = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
         }
         CharCardLimitMin.MergeFrom(other.CharCardLimitMin);
       }
@@ -2124,7 +2124,7 @@ namespace ULZAsset.ProtoMod {
           case 18:
             {
               if (host_ == null) {
-                Host = new global::ULZAsset.ProtoMod.RmUserInfo();
+                Host = new global::ULZAsset.ProtoMod.RoomService.RmUserInfo();
               }
               input.ReadMessage(Host);
               break;
@@ -2152,7 +2152,7 @@ namespace ULZAsset.ProtoMod {
           case 58:
             {
               if (charCardLimitMax_ == null) {
-                CharCardLimitMax = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+                CharCardLimitMax = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
               }
               input.ReadMessage(CharCardLimitMax);
               break;
@@ -2160,7 +2160,7 @@ namespace ULZAsset.ProtoMod {
           case 66:
             {
               if (charCardLimitMin_ == null) {
-                CharCardLimitMin = new global::ULZAsset.ProtoMod.RmCharCardInfo();
+                CharCardLimitMin = new global::ULZAsset.ProtoMod.RoomService.RmCharCardInfo();
               }
               input.ReadMessage(CharCardLimitMin);
               break;
@@ -2179,7 +2179,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[6]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2424,7 +2424,7 @@ namespace ULZAsset.ProtoMod {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::ULZAsset.ProtoMod.MessageReflection.Descriptor.MessageTypes[7]; }
+      get { return global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2467,9 +2467,9 @@ namespace ULZAsset.ProtoMod {
 
     /// <summary>Field number for the "side" field.</summary>
     public const int SideFieldNumber = 2;
-    private global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide side_ = global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host;
+    private global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide side_ = global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide.Host;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide Side {
+    public global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide Side {
       get { return side_; }
       set {
         side_ = value;
@@ -2534,7 +2534,7 @@ namespace ULZAsset.ProtoMod {
     public override int GetHashCode() {
       int hash = 1;
       if (Key.Length != 0)hash ^= Key.GetHashCode();
-      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host)hash ^= Side.GetHashCode();
+      if (Side != global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide.Host)hash ^= Side.GetHashCode();
       if (CharcardId != 0)hash ^= CharcardId.GetHashCode();
       if (CardsetId != 0)hash ^= CardsetId.GetHashCode();
       if (Level != 0)hash ^= Level.GetHashCode();
@@ -2555,7 +2555,7 @@ namespace ULZAsset.ProtoMod {
         output.WriteRawTag(10);
         output.WriteString(Key);
       }
-      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+      if (Side != global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide.Host) {
         output.WriteRawTag(16);
         output.WriteEnum((int)Side);
       }
@@ -2582,7 +2582,7 @@ namespace ULZAsset.ProtoMod {
       if (Key.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
       }
-      if (Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+      if (Side != global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide.Host) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Side);
       }
       if (CharcardId != 0) {
@@ -2608,7 +2608,7 @@ namespace ULZAsset.ProtoMod {
       if (other.Key.Length != 0) {
         Key = other.Key;
       }
-      if (other.Side != global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide.Host) {
+      if (other.Side != global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide.Host) {
         Side = other.Side;
       }
       if (other.CharcardId != 0) {
@@ -2637,7 +2637,7 @@ namespace ULZAsset.ProtoMod {
             }
           case 16:
             {
-              Side = (global::ULZAsset.ProtoMod.RoomUpdateCardReq.Types.PlayerSide)input.ReadEnum();
+              Side = (global::ULZAsset.ProtoMod.RoomService.RoomUpdateCardReq.Types.PlayerSide)input.ReadEnum();
               break;
             }
           case 24:

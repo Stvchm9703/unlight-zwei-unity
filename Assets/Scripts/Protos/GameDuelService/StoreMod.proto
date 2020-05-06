@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+import  "GameDuelService/Data.proto";
+import  "GameDuelService/EventHookPhase.proto";
+
+
+package ULZProto;
+option  go_package              = ".;proto";
+option  csharp_namespace        = "ULZAsset.ProtoMod.GameDuelService";
+
+
+
+// ANCHOR: mod-struct for game-service
+// SECTION: StoreMod.proto
+// -------------------------------------------------------------
+
+// Move-Phase-SnapMod
+message MovePhaseSnapMod {
+    //  flaging 
+    int32                       turns                   = 1;
+    int32                       host_val                = 2;
+    int32                       duel_val                = 3;
+    MovePhaseOpt                host_opt                = 4;
+    MovePhaseOpt                duel_opt                = 5;
+    repeated EventCard          host_card               = 6;
+    repeated EventCard          duel_card               = 7;
+    repeated SkillSet           host_trig_skl           = 8;
+    repeated SkillSet           duel_trig_skl           = 9;
+}
+
+// AD-Phase-SnapMod
+message ADPhaseSnapMod {
+    int32                       turns                   = 1;
+    PlayerSide                  first_attack             = 2;
+    PlayerSide                  curr_attacker           = 3;
+    EventHookPhase              event_phase             = 4;
+    int32                       attack_val              = 5;
+    int32                       defence_val             = 6;
+    repeated EventCard          attack_card             = 7;
+    repeated EventCard          defence_card            = 8;
+    repeated SkillSet           attack_trig_skl         = 9;
+    repeated SkillSet           defence_trig_skl        = 10;
+    bool                        is_processed            = 11;
+}
+
+// // Effect-Status-SnapMod
+message EffectNodeSnapMod {
+    int32                       turns                   = 1;
+    repeated EffectResult       pending_ef              = 2;
+}
+
+
+// PhaseInstance-SnapMod
+message PhaseSnapMod {
+    int32                       turns                   = 1;
+    EventHookPhase              event_phase             = 2;
+    EventHookType               hook_type               = 3;
+    bool                        is_host_ready           = 4;
+    bool                        is_duel_ready           = 5;
+    PlayerSide                  first_attack             = 6;
+    PlayerSide                  curr_attack             = 7;
+    // EventHookType               hook_type               = 16;
+}

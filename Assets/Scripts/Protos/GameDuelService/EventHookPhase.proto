@@ -1,0 +1,53 @@
+syntax="proto3";
+
+package ULZProto;
+option go_package = ".;proto";
+// option rust = "event_hook_phase";
+option csharp_namespace = "ULZAsset.ProtoMod.GameDuelService";
+/**
+* this file is as the globe-defined object reference file
+* about how or what the sub-service program 
+* may defined by the service in
+* the service-{sub_prog_name}.proto
+**/
+
+// ----------------------------------------------------
+// ANCHOR EventHookPhase.proto
+// SECTION: EventHookPhase.proto
+enum        EventHookPhase {
+  // start gameset
+  gameset_start                                 = 0;
+  // -- turn lifecycle
+  start_turn_phase                              = 1;
+  // ---- Draw phase (ddp)
+  refill_action_card_phase                       = 2;
+//   refill_event_card_phase                        = 3;
+  // ---- Move phase
+  move_card_drop_phase                          = 3;
+  determine_move_phase                          = 4;
+  finish_move_phase                              = 5;
+  chara_change_phase                            = 6;
+  determine_chara_change_phase                  = 7;
+  // ---- Atk/Def Phase 
+  attack_card_drop_phase                        = 8;
+  defence_card_drop_phase                       = 9;
+  determine_battle_point_phase                  = 10;
+  battle_result_phase                           = 11; //roll dice
+  damage_phase                                  = 12;
+  // --- Any Raise Phase
+  dead_chara_change_phase                       = 13;
+  determine_dead_chara_change_phase             = 14;
+  change_initiative_phase                       = 15;
+  /// -- endof turn lifecycle
+  finish_turn_phase                              = 16;
+  /// endof game set
+  gameset_end                                   = 17;
+}
+enum        EventHookType {
+  Instant                                       = 0;
+  Before                                        = 1;
+  Proxy                                         = 2;
+  After                                         = 3;
+}
+// !SECTION: EventHookPhase.proto
+// ----------------------------------------------------

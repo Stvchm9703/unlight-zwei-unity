@@ -10,6 +10,7 @@ using Grpc.Core;
 using ULZAsset;
 using ULZAsset.Config;
 using ULZAsset.ProtoMod;
+using ULZAsset.ProtoMod.RoomService;
 using UnityEngine;
 public class AC_CertConn : MonoBehaviour {
     // public CfServerSetting ConfigForm;

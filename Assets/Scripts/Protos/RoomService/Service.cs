@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace ULZAsset.ProtoMod {
+namespace ULZAsset.ProtoMod.RoomService {
 
   /// <summary>Holder for reflection information generated from RoomService/service.proto</summary>
   public static partial class ServiceReflection {
@@ -23,27 +23,28 @@ namespace ULZAsset.ProtoMod {
 
     static ServiceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          string.Concat(
-            "ChlSb29tU2VydmljZS9zZXJ2aWNlLnByb3RvEghVTFpQcm90bxoZUm9vbVNl",
-            "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMv0ECgtSb29tU2Vy",
-            "dmljZRI3CgpDcmVhdGVSb29tEhcuVUxaUHJvdG8uUm9vbUNyZWF0ZVJlcRoO",
-            "LlVMWlByb3RvLlJvb20iABI6CgtHZXRSb29tTGlzdBIXLlVMWlByb3RvLlJv",
-            "b21DcmVhdGVSZXEaDi5VTFpQcm90by5Sb29tIgAwARIyCgtHZXRSb29tSW5m",
-            "bxIRLlVMWlByb3RvLlJvb21SZXEaDi5VTFpQcm90by5Sb29tIgASNwoKVXBk",
-            "YXRlUm9vbRIXLlVMWlByb3RvLlJvb21DcmVhdGVSZXEaDi5VTFpQcm90by5S",
-            "b29tIgASPAoKVXBkYXRlQ2FyZBIbLlVMWlByb3RvLlJvb21VcGRhdGVDYXJk",
-            "UmVxGg8uVUxaUHJvdG8uRW1wdHkiABJBCg1Ccm9hZGNhc3RJbmZvEhEuVUxa",
-            "UHJvdG8uUm9vbVJlcRobLlVMWlByb3RvLlJvb21Ccm9hZGNhc3RJbmZvIgAS",
-            "OwoPU2VydmVyQnJvYWRjYXN0EhEuVUxaUHJvdG8uUm9vbVJlcRoRLlVMWlBy",
-            "b3RvLlJvb21Nc2ciADABEjMKC1NlbmRNZXNzYWdlEhEuVUxaUHJvdG8uUm9v",
-            "bU1zZxoPLlVMWlByb3RvLkVtcHR5IgASMAoIUXVpdFJvb20SES5VTFpQcm90",
-            "by5Sb29tUmVxGg8uVUxaUHJvdG8uRW1wdHkiABI2CglRdWlja1BhaXISFy5V",
-            "TFpQcm90by5Sb29tQ3JlYXRlUmVxGg4uVUxaUHJvdG8uUm9vbSIAEi8KCEpv",
-            "aW5Sb29tEhEuVUxaUHJvdG8uUm9vbVJlcRoOLlVMWlByb3RvLlJvb20iAEIb",
-            "WgVwcm90b6oCEVVMWkFzc2V0LlByb3RvTW9kYgZwcm90bzM="));
+        string.Concat(
+          "ChlSb29tU2VydmljZS9zZXJ2aWNlLnByb3RvEghVTFpQcm90bxoZUm9vbVNl",
+          "cnZpY2UvbWVzc2FnZS5wcm90bxoMY29tbW9uLnByb3RvMv0ECgtSb29tU2Vy",
+          "dmljZRI3CgpDcmVhdGVSb29tEhcuVUxaUHJvdG8uUm9vbUNyZWF0ZVJlcRoO",
+          "LlVMWlByb3RvLlJvb20iABI6CgtHZXRSb29tTGlzdBIXLlVMWlByb3RvLlJv",
+          "b21DcmVhdGVSZXEaDi5VTFpQcm90by5Sb29tIgAwARIyCgtHZXRSb29tSW5m",
+          "bxIRLlVMWlByb3RvLlJvb21SZXEaDi5VTFpQcm90by5Sb29tIgASNwoKVXBk",
+          "YXRlUm9vbRIXLlVMWlByb3RvLlJvb21DcmVhdGVSZXEaDi5VTFpQcm90by5S",
+          "b29tIgASPAoKVXBkYXRlQ2FyZBIbLlVMWlByb3RvLlJvb21VcGRhdGVDYXJk",
+          "UmVxGg8uVUxaUHJvdG8uRW1wdHkiABJBCg1Ccm9hZGNhc3RJbmZvEhEuVUxa",
+          "UHJvdG8uUm9vbVJlcRobLlVMWlByb3RvLlJvb21Ccm9hZGNhc3RJbmZvIgAS",
+          "OwoPU2VydmVyQnJvYWRjYXN0EhEuVUxaUHJvdG8uUm9vbVJlcRoRLlVMWlBy",
+          "b3RvLlJvb21Nc2ciADABEjMKC1NlbmRNZXNzYWdlEhEuVUxaUHJvdG8uUm9v",
+          "bU1zZxoPLlVMWlByb3RvLkVtcHR5IgASMAoIUXVpdFJvb20SES5VTFpQcm90",
+          "by5Sb29tUmVxGg8uVUxaUHJvdG8uRW1wdHkiABI2CglRdWlja1BhaXISFy5V",
+          "TFpQcm90by5Sb29tQ3JlYXRlUmVxGg4uVUxaUHJvdG8uUm9vbSIAEi8KCEpv",
+          "aW5Sb29tEhEuVUxaUHJvdG8uUm9vbVJlcRoOLlVMWlByb3RvLlJvb20iAEIn",
+          "WgVwcm90b6oCHVVMWkFzc2V0LlByb3RvTW9kLlJvb21TZXJ2aWNlYgZwcm90",
+          "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo( null, null));
+        new pbr::FileDescriptor[] { global::ULZAsset.ProtoMod.RoomService.MessageReflection.Descriptor, global::ULZAsset.ProtoMod.CommonReflection.Descriptor, },
+        new pbr::GeneratedClrTypeInfo(null, null));
     }
     #endregion
 

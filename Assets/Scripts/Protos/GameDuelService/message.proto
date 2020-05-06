@@ -1,0 +1,191 @@
+syntax  = "proto3";
+
+import  "GameDuelService/EventHookPhase.proto";
+import  "GameDuelService/Data.proto";
+package ULZProto;
+
+option  csharp_namespace        = "ULZAsset.ProtoMod.GameDuelService";
+option  go_package              = ".;proto";
+
+
+// ANCHOR: message-struct for game-service
+// SECTION: message.proto
+// -------------------------------------------------------------
+
+// Sub-helper-struct
+// -------------------------------------------------------------
+message ECShortHand{ 
+    int32                       card_id                     = 1;
+    EventCardPos                position                    = 2;
+    bool                        isInvert                    = 3;
+}
+// -------------------------------------------------------------
+
+
+// -------------------------------------------------------------
+// Create-Game Request
+message GDCreateReq {
+    string                      room_key                    = 1;
+    string                      host_id                     = 2;
+    string                      dueler_id                   = 3;
+    int32                       nvn                         = 4;
+    repeated CharCardSet        host_card_deck              = 5;
+    repeated CharCardSet        duel_card_deck              = 6;
+    repeated EventCard          host_extra_ec               = 7;
+    repeated EventCard          duel_extra_ec               = 8;   
+}
+
+
+// Create-Game Response
+// -> GameDataSet
+// -------------------------------------------------------------
+
+
+// -------------------------------------------------------------
+// Get-Game Request
+//  **general-struct
+message GDGetInfoReq {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    EventHookPhase              current_phase               = 3;
+    bool                        is_watcher                  = 4;
+    string                      income_user_id              = 5;
+}
+// -------------------------------------------------------------
+
+// -------------------------------------------------------------
+// Server-Broadcast-Response
+message GDBroadcastResp {
+    string                      room_key                    = 1;
+    string                      msg                         = 2;
+    CastCmd                     command                     = 3;
+    EventHookPhase              current_phase               = 4;
+    EventHookType               phase_hook                  = 5;
+    PlayerSide                  side                        = 6;
+    repeated ECShortHand        instance_set                = 7;
+    repeated EffectResult       effect_trig                 = 8;
+}
+
+enum    CastCmd {
+    GET_EFFECT_RESULT       = 0;
+    GET_DRAW_PHASE_RESULT   = 1;
+    GET_MOVE_PHASE_RESULT   = 2;
+    GET_ATK_PHASE_RESULT    = 3;
+    GET_DEF_PHASE_RESULT    = 4;
+    GET_INSTANCE_CARD       = 5;
+    GET_GAMESET_RESULT      = 6;
+    INSTANCE_DAMAGE         = 7;
+    INSTANCE_STATUS_CHANGE  = 8;
+}
+
+// -------------------------------------------------------------
+
+
+// -------------------------------------------------------------
+// instance-set-event-card
+message GDInstanceDT {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    EventHookPhase              current_phase               = 3;
+    repeated ECShortHand        update_card                 = 4;
+}
+// -------------------------------------------------------------
+
+// -------------------------------------------------------------
+// Draw-Phase-Confirm Request
+
+
+// -------------------------------------------------------------
+
+// -------------------------------------------------------------
+// Move-Phase-Confirm Request
+message GDMoveConfirmReq {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    repeated EventCard          update_card                 = 3;
+    MovePhaseOpt                move_opt                    = 4;
+    int32                       point                       = 5;
+    repeated SkillSet           trigger_skl                 = 6;
+}
+
+
+message GDMoveConfirmResp {
+    string                      room_key                    = 1;
+    RangeType                   result_range                = 2;
+    int32                       host_hp                     = 3;
+    int32                       duel_hp                     = 4;
+    int32                       host_curr_card              = 5;
+    int32                       duel_curr_card              = 6;
+}
+
+// -------------------------------------------------------------
+// ATK/DEF-Phase-Confirm Request
+//      Player send data
+message GDADConfirmReq {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    EventHookPhase              current_phase               = 3;
+    repeated SkillSet           trigger_skl                 = 4;
+    // update-card : target event-card to used
+    // !NOTE: suppose the card data is stored during card-move 
+    repeated EventCard          update_card                 = 5;
+     
+}
+
+// ATK/DEF-Phase-Result Response
+message GDADResultResp {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    EventHookPhase              current_phase               = 3;
+
+    // total Atk / Def Point after feat-func 
+    int32                       point                       = 4;
+}
+
+
+// ATK/DEF-Phase-DiceSet Response
+message GDADDiceResult {
+    string                      room_key                    = 1;
+    int32                       turns                       = 2;
+    EventHookPhase              current_phase               = 3;
+    PlayerSide                  phase_ab                    = 4;
+    
+    // total Atk / Def Point after feat-func 
+    // 
+    // skill-id : skill trigger the animation
+    //      0 / null as no skill trigger
+    
+    PlayerSide                  atk_side                    = 5;
+    int32                       atk_point                   = 6;
+    repeated int32              atk_skill_id                = 7;
+
+    
+    PlayerSide                  def_side                    = 8;
+    int32                       def_point                   = 9;
+    repeated int32              def_skill_id                = 10;
+}
+
+
+// -------------------------------------------------------------
+// 
+message GDPhaseConfirmReq {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    EventHookPhase              current_phase               = 3;
+    EventHookType               phase_hook                  = 4;
+}
+
+message GDPhaseConfirmResp {
+    string                      room_key                    = 1;
+    // repeated PhaseEffect
+}
+
+// -------------------------------------------------------------
+// 
+message GDChangeConfirmReq {
+    string                      room_key                    = 1;
+    PlayerSide                  side                        = 2;
+    int32                       card_num                    = 3;
+}
+
+// !SECTION: message.proto

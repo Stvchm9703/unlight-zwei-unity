@@ -35,7 +35,7 @@ public class CCardSetObj : MonoBehaviour {
         this.DataSet = JsonConvert.DeserializeObject<CardObject>(ta.text);
         for (int i = 0; i < this.DataSet.card_set.Count; i++) {
             if (this.DataSet.card_set[i].level == this.Level) {
-                this.DataCardSet = this.DataSet.card_set[i];
+                // this.DataCardSet = this.DataSet.card_set[i];
                 break;
             }
         }

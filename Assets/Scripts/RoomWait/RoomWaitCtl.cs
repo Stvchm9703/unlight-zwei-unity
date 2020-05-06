@@ -282,6 +282,7 @@ public class RoomWaitCtl : MonoBehaviour {
         picked.CC_id = cardObject.id;
         picked.level = cardSet.level;
         // PickedCardAB = this.CardAssetPack[$"cc_{cardObject.id}_{cardSet.id}"];
+        PickedCardAB = cardSet;
         StartCoroutine(picked.InitCCImg2(cardObject, cardSet));
         StartCoroutine(picked.InitCCLvFrame());
         StartCoroutine(picked.InitEquSetting(0, 0));
@@ -325,7 +326,7 @@ public class RoomWaitCtl : MonoBehaviour {
             }
             await this.Connecter.ChangeCharCard(
                 this.picked.CC_id,
-                this.picked.original.id,
+                this.PickedCardAB.id,
                 this.picked.level
             );
 

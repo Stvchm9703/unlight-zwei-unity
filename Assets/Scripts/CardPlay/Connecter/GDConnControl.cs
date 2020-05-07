@@ -79,7 +79,7 @@ public class GDConnControl : MonoBehaviour {
     this.natOpt.Url = $"{streamSet.Connector}://{streamSet.Host}:{streamSet.Port}";
     Debug.Log(this.natOpt.Url);
     this.natConn = new ConnectionFactory().CreateConnection(this.natOpt);
-    natConn.SubscribeAsync($"ULZ.GDSvc/{this.CurrentRoom.Key}", OnSubMsgHandle);
+    this.natConn.SubscribeAsync($"ULZ.GDSvc/{this.CurrentRoom.Key}", this.OnSubMsgHandle);
     return false;
   }
 
@@ -128,7 +128,7 @@ public class GDConnControl : MonoBehaviour {
     yield return (this.cCardResx.DuelCCImplement());
   }
 
-  void OnSubMsgHandle(object caller, NATS.Client.MsgHandlerEventArgs income) {
+  async void OnSubMsgHandle(object caller, NATS.Client.MsgHandlerEventArgs income) {
     Debug.Log(caller);
     var inst_msg = GDBroadcastResp.Parser.ParseFrom(income.Message.Data);
     Debug.Log(inst_msg);
@@ -136,9 +136,12 @@ public class GDConnControl : MonoBehaviour {
     switch (inst_msg.Command) {
       case CastCmd.GetGamesetResult:
         Debug.Log(inst_msg.Msg);
-        var task = this.GetGameData(this.CurrentRoom.Key, this.RoomConn.IsWatcher).Result;
-        Debug.Log(task.HostCardDeck);
-        Debug.Log(task.DuelCardDeck);
+        // GameDataSet task;
+        if (inst_msg.Msg == "Host:CreatedGame,GetGameSet" && (this.RoomConn.IsWatcher || !this.RoomConn.IsHost)) {
+          this.GetGameData(this.CurrentRoom.Key, this.RoomConn.IsWatcher).Wait();
+        }
+        Debug.Log(this.CurrentGS.HostCardDeck);
+        Debug.Log(this.CurrentGS.DuelCardDeck);
         break;
       case CastCmd.GetEffectResult:
       case CastCmd.GetDrawPhaseResult:

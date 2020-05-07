@@ -14707,7 +14707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f3d1fcabf2b9f44b2edcc4bb8b8569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 0
+  isPersistant: 1
   cCardResx: {fileID: 1191482906}
   phaseTurn: {fileID: 222561831}
   rangeCtl: {fileID: 1695959158}

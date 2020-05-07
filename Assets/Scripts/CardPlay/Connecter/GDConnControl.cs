@@ -19,7 +19,6 @@ public class GDConnControl : MonoBehaviour {
   public CCPhaseRender HostPhaseRender, DuelPhaseRender;
 
   // Room Service Conn
-  public Room CurrentRoom;
   public RoomServiceConn RoomConn;
 
   // service-connecter related
@@ -138,7 +137,7 @@ public class GDConnControl : MonoBehaviour {
         Debug.Log(inst_msg.Msg);
         // GameDataSet task;
         if (inst_msg.Msg == "Host:CreatedGame,GetGameSet" && (this.RoomConn.IsWatcher || !this.RoomConn.IsHost)) {
-          this.GetGameData(this.CurrentRoom.Key, this.RoomConn.IsWatcher).Wait();
+          this.GetGameData(this.RoomConn.CurrentRoom.Key, this.RoomConn.IsWatcher).Wait();
         }
         Debug.Log(this.CurrentGS.HostCardDeck);
         Debug.Log(this.CurrentGS.DuelCardDeck);
@@ -156,30 +155,30 @@ public class GDConnControl : MonoBehaviour {
   }
   bool SendMsg(string msg) {
     if (this.natConn == null)throw new System.Exception("Null_Conn");
-    if (this.CurrentRoom == null || this.CurrentRoom.Key == "")throw new System.Exception("No_Current_Room");
+    if (this.RoomConn.CurrentRoom == null || this.RoomConn.CurrentRoom.Key == "")throw new System.Exception("No_Current_Room");
 
     var msgPack = new GDBroadcastResp {
-      RoomKey = this.CurrentRoom.Key,
+      RoomKey = this.RoomConn.CurrentRoom.Key,
       Msg = msg,
       Command = CastCmd.GetGamesetResult,
       Side = this.RoomConn.IsHost? PlayerSide.Host : PlayerSide.Dueler,
     };
 
-    this.natConn.Publish($"ULZ.GDSvc/{this.CurrentRoom.Key}", msgPack.ToByteArray());
+    this.natConn.Publish($"ULZ.GDSvc/{this.RoomConn.CurrentRoom.Key}", msgPack.ToByteArray());
     return true;
   }
 
   public async Task<GameDataSet> CreateGameSet(int nvn,
     List<CharCardSet> HostCardList = null, List<CharCardSet> DuelerCardList = null,
     List<EventCard> HostECList = null, List<EventCard> DuelerECList = null) {
-    if (this.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
+    if (this.RoomConn.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
     if (this.GDSClient == null)throw new System.Exception("NO_CLIENT_EXIST");
 
     try {
       var req = new GDCreateReq {
-        RoomKey = CurrentRoom.Key,
-        HostId = CurrentRoom.Host.Id,
-        DuelerId = CurrentRoom.Dueler.Id,
+        RoomKey = this.RoomConn.CurrentRoom.Key,
+        HostId = this.RoomConn.CurrentRoom.Host.Id,
+        DuelerId = this.RoomConn.CurrentRoom.Dueler.Id,
         Nvn = nvn,
       };
       req.HostCardDeck.AddRange(HostCardList);
@@ -196,12 +195,12 @@ public class GDConnControl : MonoBehaviour {
     }
   }
   public async Task<GameDataSet> GetGameData(string roomKey, bool isWatcher) {
-    if (this.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
+    if (this.RoomConn.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
     if (this.GDSClient == null)throw new System.Exception("NO_CLIENT_EXIST");
 
     try {
       var req = new GDGetInfoReq {
-        RoomKey = CurrentRoom.Key,
+        RoomKey = this.RoomConn.CurrentRoom.Key,
         IsWatcher = isWatcher,
       };
       var tmpGameSet = await this.GDSClient.GetGameDataAsync(req);
@@ -213,12 +212,12 @@ public class GDConnControl : MonoBehaviour {
   }
 
   public async Task<bool> QuitGame() {
-    if (this.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
+    if (this.CurrentGS == null)throw new System.Exception("NO_ROOM_EXIST");
     if (this.GDSClient == null)throw new System.Exception("NO_CLIENT_EXIST");
 
     try {
       var req = new GDCreateReq {
-        RoomKey = CurrentRoom.Key,
+        RoomKey = CurrentGS.RoomKey,
       };
       var tmpGameSet = await this.GDSClient.QuitGameAsync(req);
       return true;
@@ -228,12 +227,12 @@ public class GDConnControl : MonoBehaviour {
   }
 
   public async Task<bool> InstSetEventCard(List<EventCard> eclist) {
-    if (this.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
+    if (this.CurrentGS == null)throw new System.Exception("NO_ROOM_EXIST");
     if (this.GDSClient == null)throw new System.Exception("NO_CLIENT_EXIST");
 
     try {
       var req = new GDInstanceDT {
-        RoomKey = CurrentRoom.Key,
+        RoomKey = CurrentGS.RoomKey,
         Side = this.RoomConn.IsHost? PlayerSide.Host : PlayerSide.Dueler,
         CurrentPhase = this.CurrentGS.EventPhase,
       };

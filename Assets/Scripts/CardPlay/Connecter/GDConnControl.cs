@@ -34,7 +34,7 @@ public class GDConnControl : MonoBehaviour {
 
   public bool UpdateFlag;
   // Life-cycle of the process
-  async void Start() {
+  async void Awake() {
     await FullSetup();
     // StartCoroutine( InitGameCtlSetup());
   }
@@ -44,17 +44,13 @@ public class GDConnControl : MonoBehaviour {
     }
   }
   async Task<bool> FullSetup() {
-    // yield return new WaitForSeconds(2);
-    GameObject[] objs;
-    do {
-      objs = GameObject.FindGameObjectsWithTag("room_connector");
-    } while (objs.Length != 1);
-    Debug.Log(objs[0].name);
-    var v = objs[0].GetComponent<RoomServiceConn>();
+    Debug.Log("MyScript.Start " + GetInstanceID(), this);
+    var objs = GameObject.FindGameObjectWithTag("room_connector");
+    var v = objs.GetComponent<RoomServiceConn>();
     this.RoomConn = v;
     this.InitConnSetup(this.RoomConn.config);
     // yield return true;
-    StartCoroutine(InitGameCtlSetup());
+    this.InitGameCtlSetup();
 
     if (RoomConn.IsHost && !RoomConn.IsWatcher) {
       Debug.Log("Host-Create");
@@ -98,9 +94,9 @@ public class GDConnControl : MonoBehaviour {
     this.natConn.SubscribeAsync($"ULZ.GDSvc/{this.RoomConn.CurrentRoom.Key}", this.OnSubMsgHandle);
   }
 
-  IEnumerator InitGameCtlSetup() {
+  void InitGameCtlSetup() {
     if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
-      yield break;
+      return ;
     }
 
     if (!this.RoomConn.IsHost) {
@@ -137,10 +133,10 @@ public class GDConnControl : MonoBehaviour {
       this.cCardResx.DuelCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
     }
 
-    yield return (this.cCardResx.StartResxLoad());
+    StartCoroutine(this.cCardResx.StartResxLoad());
 
-    yield return (this.cCardResx.SelfCCImplement());
-    yield return (this.cCardResx.DuelCCImplement());
+    StartCoroutine(this.cCardResx.SelfCCImplement());
+    StartCoroutine(this.cCardResx.DuelCCImplement());
   }
 
   async void OnSubMsgHandle(object caller, NATS.Client.MsgHandlerEventArgs income) {

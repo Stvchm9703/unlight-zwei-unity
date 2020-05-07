@@ -10,7 +10,8 @@ using ULZAsset.MsgExtension;
 using ULZAsset.ProtoMod.GameDuelService;
 using ULZAsset.ProtoMod.RoomService;
 using UnityEngine;
-public class GDConnControl : MonoBehaviour {
+
+public class GDConnControl : Singleton<GDConnControl> {
   // Game other Controller
   public CCardSetUp cCardResx;
   public PhaseTurnCtl phaseTurn;
@@ -31,17 +32,19 @@ public class GDConnControl : MonoBehaviour {
 
   // monitered data
   public GameDataSet CurrentGS;
-
+  private bool isInited = false;
   public bool UpdateFlag;
   // Life-cycle of the process
-  async void Awake() {
-    await FullSetup();
+  protected virtual async void Start() {
+    if (!isInited)
+      isInited = await FullSetup();
     // StartCoroutine( InitGameCtlSetup());
   }
-  private void Update() {
-    if (UpdateFlag) {
-      UpdateFlag = false;
-    }
+  
+  protected virtual void Update() {
+    // if (UpdateFlag) {
+    //   UpdateFlag = false;
+    // }
   }
   async Task<bool> FullSetup() {
     Debug.Log("MyScript.Start " + GetInstanceID(), this);
@@ -96,7 +99,7 @@ public class GDConnControl : MonoBehaviour {
 
   void InitGameCtlSetup() {
     if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
-      return ;
+      return;
     }
 
     if (!this.RoomConn.IsHost) {

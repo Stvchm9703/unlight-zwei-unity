@@ -9,7 +9,7 @@ using ULZAsset;
 using ULZAsset.Config;
 using ULZAsset.ProtoMod.RoomService;
 using UnityEngine;
-public class RoomServiceConn : MonoBehaviour {
+public class RoomServiceConn : Singleton<RoomServiceConn> {
     Channel main_ch;
     RoomService.RoomServiceClient client;
     Metadata extra_mt_handle;
@@ -22,19 +22,7 @@ public class RoomServiceConn : MonoBehaviour {
     // NATS impl
     public NATS.Client.Options natOpt;
     public NATS.Client.IConnection natsConn;
-    void Awake() {
-        Debug.Log("on Awake process - Room-Service-Connector");
-
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("room_connector");
-        if (this.SelfKill) {
-            Destroy(this.gameObject);
-        } else if (objs.Length > 1) {
-            Destroy(this.gameObject);
-        } else {
-            DontDestroyOnLoad(this.gameObject);
-            this.gameObject.tag = "room_connector";
-        }
-    }
+    
 
     public bool InitSetup(CfServerSetting setting) {
         config = setting;

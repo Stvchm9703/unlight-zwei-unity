@@ -84,7 +84,7 @@ public class CCardStandCtl : MonoBehaviour {
         } else {
             Texture2D tas = Cs.stand_image_t2;
 
-            var income_img_ratio = (float)1 / (tas.width / tas.height);
+            var income_img_ratio = (float)(tas.height / tas.width);
             var orig_img_ratio = (float)Cs.stand_image.height / Cs.stand_image.width;
 
             var ms_sprite = MainStand.GetComponent<SpriteRenderer>();

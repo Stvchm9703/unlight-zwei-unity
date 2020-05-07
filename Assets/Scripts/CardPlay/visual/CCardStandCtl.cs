@@ -84,9 +84,8 @@ public class CCardStandCtl : MonoBehaviour {
         } else {
             Texture2D tas = Cs.stand_image_t2;
 
-            var income_img_ratio = (float)(tas.height / tas.width);
+            var income_img_ratio = (float)1 / (tas.width / tas.height);
             var orig_img_ratio = (float)Cs.stand_image.height / Cs.stand_image.width;
-            Debug.Log($"stand: income:{income_img_ratio} , orig:{orig_img_ratio}");
 
             var ms_sprite = MainStand.GetComponent<SpriteRenderer>();
             ms_sprite.sprite = Sprite.Create(tas,
@@ -94,21 +93,25 @@ public class CCardStandCtl : MonoBehaviour {
                 new Vector2(0.5f, 0f)
             );
             MainStand.AddComponent<BoxCollider2D>();
+
+            var mtrans = MainStand.GetComponent<RectTransform>();
+            mtrans.localScale = new Vector3(1, (float)(orig_img_ratio / income_img_ratio), 1);
         }
 
         if (Shadow == null) {
             yield return false;
         } else {
             Texture2D tas = Cs.bg_image_t2;
-            var income_img_ratio = (float)(tas.height / tas.width);
+            var income_img_ratio = (float)1 / (tas.width / tas.height);
             var orig_img_ratio = (float)Cs.bg_image.height / Cs.bg_image.width;
-            Debug.Log($"shadow: income:{income_img_ratio} , orig:{orig_img_ratio}");
 
             var ms_sprite = Shadow.GetComponent<SpriteRenderer>();
             ms_sprite.sprite = Sprite.Create(tas,
                 new Rect(0, 0, tas.width, tas.height),
                 new Vector2(0.5f, 1f)
             );
+            var mtrans = Shadow.GetComponent<RectTransform>();
+            mtrans.localScale = new Vector3(1, (float)(orig_img_ratio / income_img_ratio), 1);
         }
 
         if (CCMainSet == null) {

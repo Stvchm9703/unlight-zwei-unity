@@ -130,9 +130,7 @@ public class CCardSetUp : MonoBehaviour {
 
   }
   public IEnumerator StartResxLoad() {
-    // yield return false;
-    // this.SelfDataSet = new CardObject();
-    // this.
+  
     this.ABPreloaded = new List<CardSetPack>();
     List<int> used_cc_id = new List<int> {
       this.SelfCC_ID,

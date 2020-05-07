@@ -54,13 +54,29 @@ public class GDConnControl : MonoBehaviour {
     this.RoomConn = v;
     this.InitConnSetup(this.RoomConn.config);
     // yield return true;
+    yield return InitGameCtlSetup();
 
     if (RoomConn.IsHost && !RoomConn.IsWatcher) {
       Debug.Log("Host-Create");
-      var task = this.CreateGameSet(this.RoomConn.CurrentRoom.CharCardNvn).Result;
+      CharCardSet hostPack = new CharCardSet();
+      CharCardSet duelPack = new CharCardSet();
+      List<CharCardSet> hostPackList = new List<CharCardSet>();
+      List<CharCardSet> duelPackList = new List<CharCardSet>();
+      if (this.cCardResx.SelfDataCardSet != null) {
+        hostPack = this.cCardResx.SelfDataCardSet.ToCharCardSetRaw();
+      }
+      if (this.cCardResx.DuelDataCardSet != null) {
+        duelPack = this.cCardResx.DuelDataCardSet.ToCharCardSetRaw();
+      }
+      hostPackList.Add(hostPack);
+      duelPackList.Add(duelPack);
+
+      var task = this.CreateGameSet(
+        this.RoomConn.CurrentRoom.CharCardNvn,
+        hostPackList, duelPackList
+      ).Result;
       this.SendMsg("Host:CreatedGame,GetGameSet");
     }
-    yield return InitGameCtlSetup();
     yield return true;
   }
   // Custom Code 
@@ -181,10 +197,11 @@ public class GDConnControl : MonoBehaviour {
         DuelerId = this.RoomConn.CurrentRoom.Dueler.Id,
         Nvn = nvn,
       };
-      req.HostCardDeck.AddRange(HostCardList);
-      req.DuelCardDeck.AddRange(DuelerCardList);
-      req.HostExtraEc.AddRange(HostECList);
-      req.DuelExtraEc.AddRange(DuelerECList);
+
+      if (HostCardList != null)req.HostCardDeck.AddRange(HostCardList);
+      if (DuelerCardList != null)req.DuelCardDeck.AddRange(DuelerCardList);
+      if (HostECList != null)req.HostExtraEc.AddRange(HostECList);
+      if (DuelerECList != null)req.DuelExtraEc.AddRange(DuelerECList);
 
       var tmpGameSet = await this.GDSClient.CreateGameAsync(req);
       Debug.Log($"{tmpGameSet.CurrPhase}");

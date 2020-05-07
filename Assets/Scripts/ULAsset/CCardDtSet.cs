@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ULZAsset.ProtoMod.GameDuelService;
 using UnityEngine;
 
 namespace ULZAsset {
@@ -111,7 +112,18 @@ namespace ULZAsset {
         public string created_at { get; set; }
         public object skill { get; set; }
         public List<int> skill_pointer { get; set; }
-        public List<SkillObject> skill_obj ;
+        public List<SkillObject> skill_obj;
+
+        public CharCardSet ToCharCardSetRaw() {
+            return new CharCardSet {
+                CharId = 0,
+                CardId = this.id,
+                HpInst = this.hp, HpOrig = this.hp,
+                ApInst = this.ap, ApOrig = this.ap,
+                DpInst = this.dp, DpOrig = this.dp,
+                Level = this.level,
+            }
+        }
     }
 
 }

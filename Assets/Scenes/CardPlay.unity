@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1180,7 +1180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 0}
+  m_AnchoredPosition: {x: -3, y: 1.5}
   m_SizeDelta: {x: 3, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143378722
@@ -1213,7 +1213,7 @@ MonoBehaviour:
     type: 
   CCMainSet: {fileID: 709209472}
   SkillList: {fileID: 73411642}
-  ratio: 1.3
+  ratio: 1.7
 --- !u!1 &147961302
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 13, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &422498695
@@ -9090,9 +9090,9 @@ MonoBehaviour:
   CCardPrefab: {fileID: 8879557533689974164, guid: d7394662e6aa87b449a2a0de74589f61,
     type: 3}
   ABPreloaded: []
-  SelfCC_ID: 20
+  SelfCC_ID: 25
   SelfCC_Level: 3
-  SelfCardSet_ID: 193
+  SelfCardSet_ID: 241
   SelfDataCardSet:
     stand_image:
       name: 
@@ -11997,7 +11997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 0}
+  m_AnchoredPosition: {x: 3, y: 1.5}
   m_SizeDelta: {x: 3, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549804177
@@ -12030,7 +12030,7 @@ MonoBehaviour:
     type: 
   CCMainSet: {fileID: 1093953413}
   SkillList: {fileID: 151647866}
-  ratio: 1.3
+  ratio: 1.7
 --- !u!1 &1551165815
 GameObject:
   m_ObjectHideFlags: 0

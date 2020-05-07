@@ -117,7 +117,7 @@ public class CCardStandCtl : MonoBehaviour {
         if (CCMainSet == null) {
             yield return false;
         } else {
-            CCMainSet.localScale = new Vector3(ratio, ratio, 1);
+            this.transform.localScale = new Vector3(ratio, ratio, 1);
         }
 
         yield return true;

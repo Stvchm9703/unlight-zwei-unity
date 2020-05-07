@@ -86,8 +86,6 @@ public class GDConnControl : MonoBehaviour {
         if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
             yield break;
         }
-        Debug.Log($"{this.RoomConn.CurrentRoom.HostCharcardId} , {this.RoomConn.CurrentRoom.HostCardsetId}");
-        Debug.Log($"{this.RoomConn.CurrentRoom.DuelCharcardId} , {this.RoomConn.CurrentRoom.DuelCardsetId}");
 
         if (!this.RoomConn.IsHost) {
 

@@ -102,7 +102,6 @@ public class RoomServiceConn : MonoBehaviour {
                 Key = room_key, Password = password
             });
             CurrentRoom = get_task;
-            this.IsHost = false;
             return get_task;
         } catch (RpcException) {
             throw;

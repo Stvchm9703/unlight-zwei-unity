@@ -199,8 +199,6 @@ public class CCardSetUp : MonoBehaviour {
       abs.Unload(false);
     };
 
-    Debug.Log($"set :{this.SelfDataSet.name.en} name : {this.SelfDataCardSet.bg_image.name}, ");
-    Debug.Log($"set :{this.DuelDataSet.name.en} name : {this.DuelDataCardSet.bg_image.name}, ");
 
     yield return true;
   }

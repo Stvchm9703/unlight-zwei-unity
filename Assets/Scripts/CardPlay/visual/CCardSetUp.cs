@@ -114,7 +114,6 @@ public class CCardSetUp : MonoBehaviour {
       this.DuelCCSetStand = this.transform.root.parent.Find("StandLayer/DuelStand").gameObject.GetComponent<CCardStandCtl>();
     }
 
-    
     this.DuelCCSetBlock.level = DuelCC_Level;
 
     this.DuelCCSetBlock.is_self = 0;
@@ -200,6 +199,9 @@ public class CCardSetUp : MonoBehaviour {
       abs.Unload(false);
     };
 
+    Debug.Log($"set :{this.SelfDataSet.name.en} name : {this.SelfDataCardSet.bg_image.name}, ");
+    Debug.Log($"set :{this.DuelDataSet.name.en} name : {this.DuelDataCardSet.bg_image.name}, ");
+
     yield return true;
   }
 
@@ -213,7 +215,6 @@ public class CCardSetUp : MonoBehaviour {
   }
 
   public IEnumerator OpenCCInfoPanel(int self_or_duel) {
-    Debug.Log("is hello," + self_or_duel);
     if (InfoPanel.active == false && is_panel_open.AnyPanel == false) {
       is_panel_open.AnyPanel = true;
       InfoPanel.SetActive(true);

@@ -8,6 +8,9 @@ TagManager:
   - connecter
   - room_connector
   - gd_connector
+  - phase_layer
+  - skill_layer
+  - stand_layer
   layers:
   - Default
   - TransparentFX

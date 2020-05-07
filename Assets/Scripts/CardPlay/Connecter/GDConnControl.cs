@@ -36,6 +36,7 @@ public class GDConnControl : MonoBehaviour {
     // Life-cycle of the process
     void Start() {
         StartCoroutine(FullSetup());
+        // StartCoroutine( InitGameCtlSetup());
     }
     private void Update() {
         if (UpdateFlag) {
@@ -89,18 +90,20 @@ public class GDConnControl : MonoBehaviour {
         Debug.Log($"{this.RoomConn.CurrentRoom.DuelCharcardId} , {this.RoomConn.CurrentRoom.DuelCardsetId}");
 
         if (!this.RoomConn.IsHost) {
-            var ttt = this.transform.parent.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
 
-            Debug.Log(ttt.name);
+            var phase_layer = GameObject.FindGameObjectWithTag("phase_layer").transform;
+
             this.HostPhaseRender =
-                this.transform.parent.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
+                phase_layer.Find("duelphase").GetComponent<CCPhaseRender>();
             this.DuelPhaseRender =
-                this.transform.parent.Find("PhaseLayer/selfphase").GetComponent<CCPhaseRender>();
+                phase_layer.Find("selfphase").GetComponent<CCPhaseRender>();
+
+            var skill_layer = GameObject.FindGameObjectWithTag("skill_layer").transform;
 
             this.HostSkillRender =
-                this.transform.parent.Find("SkillRender/DuelSkillRender").GetComponent<CCSkillRender>();
+                skill_layer.Find("DuelSkillRender").GetComponent<CCSkillRender>();
             this.DuelSkillRender =
-                this.transform.parent.Find("SkillRender/SelfSkillRender").GetComponent<CCSkillRender>();
+                skill_layer.Find("SelfSkillRender").GetComponent<CCSkillRender>();
 
             this.cCardResx.DuelCC_ID = this.RoomConn.CurrentRoom.HostCharcardId;
             this.cCardResx.DuelCC_Level = this.RoomConn.CurrentRoom.HostCardlevel;
@@ -121,6 +124,7 @@ public class GDConnControl : MonoBehaviour {
         }
 
         yield return (this.cCardResx.StartResxLoad());
+
         yield return (this.cCardResx.SelfCCImplement());
         yield return (this.cCardResx.DuelCCImplement());
     }

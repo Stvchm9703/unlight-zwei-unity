@@ -3807,7 +3807,7 @@ GameObject:
   - component: {fileID: 442810854}
   m_Layer: 8
   m_Name: SkillLayer
-  m_TagString: Untagged
+  m_TagString: skill_layer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5607,7 +5607,7 @@ GameObject:
   - component: {fileID: 718851846}
   m_Layer: 0
   m_Name: PhaseLayer
-  m_TagString: Untagged
+  m_TagString: phase_layer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11417,104 +11417,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438141021}
   m_CullTransparentMesh: 0
---- !u!1 &1446398961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1446398962}
-  - component: {fileID: 1446398963}
-  m_Layer: 0
-  m_Name: Connecter-should-remove
-  m_TagString: room_connector
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1446398962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446398961}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1446398963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446398961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08a27ac63bd7b24ab39428b7fb63219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config:
-    RoomService:
-      ServiceName: 
-      Connector: 
-      Host: 
-      Port: 0
-      Database: 
-      Username: 
-      Password: 
-      Key: 
-      KeyPemPath: 
-      StreamSetting:
-        Connector: 
-        Host: 
-        Port: 0
-        KeyPemPath: 
-    CredService:
-      ServiceName: 
-      Connector: 
-      Host: 
-      Port: 0
-      Database: 
-      Username: 
-      Password: 
-      Key: 
-      KeyPemPath: 
-      StreamSetting:
-        Connector: 
-        Host: 
-        Port: 0
-        KeyPemPath: 
-    GameDuelService:
-      ServiceName: 
-      Connector: 
-      Host: 
-      Port: 0
-      Database: 
-      Username: 
-      Password: 
-      Key: 
-      KeyPemPath: 
-      StreamSetting:
-        Connector: 
-        Host: 
-        Port: 0
-        KeyPemPath: 
-    UserInfo:
-      Id: 
-      Name: 
-      Title: 
-      Level: 0
-      Rank: 0
-  IsHost: 0
-  IsWatcher: 1
-  SelfKill: 1
 --- !u!1001 &1462939432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12709,7 +12611,7 @@ GameObject:
   - component: {fileID: 1695959158}
   m_Layer: 8
   m_Name: StandLayer
-  m_TagString: Untagged
+  m_TagString: stand_layer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

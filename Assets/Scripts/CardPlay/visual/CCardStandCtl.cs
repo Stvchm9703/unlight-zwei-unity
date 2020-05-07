@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using ULZAsset;
-using UnityEngine;
 using ULZAsset;
+using UnityEngine;
 public class CCardStandCtl : MonoBehaviour {
     public int is_self = 1;
     public CCardSetUp main_ctl;
@@ -52,6 +52,7 @@ public class CCardStandCtl : MonoBehaviour {
                 new Vector2(0.5f, 0f)
             );
             MainStand.AddComponent<BoxCollider2D>();
+
         }
 
         if (Shadow == null) {
@@ -82,6 +83,11 @@ public class CCardStandCtl : MonoBehaviour {
             yield return false;
         } else {
             Texture2D tas = Cs.stand_image_t2;
+
+            var income_img_ratio = (float)(tas.height / tas.width);
+            var orig_img_ratio = (float)Cs.stand_image.height / Cs.stand_image.width;
+            Debug.Log($"stand: income:{income_img_ratio} , orig:{orig_img_ratio}");
+
             var ms_sprite = MainStand.GetComponent<SpriteRenderer>();
             ms_sprite.sprite = Sprite.Create(tas,
                 new Rect(0, 0, tas.width, tas.height),
@@ -94,6 +100,10 @@ public class CCardStandCtl : MonoBehaviour {
             yield return false;
         } else {
             Texture2D tas = Cs.bg_image_t2;
+            var income_img_ratio = (float)(tas.height / tas.width);
+            var orig_img_ratio = (float)Cs.bg_image.height / Cs.bg_image.width;
+            Debug.Log($"shadow: income:{income_img_ratio} , orig:{orig_img_ratio}");
+
             var ms_sprite = Shadow.GetComponent<SpriteRenderer>();
             ms_sprite.sprite = Sprite.Create(tas,
                 new Rect(0, 0, tas.width, tas.height),
@@ -110,7 +120,6 @@ public class CCardStandCtl : MonoBehaviour {
         yield return true;
     }
     public void ClickTrig() {
-        Debug.Log("hi");
         if (main_ctl != null) {
             StartCoroutine(
                 main_ctl.OpenCCInfoPanel(is_self)

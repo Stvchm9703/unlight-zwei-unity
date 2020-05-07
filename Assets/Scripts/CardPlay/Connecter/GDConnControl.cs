@@ -16,8 +16,10 @@ public class GDConnControl : Singleton<GDConnControl> {
   public CCardSetUp cCardResx;
   public PhaseTurnCtl phaseTurn;
   public RangeCtl rangeCtl;
-  public CCSkillRender HostSkillRender, DuelSkillRender;
-  public CCPhaseRender HostPhaseRender, DuelPhaseRender;
+  public CCSkillRender HostSkillRender,
+  DuelSkillRender;
+  public CCPhaseRender HostPhaseRender,
+  DuelPhaseRender;
 
   // Room Service Conn
   public RoomServiceConn RoomConn;
@@ -36,6 +38,14 @@ public class GDConnControl : Singleton<GDConnControl> {
   public bool UpdateFlag;
   // Life-cycle of the process
   protected virtual async void Start() {
+    if (this.cCardResx == null)this.cCardResx = GameObject.Find("EventSystem").GetComponent<CCardSetUp>();
+    if (this.phaseTurn == null)this.phaseTurn = GameObject.Find("VistualEffectLayer/phase_turn").GetComponent<PhaseTurnCtl>();
+    if (this.rangeCtl == null)this.rangeCtl = GameObject.Find("StandLayer").GetComponent<RangeCtl>();
+    if (this.HostSkillRender == null)this.HostSkillRender = GameObject.Find("SkillLayer/SelfSkillStand").GetComponent<CCSkillRender>();
+    if (this.DuelSkillRender == null)this.DuelSkillRender = GameObject.Find("SkillLayer/DuelSkillStand").GetComponent<CCSkillRender>();
+    if (this.HostPhaseRender == null)this.HostPhaseRender = GameObject.Find("PhaseLayer/selfphase").GetComponent<CCPhaseRender>();
+    if (this.DuelPhaseRender == null)this.DuelPhaseRender = GameObject.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
+
     if (!isInited)
       isInited = await FullSetup();
     // StartCoroutine( InitGameCtlSetup());

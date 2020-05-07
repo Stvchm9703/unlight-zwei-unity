@@ -53,8 +53,8 @@ public class GDConnControl : MonoBehaviour {
     Debug.Log(objs[0].name);
     var v = objs[0].GetComponent<RoomServiceConn>();
     this.RoomConn = v;
-    this.InitConnSetup(this.RoomConn.config).Wait();
-    yield return true;
+    this.InitConnSetup(this.RoomConn.config);
+    // yield return true;
 
     if (RoomConn.IsHost && !RoomConn.IsWatcher) {
       Debug.Log("Host-Create");
@@ -65,7 +65,8 @@ public class GDConnControl : MonoBehaviour {
     yield return true;
   }
   // Custom Code 
-  public async Task<bool> InitConnSetup(CfServerSetting setting) {
+  void InitConnSetup(CfServerSetting setting) {
+    Debug.Log(setting);
     this.GDServiceConfig = setting.GameDuelService;
     this.main_ch = new Channel(
       setting.GameDuelService.Host, setting.GameDuelService.Port,
@@ -79,8 +80,7 @@ public class GDConnControl : MonoBehaviour {
     this.natOpt.Url = $"{streamSet.Connector}://{streamSet.Host}:{streamSet.Port}";
     Debug.Log(this.natOpt.Url);
     this.natConn = new ConnectionFactory().CreateConnection(this.natOpt);
-    this.natConn.SubscribeAsync($"ULZ.GDSvc/{this.CurrentRoom.Key}", this.OnSubMsgHandle);
-    return false;
+    this.natConn.SubscribeAsync($"ULZ.GDSvc/{this.RoomConn.CurrentRoom.Key}", this.OnSubMsgHandle);
   }
 
   IEnumerator InitGameCtlSetup() {

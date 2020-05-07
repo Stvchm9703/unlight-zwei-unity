@@ -237,6 +237,9 @@ public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
     }
 
     public IEnumerator InitCCImg(CardObject Co, CardSetPack Cs) {
+        Debug.Log($"name:{Co.name.en},");
+        Debug.Log($"hp:{Cs.hp},");
+
         string name_string = "";
         switch (SL_setting) {
             case SystemLanguage.Chinese:

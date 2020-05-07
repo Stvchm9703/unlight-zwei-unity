@@ -40,7 +40,7 @@ public class GDConnControl : Singleton<GDConnControl> {
       isInited = await FullSetup();
     // StartCoroutine( InitGameCtlSetup());
   }
-  
+
   protected virtual void Update() {
     // if (UpdateFlag) {
     //   UpdateFlag = false;
@@ -98,6 +98,7 @@ public class GDConnControl : Singleton<GDConnControl> {
   }
 
   void InitGameCtlSetup() {
+    Debug.Log("InitGameCtlSetup");
     if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
       return;
     }

@@ -5989,7 +5989,7 @@ MonoBehaviour:
   DEFVal: {fileID: 407007417}
   ATKEqu: {fileID: 154091043}
   DEFEqu: {fileID: 728031924}
-  SL_setting: 6
+  SL_setting: 10
 --- !u!1 &768456062
 GameObject:
   m_ObjectHideFlags: 0
@@ -9006,7 +9006,6 @@ GameObject:
   - component: {fileID: 1191482905}
   - component: {fileID: 1191482906}
   - component: {fileID: 1191482907}
-  - component: {fileID: 1191482908}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: GameController
@@ -9184,43 +9183,6 @@ MonoBehaviour:
   SelfList: []
   DuelList: []
   StatusOpt: []
---- !u!114 &1191482908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191482901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f3d1fcabf2b9f44b2edcc4bb8b8569, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPersistant: 1
-  cCardResx: {fileID: 1191482906}
-  phaseTurn: {fileID: 222561831}
-  rangeCtl: {fileID: 1695959158}
-  HostSkillRender: {fileID: 727297657}
-  DuelSkillRender: {fileID: 1188585069}
-  HostPhaseRender: {fileID: 801248527}
-  DuelPhaseRender: {fileID: 851432515}
-  RoomConn: {fileID: 0}
-  GDServiceConfig:
-    ServiceName: 
-    Connector: 
-    Host: 
-    Port: 0
-    Database: 
-    Username: 
-    Password: 
-    Key: 
-    KeyPemPath: 
-    StreamSetting:
-      Connector: 
-      Host: 
-      Port: 0
-      KeyPemPath: 
-  UpdateFlag: 0
 --- !u!1 &1214785740
 GameObject:
   m_ObjectHideFlags: 0
@@ -14701,7 +14663,75 @@ MonoBehaviour:
   DEFVal: {fileID: 1614825368}
   ATKEqu: {fileID: 1909265914}
   DEFEqu: {fileID: 1659641391}
-  SL_setting: 6
+  SL_setting: 10
+--- !u!1 &2097222362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2097222363}
+  - component: {fileID: 2097222364}
+  m_Layer: 0
+  m_Name: GDConn
+  m_TagString: gd_connector
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2097222363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097222362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2097222364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097222362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f3d1fcabf2b9f44b2edcc4bb8b8569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPersistant: 0
+  cCardResx: {fileID: 1191482906}
+  phaseTurn: {fileID: 222561831}
+  rangeCtl: {fileID: 1695959158}
+  HostSkillRender: {fileID: 727297657}
+  DuelSkillRender: {fileID: 1188585069}
+  HostPhaseRender: {fileID: 801248527}
+  DuelPhaseRender: {fileID: 851432515}
+  RoomConn: {fileID: 0}
+  GDServiceConfig:
+    ServiceName: 
+    Connector: 
+    Host: 
+    Port: 0
+    Database: 
+    Username: 
+    Password: 
+    Key: 
+    KeyPemPath: 
+    StreamSetting:
+      Connector: 
+      Host: 
+      Port: 0
+      KeyPemPath: 
+  UpdateFlag: 0
 --- !u!1 &2113635658
 GameObject:
   m_ObjectHideFlags: 0

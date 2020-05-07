@@ -34,8 +34,8 @@ public class GDConnControl : MonoBehaviour {
 
   public bool UpdateFlag;
   // Life-cycle of the process
-  void Start() {
-    StartCoroutine(FullSetup());
+  async void Start() {
+    await FullSetup();
     // StartCoroutine( InitGameCtlSetup());
   }
   private void Update() {
@@ -43,7 +43,7 @@ public class GDConnControl : MonoBehaviour {
       UpdateFlag = false;
     }
   }
-  IEnumerator FullSetup() {
+  async Task<bool> FullSetup() {
     // yield return new WaitForSeconds(2);
     GameObject[] objs;
     do {
@@ -54,7 +54,7 @@ public class GDConnControl : MonoBehaviour {
     this.RoomConn = v;
     this.InitConnSetup(this.RoomConn.config);
     // yield return true;
-    yield return InitGameCtlSetup();
+    StartCoroutine(InitGameCtlSetup());
 
     if (RoomConn.IsHost && !RoomConn.IsWatcher) {
       Debug.Log("Host-Create");
@@ -71,13 +71,13 @@ public class GDConnControl : MonoBehaviour {
       hostPackList.Add(hostPack);
       duelPackList.Add(duelPack);
 
-      var task = this.CreateGameSet(
+      await this.CreateGameSet(
         this.RoomConn.CurrentRoom.CharCardNvn,
         hostPackList, duelPackList
-      ).Result;
-      this.SendMsg("Host:CreatedGame,GetGameSet");
+      );
+      // this.SendMsg("Host:CreatedGame,GetGameSet");
     }
-    yield return true;
+    return true;
   }
   // Custom Code 
   void InitConnSetup(CfServerSetting setting) {

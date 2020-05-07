@@ -122,7 +122,7 @@ namespace ULZAsset {
                 ApInst = this.ap, ApOrig = this.ap,
                 DpInst = this.dp, DpOrig = this.dp,
                 Level = this.level,
-            }
+            };
         }
     }
 

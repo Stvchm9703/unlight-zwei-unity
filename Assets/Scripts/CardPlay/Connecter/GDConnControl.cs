@@ -39,7 +39,7 @@ public class GDConnControl : Singleton<GDConnControl> {
   // Life-cycle of the process
   protected virtual async void Start() {
     if (this.cCardResx == null)this.cCardResx = GameObject.Find("EventSystem").GetComponent<CCardSetUp>();
-    if (this.phaseTurn == null)this.phaseTurn = GameObject.Find("VistualEffectLayer/phase_turn").GetComponent<PhaseTurnCtl>();
+    if (this.phaseTurn == null)this.phaseTurn = GameObject.Find("VisualEffectLayer/phase_turn").GetComponent<PhaseTurnCtl>();
     if (this.rangeCtl == null)this.rangeCtl = GameObject.Find("StandLayer").GetComponent<RangeCtl>();
     if (this.HostSkillRender == null)this.HostSkillRender = GameObject.Find("SkillLayer/SelfSkillStand").GetComponent<CCSkillRender>();
     if (this.DuelSkillRender == null)this.DuelSkillRender = GameObject.Find("SkillLayer/DuelSkillStand").GetComponent<CCSkillRender>();
@@ -60,7 +60,7 @@ public class GDConnControl : Singleton<GDConnControl> {
     Debug.Log("MyScript.Start " + GetInstanceID(), this);
     var objs = GameObject.FindGameObjectWithTag("room_connector");
     var v = objs.GetComponent<RoomServiceConn>();
-    this.RoomConn = v;
+    this.RoomConn = v.Instance;
     this.InitConnSetup(this.RoomConn.config);
     // yield return true;
     this.InitGameCtlSetup();

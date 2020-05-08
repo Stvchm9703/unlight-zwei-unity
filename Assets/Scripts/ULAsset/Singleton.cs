@@ -6,7 +6,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
     /// <summary>
     /// The instance.
     /// </summary>
-    private static T instance;
+    public static T instance;
     #endregion
 
     public bool isPersistant;
@@ -16,7 +16,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
             if (!instance) {
                 instance = this as T;
             } else {
-                DestroyObject(gameObject);
+                Destroy(gameObject);
             }
             DontDestroyOnLoad(gameObject);
         } else {

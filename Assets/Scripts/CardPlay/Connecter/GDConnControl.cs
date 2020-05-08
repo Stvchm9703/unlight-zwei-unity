@@ -37,7 +37,7 @@ public class GDConnControl : Singleton<GDConnControl> {
   private bool isInited = false;
   public bool UpdateFlag;
   // Life-cycle of the process
-  protected virtual async void Start() {
+  async void Start() {
     if (this.cCardResx == null)this.cCardResx = GameObject.Find("EventSystem").GetComponent<CCardSetUp>();
     if (this.phaseTurn == null)this.phaseTurn = GameObject.Find("VisualEffectLayer/phase_turn").GetComponent<PhaseTurnCtl>();
     if (this.rangeCtl == null)this.rangeCtl = GameObject.Find("StandLayer").GetComponent<RangeCtl>();

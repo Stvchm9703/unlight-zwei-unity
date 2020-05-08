@@ -6,22 +6,23 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
     /// <summary>
     /// The instance.
     /// </summary>
-    public static T instance;
+    private static T instance = null;
     #endregion
+
+    public static T Instance {
+        get { return instance; }
+    }
 
     public bool isPersistant;
 
     public virtual void Awake() {
-        if (isPersistant) {
-            if (!instance) {
-                instance = this as T;
-            } else {
-                Destroy(gameObject);
-            }
-            DontDestroyOnLoad(gameObject);
-        } else {
+        if (!instance) {
             instance = this as T;
+        } else {
+            Destroy(gameObject);
+            // return ;
         }
+        DontDestroyOnLoad(gameObject);
     }
 }
 

@@ -81,6 +81,7 @@ public class RoomWaitCtl : MonoBehaviour {
 
         if (this.isReady && this.selfReady) {
             var room = await this.Connecter.RefreshRoom(this.Connecter.CurrentRoom.Key, this.Connecter.CurrentRoom.Password);
+            // this.NatsConn.
             SceneManager.LoadScene("CardPlay", LoadSceneMode.Single);
         }
     }
@@ -423,11 +424,6 @@ public class RoomWaitCtl : MonoBehaviour {
         }
     }
 
-    private void OnDestroy() {
-        if (this.NatsConn != null) {
-            this.NatsConn.DrainAsync();
-            this.NatsConn.Close();
-        }
-    }
+    
 
 }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3136,8 +3136,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 358847987}
+  - component: {fileID: 358847988}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MainCtl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3157,6 +3158,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &358847988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358847986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdac0a525092784eba5b183d4c678f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gDConn: {fileID: 0}
+  roomServiceConn: {fileID: 0}
+  cCardSetUp: {fileID: 1191482906}
 --- !u!1 &367094100
 GameObject:
   m_ObjectHideFlags: 0
@@ -9036,7 +9052,6 @@ GameObject:
   - component: {fileID: 1191482905}
   - component: {fileID: 1191482906}
   - component: {fileID: 1191482907}
-  - component: {fileID: 1191482908}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: GameController
@@ -9194,6 +9209,8 @@ MonoBehaviour:
   DuelCCSetPhase: {fileID: 851432515}
   is_panel_open: {fileID: 1191482905}
   InfoPanel: {fileID: 1283493199}
+  phaseTurn: {fileID: 222561831}
+  rangeCtl: {fileID: 1695959158}
 --- !u!114 &1191482907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9214,27 +9231,6 @@ MonoBehaviour:
   SelfList: []
   DuelList: []
   StatusOpt: []
---- !u!114 &1191482908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191482901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b81df601b8b2ef4d8f73a7c29bdfb09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cCardResx: {fileID: 1191482906}
-  phaseTurn: {fileID: 222561831}
-  rangeCtl: {fileID: 1695959158}
-  HostSkillRender: {fileID: 727297657}
-  DuelSkillRender: {fileID: 1188585069}
-  HostPhaseRender: {fileID: 801248527}
-  DuelPhaseRender: {fileID: 851432515}
-  GDConn: {fileID: 2097222364}
-  RoomConn: {fileID: 0}
 --- !u!1 &1214785740
 GameObject:
   m_ObjectHideFlags: 0
@@ -14759,7 +14755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f3d1fcabf2b9f44b2edcc4bb8b8569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPersistant: 1
   GDServiceConfig:
     ServiceName: 
     Connector: 

@@ -24,11 +24,10 @@ public class GDConnControl : Singleton<GDConnControl> {
 
   // monitered data
   public GameDataSet CurrentGS;
-  private bool isInited = false, UpdateFlag;
+  private bool isInited = false,
+  UpdateFlag;
   public string RoomKey;
   // Life-cycle of the process
-
-
 
   // Custom Code 
   public void InitConnSetup(CfServerSetting setting, string RoomKey) {
@@ -78,7 +77,7 @@ public class GDConnControl : Singleton<GDConnControl> {
     // if (this.RoomConn.CurrentRoom == null)throw new System.Exception("NO_ROOM_EXIST");
     if (this.RoomKey == null)throw new System.Exception("NO_ROOM_KEY");
     if (this.GDSClient == null)throw new System.Exception("NO_CLIENT_EXIST");
-
+    if (this.CurrentGS != null)return this.CurrentGS;
     try {
       var req = new GDCreateReq {
         RoomKey = RoomKey,

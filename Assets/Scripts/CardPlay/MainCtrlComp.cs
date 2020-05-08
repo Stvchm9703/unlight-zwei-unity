@@ -13,6 +13,7 @@ using UnityEngine;
 
 public class MainCtrlComp : MonoBehaviour {
     // Start is called before the first frame update
+    public static MainCtrlComp instance;
     public CCardSetUp cCardResx;
 
     public PhaseTurnCtl phaseTurn;
@@ -23,7 +24,13 @@ public class MainCtrlComp : MonoBehaviour {
     // Room Service Conn
     public GDConnControl GDConn;
     public RoomServiceConn RoomConn;
-    async void Start() {
+    private async void Awake() {
+        if (!instance) {
+            instance = instance;
+        } else {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         await FullSetup();
     }
 
@@ -33,58 +40,58 @@ public class MainCtrlComp : MonoBehaviour {
     }
     void InitGameCtlSetup() {
         Debug.Log("InitGameCtlSetup");
-        if (this.RoomConn == null || this.RoomConn.CurrentRoom == null) {
+        if (instance.RoomConn == null || instance.RoomConn.CurrentRoom == null) {
             return;
         }
 
-        if (!this.RoomConn.IsHost) {
+        if (!instance.RoomConn.IsHost) {
 
             var phase_layer = GameObject.FindGameObjectWithTag("phase_layer").transform;
 
-            this.HostPhaseRender =
+            instance.HostPhaseRender =
                 phase_layer.Find("duelphase").GetComponent<CCPhaseRender>();
-            this.DuelPhaseRender =
+            instance.DuelPhaseRender =
                 phase_layer.Find("selfphase").GetComponent<CCPhaseRender>();
 
             var skill_layer = GameObject.FindGameObjectWithTag("skill_layer").transform;
 
-            this.HostSkillRender =
+            instance.HostSkillRender =
                 skill_layer.Find("DuelSkillRender").GetComponent<CCSkillRender>();
-            this.DuelSkillRender =
+            instance.DuelSkillRender =
                 skill_layer.Find("SelfSkillRender").GetComponent<CCSkillRender>();
 
-            this.cCardResx.DuelCC_ID = this.RoomConn.CurrentRoom.HostCharcardId;
-            this.cCardResx.DuelCC_Level = this.RoomConn.CurrentRoom.HostCardlevel;
-            this.cCardResx.DuelCardSet_ID = this.RoomConn.CurrentRoom.HostCardsetId;
+            instance.cCardResx.DuelCC_ID = instance.RoomConn.CurrentRoom.HostCharcardId;
+            instance.cCardResx.DuelCC_Level = instance.RoomConn.CurrentRoom.HostCardlevel;
+            instance.cCardResx.DuelCardSet_ID = instance.RoomConn.CurrentRoom.HostCardsetId;
 
-            this.cCardResx.SelfCC_ID = this.RoomConn.CurrentRoom.DuelCharcardId;
-            this.cCardResx.SelfCC_Level = this.RoomConn.CurrentRoom.DuelCardlevel;
-            this.cCardResx.SelfCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
+            instance.cCardResx.SelfCC_ID = instance.RoomConn.CurrentRoom.DuelCharcardId;
+            instance.cCardResx.SelfCC_Level = instance.RoomConn.CurrentRoom.DuelCardlevel;
+            instance.cCardResx.SelfCardSet_ID = instance.RoomConn.CurrentRoom.DuelCardsetId;
 
         } else {
-            this.cCardResx.SelfCC_ID = this.RoomConn.CurrentRoom.HostCharcardId;
-            this.cCardResx.SelfCC_Level = this.RoomConn.CurrentRoom.HostCardlevel;
-            this.cCardResx.SelfCardSet_ID = this.RoomConn.CurrentRoom.HostCardsetId;
+            instance.cCardResx.SelfCC_ID = instance.RoomConn.CurrentRoom.HostCharcardId;
+            instance.cCardResx.SelfCC_Level = instance.RoomConn.CurrentRoom.HostCardlevel;
+            instance.cCardResx.SelfCardSet_ID = instance.RoomConn.CurrentRoom.HostCardsetId;
 
-            this.cCardResx.DuelCC_ID = this.RoomConn.CurrentRoom.DuelCharcardId;
-            this.cCardResx.DuelCC_Level = this.RoomConn.CurrentRoom.DuelCardlevel;
-            this.cCardResx.DuelCardSet_ID = this.RoomConn.CurrentRoom.DuelCardsetId;
+            instance.cCardResx.DuelCC_ID = instance.RoomConn.CurrentRoom.DuelCharcardId;
+            instance.cCardResx.DuelCC_Level = instance.RoomConn.CurrentRoom.DuelCardlevel;
+            instance.cCardResx.DuelCardSet_ID = instance.RoomConn.CurrentRoom.DuelCardsetId;
         }
 
-        StartCoroutine(this.cCardResx.StartResxLoad());
+        StartCoroutine(instance.cCardResx.StartResxLoad());
 
-        StartCoroutine(this.cCardResx.SelfCCImplement());
-        StartCoroutine(this.cCardResx.DuelCCImplement());
+        StartCoroutine(instance.cCardResx.SelfCCImplement());
+        StartCoroutine(instance.cCardResx.DuelCCImplement());
     }
     async Task<bool> FullSetup() {
-        Debug.Log("MyScript.Start " + GetInstanceID(), this);
+        Debug.Log("MyScript.Start " + GetInstanceID(), instance);
         var objs = GameObject.FindGameObjectWithTag("room_connector");
         var v = objs.GetComponent<RoomServiceConn>();
-        this.RoomConn = v;
-        this.GDConn.InitConnSetup(this.RoomConn.config, this.RoomConn.CurrentRoom.Key);
-        this.GDConn.AddSubMsgHandle(OnSubMsgHandle);
+        instance.RoomConn = v;
+        instance.GDConn.InitConnSetup(instance.RoomConn.config, instance.RoomConn.CurrentRoom.Key);
+        instance.GDConn.AddSubMsgHandle(OnSubMsgHandle);
         // yield return true;
-        this.InitGameCtlSetup();
+        instance.InitGameCtlSetup();
 
         if (RoomConn.IsHost && !RoomConn.IsWatcher) {
             Debug.Log("Host-Create");
@@ -92,21 +99,21 @@ public class MainCtrlComp : MonoBehaviour {
             CharCardSet duelPack = new CharCardSet();
             List<CharCardSet> hostPackList = new List<CharCardSet>();
             List<CharCardSet> duelPackList = new List<CharCardSet>();
-            if (this.cCardResx.SelfDataCardSet != null) {
-                hostPack = this.cCardResx.SelfDataCardSet.ToCharCardSetRaw();
+            if (instance.cCardResx.SelfDataCardSet != null) {
+                hostPack = instance.cCardResx.SelfDataCardSet.ToCharCardSetRaw();
             }
-            if (this.cCardResx.DuelDataCardSet != null) {
-                duelPack = this.cCardResx.DuelDataCardSet.ToCharCardSetRaw();
+            if (instance.cCardResx.DuelDataCardSet != null) {
+                duelPack = instance.cCardResx.DuelDataCardSet.ToCharCardSetRaw();
             }
             hostPackList.Add(hostPack);
             duelPackList.Add(duelPack);
 
-            await this.GDConn.CreateGameSet(
-                this.RoomConn.CurrentRoom.CharCardNvn,
-                this.RoomConn.CurrentRoom.Host.Id, this.RoomConn.CurrentRoom.Dueler.Id,
+            await instance.GDConn.CreateGameSet(
+                instance.RoomConn.CurrentRoom.CharCardNvn,
+                instance.RoomConn.CurrentRoom.Host.Id, instance.RoomConn.CurrentRoom.Dueler.Id,
                 hostPackList, duelPackList
             );
-            // this.SendMsg("Host:CreatedGame,GetGameSet");
+            // instance.SendMsg("Host:CreatedGame,GetGameSet");
         }
         return true;
     }
@@ -120,11 +127,11 @@ public class MainCtrlComp : MonoBehaviour {
             case CastCmd.GetGamesetResult:
                 Debug.Log(inst_msg.Msg);
                 // GameDataSet task;
-                if (inst_msg.Msg == "Host:CreatedGame,GetGameSet" && (this.RoomConn.IsWatcher || !this.RoomConn.IsHost)) {
-                    await this.GDConn.GetGameData(this.RoomConn.CurrentRoom.Key, this.RoomConn.IsWatcher);
+                if (inst_msg.Msg == "Host:CreatedGame,GetGameSet" && (instance.RoomConn.IsWatcher || !instance.RoomConn.IsHost)) {
+                    await instance.GDConn.GetGameData(instance.RoomConn.CurrentRoom.Key, instance.RoomConn.IsWatcher);
                 }
-                Debug.Log(this.GDConn.CurrentGS.HostCardDeck);
-                Debug.Log(this.GDConn.CurrentGS.DuelCardDeck);
+                Debug.Log(instance.GDConn.CurrentGS.HostCardDeck);
+                Debug.Log(instance.GDConn.CurrentGS.DuelCardDeck);
                 break;
             case CastCmd.GetEffectResult:
             case CastCmd.GetDrawPhaseResult:

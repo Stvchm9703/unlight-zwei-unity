@@ -41,8 +41,8 @@ public class GDConnControl : Singleton<GDConnControl> {
     if (this.cCardResx == null)this.cCardResx = GameObject.Find("EventSystem").GetComponent<CCardSetUp>();
     if (this.phaseTurn == null)this.phaseTurn = GameObject.Find("VisualEffectLayer/phase_turn").GetComponent<PhaseTurnCtl>();
     if (this.rangeCtl == null)this.rangeCtl = GameObject.Find("StandLayer").GetComponent<RangeCtl>();
-    if (this.HostSkillRender == null)this.HostSkillRender = GameObject.Find("SkillLayer/SelfSkillStand").GetComponent<CCSkillRender>();
-    if (this.DuelSkillRender == null)this.DuelSkillRender = GameObject.Find("SkillLayer/DuelSkillStand").GetComponent<CCSkillRender>();
+    if (this.HostSkillRender == null)this.HostSkillRender = GameObject.Find("SkillLayer/SelfSkillRender").GetComponent<CCSkillRender>();
+    if (this.DuelSkillRender == null)this.DuelSkillRender = GameObject.Find("SkillLayer/DuelSkillRender").GetComponent<CCSkillRender>();
     if (this.HostPhaseRender == null)this.HostPhaseRender = GameObject.Find("PhaseLayer/selfphase").GetComponent<CCPhaseRender>();
     if (this.DuelPhaseRender == null)this.DuelPhaseRender = GameObject.Find("PhaseLayer/duelphase").GetComponent<CCPhaseRender>();
 

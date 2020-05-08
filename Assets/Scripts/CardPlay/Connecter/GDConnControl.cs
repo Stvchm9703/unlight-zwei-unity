@@ -60,7 +60,7 @@ public class GDConnControl : Singleton<GDConnControl> {
     Debug.Log("MyScript.Start " + GetInstanceID(), this);
     var objs = GameObject.FindGameObjectWithTag("room_connector");
     var v = objs.GetComponent<RoomServiceConn>();
-    this.RoomConn = v.Instance;
+    this.RoomConn = v;
     this.InitConnSetup(this.RoomConn.config);
     // yield return true;
     this.InitGameCtlSetup();

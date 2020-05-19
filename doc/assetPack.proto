@@ -1,0 +1,74 @@
+syntax = "proto3";
+message CardSetPack {
+    int32 id =1;
+    int32 level =2;
+    int32 hp =  3;
+    int32 ap =  4;
+
+    int32 dp =  5;
+    int32 rarity =  6;
+    int32 deck_cost = 7 ;
+    int32 slot = 8 ;
+    
+    
+    ImgSet stand_image = 9 ;
+    Texture2D stand_image_t2 =10;
+
+    ImgSet chara_image = 11 ;
+    Texture2D chara_image_t2 = 12;
+    
+    ImgSet artifact_image = 13 ;
+    Texture2D artifact_image_t2 = 14;
+    
+    ImgSet bg_image = 15 ;
+    Texture2D bg_image_2 = 16;
+
+    int32 next_id = 17 ;
+    int32 kind = 18 ;
+    string created_at = 19 ;
+    repeated SkillObject skill = 20 ;
+    repeated int32 skill_pointer = 21 ;
+}
+
+message MultiLang {
+    string jp = 1 ;
+    string en = 2 ;
+    string fr = 3 ;
+    string kr =  4;
+    string scn =  5;
+    string tcn = 6 ;
+    string ina = 7 ;
+    string thai = 8 ;
+}
+
+
+ message CardObject {
+    int32 id = 1;
+    repeated CardSetPack card_set = 2;
+    MultiLang name = 3;
+    MultiLang ab_name = 4;
+    MultiLang caption = 5;
+}
+
+
+message SkillObject {
+    int32 id = 1;
+    int32 feat_no = 2;
+    int32 pow = 3;
+    string dice_attribute = 4;
+    ImgSet effect_image = 5;
+    Texture2D effect_image_t2 = 6;
+    string condition = 7;
+string created_at = 8;
+        MultiLang name = 9;
+         MultiLang caption = 10;
+    }
+
+message ImgSet {
+        string name =1;
+        int32 height= 2;
+        int32 widt=3;
+        string type= 4;
+    }
+
+    message Texture2D{}

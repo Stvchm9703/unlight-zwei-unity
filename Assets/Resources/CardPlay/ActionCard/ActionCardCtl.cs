@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Threading;
 using DG.Tweening;
+using ULZAsset.ProtoMod.GameDuelService;
 using UnityEngine;
 using UnityEngine.UI;
-public enum type_opt { attack, defence, move, star, gun, nil }
-public enum type_pos { block, inside, outside, destroy }
+// public enum type_opt { attack, defence, move, star, gun, nil }
+// public enum type_pos { block, inside, outside, destroy }
 
 public class ActionCardCtl : MonoBehaviour {
-
+    public EventCard OrignalSet;
     //  Card Value
-    public type_opt up_option;
+    // public type_opt up_option;
+    public EventCardType up_option;
+
     public int up_val;
-    public type_opt down_option;
+    // public type_opt down_option;
+    public EventCardType down_option;
     public int down_val;
 
     // Postion
@@ -34,7 +38,8 @@ public class ActionCardCtl : MonoBehaviour {
         get { return _outside_pos; }
         set {
             this._outside_pos = value;
-            if (this.m_pos == type_pos.outside) {
+            if (this.m_pos == EventCardPos.Outside) {
+                // if (this.m_pos == type_pos.outside) {
                 this.transform.DOLocalMove(value, 0.1f);
             }
         }
@@ -45,7 +50,8 @@ public class ActionCardCtl : MonoBehaviour {
         get { return _inside_pos; }
         set {
             this._inside_pos = value;
-            if (this.m_pos == type_pos.inside) {
+            if (this.m_pos == EventCardPos.Inside) {
+                // if (this.m_pos == type_pos.inside) {
                 this.transform.DOLocalMove(value, 0.1f);
             }
         }
@@ -55,22 +61,26 @@ public class ActionCardCtl : MonoBehaviour {
     public Quaternion InitialRotate;
     public Vector3 DestroyPos;
 
-    private type_pos m_pos = type_pos.block;
-    public type_pos Pos {
+    // private type_pos m_pos = type_pos.block;
+    public  EventCardPos m_pos = EventCardPos.Block;
+
+    public EventCardPos Pos {
         get { return m_pos; }
         set {
             m_pos = value;
             switch (value) {
-                case type_pos.block:
+                case EventCardPos.Block:
                     this.transform.DOLocalMove(InitialPos, 0.3f);
                     break;
-                case type_pos.inside:
+                case EventCardPos.Inside:
                     // this.transform.DOLocalMove (InsidePos, 0.3f);
                     break;
-                case type_pos.outside:
+                case EventCardPos.Outside:
+                    // case type_pos.outside:
                     // this.transform.DOLocalMove (OutsidePos, 0.3f);
                     break;
-                case type_pos.destroy:
+                case EventCardPos.Destroy:
+                    // case type_pos.destroy:
                     this.transform.DOLocalMove(DestroyPos, 0.3f);
                     break;
             }
@@ -123,6 +133,11 @@ public class ActionCardCtl : MonoBehaviour {
     public void CardRotate() {
         this.m_isInvert = !this.m_isInvert;
         StartCoroutine(card_rotate());
+        if (this.transform.parent.gameObject.GetComponent<CardDeckControl>() != null) {
+            this.transform.parent.gameObject.GetComponent<CardDeckControl>().CheckECOutSide();
+        } else if (this.transform.parent.gameObject.GetComponent<OpsdCardControl>() != null) {
+            this.transform.parent.gameObject.GetComponent<OpsdCardControl>().CheckECOutSide();
+        }
     }
 
     private IEnumerator card_rotate() {
@@ -133,7 +148,8 @@ public class ActionCardCtl : MonoBehaviour {
     }
     public void CardOut() {
         isOutSide = true;
-        this.m_pos = type_pos.outside;
+        // this.m_pos = type_pos.outside;
+        this.m_pos = EventCardPos.Outside;
         if (this.transform.parent.gameObject.GetComponent<CardDeckControl>() != null) {
             this.transform.parent.gameObject.GetComponent<CardDeckControl>().CardOutTrigger();
         } else if (this.transform.parent.gameObject.GetComponent<OpsdCardControl>() != null) {
@@ -144,7 +160,8 @@ public class ActionCardCtl : MonoBehaviour {
 
     public void CardBack() {
         isOutSide = false;
-        this.m_pos = type_pos.inside;
+        // this.m_pos = type_pos.inside;
+        this.m_pos = EventCardPos.Inside;
         if (this.transform.parent.gameObject.GetComponent<CardDeckControl>() != null) {
             this.transform.parent.gameObject.GetComponent<CardDeckControl>().CardOutTrigger();
         } else if (this.transform.parent.gameObject.GetComponent<OpsdCardControl>() != null) {
@@ -180,13 +197,15 @@ public class ActionCardCtl : MonoBehaviour {
         yield return false;
         Tween t = this.transform.DORotate(new Vector3(0, 90, 0), 0.3f);
         yield return t.WaitForCompletion();
-        this.m_pos = type_pos.inside;
+        // this.m_pos = type_pos.inside;
+        this.m_pos = EventCardPos.Inside;
         this.transform.DOLocalMove(InsidePos, 0.3f);
         yield return true;
         this.face.SetActive(true);
     }
     public IEnumerator MoveToDestroy() {
-        this.m_pos = type_pos.destroy;
+        // this.m_pos = type_pos.destroy;
+        this.m_pos = EventCardPos.Destroy;
         this.transform.DOLocalMove(DestroyPos, 0.3f);
         yield return new WaitForSeconds(0.3f);
         this.face.SetActive(false);
@@ -199,17 +218,18 @@ public class ActionCardCtl : MonoBehaviour {
         this.InitialPos = deck_block.localPosition;
         this.InitialRotate = deck_block.localRotation;
         this.InitialRotate *= Quaternion.Euler(0, 90, 0);
-
-        if (this.down_option != type_opt.nil) {
+        if (this.down_option != EventCardType.Null) {
             this.up_type_ri.texture =
-                Resources.Load<Texture2D>("CardPlay/ActionCard/Image/" + up_option.ToString())as Texture2D;
+                Resources.Load<Texture2D>($"CardPlay/ActionCard/Image/{ up_option.ToString()}")as Texture2D;
             this.dw_type_ri.texture =
-                Resources.Load<Texture2D>("CardPlay/ActionCard/Image/" + down_option.ToString())as Texture2D;
+                Resources.Load<Texture2D>($"CardPlay/ActionCard/Image/{down_option.ToString()}")as Texture2D;
             this.up_val_go.text = (this.up_val).ToString();
             this.dw_val_go.text = (this.down_val).ToString();
         } else {
             this.up_type_ri.texture =
-                Resources.Load<Texture2D>("CardPlay/ActionCard/Image/sp/" + up_option.ToString())as Texture2D;
+                // Resources.Load<Texture2D>("CardPlay/ActionCard/Image/sp/" + up_option.ToString())as Texture2D;
+                Resources.Load<Texture2D>($"CardPlay/ActionCard/Image/sp/{up_option.ToString()}")as Texture2D;
+
             this.up_type_rt.sizeDelta = new Vector2(61f, 100f);
             this.dw_type_ri.color =
                 new Color(0f, 0f, 0f, 0f);
@@ -219,13 +239,39 @@ public class ActionCardCtl : MonoBehaviour {
         // StartCoroutine (testing ());
     }
 
-    public IEnumerator SetCardValue(type_opt _up_type, int _upval, type_opt _dw_type, int _dwval) {
-        this.up_option = _up_type;
-        this.up_val = _upval;
-        this.down_option = _dw_type;
-        this.down_val = _dwval;
+    // public IEnumerator SetCardValue(type_opt _up_type, int _upval, type_opt _dw_type, int _dwval) {
+    //     this.up_option = _up_type;
+    //     this.up_val = _upval;
+    //     this.down_option = _dw_type;
+    //     this.down_val = _dwval;
 
-        if (this.down_option != type_opt.nil) {
+    //     if (this.down_option != type_opt.nil) {
+    //         this.up_type_ri.texture =
+    //             Resources.Load<Texture2D>("CardPlay/ActionCard/Image/" + up_option.ToString())as Texture2D;
+    //         this.dw_type_ri.texture =
+    //             Resources.Load<Texture2D>("CardPlay/ActionCard/Image/" + down_option.ToString())as Texture2D;
+    //         this.up_val_go.text = (this.up_val).ToString();
+    //         this.dw_val_go.text = (this.down_val).ToString();
+    //         yield return true;
+    //     } else {
+    //         this.up_type_ri.texture =
+    //             Resources.Load<Texture2D>("CardPlay/ActionCard/Image/sp/" + up_option.ToString())as Texture2D;
+    //         this.up_type_rt.sizeDelta = new Vector2(61f, 100f);
+    //         this.dw_type_ri.color =
+    //             new Color(0f, 0f, 0f, 0f);
+    //         this.up_val_go.text = (this.up_val).ToString();
+    //         this.dw_val_go.text = "";
+    //         yield return true;
+    //     }
+    // }
+
+    public IEnumerator SetCardValue(EventCard ec_val) {
+        this.up_option = ec_val.UpOption;
+        this.up_val = ec_val.UpVal;
+        this.down_option = ec_val.DownOption;
+        this.down_val = ec_val.DownVal;
+
+        if (this.down_option != EventCardType.Null) {
             this.up_type_ri.texture =
                 Resources.Load<Texture2D>("CardPlay/ActionCard/Image/" + up_option.ToString())as Texture2D;
             this.dw_type_ri.texture =

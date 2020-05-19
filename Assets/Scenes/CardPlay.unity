@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -916,7 +916,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 1, y: 2}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &124701917
@@ -1050,6 +1050,7 @@ MonoBehaviour:
   InsideArea: {fileID: 2125544705}
   OutsideArea: {fileID: 1260843872}
   DestroyArea: {fileID: 1186376516}
+  ValDisp: {fileID: 1412228486}
   CardRemainDisplay: {fileID: 0}
 --- !u!1 &136952477
 GameObject:
@@ -1180,7 +1181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: 1.5}
+  m_AnchoredPosition: {x: -3, y: 0.5}
   m_SizeDelta: {x: 3, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143378722
@@ -1196,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_self: -1
-  main_ctl: {fileID: 1191482906}
+  main_ctl: {fileID: 358847988}
   MainStand: {fileID: 248042870}
   MainStand_size: {x: 0, y: 0}
   MainStand_raw:
@@ -1213,7 +1214,7 @@ MonoBehaviour:
     type: 
   CCMainSet: {fileID: 709209472}
   SkillList: {fileID: 73411642}
-  ratio: 1.7
+  ratio: 1.2
 --- !u!1 &147961302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 1, y: 2}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &154091043
@@ -3172,7 +3173,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gDConn: {fileID: 0}
   roomServiceConn: {fileID: 0}
-  cCardSetUp: {fileID: 1191482906}
+  StatusCtl: {fileID: 1191482907}
+  phaseTurn: {fileID: 222561831}
+  rangeCtl: {fileID: 1695959158}
+  moveOptCtl: {fileID: 158439120}
+  oKBtnCtl: {fileID: 892687410}
+  CCardPrefab: {fileID: 8879557533689974164, guid: d7394662e6aa87b449a2a0de74589f61,
+    type: 3}
+  ABPreloaded: []
+  SelfCC_ID: 15
+  SelfCC_Level: 4
+  SelfCardSet_ID: 144
+  SelfDataCardSet:
+    stand_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    stand_image_t2: {fileID: 0}
+    chara_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    chara_image_t2: {fileID: 0}
+    artifact_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    artifact_image_t2: {fileID: 0}
+    bg_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    bg_image_t2: {fileID: 0}
+    skill_obj: []
+  SelfSkillObject: []
+  SelfCCSetBlock: {fileID: 2031643991}
+  SelfCCSetStand: {fileID: 1549804177}
+  self_atk_equ: 0
+  self_def_equ: 0
+  SelfCCSetSkill: {fileID: 727297657}
+  SelfCCSetPhase: {fileID: 801248527}
+  SelfPhaseNumber: {fileID: 1031744763}
+  DuelCC_ID: 28
+  DuelCC_Level: 3
+  DuelCardSet_ID: 273
+  DuelDataCardSet:
+    stand_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    stand_image_t2: {fileID: 0}
+    chara_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    chara_image_t2: {fileID: 0}
+    artifact_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    artifact_image_t2: {fileID: 0}
+    bg_image:
+      name: 
+      height: 0
+      width: 0
+      type: 
+    bg_image_t2: {fileID: 0}
+    skill_obj: []
+  DuelSkillObject: []
+  DuelCCSetBlock: {fileID: 742148985}
+  DuelCCSetStand: {fileID: 143378722}
+  duel_atk_equ: 0
+  duel_def_equ: 0
+  DuelCCSetSkill: {fileID: 1188585069}
+  DuelCCSetPhase: {fileID: 851432515}
+  DuelPhaseNumber: {fileID: 1412228486}
+  is_panel_open: {fileID: 1191482905}
+  InfoPanel: {fileID: 1283493199}
+  SelfEventSet: {fileID: 486110795}
+  DuelEventSet: {fileID: 136215954}
 --- !u!1 &367094100
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4175,7 @@ MonoBehaviour:
     type: 3}
   cardNumber: 0
   Cards: []
+  ValDisp: {fileID: 1031744763}
   InsideArea: {fileID: 1263766250}
   OutsideArea: {fileID: 1438141021}
   DestroyArea: {fileID: 1186376516}
@@ -5639,7 +5726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2}
+  m_AnchoredPosition: {x: 0, y: -1.25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &718851845
@@ -5716,6 +5803,7 @@ MonoBehaviour:
     type: 3}
   skl_ls: {fileID: 233084781}
   MaskObj: {fileID: 953810733}
+  debug_skl_id: 
 --- !u!224 &727297658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6018,7 +6106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f617820fe21b404da6388ca052609d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main_ctl: {fileID: 1191482906}
+  main_ctl: {fileID: 358847988}
   CC_id: 0
   Equ_id: -1
   is_self: 1
@@ -8741,7 +8829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2}
+  m_AnchoredPosition: {x: 0, y: -1.25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1128035932
@@ -9022,6 +9110,7 @@ MonoBehaviour:
     type: 3}
   skl_ls: {fileID: 1298052716}
   MaskObj: {fileID: 1034831686}
+  debug_skl_id: 
 --- !u!111 &1188585070
 Animation:
   m_ObjectHideFlags: 0
@@ -9050,7 +9139,6 @@ GameObject:
   - component: {fileID: 1191482903}
   - component: {fileID: 1191482902}
   - component: {fileID: 1191482905}
-  - component: {fileID: 1191482906}
   - component: {fileID: 1191482907}
   m_Layer: 0
   m_Name: EventSystem
@@ -9120,97 +9208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnyPanel: 0
---- !u!114 &1191482906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191482901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5a4b096b432e34293b53aa4d0a542a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CCardPrefab: {fileID: 8879557533689974164, guid: d7394662e6aa87b449a2a0de74589f61,
-    type: 3}
-  ABPreloaded: []
-  SelfCC_ID: 25
-  SelfCC_Level: 3
-  SelfCardSet_ID: 241
-  SelfDataCardSet:
-    stand_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    stand_image_t2: {fileID: 0}
-    chara_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    chara_image_t2: {fileID: 0}
-    artifact_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    artifact_image_t2: {fileID: 0}
-    bg_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    bg_image_t2: {fileID: 0}
-    skill_obj: []
-  SelfSkillObject: []
-  SelfCCSetBlock: {fileID: 2031643991}
-  SelfCCSetStand: {fileID: 1549804177}
-  self_atk_equ: 0
-  self_def_equ: 0
-  SelfCCSetSkill: {fileID: 727297657}
-  SelfCCSetPhase: {fileID: 801248527}
-  DuelCC_ID: 20
-  DuelCC_Level: 5
-  DuelCardSet_ID: 197
-  DuelDataCardSet:
-    stand_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    stand_image_t2: {fileID: 0}
-    chara_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    chara_image_t2: {fileID: 0}
-    artifact_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    artifact_image_t2: {fileID: 0}
-    bg_image:
-      name: 
-      height: 0
-      width: 0
-      type: 
-    bg_image_t2: {fileID: 0}
-    skill_obj: []
-  DuelSkillObject: []
-  DuelCCSetBlock: {fileID: 742148985}
-  DuelCCSetStand: {fileID: 143378722}
-  duel_atk_equ: 0
-  duel_def_equ: 0
-  DuelCCSetSkill: {fileID: 1188585069}
-  DuelCCSetPhase: {fileID: 851432515}
-  is_panel_open: {fileID: 1191482905}
-  InfoPanel: {fileID: 1283493199}
-  phaseTurn: {fileID: 222561831}
-  rangeCtl: {fileID: 1695959158}
 --- !u!114 &1191482907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10898,7 +10895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainctl: {fileID: 158439120}
-  option: 2
+  option: 3
 --- !u!1 &1380763424
 GameObject:
   m_ObjectHideFlags: 0
@@ -12008,7 +12005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 1.5}
+  m_AnchoredPosition: {x: 3, y: 0.5}
   m_SizeDelta: {x: 3, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549804177
@@ -12024,7 +12021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_self: 1
-  main_ctl: {fileID: 1191482906}
+  main_ctl: {fileID: 358847988}
   MainStand: {fileID: 14073670}
   MainStand_size: {x: 0, y: 0}
   MainStand_raw:
@@ -12041,7 +12038,7 @@ MonoBehaviour:
     type: 
   CCMainSet: {fileID: 1093953413}
   SkillList: {fileID: 151647866}
-  ratio: 1.7
+  ratio: 1.2
 --- !u!1 &1551165815
 GameObject:
   m_ObjectHideFlags: 0
@@ -12669,7 +12666,7 @@ MonoBehaviour:
   DuelStand: {fileID: 143378720}
   Long: 6
   Middle: 4.5
-  Short: 3
+  Short: 2.5
 --- !u!1 &1708245905
 GameObject:
   m_ObjectHideFlags: 0
@@ -13461,7 +13458,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1191482906}
+      - m_Target: {fileID: 358847988}
         m_MethodName: CloseCCInfoPanel
         m_Mode: 1
         m_Arguments:
@@ -13983,7 +13980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainctl: {fileID: 158439120}
-  option: 3
+  option: 2
 --- !u!1 &1964917500
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,7 +14691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f617820fe21b404da6388ca052609d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main_ctl: {fileID: 1191482906}
+  main_ctl: {fileID: 358847988}
   CC_id: 0
   Equ_id: -1
   is_self: 1
@@ -14755,6 +14752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f3d1fcabf2b9f44b2edcc4bb8b8569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPersistant: 0
   GDServiceConfig:
     ServiceName: 
     Connector: 

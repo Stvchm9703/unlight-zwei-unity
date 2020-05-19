@@ -45,7 +45,7 @@ public class CCSkillRender : MonoBehaviour {
         }
         yield return true;
     }
-
+    public List<int> debug_skl_id;
     public IEnumerator InitCCImg2(List<SkillObject> skobj) {
         foreach (var tmpsk in skobj) {
             if (skl_ls.transform.Find(tmpsk.effect_image.name) == null) {
@@ -67,6 +67,7 @@ public class CCSkillRender : MonoBehaviour {
                 ffsp.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 ffsp.sortingLayerName = "skill_render";
                 Skill_preload.Add(ff);
+                debug_skl_id.Add(tmpsk.id);
                 ff.SetActive(false);
             }
         }

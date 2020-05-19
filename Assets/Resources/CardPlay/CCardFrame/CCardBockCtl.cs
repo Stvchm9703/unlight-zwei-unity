@@ -8,7 +8,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class CCardBockCtl : MonoBehaviour, IPointerClickHandler {
-    public CCardSetUp main_ctl;
+    // public CCardSetUp main_ctl;
+    public MainCtrlComp main_ctl;
     public int CC_id = 0, Equ_id = -1, is_self = 1;
     public int level;
     public int HP_defaut, ATK_defaut, DEF_defaut;

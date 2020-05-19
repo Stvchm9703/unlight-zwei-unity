@@ -81,14 +81,14 @@ public class CCardSetUp : MonoBehaviour {
   public RangeCtl rangeCtl;
 
   private void Awake() {
-    GameObject[] tmp = GameObject.FindGameObjectsWithTag("GameController");
-    Debug.Log(tmp.Length);
-    if (tmp.Length > 1) {
-      Destroy(this.gameObject);
-    } else {
-      DontDestroyOnLoad(this.gameObject);
-      Debug.Log("CCardSetUp Start");
-    }
+    // GameObject[] tmp = GameObject.FindGameObjectsWithTag("GameController");
+    // Debug.Log(tmp.Length);
+    // if (tmp.Length > 1) {
+    //   Destroy(this.gameObject);
+    // } else {
+    //   DontDestroyOnLoad(this.gameObject);
+    //   Debug.Log("CCardSetUp Start");
+    // }
   }
   public IEnumerator SelfCCImplement() {
 

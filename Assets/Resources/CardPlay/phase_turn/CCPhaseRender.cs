@@ -63,6 +63,64 @@ public class CCPhaseRender : MonoBehaviour {
         yield return true;
     }
 
+    public IEnumerator MovePhaseAnimation(bool in_out) {
+        if (in_out) {
+            this.cAnimator.Play("move");
+            yield return new WaitForSeconds(1.2f);
+        } else {
+            this.cAnimator.Play("move_left");
+            yield return new WaitForSeconds(1.2f);
+        }
+        yield return true;
+    }
+    public IEnumerator AttackerPhaseAnimation(EventHookPhase phase, EventHookType type, RangeType range) {
+        string dist = "";
+        switch (range) {
+            case RangeType.Long:
+            case RangeType.Middle:
+                dist = "l";
+                break;
+            case RangeType.Short:
+                dist = "s";
+                break;
+        }
+        switch (phase) {
+            case EventHookPhase.AttackCardDropPhase:
+                if (type == EventHookType.Before) {
+                    this.cAnimator.Play("atk_ready");
+                    yield return new WaitForSeconds(1.5f);
+                    this.cAnimator.Play("atk_pick_up_" + dist);
+                } else if (type == EventHookType.After) {
+                    this.cAnimator.Play("atk_ok_state_" + dist);
+                }
+                break;
+            case EventHookPhase.DetermineBattlePointPhase:
+                if (type == EventHookType.Before) {
+                    this.cAnimator.Play("atk_start_dice"); // atk
+                }
+                break;
+        }
+        yield return new WaitForSeconds(1.5f);
+    }
+    public IEnumerator DeferencePhaseAnimation(EventHookPhase phase, EventHookType type, RangeType range) {
+
+        switch (phase) {
+            case (EventHookPhase.AttackCardDropPhase):
+                this.cAnimator.Play("def_ready");
+                break;
+            case (EventHookPhase.DefenceCardDropPhase):
+                if (type == EventHookType.Before)
+                    this.cAnimator.Play("def_pick_card");
+                else if (type == EventHookType.After)
+                    this.cAnimator.Play("def_ok_state");
+                break;
+            case (EventHookPhase.DetermineBattlePointPhase): //100
+                this.cAnimator.Play("def_start_dice"); // atk
+                break;
+        }
+        yield return new WaitForSeconds(1.5f);
+    }
+
     /// <summary>
     ///     ready -> pick-up -> ok_state -> start-dice
     /// </summary>

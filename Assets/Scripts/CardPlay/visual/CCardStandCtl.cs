@@ -6,8 +6,8 @@ using ULZAsset;
 using UnityEngine;
 public class CCardStandCtl : MonoBehaviour {
     public int is_self = 1;
-    public CCardSetUp main_ctl;
-
+    // public CCardSetUp main_ctl;
+    public MainCtrlComp main_ctl;
     public GameObject MainStand;
     public Vector2 MainStand_size;
     public ImgSet MainStand_raw;
@@ -31,7 +31,8 @@ public class CCardStandCtl : MonoBehaviour {
             CCMainSet = this.transform.Find("cc").gameObject.GetComponent<Transform>();
         }
         if (main_ctl == null) {
-            main_ctl = this.transform.root.Find("EventSystem").gameObject.GetComponent<CCardSetUp>();
+            // main_ctl = this.transform.root.Find("EventSystem").gameObject.GetComponent<CCardSetUp>();
+            main_ctl = this.transform.root.Find("MainCtl").gameObject.GetComponent<MainCtrlComp>();
         }
     }
     public IEnumerator InitCCImg(AssetBundle ab, CardSet Cs) {
@@ -95,7 +96,7 @@ public class CCardStandCtl : MonoBehaviour {
             MainStand.AddComponent<BoxCollider2D>();
 
             var mtrans = MainStand.GetComponent<RectTransform>();
-            mtrans.localScale = new Vector3(1, (float)(orig_img_ratio / income_img_ratio), 1);
+            mtrans.localScale = new Vector3((float)(income_img_ratio / orig_img_ratio), 1, 1);
         }
 
         if (Shadow == null) {
@@ -111,13 +112,14 @@ public class CCardStandCtl : MonoBehaviour {
                 new Vector2(0.5f, 1f)
             );
             var mtrans = Shadow.GetComponent<RectTransform>();
-            mtrans.localScale = new Vector3(1, (float)(orig_img_ratio / income_img_ratio), 1);
+            mtrans.localScale = new Vector3((float)(income_img_ratio / orig_img_ratio ), 1, 1);
+
         }
 
         if (CCMainSet == null) {
             yield return false;
         } else {
-            this.transform.localScale = new Vector3(ratio, ratio, 1);
+            this.transform.Find("cc").localScale = new Vector3(ratio, ratio, 1);
         }
 
         yield return true;

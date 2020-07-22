@@ -12664,8 +12664,8 @@ MonoBehaviour:
   RgShort: {fileID: 518372629}
   SelfStand: {fileID: 1549804175}
   DuelStand: {fileID: 143378720}
-  Long: 6
-  Middle: 4.5
+  Long: 5.5
+  Middle: 4
   Short: 2.5
 --- !u!1 &1708245905
 GameObject:
